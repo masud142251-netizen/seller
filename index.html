@@ -44,28 +44,146 @@
             padding: 20px;
         }
 
-        .portal-wrapper { width: 100%; max-width: 980px; display: flex; align-items: center; justify-content: center; }
+        .portal-wrapper { 
+            width: 100%; 
+            max-width: 980px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
 
-        /* Luxury Card UI with Smooth Glow Animation */
-        .luxury-card { background: var(--surface-card); border: 2px solid var(--border-luxury); border-radius: 24px; padding: 40px 30px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.9), 0 0 30px rgba(212,175,55,0.18); width: 100%; position: relative; animation: fadeInCard 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        @keyframes fadeInCard { from { opacity: 0; transform: translateY(25px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        /* Luxury Card UI with Smooth Glow & Entrance Animation */
+        .luxury-card { 
+            background: var(--surface-card); 
+            border: 2px solid var(--border-luxury); 
+            border-radius: 24px; 
+            padding: 40px 30px; 
+            text-align: center; 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.9), 0 0 30px rgba(212,175,55,0.18); 
+            width: 100%; 
+            position: relative; 
+            animation: fadeInCard 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
+        @keyframes fadeInCard { 
+            from { opacity: 0; transform: translateY(25px) scale(0.97); } 
+            to { opacity: 1; transform: translateY(0) scale(1); } 
+        }
 
-        .brand-logo { width: 85px; height: 85px; border-radius: 50%; border: 2px solid var(--gold-solid); object-fit: cover; margin-bottom: 18px; box-shadow: 0 0 30px rgba(212,175,55,0.5); animation: logoPulse 2.5s infinite ease-in-out; background: #000; }
-        @keyframes logoPulse { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(212,175,55,0.3)); } 50% { transform: scale(1.05); filter: drop-shadow(0 0 18px rgba(212,175,55,0.7)); } }
+        /* লোগোর অতিরিক্ত গ্লো ঠিক করে স্পষ্ট করা হয়েছে */
+        .brand-logo { 
+            width: 85px; 
+            height: 85px; 
+            border-radius: 50%; 
+            border: 2px solid var(--gold-solid); 
+            object-fit: cover; 
+            margin-bottom: 18px; 
+            box-shadow: 0 0 15px rgba(212,175,55,0.4); 
+            background: #000; 
+        }
 
-        .luxury-card h1 { font-family: 'Cinzel Decorative', serif; font-size: 1.6rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin-bottom: 5px; }
-        .luxury-card p { color: var(--text-gray); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; font-weight: 600; }
+        /* টাইটেল এবং সাবটাইটেলের দৈর্ঘ্য ও সামঞ্জস্য পারফেক্ট করা হয়েছে */
+        .title-container {
+            display: inline-block;
+            margin-bottom: 25px;
+            width: 100%;
+            max-width: 520px;
+        }
 
-        .gold-effect-banner { background: var(--surface-glass); border: 1px solid var(--border-luxury); padding: 22px; border-radius: 14px; margin-bottom: 25px; font-size: 0.82rem; color: #fceea7; line-height: 1.7; text-align: left; box-shadow: inset 0 0 15px rgba(212,175,55,0.08); }
-        .gold-effect-banner b { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: 'Cinzel', serif; font-size: 1.05rem; display: block; margin-bottom: 8px; }
-        .gold-effect-banner ul { margin-left: 18px; margin-top: 8px; font-size: 0.78rem; color: #ddd; }
-        .gold-effect-banner li { margin-bottom: 4px; }
+        .luxury-card h1 { 
+            font-family: 'Cinzel Decorative', serif; 
+            font-size: 1.55rem; 
+            font-weight: 900; 
+            background: var(--gold-gradient); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            text-transform: uppercase; 
+            margin-bottom: 6px; 
+            letter-spacing: 1px;
+        }
 
-        .apply-btn { display: inline-block; background: var(--gold-gradient); color: #080808; padding: 13px 38px; border-radius: 12px; font-weight: 800; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; border: none; cursor: pointer; box-shadow: 0 5px 20px rgba(212,175,55,0.45); transition: 0.3s; }
-        .apply-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(212,175,55,0.7); filter: brightness(1.15); }
+        .brand-subtitle-line { 
+            color: var(--text-gray); 
+            font-size: 0.75rem; 
+            letter-spacing: 3.5px; 
+            text-transform: uppercase; 
+            font-weight: 600; 
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
 
-        .outline-btn { background: transparent; border: 1px solid var(--gold-solid); color: var(--gold-solid); padding: 10px 25px; border-radius: 10px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; font-weight: 700; transition: 0.3s; }
-        .outline-btn:hover { background: var(--gold-solid); color: #080808; }
+        .gold-effect-banner { 
+            background: var(--surface-glass); 
+            border: 1px solid var(--border-luxury); 
+            padding: 22px; 
+            border-radius: 14px; 
+            margin-bottom: 25px; 
+            font-size: 0.82rem; 
+            color: #fceea7; 
+            line-height: 1.7; 
+            text-align: left; 
+            box-shadow: inset 0 0 15px rgba(212,175,55,0.08); 
+        }
+        .gold-effect-banner b { 
+            background: var(--gold-gradient); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            font-family: 'Cinzel', serif; 
+            font-size: 1.05rem; 
+            display: block; 
+            margin-bottom: 8px; 
+        }
+        .gold-effect-banner ul { 
+            margin-left: 18px; 
+            margin-top: 8px; 
+            font-size: 0.78rem; 
+            color: #ddd; 
+        }
+        .gold-effect-banner li { 
+            margin-bottom: 6px; 
+        }
+
+        .apply-btn { 
+            display: inline-block; 
+            background: var(--gold-gradient); 
+            color: #080808; 
+            padding: 13px 38px; 
+            border-radius: 12px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            font-size: 0.85rem; 
+            letter-spacing: 1px; 
+            border: none; 
+            cursor: pointer; 
+            box-shadow: 0 5px 20px rgba(212,175,55,0.45); 
+            transition: all 0.3s ease; 
+        }
+        .apply-btn:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 25px rgba(212,175,55,0.7); 
+            filter: brightness(1.15); 
+        }
+        .apply-btn:active {
+            transform: scale(0.97);
+        }
+
+        .outline-btn { 
+            background: transparent; 
+            border: 1px solid var(--gold-solid); 
+            color: var(--gold-solid); 
+            padding: 10px 25px; 
+            border-radius: 10px; 
+            font-size: 0.75rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            cursor: pointer; 
+            font-weight: 700; 
+            transition: 0.3s; 
+        }
+        .outline-btn:hover { 
+            background: var(--gold-solid); 
+            color: #080808; 
+        }
 
         .portal-section { display: none; text-align: left; width: 100%; }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
@@ -118,11 +236,14 @@
         <!-- 1. Entrance Card with Mandatory Rules & 20% Commission Rule -->
         <div class="luxury-card portal-section" id="entranceCard" style="display:block;">
             <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" alt="Logo" class="brand-logo">
-            <h1>MR MASUDAR ENTERPRISE</h1>
-            <p>Global Vendor & Elite Seller Ecosystem</p>
+            
+            <div class="title-container">
+                <h1>MR MASUDAR ENTERPRISE</h1>
+                <span class="brand-subtitle-line">Global Vendor & Elite Seller Ecosystem</span>
+            </div>
             
             <div class="gold-effect-banner">
-                <b>📌 ESSENTIAL VENDOR RULES & 20% COMMISSION POLICY</b>
+                <b>📌 ESSENTIAL VENDOR RULES & PLATFORM GUIDELINES</b>
                 <ul>
                     <li><b>High-Quality Packaging:</b> All premium products must use export-grade, damage-proof luxury packaging.</li>
                     <li><b>Strict Compliance:</b> Counterfeit items, misrepresentation, or customer fraud will result in immediate permanent account suspension and severe financial penalties.</li>
@@ -132,8 +253,8 @@
             </div>
 
             <button class="apply-btn" onclick="showSection('formSection')">Join as Elite Seller</button>
-            <div style="margin-top:20px; display:flex; justify-content:center; gap:25px;">
-                <button onclick="showSection('loginSection')" style="background:transparent; border:none; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 0.8rem; cursor:pointer; font-weight:700; text-transform:uppercase; letter-spacing:1px;">Seller Sign In</button>
+            <div style="margin-top: 18px; text-align: center;">
+                <button onclick="showSection('loginSection')" class="outline-btn" style="padding: 8px 22px; font-size: 0.7rem;">Seller Sign In</button>
             </div>
         </div>
 
@@ -224,19 +345,9 @@
             </div>
 
             <div style="text-align: center; margin-top: 25px;">
-                <button class="apply-btn" onclick="submitSellerApp()">Submit Seller Application</button>
+                <button class="apply-btn" onclick="submitSellerApp()">Complete Registration & Enter Dashboard</button>
                 <br><button onclick="showSection('entranceCard')" style="background:none; border:none; color:var(--text-gray); margin-top:15px; cursor:pointer; font-size:0.75rem;">Cancel & Return</button>
             </div>
-        </div>
-
-        <!-- 4. Review Notice Screen -->
-        <div class="luxury-card portal-section" id="reviewNoticeSection">
-            <i class="fa-solid fa-hourglass-half" style="font-size: 45px; color: var(--gold-solid); margin-bottom: 15px;"></i>
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom:15px; font-size:1.4rem;">Application Under Professional Review</h2>
-            <p style="font-size: 0.78rem; line-height: 1.8; color: #ccc; max-width: 600px; margin: 0 auto 25px auto;">
-                আপনার আবেদন সফলভাবে জমা হয়েছে এবং এটি বর্তমানে আমাদের সিকিউরিটি ও ভেন্ডর রিভিউ টিম কর্তৃক পর্যালোচনার অধীনে রয়েছে। অনুগ্রহ করে ধৈর্য ধরে অপেক্ষা করুন; আমরা সাধারণত <b>২৪ ঘণ্টার মধ্যে</b> আপনার অ্যাকাউন্ট যাচাই করে একটিভ করে দেব। একটিভ হওয়ার পর আপনি আপনার জিমেইল ও পাসওয়ার্ড দিয়ে সরাসরি ড্যাশবোর্ডে প্রবেশ করতে পারবেন।
-            </p>
-            <button class="apply-btn" onclick="showSection('entranceCard')">Return to Home</button>
         </div>
 
         <!-- 5. Approved Luxury Seller Dashboard Screen with Detailed Stats, Graphs & Automated Ledger -->
@@ -249,7 +360,7 @@
             </div>
         </div>
 
-        <!-- 6. Advanced Global Retail Product Upload Terminal (6 Emoji Categories, Dollar Pricing & BD Discount) -->
+        <!-- 6. Advanced Global Retail Product Upload Terminal -->
         <div class="luxury-card portal-section" id="productSection">
             <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:8px; font-size:1.2rem; text-transform:uppercase;">Global Retail Product Upload</h2>
             <p style="font-size:0.75rem; color:var(--text-gray); margin-bottom:20px; text-align:center;">দৈনিক সর্বোচ্চ ৩টি প্রোডাক্ট আপলোড করা যাবে। সকল মূল্য ডলারে নির্ধারিত। (20% Platform Commission Applied)</p>
@@ -328,9 +439,13 @@
         let currentActiveVendor = null;
 
         function showSection(id) {
-            const sections = ['entranceCard', 'loginSection', 'resetSection', 'formSection', 'reviewNoticeSection', 'dashboardSection', 'productSection'];
-            sections.forEach(sec => document.getElementById(sec).style.display = 'none');
-            document.getElementById(id).style.display = 'block';
+            const sections = ['entranceCard', 'loginSection', 'resetSection', 'formSection', 'dashboardSection', 'productSection'];
+            sections.forEach(sec => {
+                let el = document.getElementById(sec);
+                if(el) el.style.display = 'none';
+            });
+            let target = document.getElementById(id);
+            if(target) target.style.display = 'block';
         }
 
         function openPasswordReset() {
@@ -365,6 +480,7 @@
             }
         }
 
+        /* ডাইরেক্ট রেজিস্ট্রেশন করে রিভিউ পেজ বাদ দিয়ে সরাসরি ড্যাশবোর্ডে প্রবেশ করানোর লজিক */
         function submitSellerApp() {
             const name = document.getElementById('fullName').value;
             const email = document.getElementById('email').value.trim().toLowerCase();
@@ -391,7 +507,7 @@
             const vendorId = 'VEN-' + Math.floor(1000 + Math.random() * 9000);
             const vendor = {
                 id: vendorId, name: name, email: email, whatsapp: phone, biz: biz,
-                pass: pass, status: 'Pending', productsCount: 0, 
+                pass: pass, status: 'Active', productsCount: 0, 
                 totalClicks: 142, totalParcels: 18, totalReviews: 24, totalEarnings: '$450.00', lastUploadDate: '',
                 uploadedProducts: [
                     { name: "Royal Teak Bed", category: "🏡 HOME DECOR", stock: "50", global: "$ 120.00", bdDiscount: "10% OFF", clicks: "64", parcels: "10", reviews: "12", status: "Paid & Settled" },
@@ -403,7 +519,8 @@
             sellers.push(vendor);
             localStorage.setItem('mme_sellers', JSON.stringify(sellers));
 
-            showSection('reviewNoticeSection');
+            currentActiveVendor = vendor;
+            renderVendorDashboard(vendor);
         }
 
         function loginDashboard() {
@@ -413,21 +530,16 @@
             let found = sellers.find(s => s.email === email && s.pass === pass);
 
             if(found) {
-                if(found.status !== 'Active') {
-                    alert("আপনার অ্যাকাউন্টটি এখনও রিভিউ পর্যায়ে রয়েছে বা এপ্রুভ হয়নি। অনুগ্রহ করে ২৪ ঘণ্টা অপেক্ষা করুন।");
-                    return;
-                }
                 currentActiveVendor = found;
                 renderVendorDashboard(found);
             } else {
-                alert("Invalid Gmail or Password, or account not approved yet!");
+                alert("Invalid Gmail or Password!");
             }
         }
 
         function renderVendorDashboard(found) {
             showSection('dashboardSection');
 
-            // Automated Ledger Rows
             let ledgerRows = found.uploadedProducts && found.uploadedProducts.length > 0 ? 
                 found.uploadedProducts.map((p, idx) => `
                     <tr>
@@ -552,7 +664,7 @@
                 currentActiveVendor.productsCount += 1;
             }
 
-            let sellers = JSON.parse(localStorage.getItem('mme_sellers'));
+            let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
             let idx = sellers.findIndex(s => s.id === currentActiveVendor.id);
             if(idx !== -1) {
                 sellers[idx] = currentActiveVendor;
