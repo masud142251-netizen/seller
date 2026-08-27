@@ -184,11 +184,30 @@
         .input-group input, .input-group select, .input-group textarea { width: 100%; background: #000; border: 1.5px solid rgba(212,175,55,0.4); padding: 9px 12px; color: #fff; border-radius: 8px; font-size: 0.75rem; outline: none; transition: 0.3s; }
         .input-group input:focus, .input-group select:focus, .input-group textarea:focus { border-color: var(--gold-solid); box-shadow: 0 0 10px rgba(212,175,55,0.4); }
 
+        .password-field-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .password-field-wrapper input {
+            width: 100%;
+            padding-right: 35px;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--gold-solid);
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
         .phone-group { display: flex; gap: 6px; }
         .phone-group select { width: 120px; flex-shrink: 0; }
         .section-title { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border-luxury); padding-bottom: 4px; margin: 12px 0 8px 0; font-weight: 700; }
 
-        /* Dashboard Styles & Mobile Optimization */
         .dashboard-container { background: linear-gradient(145deg, #0b0b0b, #030303); border: 2px solid var(--border-luxury); border-radius: 14px; padding: 12px; text-align: left; width: 100%; overflow: hidden; }
         
         .dash-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 12px 0; }
@@ -196,7 +215,6 @@
         .dash-stat-box .number { font-size: 0.9rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-top: 3px; display: block; font-family: 'Cinzel', serif; }
         .cv-label { color: var(--gold-light); font-weight: 700; text-transform: uppercase; font-size: 0.55rem; letter-spacing: 0.5px; }
 
-        /* Clean Identity Card (No Email as requested) */
         .digital-id-card { background: linear-gradient(135deg, #18150a, #080808); border: 2px solid var(--gold-solid); border-radius: 14px; padding: 12px; display: flex; gap: 12px; align-items: center; margin-bottom: 12px; box-shadow: 0 0 15px rgba(212,175,55,0.2); }
         .id-avatar { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--gold-solid); object-fit: cover; background: #000; flex-shrink: 0; box-shadow: 0 0 10px rgba(212,175,55,0.4); }
 
@@ -260,10 +278,15 @@
                 <label>Official Gmail Address</label>
                 <input type="email" id="loginEmail" placeholder="seller@gmail.com" required>
             </div>
+            
             <div class="input-group" style="max-width:300px; margin:0 auto 8px auto;">
                 <label>Dashboard Password</label>
-                <input type="password" id="loginPass" placeholder="Enter Password" required>
+                <div class="password-field-wrapper">
+                    <input type="password" id="loginPass" placeholder="Enter Password" required>
+                    <button type="button" class="toggle-password" onclick="togglePasswordVisibility('loginPass', this)"><i class="fa-solid fa-eye"></i></button>
+                </div>
             </div>
+
             <div style="max-width:300px; margin:0 auto 15px auto; text-align:right;">
                 <button onclick="openPasswordReset()" style="background:none; border:none; color:var(--gold-light); font-size:0.65rem; cursor:pointer; text-decoration:underline;">Forgot Password?</button>
             </div>
@@ -280,10 +303,15 @@
                 <label>Registered Gmail</label>
                 <input type="email" id="resetEmail" placeholder="seller@gmail.com">
             </div>
+
             <div class="input-group" style="max-width:300px; margin:0 auto 15px auto;">
                 <label>New Secure Password</label>
-                <input type="password" id="newPassword" placeholder="10+ chars, Upper, Lower, Symbol">
+                <div class="password-field-wrapper">
+                    <input type="password" id="newPassword" placeholder="10+ chars, Upper, Lower, Symbol">
+                    <button type="button" class="toggle-password" onclick="togglePasswordVisibility('newPassword', this)"><i class="fa-solid fa-eye"></i></button>
+                </div>
             </div>
+
             <div style="text-align:center;">
                 <button class="apply-btn" onclick="executePasswordReset()">Update Password</button>
                 <br><button onclick="showSection('loginSection')" style="background:none; border:none; color:var(--text-gray); margin-top:12px; cursor:pointer; font-size:0.68rem;">Back to Sign In</button>
@@ -303,8 +331,21 @@
                 <div class="input-group"><label>Official Gmail Address *</label><input type="email" id="email" required></div>
                 <div class="input-group"><label>Date of Birth *</label><input type="date" id="dob" required></div>
 
-                <div class="input-group"><label>Dashboard Password *</label><input type="password" id="partnerPassword" placeholder="Min 10 chars, Upper, Lower, Symbol" required></div>
-                <div class="input-group"><label>Confirm Password *</label><input type="password" id="confirmPassword" required></div>
+                <div class="input-group">
+                    <label>Dashboard Password *</label>
+                    <div class="password-field-wrapper">
+                        <input type="password" id="partnerPassword" placeholder="Min 10 chars, Upper, Lower, Symbol" required>
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('partnerPassword', this)"><i class="fa-solid fa-eye"></i></button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Confirm Password *</label>
+                    <div class="password-field-wrapper">
+                        <input type="password" id="confirmPassword" required>
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('confirmPassword', this)"><i class="fa-solid fa-eye"></i></button>
+                    </div>
+                </div>
                 
                 <div class="input-group">
                     <label>Select Your Country (200+ Nations) *</label>
@@ -530,6 +571,20 @@
             }
         });
 
+        function togglePasswordVisibility(fieldId, btn) {
+            const inputField = document.getElementById(fieldId);
+            const icon = btn.querySelector('i');
+            if (inputField.type === "password") {
+                inputField.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                inputField.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
+
         function toggleColorTag(btn) {
             let colorInput = document.getElementById('prodColors');
             let currentVal = colorInput.value.trim();
@@ -690,7 +745,6 @@
         function renderVendorDashboard(found) {
             showSection('dashboardSection');
 
-            // Permanent #0 Sample Product + Customer Uploaded Products (#1, #2, #3...)
             let sampleProduct = {
                 name: "Royal Teak Bed",
                 category: "🏡 HOME DECOR",
@@ -703,31 +757,35 @@
                 trackingId: "TRK-948210"
             };
 
-            let inventoryRows = `
-                <tr>
-                    <td><b>#0</b></td>
-                    <td><b style="color:var(--gold-light);">${sampleProduct.name}</b></td>
-                    <td>${sampleProduct.category}</td>
-                    <td>${sampleProduct.stock}</td>
-                    <td>${sampleProduct.global}</td>
-                    <td>${sampleProduct.countryDiscount}</td>
-                    <td>${sampleProduct.sizes}</td>
-                    <td>${sampleProduct.colors}</td>
-                </tr>
-            `;
+            let inventoryRows = "";
+            let trackingRows = "";
 
-            let trackingRows = `
-                <tr>
-                    <td><b>#0</b></td>
-                    <td>${sampleProduct.name} (ID: ${found.id})</td>
-                    <td><span style="color:#2ecc71; font-weight:bold;">● ${sampleProduct.status}</span></td>
-                    <td>${sampleProduct.trackingId}</td>
-                    <td>Global Express Courier</td>
-                    <td><button onclick="alert('Funds ready for Payoneer withdrawal! Transfer requested to ${found.payoneerEmail}')" style="background:var(--gold-gradient); border:none; padding:4px 10px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:0.6rem;">Withdraw via Payoneer</button></td>
-                </tr>
-            `;
-
-            if(found.uploadedProducts && found.uploadedProducts.length > 0) {
+            if (!found.uploadedProducts || found.uploadedProducts.length === 0) {
+                // If no products uploaded, show ONLY #0 sample
+                inventoryRows = `
+                    <tr>
+                        <td><b>#0</b></td>
+                        <td><b style="color:var(--gold-light);">${sampleProduct.name}</b></td>
+                        <td>${sampleProduct.category}</td>
+                        <td>${sampleProduct.stock}</td>
+                        <td>${sampleProduct.global}</td>
+                        <td>${sampleProduct.countryDiscount}</td>
+                        <td>${sampleProduct.sizes}</td>
+                        <td>${sampleProduct.colors}</td>
+                    </tr>
+                `;
+                trackingRows = `
+                    <tr>
+                        <td><b>#0</b></td>
+                        <td>${sampleProduct.name} (ID: ${found.id})</td>
+                        <td><span style="color:#2ecc71; font-weight:bold;">● ${sampleProduct.status}</span></td>
+                        <td>${sampleProduct.trackingId}</td>
+                        <td>Global Express Courier</td>
+                        <td><button onclick="alert('Funds ready for Payoneer withdrawal! Transfer requested to ${found.payoneerEmail}')" style="background:var(--gold-gradient); border:none; padding:4px 10px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:0.6rem;">Withdraw via Payoneer</button></td>
+                    </tr>
+                `;
+            } else {
+                // If products are uploaded, show ONLY 1, 2, 3... (No #0 sample)
                 found.uploadedProducts.forEach((p, idx) => {
                     inventoryRows += `
                         <tr>
@@ -755,7 +813,6 @@
             }
 
             let dashHtml = `
-                <!-- Ultra Premium Identity Card (Email removed) -->
                 <div class="digital-id-card">
                     <img src="${found.photo}" alt="ID Avatar" class="id-avatar">
                     <div style="overflow:hidden;">
