@@ -1,25 +1,20 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Globe, ShieldCheck, Store, ArrowRight, CheckCircle2 } from 'lucide-react';
-import countries from 'country-list';
 
-// বিশ্বের সমস্ত দেশের তালিকা ও ফ্ল্যাগ জেনারেট করার লজিক
-const allCountriesData = countries.getData().map((country) => {
-  const code = country.code;
-  const flag = code
-    .toUpperCase()
-    .replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)));
-  
-  return {
-    name: country.name,
-    code: country.code,
-    flag: flag || '🌍',
-  };
-});
+const countriesList = [
+  { name: 'China', code: 'CN', flag: '🇨🇳', phone: '+86' },
+  { name: 'United Kingdom', code: 'GB', flag: '🇬🇧', phone: '+44' },
+  { name: 'United States', code: 'US', flag: '🇺🇸', phone: '+1' },
+  { name: 'Bangladesh', code: 'BD', flag: '🇧🇩', phone: '+880' },
+  { name: 'Canada', code: 'CA', flag: '🇨🇦', phone: '+1' },
+  { name: 'Australia', code: 'AU', flag: '🇦🇺', phone: '+61' },
+  { name: 'Germany', code: 'DE', flag: '🇩🇪', phone: '+49' },
+  { name: 'United Arab Emirates', code: 'AE', flag: '🇦🇪', phone: '+971' },
+];
 
 export default function GlobalSellerRegistration() {
-  const [selectedCountry, setSelectedCountry] = useState(allCountriesData[0] || { name: 'China', code: 'CN', flag: '🇨🇳' });
+  const [selectedCountry, setSelectedCountry] = useState(countriesList[0]);
   const [formData, setFormData] = useState({
     businessName: '',
     email: '',
@@ -32,69 +27,47 @@ export default function GlobalSellerRegistration() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ ...formData, country: selectedCountry });
     alert('Global Seller Registration Submitted Successfully!');
   };
 
   return (
-    <div className="min-h-screen bg-[#0b0f19] text-gray-100 flex flex-col justify-between p-6 md:p-12 font-sans selection:bg-amber-500 selection:text-black">
+    <div style={{ minHeight: '100vh', backgroundColor: '#0b0f19', color: '#f3f4f6', padding: '40px 20px', fontFamily: 'sans-serif' }}>
       
-      {/* Top Luxury Branding Header */}
-      <header className="max-w-6xl mx-auto w-full flex justify-between items-center border-b border-gray-800/60 pb-6">
-        <div className="flex items-center gap-3">
-          <div className="p-2 bg-gradient-to-br from-amber-400 to-amber-600 rounded-xl text-black shadow-lg shadow-amber-500/10">
-            <Store className="w-6 h-6" />
-          </div>
-          <span className="text-xl font-bold tracking-wider text-white">MR MASUDAR <span className="text-amber-400 font-light">GLOBAL</span></span>
-        </div>
-        <div className="hidden md:flex items-center gap-6 text-sm text-gray-400">
-          <span className="flex items-center gap-1.5"><Globe className="w-4 h-4 text-amber-400" /> 200+ Countries Connected</span>
-          <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-amber-400" /> Secure Cross-Border</span>
-        </div>
-      </header>
+      {/* Header */}
+      <div style={{ maxWidth: '900px', margin: '0 auto 40px auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #1f2937', paddingBottom: '20px' }}>
+        <h2 style={{ fontSize: '20px', fontWeight: 'bold', color: '#ffffff', margin: 0 }}>
+          MR MASUDAR <span style={{ color: '#fbbf24', fontWeight: '300' }}>GLOBAL</span>
+        </h2>
+        <span style={{ fontSize: '14px', color: '#9ca3af' }}>200+ Countries Connected</span>
+      </div>
 
-      {/* Main Hero & Luxury Form Section */}
-      <main className="max-w-4xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-12 my-12 items-center">
+      {/* Main Container */}
+      <div style={{ maxWidth: '900px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', alignItems: 'center' }}>
         
-        {/* Left Value Pitch */}
-        <div className="md:col-span-6 space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs tracking-wide uppercase">
-            <span>✨ Enterprise Global Hub</span>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-            Seamless <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-600">Cross-Border</span> Multi-Vendor Ecosystem.
+        {/* Left Pitch */}
+        <div>
+          <span style={{ backgroundColor: 'rgba(251, 191, 36, 0.1)', color: '#fbbf24', padding: '6px 12px', borderRadius: '20px', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '1px' }}>
+            Enterprise Global Hub
+          </span>
+          <h1 style={{ fontSize: '38px', fontWeight: '800', color: '#ffffff', lineHeight: '1.2', marginTop: '20px', marginBottom: '20px' }}>
+            Seamless <span style={{ color: '#fbbf24' }}>Cross-Border</span> Multi-Vendor Ecosystem.
           </h1>
-          <p className="text-gray-400 text-sm md:text-base leading-relaxed">
-            Connect your global warehouse or retail network with buyers worldwide. Automated currency conversion, secure escrow payments, and live tracking powered by enterprise infrastructure.
+          <p style={{ color: '#9ca3af', fontSize: '14px', lineHeight: '1.6' }}>
+            Connect your global warehouse or retail network with buyers worldwide. Automated currency conversion and direct dispatch.
           </p>
-          <div className="space-y-3 pt-2">
-            <div className="flex items-center gap-3 text-sm text-gray-300">
-              <CheckCircle2 className="w-5 h-5 text-amber-400 shrink-0" />
-              <span>Instant Country Flag & Code Auto-Detection (200+ Countries)</span>
-            </div>
-            <div className="flex items-center gap-3 text-sm text-gray-300">
-              <CheckCircle2 className="w-5 h-5 text-amber-400 shrink-0" />
-              <span>Zero Product Stock Required on Central Platform</span>
-            </div>
-            <div className="flex items-center gap-3 text-sm text-gray-300">
-              <CheckCircle2 className="w-5 h-5 text-amber-400 shrink-0" />
-              <span>Direct Vendor-to-Customer Global Dispatch</span>
-            </div>
-          </div>
         </div>
 
-        {/* Right Luxury Registration Card */}
-        <div className="md:col-span-6 bg-gray-900/40 backdrop-blur-xl border border-gray-800/80 p-8 rounded-3xl shadow-2xl shadow-black/50 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        {/* Right Form Card */}
+        <div style={{ backgroundColor: '#111827', border: '1px solid #1f2937', padding: '30px', borderRadius: '24px', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.5)' }}>
           
-          <h2 className="text-xl font-semibold text-white mb-6 flex items-center justify-between">
-            <span>Vendor Registration</span>
-            <span className="text-2xl">{selectedCountry.flag}</span>
-          </h2>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+            <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#ffffff', margin: 0 }}>Vendor Registration</h3>
+            <span style={{ fontSize: '24px' }}>{selectedCountry.flag}</span>
+          </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <div>
-              <label className="block text-xs uppercase tracking-wider text-gray-400 mb-2">Business / Store Name</label>
+              <label style={{ display: 'block', fontSize: '11px', textTransform: 'uppercase', color: '#9ca3af', marginBottom: '8px' }}>Business / Store Name</label>
               <input 
                 type="text" 
                 name="businessName"
@@ -102,21 +75,21 @@ export default function GlobalSellerRegistration() {
                 placeholder="e.g. Apex Global Trade" 
                 value={formData.businessName}
                 onChange={handleInputChange}
-                className="w-full bg-gray-950/60 border border-gray-800 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-amber-400 transition-all text-sm"
+                style={{ width: '100%', backgroundColor: '#030712', border: '1px solid #374151', borderRadius: '10px', padding: '12px', color: '#ffffff', outline: 'none', boxSizing: 'border-box' }}
               />
             </div>
 
             <div>
-              <label className="block text-xs uppercase tracking-wider text-gray-400 mb-2">Select Country (200+ Available)</label>
+              <label style={{ display: 'block', fontSize: '11px', textTransform: 'uppercase', color: '#9ca3af', marginBottom: '8px' }}>Select Country & Location</label>
               <select 
                 onChange={(e) => {
-                  const country = allCountriesData.find(c => c.code === e.target.value);
+                  const country = countriesList.find(c => c.code === e.target.value);
                   if (country) setSelectedCountry(country);
                 }}
-                className="w-full bg-gray-950/60 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition-all text-sm cursor-pointer"
+                style={{ width: '100%', backgroundColor: '#030712', border: '1px solid #374151', borderRadius: '10px', padding: '12px', color: '#ffffff', outline: 'none', cursor: 'pointer', boxSizing: 'border-box' }}
               >
-                {allCountriesData.map((c) => (
-                  <option key={c.code} value={c.code} className="bg-gray-900 text-white">
+                {countriesList.map((c) => (
+                  <option key={c.code} value={c.code} style={{ backgroundColor: '#111827', color: '#ffffff' }}>
                     {c.flag} {c.name}
                   </option>
                 ))}
@@ -124,7 +97,7 @@ export default function GlobalSellerRegistration() {
             </div>
 
             <div>
-              <label className="block text-xs uppercase tracking-wider text-gray-400 mb-2">Official Email</label>
+              <label style={{ display: 'block', fontSize: '11px', textTransform: 'uppercase', color: '#9ca3af', marginBottom: '8px' }}>Official Email</label>
               <input 
                 type="email" 
                 name="email"
@@ -132,39 +105,39 @@ export default function GlobalSellerRegistration() {
                 placeholder="vendor@domain.com" 
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full bg-gray-950/60 border border-gray-800 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-amber-400 transition-all text-sm"
+                style={{ width: '100%', backgroundColor: '#030712', border: '1px solid #374151', borderRadius: '10px', padding: '12px', color: '#ffffff', outline: 'none', boxSizing: 'border-box' }}
               />
             </div>
 
             <div>
-              <label className="block text-xs uppercase tracking-wider text-gray-400 mb-2">WhatsApp Number</label>
-              <input 
-                type="tel" 
-                name="whatsapp"
-                required
-                placeholder="+1 234 567 890" 
-                value={formData.whatsapp}
-                onChange={handleInputChange}
-                className="w-full bg-gray-950/60 border border-gray-800 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-amber-400 transition-all text-sm"
-              />
+              <label style={{ display: 'block', fontSize: '11px', textTransform: 'uppercase', color: '#9ca3af', marginBottom: '8px' }}>WhatsApp Number ({selectedCountry.phone})</label>
+              <div style={{ display: 'flex' }}>
+                <span style={{ backgroundColor: '#1f2937', border: '1px solid #374151', borderRight: 'none', borderTopLeftRadius: '10px', borderBottomLeftRadius: '10px', padding: '12px', color: '#fbbf24', fontSize: '14px', display: 'flex', alignItems: 'center' }}>
+                  {selectedCountry.phone}
+                </span>
+                <input 
+                  type="tel" 
+                  name="whatsapp"
+                  required
+                  placeholder="1700000000" 
+                  value={formData.whatsapp}
+                  onChange={handleInputChange}
+                  style={{ width: '100%', backgroundColor: '#030712', border: '1px solid #374151', borderTopRightRadius: '10px', borderBottomRightRadius: '10px', padding: '12px', color: '#ffffff', outline: 'none', boxSizing: 'border-box' }}
+                />
+              </div>
             </div>
 
             <button 
               type="submit" 
-              className="w-full mt-2 bg-gradient-to-r from-amber-400 to-amber-600 text-black font-semibold py-3.5 px-6 rounded-xl hover:opacity-95 transition-all shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 group text-sm"
+              style={{ width: '100%', marginTop: '10px', background: 'linear-gradient(to right, #fbbf24, #d97706)', color: '#000000', fontWeight: 'bold', padding: '14px', borderRadius: '10px', border: 'none', cursor: 'pointer', fontSize: '14px' }}
             >
-              <span>Initialize Global Account</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              Initialize Global Account
             </button>
           </form>
+
         </div>
 
-      </main>
-
-      {/* Footer Minimalist */}
-      <footer className="max-w-6xl mx-auto w-full text-center border-t border-gray-800/60 pt-6 text-xs text-gray-500">
-        <p>&copy; 2026 MR MASUDAR GLOBAL ENTERPRISE. All Rights Reserved. Powered by Next.js & Supabase Automation.</p>
-      </footer>
+      </div>
 
     </div>
   );
