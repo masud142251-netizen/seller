@@ -40,7 +40,7 @@
             justify-content: center;
             overflow-x: hidden;
             background-image: radial-gradient(circle at 50% 10%, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
-            padding: 12px;
+            padding: 10px;
         }
 
         .portal-wrapper { 
@@ -55,7 +55,7 @@
             background: var(--surface-card); 
             border: 2px solid var(--border-luxury); 
             border-radius: 20px; 
-            padding: 25px 18px; 
+            padding: 20px 15px; 
             text-align: center; 
             box-shadow: 0 20px 40px rgba(0,0,0,0.9), 0 0 25px rgba(212,175,55,0.15); 
             width: 100%; 
@@ -86,7 +86,7 @@
 
         .luxury-card h1 { 
             font-family: 'Cinzel Decorative', serif; 
-            font-size: 1.25rem; 
+            font-size: 1.15rem; 
             font-weight: 900; 
             background: var(--gold-gradient); 
             -webkit-background-clip: text; 
@@ -97,7 +97,7 @@
 
         .brand-subtitle-line { 
             color: var(--text-gray); 
-            font-size: 0.65rem; 
+            font-size: 0.6rem; 
             letter-spacing: 2px; 
             text-transform: uppercase; 
             font-weight: 600; 
@@ -109,10 +109,10 @@
         .gold-effect-banner { 
             background: var(--surface-glass); 
             border: 1px solid var(--border-luxury); 
-            padding: 16px; 
+            padding: 14px; 
             border-radius: 12px; 
-            margin-bottom: 20px; 
-            font-size: 0.76rem; 
+            margin-bottom: 18px; 
+            font-size: 0.73rem; 
             color: #fceea7; 
             line-height: 1.6; 
             text-align: left; 
@@ -122,14 +122,14 @@
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
             font-family: 'Cinzel', serif; 
-            font-size: 0.9rem; 
+            font-size: 0.85rem; 
             display: block; 
             margin-bottom: 6px; 
         }
         .gold-effect-banner ul { 
             margin-left: 15px; 
             margin-top: 6px; 
-            font-size: 0.72rem; 
+            font-size: 0.7rem; 
             color: #ddd; 
         }
         .gold-effect-banner li { 
@@ -144,7 +144,7 @@
             border-radius: 10px; 
             font-weight: 800; 
             text-transform: uppercase; 
-            font-size: 0.78rem; 
+            font-size: 0.75rem; 
             letter-spacing: 1px; 
             border: none; 
             cursor: pointer; 
@@ -163,7 +163,7 @@
             color: var(--gold-solid); 
             padding: 8px 20px; 
             border-radius: 8px; 
-            font-size: 0.7rem; 
+            font-size: 0.68rem; 
             text-transform: uppercase; 
             letter-spacing: 1px; 
             cursor: pointer; 
@@ -180,40 +180,49 @@
         .full-width { grid-column: span 2; }
         
         .input-group { margin-bottom: 6px; }
-        .input-group label { display: block; font-size: 0.68rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 700; }
-        .input-group input, .input-group select, .input-group textarea { width: 100%; background: #000; border: 1.5px solid rgba(212,175,55,0.4); padding: 9px 12px; color: #fff; border-radius: 8px; font-size: 0.78rem; outline: none; transition: 0.3s; }
+        .input-group label { display: block; font-size: 0.65rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 700; }
+        .input-group input, .input-group select, .input-group textarea { width: 100%; background: #000; border: 1.5px solid rgba(212,175,55,0.4); padding: 9px 12px; color: #fff; border-radius: 8px; font-size: 0.75rem; outline: none; transition: 0.3s; }
         .input-group input:focus, .input-group select:focus, .input-group textarea:focus { border-color: var(--gold-solid); box-shadow: 0 0 10px rgba(212,175,55,0.4); }
 
         .phone-group { display: flex; gap: 6px; }
-        .phone-group select { width: 130px; flex-shrink: 0; }
-        .section-title { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border-luxury); padding-bottom: 4px; margin: 12px 0 8px 0; font-weight: 700; }
+        .phone-group select { width: 120px; flex-shrink: 0; }
+        .section-title { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border-luxury); padding-bottom: 4px; margin: 12px 0 8px 0; font-weight: 700; }
 
-        /* Dashboard Styles */
-        .dashboard-container { background: linear-gradient(145deg, #0b0b0b, #030303); border: 2px solid var(--border-luxury); border-radius: 14px; padding: 15px; text-align: left; }
+        /* Dashboard Styles & Mobile Optimization */
+        .dashboard-container { background: linear-gradient(145deg, #0b0b0b, #030303); border: 2px solid var(--border-luxury); border-radius: 14px; padding: 12px; text-align: left; width: 100%; overflow: hidden; }
         
-        .dash-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 15px 0; }
-        .dash-stat-box { background: rgba(20,20,20,0.95); border: 1px solid rgba(212,175,55,0.3); border-radius: 10px; padding: 10px 6px; text-align: center; }
-        .dash-stat-box .number { font-size: 1rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-top: 3px; display: block; font-family: 'Cinzel', serif; }
-        .cv-label { color: var(--gold-light); font-weight: 700; text-transform: uppercase; font-size: 0.58rem; letter-spacing: 0.5px; }
+        .dash-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 12px 0; }
+        .dash-stat-box { background: rgba(20,20,20,0.95); border: 1px solid rgba(212,175,55,0.3); border-radius: 10px; padding: 8px 4px; text-align: center; }
+        .dash-stat-box .number { font-size: 0.9rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-top: 3px; display: block; font-family: 'Cinzel', serif; }
+        .cv-label { color: var(--gold-light); font-weight: 700; text-transform: uppercase; font-size: 0.55rem; letter-spacing: 0.5px; }
 
-        /* Ultra Premium ID Card */
-        .digital-id-card { background: linear-gradient(135deg, #18150a, #080808); border: 2px solid var(--gold-solid); border-radius: 16px; padding: 16px; display: flex; gap: 15px; align-items: center; margin-bottom: 15px; box-shadow: 0 0 20px rgba(212,175,55,0.2); }
-        .id-avatar { width: 65px; height: 65px; border-radius: 50%; border: 2px solid var(--gold-solid); object-fit: cover; background: #000; flex-shrink: 0; box-shadow: 0 0 10px rgba(212,175,55,0.4); }
+        /* Clean Identity Card (No Email as requested) */
+        .digital-id-card { background: linear-gradient(135deg, #18150a, #080808); border: 2px solid var(--gold-solid); border-radius: 14px; padding: 12px; display: flex; gap: 12px; align-items: center; margin-bottom: 12px; box-shadow: 0 0 15px rgba(212,175,55,0.2); }
+        .id-avatar { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--gold-solid); object-fit: cover; background: #000; flex-shrink: 0; box-shadow: 0 0 10px rgba(212,175,55,0.4); }
 
-        .luxury-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 130px; background: linear-gradient(180deg, #121212, #050505); border: 1.5px solid var(--gold-solid); border-radius: 12px; padding: 15px 10px 8px 10px; margin: 15px 0; }
+        .luxury-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 120px; background: linear-gradient(180deg, #121212, #050505); border: 1.5px solid var(--gold-solid); border-radius: 12px; padding: 12px 8px 6px 8px; margin: 12px 0; }
         .chart-bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; height: 100%; justify-content: flex-end; }
-        .chart-bar { width: 28px; background: var(--gold-gradient); border-radius: 6px 6px 0 0; }
-        .chart-label { font-size: 0.58rem; color: #ffffff; text-transform: uppercase; font-weight: 700; }
+        .chart-bar { width: 24px; background: var(--gold-gradient); border-radius: 6px 6px 0 0; }
+        .chart-label { font-size: 0.55rem; color: #ffffff; text-transform: uppercase; font-weight: 700; }
 
-        .ledger-table-wrap { overflow-x: auto; margin-top: 10px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.3); background: #000; }
-        .ledger-table { width: 100%; border-collapse: collapse; font-size: 0.68rem; text-align: left; white-space: nowrap; }
-        .ledger-table th, .ledger-table td { border: 1px solid rgba(212,175,55,0.2); padding: 8px 10px; }
+        .ledger-table-wrap { overflow-x: auto; margin-top: 8px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.3); background: #000; -webkit-overflow-scrolling: touch; }
+        .ledger-table { width: 100%; border-collapse: collapse; font-size: 0.65rem; text-align: left; white-space: nowrap; }
+        .ledger-table th, .ledger-table td { border: 1px solid rgba(212,175,55,0.2); padding: 7px 9px; }
         .ledger-table th { background: linear-gradient(135deg, #221c0b, #111); color: var(--gold-solid); font-weight: 700; text-transform: uppercase; }
 
         .media-preview-box { display: flex; gap: 10px; align-items: center; background: #000; padding: 8px; border-radius: 8px; border: 1px solid rgba(212,175,55,0.3); margin-top: 5px; }
-        .media-preview-box img, .media-preview-box iframe { width: 50px; height: 50px; border-radius: 6px; object-fit: cover; background: #111; }
+        .media-preview-box img, .media-preview-box iframe { width: 45px; height: 45px; border-radius: 6px; object-fit: cover; background: #111; }
 
-        @media(max-width: 600px) { .form-grid, .dash-stats-grid { grid-template-columns: 1fr; } .full-width { grid-column: span 1; } }
+        @media(max-width: 600px) { 
+            body { padding: 4px; }
+            .luxury-card { padding: 12px 8px; border-radius: 12px; }
+            .form-grid, .dash-stats-grid { grid-template-columns: 1fr; } 
+            .full-width { grid-column: span 1; } 
+            .digital-id-card { padding: 10px; gap: 10px; }
+            .id-avatar { width: 48px; height: 48px; }
+            .luxury-card h1 { font-size: 1rem; }
+            .ledger-table { font-size: 0.6rem; }
+        }
     </style>
 </head>
 <body>
@@ -246,44 +255,44 @@
 
         <!-- 2. Seller Login Section -->
         <div class="luxury-card portal-section" id="loginSection">
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:15px; font-size:1.2rem;">Seller Dashboard Login</h2>
-            <div class="input-group" style="max-width:320px; margin:0 auto 12px auto;">
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:15px; font-size:1.1rem;">Seller Dashboard Login</h2>
+            <div class="input-group" style="max-width:300px; margin:0 auto 12px auto;">
                 <label>Official Gmail Address</label>
                 <input type="email" id="loginEmail" placeholder="seller@gmail.com" required>
             </div>
-            <div class="input-group" style="max-width:320px; margin:0 auto 8px auto;">
+            <div class="input-group" style="max-width:300px; margin:0 auto 8px auto;">
                 <label>Dashboard Password</label>
                 <input type="password" id="loginPass" placeholder="Enter Password" required>
             </div>
-            <div style="max-width:320px; margin:0 auto 15px auto; text-align:right;">
-                <button onclick="openPasswordReset()" style="background:none; border:none; color:var(--gold-light); font-size:0.68rem; cursor:pointer; text-decoration:underline;">Forgot Password?</button>
+            <div style="max-width:300px; margin:0 auto 15px auto; text-align:right;">
+                <button onclick="openPasswordReset()" style="background:none; border:none; color:var(--gold-light); font-size:0.65rem; cursor:pointer; text-decoration:underline;">Forgot Password?</button>
             </div>
             <div style="text-align:center;">
                 <button class="apply-btn" onclick="loginDashboard()">Access Dashboard</button>
-                <br><button onclick="showSection('entranceCard')" style="background:none; border:none; color:var(--text-gray); margin-top:12px; cursor:pointer; font-size:0.7rem;">Return Home</button>
+                <br><button onclick="showSection('entranceCard')" style="background:none; border:none; color:var(--text-gray); margin-top:12px; cursor:pointer; font-size:0.68rem;">Return Home</button>
             </div>
         </div>
 
         <!-- Password Recovery Section -->
         <div class="luxury-card portal-section" id="resetSection">
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:12px; font-size:1.1rem;">Password Recovery</h2>
-            <div class="input-group" style="max-width:320px; margin:0 auto 12px auto;">
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:12px; font-size:1.05rem;">Password Recovery</h2>
+            <div class="input-group" style="max-width:300px; margin:0 auto 12px auto;">
                 <label>Registered Gmail</label>
                 <input type="email" id="resetEmail" placeholder="seller@gmail.com">
             </div>
-            <div class="input-group" style="max-width:320px; margin:0 auto 15px auto;">
+            <div class="input-group" style="max-width:300px; margin:0 auto 15px auto;">
                 <label>New Secure Password</label>
                 <input type="password" id="newPassword" placeholder="10+ chars, Upper, Lower, Symbol">
             </div>
             <div style="text-align:center;">
                 <button class="apply-btn" onclick="executePasswordReset()">Update Password</button>
-                <br><button onclick="showSection('loginSection')" style="background:none; border:none; color:var(--text-gray); margin-top:12px; cursor:pointer; font-size:0.7rem;">Back to Sign In</button>
+                <br><button onclick="showSection('loginSection')" style="background:none; border:none; color:var(--text-gray); margin-top:12px; cursor:pointer; font-size:0.68rem;">Back to Sign In</button>
             </div>
         </div>
 
         <!-- 3. Detailed Seller Registration Form -->
         <div class="luxury-card portal-section" id="formSection">
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:15px; font-size:1.1rem; text-transform:uppercase;">Global Seller Application</h2>
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:15px; font-size:1.05rem; text-transform:uppercase;">Global Seller Application</h2>
             
             <div class="form-grid">
                 <div class="input-group full-width"><label>Full Legal Name *</label><input type="text" id="fullName" placeholder="Enter full name" required></div>
@@ -339,13 +348,13 @@
 
             <div style="text-align: center; margin-top: 20px;">
                 <button class="apply-btn" onclick="submitSellerApp()">Register & Open Dashboard</button>
-                <br><button onclick="showSection('entranceCard')" style="background:none; border:none; color:var(--text-gray); margin-top:12px; cursor:pointer; font-size:0.7rem;">Cancel & Return</button>
+                <br><button onclick="showSection('entranceCard')" style="background:none; border:none; color:var(--text-gray); margin-top:12px; cursor:pointer; font-size:0.68rem;">Cancel & Return</button>
             </div>
         </div>
 
         <!-- 4. Approved Luxury Seller Dashboard Screen -->
         <div class="luxury-card portal-section" id="dashboardSection">
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:12px; font-size:1.2rem;">Vendor Dashboard</h2>
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:12px; font-size:1.1rem;">Vendor Dashboard</h2>
             <div id="partnerWelcomeBox" class="dashboard-container"></div>
             <div style="margin-top:15px; text-align:center; display:flex; gap:10px; justify-content:center;">
                 <button class="apply-btn" onclick="showSection('productSection')"><i class="fa-solid fa-plus"></i> Upload Product</button>
@@ -355,7 +364,7 @@
 
         <!-- 5. Global Retail Product Upload Terminal -->
         <div class="luxury-card portal-section" id="productSection">
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:6px; font-size:1.1rem; text-transform:uppercase;">Global Retail Product Upload</h2>
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:6px; font-size:1.05rem; text-transform:uppercase;">Global Retail Product Upload</h2>
             
             <div class="form-grid" style="text-align:left;">
                 <div class="input-group full-width">
@@ -388,16 +397,16 @@
                 <div class="input-group full-width">
                     <label>Select Available Colors *</label>
                     <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:5px;">
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.65rem; cursor:pointer;">Golden Teak</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.65rem; cursor:pointer;">Black</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.65rem; cursor:pointer;">White</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.65rem; cursor:pointer;">Red</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.65rem; cursor:pointer;">Blue</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.65rem; cursor:pointer;">Green</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.65rem; cursor:pointer;">Silver</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.65rem; cursor:pointer;">Gold</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.65rem; cursor:pointer;">Pink</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.65rem; cursor:pointer;">Multi</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Golden Teak</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Black</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">White</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Red</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Blue</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Green</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Silver</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Gold</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Pink</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Multi</button>
                     </div>
                     <input type="text" id="prodColors" placeholder="Selected colors will appear here or type custom colors">
                 </div>
@@ -432,7 +441,7 @@
                     <label>Country Discount (All Countries & %)</label>
                     <div style="display:flex; gap:6px;">
                         <select id="discountCountry" style="flex:1;"></select>
-                        <select id="discountPercent" style="width:105px;">
+                        <select id="discountPercent" style="width:95px;">
                             <option value="3% Off">3%</option>
                             <option value="5% Off">5%</option>
                             <option value="10% Off">10%</option>
@@ -577,7 +586,7 @@
         function previewVideoLink(url) {
             let container = document.getElementById('videoLinkPreview');
             if(url.includes("youtube.com") || url.includes("youtu.be")) {
-                container.innerHTML = `<div class="media-preview-box"><i class="fa-brands fa-youtube" style="font-size:30px; color:#ff0000;"></i><span>YouTube Short Video Ready</span></div>`;
+                container.innerHTML = `<div class="media-preview-box"><i class="fa-brands fa-youtube" style="font-size:28px; color:#ff0000;"></i><span>YouTube Short Video Ready</span></div>`;
             } else {
                 container.innerHTML = "";
             }
@@ -650,12 +659,9 @@
                 whatsapp: phone, 
                 biz: biz,
                 pass: pass, 
-                photo: tempProfilePhotoBase64 || "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+                photo: tempProfilePhotoBase64 || "https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400",
                 payoneerName: payName,
                 payoneerEmail: payEmail,
-                totalClicks: 0, 
-                totalParcels: 0, 
-                totalEarnings: '$0.00', 
                 uploadedProducts: []
             };
 
@@ -684,65 +690,83 @@
         function renderVendorDashboard(found) {
             showSection('dashboardSection');
 
-            // Sample Preview Product + User Uploaded Products (Sequential #1, #2, #3...)
-            let allProductsToDisplay = [];
-            
-            // Default Sample Product for 0-0 demonstration
+            // Permanent #0 Sample Product + Customer Uploaded Products (#1, #2, #3...)
             let sampleProduct = {
-                name: "Luxury Gamar Chair",
+                name: "Royal Teak Bed",
                 category: "🏡 HOME DECOR",
-                stock: "100",
-                global: "$ 45.00",
+                stock: "50 Pcs",
+                global: "$ 120.00",
                 countryDiscount: "🇺🇸 United States (10% Off)",
                 sizes: "Standard",
                 colors: "Golden Teak",
-                status: "Sample (0 Orders)",
-                trackingId: "TRK-000000"
+                status: "Paid & Settled",
+                trackingId: "TRK-948210"
             };
 
-            if(found.uploadedProducts && found.uploadedProducts.length > 0) {
-                allProductsToDisplay = found.uploadedProducts;
-            } else {
-                allProductsToDisplay = [sampleProduct];
-            }
-
-            let ledgerRows = allProductsToDisplay.map((p, idx) => `
+            let inventoryRows = `
                 <tr>
-                    <td><b>#${idx + 1}</b></td>
-                    <td><b style="color:var(--gold-light);">${p.name}</b></td>
-                    <td>${p.category}</td>
-                    <td>${p.stock} Pcs</td>
-                    <td>${p.global}</td>
-                    <td>${p.countryDiscount}</td>
-                    <td>${p.sizes || 'N/A'}</td>
-                    <td>${p.colors || 'N/A'}</td>
+                    <td><b>#0</b></td>
+                    <td><b style="color:var(--gold-light);">${sampleProduct.name}</b></td>
+                    <td>${sampleProduct.category}</td>
+                    <td>${sampleProduct.stock}</td>
+                    <td>${sampleProduct.global}</td>
+                    <td>${sampleProduct.countryDiscount}</td>
+                    <td>${sampleProduct.sizes}</td>
+                    <td>${sampleProduct.colors}</td>
                 </tr>
-            `).join('');
+            `;
 
-            let trackingRows = allProductsToDisplay.map((p, idx) => `
+            let trackingRows = `
                 <tr>
-                    <td><b>#${idx + 1}</b></td>
-                    <td>${p.name} (ID: ${found.id})</td>
-                    <td><span style="color:${p.status.includes('Sample') ? '#f39c12' : '#2ecc71'}; font-weight:bold;">● ${p.status}</span></td>
-                    <td>${p.trackingId}</td>
+                    <td><b>#0</b></td>
+                    <td>${sampleProduct.name} (ID: ${found.id})</td>
+                    <td><span style="color:#2ecc71; font-weight:bold;">● ${sampleProduct.status}</span></td>
+                    <td>${sampleProduct.trackingId}</td>
                     <td>Global Express Courier</td>
                     <td><button onclick="alert('Funds ready for Payoneer withdrawal! Transfer requested to ${found.payoneerEmail}')" style="background:var(--gold-gradient); border:none; padding:4px 10px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:0.6rem;">Withdraw via Payoneer</button></td>
                 </tr>
-            `).join('');
+            `;
+
+            if(found.uploadedProducts && found.uploadedProducts.length > 0) {
+                found.uploadedProducts.forEach((p, idx) => {
+                    inventoryRows += `
+                        <tr>
+                            <td><b>#${idx + 1}</b></td>
+                            <td><b style="color:var(--gold-light);">${p.name}</b></td>
+                            <td>${p.category}</td>
+                            <td>${p.stock} Pcs</td>
+                            <td>${p.global}</td>
+                            <td>${p.countryDiscount}</td>
+                            <td>${p.sizes || 'N/A'}</td>
+                            <td>${p.colors || 'N/A'}</td>
+                        </tr>
+                    `;
+                    trackingRows += `
+                        <tr>
+                            <td><b>#${idx + 1}</b></td>
+                            <td>${p.name} (ID: ${found.id})</td>
+                            <td><span style="color:#2ecc71; font-weight:bold;">● ${p.status}</span></td>
+                            <td>${p.trackingId}</td>
+                            <td>Global Express Courier</td>
+                            <td><button onclick="alert('Funds ready for Payoneer withdrawal! Transfer requested to ${found.payoneerEmail}')" style="background:var(--gold-gradient); border:none; padding:4px 10px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:0.6rem;">Withdraw via Payoneer</button></td>
+                        </tr>
+                    `;
+                });
+            }
 
             let dashHtml = `
-                <!-- Ultra Premium Clean Identity Card -->
+                <!-- Ultra Premium Identity Card (Email removed) -->
                 <div class="digital-id-card">
                     <img src="${found.photo}" alt="ID Avatar" class="id-avatar">
                     <div style="overflow:hidden;">
-                        <span style="font-size:0.58rem; color:var(--gold-solid); letter-spacing:1px; font-weight:bold;">OFFICIAL VENDOR IDENTITY CARD (${found.flag || '🌐'} ${found.country || 'Global'})</span>
-                        <h3 style="margin:2px 0; color:#fff; font-size:1.1rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${found.biz}</h3>
-                        <p style="margin:0; font-size:0.68rem; color:#aaa;">Owner: ${found.name}</p>
-                        <p style="margin:0; font-size:0.65rem; color:var(--gold-solid);">ID: ${found.id} | Email: ${found.email}</p>
+                        <span style="font-size:0.55rem; color:var(--gold-solid); letter-spacing:1px; font-weight:bold;">OFFICIAL VENDOR IDENTITY CARD (${found.flag || '🌐'} ${found.country || 'Global'})</span>
+                        <h3 style="margin:2px 0; color:#fff; font-size:1.05rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${found.biz}</h3>
+                        <p style="margin:0; font-size:0.65rem; color:#aaa;">Owner: ${found.name}</p>
+                        <p style="margin:0; font-size:0.63rem; color:var(--gold-solid);">ID: ${found.id}</p>
                     </div>
                 </div>
 
-                <div style="margin:10px 0 3px 0;"><span class="cv-label">Vendor Growth & Analysis</span></div>
+                <div style="margin:8px 0 2px 0;"><span class="cv-label">Vendor Growth & Analysis</span></div>
                 <div class="luxury-chart">
                     <div class="chart-bar-wrap"><div class="chart-bar" style="height: 10%;"></div><span class="chart-label">Clicks</span></div>
                     <div class="chart-bar-wrap"><div class="chart-bar" style="height: 10%;"></div><span class="chart-label">Parcels</span></div>
@@ -755,7 +779,7 @@
                     <div class="dash-stat-box"><span class="cv-label">Product Clicks</span><span class="number">0</span></div>
                 </div>
 
-                <div style="margin-top:15px;">
+                <div style="margin-top:12px;">
                     <span class="cv-label">📦 Product Inventory & Performance Ledger</span>
                     <div class="ledger-table-wrap">
                         <table class="ledger-table">
@@ -772,13 +796,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                ${ledgerRows}
+                                ${inventoryRows}
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <div style="margin-top:20px;">
+                <div style="margin-top:16px;">
                     <span class="cv-label">🚚 Automated Tracking, Shipping & Payoneer Payouts</span>
                     <div class="ledger-table-wrap">
                         <table class="ledger-table">
