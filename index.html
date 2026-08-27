@@ -196,8 +196,9 @@
         .dash-stat-box .number { font-size: 1rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-top: 3px; display: block; font-family: 'Cinzel', serif; }
         .cv-label { color: var(--gold-light); font-weight: 700; text-transform: uppercase; font-size: 0.58rem; letter-spacing: 0.5px; }
 
-        .digital-id-card { background: linear-gradient(135deg, #121212, #050505); border: 1.5px solid var(--gold-solid); border-radius: 14px; padding: 14px; display: flex; gap: 12px; align-items: center; margin-bottom: 15px; }
-        .id-avatar { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--gold-solid); object-fit: cover; background: #000; flex-shrink: 0; }
+        /* Ultra Premium ID Card */
+        .digital-id-card { background: linear-gradient(135deg, #18150a, #080808); border: 2px solid var(--gold-solid); border-radius: 16px; padding: 16px; display: flex; gap: 15px; align-items: center; margin-bottom: 15px; box-shadow: 0 0 20px rgba(212,175,55,0.2); }
+        .id-avatar { width: 65px; height: 65px; border-radius: 50%; border: 2px solid var(--gold-solid); object-fit: cover; background: #000; flex-shrink: 0; box-shadow: 0 0 10px rgba(212,175,55,0.4); }
 
         .luxury-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 130px; background: linear-gradient(180deg, #121212, #050505); border: 1.5px solid var(--gold-solid); border-radius: 12px; padding: 15px 10px 8px 10px; margin: 15px 0; }
         .chart-bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; height: 100%; justify-content: flex-end; }
@@ -280,7 +281,7 @@
             </div>
         </div>
 
-        <!-- 3. Detailed Seller Registration Form (Complete 200+ Countries & International Dial Codes) -->
+        <!-- 3. Detailed Seller Registration Form -->
         <div class="luxury-card portal-section" id="formSection">
             <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:15px; font-size:1.1rem; text-transform:uppercase;">Global Seller Application</h2>
             
@@ -296,7 +297,6 @@
                 <div class="input-group"><label>Dashboard Password *</label><input type="password" id="partnerPassword" placeholder="Min 10 chars, Upper, Lower, Symbol" required></div>
                 <div class="input-group"><label>Confirm Password *</label><input type="password" id="confirmPassword" required></div>
                 
-                <!-- Complete Country Selector (200+ Nations) -->
                 <div class="input-group">
                     <label>Select Your Country (200+ Nations) *</label>
                     <select id="countrySelect" required>
@@ -304,13 +304,10 @@
                     </select>
                 </div>
 
-                <!-- Complete 200+ International Phone Codes for WhatsApp -->
                 <div class="input-group">
                     <label>WhatsApp Number (Global Dial Codes) *</label>
                     <div class="phone-group">
-                        <select id="whatsappCodeSelect">
-                            <!-- Populated via Javascript with 200+ countries -->
-                        </select>
+                        <select id="whatsappCodeSelect"></select>
                         <input type="text" id="whatsapp" placeholder="17XXXXXXXX" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
                     </div>
                 </div>
@@ -319,23 +316,19 @@
                 <div class="input-group"><label>Gender *</label><select id="gender"><option>Male</option><option>Female</option><option>Other</option></select></div>
                 <div class="input-group full-width"><label>Residential Address *</label><textarea id="address" rows="2" required></textarea></div>
 
-                <!-- Business & Store Information -->
                 <div class="input-group full-width"><div class="section-title">Business & Store Information</div></div>
                 <div class="input-group"><label>Store / Business Name *</label><input type="text" id="bizName" required></div>
                 <div class="input-group"><label>Years in Business *</label><input type="number" id="bizYears" required></div>
                 <div class="input-group full-width"><label>Business Operational Address *</label><textarea id="bizAddress" rows="2" required></textarea></div>
                 <div class="input-group full-width"><label>Trade License Number (Optional)</label><input type="text" id="tradeLicense"></div>
 
-                <!-- Social Media & Brand Channels (YouTube Mandatory Only) -->
                 <div class="input-group full-width"><div class="section-title">Social Media & Brand Channels</div></div>
                 <div class="input-group full-width"><label><i class="fa-brands fa-youtube" style="color:#ff0000;"></i> YouTube Channel URL (Mandatory) *</label><input type="url" id="ytLink" placeholder="https://youtube.com/@channel" required></div>
 
-                <!-- Payoneer Payout Information -->
                 <div class="input-group full-width"><div class="section-title">Payoneer Payout Information</div></div>
                 <div class="input-group"><label>Payoneer Account Name *</label><input type="text" id="payoneerName" placeholder="Name on Payoneer" required></div>
                 <div class="input-group"><label>Payoneer Registered Email *</label><input type="email" id="payoneerEmail" placeholder="payoneer@gmail.com" required></div>
 
-                <!-- Verification & Image Upload -->
                 <div class="input-group full-width">
                     <div class="section-title">Verification & Photo</div>
                     <label>Upload Profile / ID Photo (Visible in Dashboard & Tag) *</label>
@@ -392,9 +385,8 @@
 
                 <div class="input-group"><label>Stock Quantity *</label><input type="number" id="prodStock" placeholder="e.g. 150" required></div>
                 
-                <!-- Color Options Selection (10-12 choices + custom) -->
                 <div class="input-group full-width">
-                    <label>Select Available Colors (Multiple or Choose below) *</label>
+                    <label>Select Available Colors *</label>
                     <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:5px;">
                         <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.65rem; cursor:pointer;">Golden Teak</button>
                         <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.65rem; cursor:pointer;">Black</button>
@@ -415,11 +407,9 @@
                     <input type="text" id="prodSizes" placeholder="S, M, L, XL, Free Size">
                 </div>
 
-                <!-- Shipping Specifications (Weight & Dimensions) -->
                 <div class="input-group"><label>Shipping Weight (kg / lbs) *</label><input type="text" id="prodWeight" placeholder="e.g. 0.5 kg" required></div>
                 <div class="input-group"><label>Package Dimensions (L x W x H) *</label><input type="text" id="prodDimensions" placeholder="e.g. 10x5x3 inch" required></div>
 
-                <!-- Media Link Options -->
                 <div class="input-group full-width">
                     <label>Product Image Link (URL / FB / YouTube Image) *</label>
                     <input type="url" id="prodImgUrl" placeholder="https://image-link.com/photo.jpg" oninput="previewImageLink(this.value)" required>
@@ -432,7 +422,6 @@
                     <div id="videoLinkPreview" style="margin-top:5px;"></div>
                 </div>
 
-                <!-- Global Retail Price & Country Discount with Full 200+ Countries & 3% to 50% Percentages -->
                 <div class="input-group full-width"><div class="section-title">Global Retail Pricing & Country Discounts</div></div>
                 
                 <div class="input-group">
@@ -442,9 +431,7 @@
                 <div class="input-group">
                     <label>Country Discount (All Countries & %)</label>
                     <div style="display:flex; gap:6px;">
-                        <select id="discountCountry" style="flex:1;">
-                            <!-- Populated with all countries -->
-                        </select>
+                        <select id="discountCountry" style="flex:1;"></select>
                         <select id="discountPercent" style="width:105px;">
                             <option value="3% Off">3%</option>
                             <option value="5% Off">5%</option>
@@ -469,7 +456,6 @@
     </div>
 
     <script>
-        // Comprehensive 200+ Countries Database with Emoji Flags & Dial Codes
         const allCountries = [
             {name: "Afghanistan", flag: "🇦🇫", dial: "+93"}, {name: "Albania", flag: "🇦🇱", dial: "+355"}, {name: "Algeria", flag: "🇩🇿", dial: "+213"}, {name: "Andorra", flag: "🇦🇩", dial: "+376"},
             {name: "Angola", flag: "🇦🇴", dial: "+244"}, {name: "Argentina", flag: "🇦🇷", dial: "+54"}, {name: "Armenia", flag: "🇦🇲", dial: "+374"}, {name: "Australia", flag: "🇦🇺", dial: "+61"},
@@ -516,20 +502,17 @@
 
             if(selectEl && whatsappSelect && discountSelect) {
                 allCountries.forEach(c => {
-                    // Country select
                     let opt1 = document.createElement('option');
                     opt1.value = c.name + "|" + c.flag;
                     opt1.textContent = c.flag + " " + c.name;
                     selectEl.appendChild(opt1);
 
-                    // WhatsApp Code select with 200+ countries
                     let opt2 = document.createElement('option');
                     opt2.value = c.dial;
                     opt2.textContent = c.flag + " " + c.dial;
                     if(c.name === "Bangladesh") opt2.selected = true;
                     whatsappSelect.appendChild(opt2);
 
-                    // Discount Country select
                     let opt3 = document.createElement('option');
                     opt3.value = c.flag + " " + c.name;
                     opt3.textContent = c.flag + " " + c.name;
@@ -701,42 +684,61 @@
         function renderVendorDashboard(found) {
             showSection('dashboardSection');
 
-            let ledgerRows = found.uploadedProducts && found.uploadedProducts.length > 0 ? 
-                found.uploadedProducts.map((p, idx) => `
-                    <tr>
-                        <td><b>#${idx + 1}</b></td>
-                        <td><b style="color:var(--gold-light);">${p.name}</b></td>
-                        <td>${p.category}</td>
-                        <td>${p.stock} Pcs</td>
-                        <td>${p.global}</td>
-                        <td>${p.countryDiscount}</td>
-                        <td>${p.sizes || 'N/A'}</td>
-                        <td>${p.colors || 'N/A'}</td>
-                    </tr>
-                `).join('') :
-                `<tr><td colspan="8" style="text-align:center; color:#777; padding:12px;">No products uploaded yet. Start publishing to track global sales.</td></tr>`;
+            // Sample Preview Product + User Uploaded Products (Sequential #1, #2, #3...)
+            let allProductsToDisplay = [];
+            
+            // Default Sample Product for 0-0 demonstration
+            let sampleProduct = {
+                name: "Luxury Gamar Chair",
+                category: "🏡 HOME DECOR",
+                stock: "100",
+                global: "$ 45.00",
+                countryDiscount: "🇺🇸 United States (10% Off)",
+                sizes: "Standard",
+                colors: "Golden Teak",
+                status: "Sample (0 Orders)",
+                trackingId: "TRK-000000"
+            };
 
-            let trackingRows = found.uploadedProducts && found.uploadedProducts.length > 0 ?
-                found.uploadedProducts.map((p, idx) => `
-                    <tr>
-                        <td><b>#${idx + 1}</b></td>
-                        <td>${p.name} (ID: ${found.id})</td>
-                        <td><span style="color:#2ecc71; font-weight:bold;">● Paid (Customer Confirmed)</span></td>
-                        <td>${p.trackingId}</td>
-                        <td>Global Courier Express</td>
-                        <td><button onclick="alert('Funds ready for Payoneer withdrawal! Transfer requested to ${found.payoneerEmail}')" style="background:var(--gold-gradient); border:none; padding:4px 10px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:0.6rem;">Withdraw via Payoneer</button></td>
-                    </tr>
-                `).join('') :
-                `<tr><td colspan="6" style="text-align:center; color:#777; padding:10px;">00 - No orders or shipments to track yet.</td></tr>`;
+            if(found.uploadedProducts && found.uploadedProducts.length > 0) {
+                allProductsToDisplay = found.uploadedProducts;
+            } else {
+                allProductsToDisplay = [sampleProduct];
+            }
+
+            let ledgerRows = allProductsToDisplay.map((p, idx) => `
+                <tr>
+                    <td><b>#${idx + 1}</b></td>
+                    <td><b style="color:var(--gold-light);">${p.name}</b></td>
+                    <td>${p.category}</td>
+                    <td>${p.stock} Pcs</td>
+                    <td>${p.global}</td>
+                    <td>${p.countryDiscount}</td>
+                    <td>${p.sizes || 'N/A'}</td>
+                    <td>${p.colors || 'N/A'}</td>
+                </tr>
+            `).join('');
+
+            let trackingRows = allProductsToDisplay.map((p, idx) => `
+                <tr>
+                    <td><b>#${idx + 1}</b></td>
+                    <td>${p.name} (ID: ${found.id})</td>
+                    <td><span style="color:${p.status.includes('Sample') ? '#f39c12' : '#2ecc71'}; font-weight:bold;">● ${p.status}</span></td>
+                    <td>${p.trackingId}</td>
+                    <td>Global Express Courier</td>
+                    <td><button onclick="alert('Funds ready for Payoneer withdrawal! Transfer requested to ${found.payoneerEmail}')" style="background:var(--gold-gradient); border:none; padding:4px 10px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:0.6rem;">Withdraw via Payoneer</button></td>
+                </tr>
+            `).join('');
 
             let dashHtml = `
+                <!-- Ultra Premium Clean Identity Card -->
                 <div class="digital-id-card">
                     <img src="${found.photo}" alt="ID Avatar" class="id-avatar">
                     <div style="overflow:hidden;">
                         <span style="font-size:0.58rem; color:var(--gold-solid); letter-spacing:1px; font-weight:bold;">OFFICIAL VENDOR IDENTITY CARD (${found.flag || '🌐'} ${found.country || 'Global'})</span>
-                        <h3 style="margin:2px 0; color:#fff; font-size:1.05rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${found.biz}</h3>
+                        <h3 style="margin:2px 0; color:#fff; font-size:1.1rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${found.biz}</h3>
                         <p style="margin:0; font-size:0.68rem; color:#aaa;">Owner: ${found.name}</p>
-                        <p style="margin:0; font-size:0.65rem; color:var(--gold-solid);">ID: ${found.id} | Payoneer: ${found.payoneerEmail}</p>
+                        <p style="margin:0; font-size:0.65rem; color:var(--gold-solid);">ID: ${found.id} | Email: ${found.email}</p>
                     </div>
                 </div>
 
@@ -835,7 +837,7 @@
                 countryDiscount: discountCountry + " (" + discountPercent + ")",
                 imgUrl: imgUrl,
                 videoUrl: videoUrl,
-                status: 'Paid',
+                status: 'Paid (Customer Confirmed)',
                 trackingId: 'TRK-' + Math.floor(100000 + Math.random() * 900000)
             };
 
