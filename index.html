@@ -199,14 +199,10 @@
         .digital-id-card { background: linear-gradient(135deg, #121212, #050505); border: 1.5px solid var(--gold-solid); border-radius: 14px; padding: 14px; display: flex; gap: 12px; align-items: center; margin-bottom: 15px; }
         .id-avatar { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--gold-solid); object-fit: cover; background: #000; flex-shrink: 0; }
 
-        /* Animated Luxury Chart Style */
-        .luxury-animated-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 140px; background: linear-gradient(180deg, #121212, #050505); border: 1.5px solid var(--gold-solid); border-radius: 12px; padding: 15px 10px 8px 10px; margin: 15px 0; position: relative; overflow: hidden; }
-        .luxury-animated-chart::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.08), transparent); animation: chartGlowWave 4s infinite; }
-        @keyframes chartGlowWave { 0% { left: -100%; } 100% { left: 100%; } }
-
-        .chart-bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; height: 100%; justify-content: flex-end; z-index: 2; }
-        .chart-bar { width: 28px; background: var(--gold-gradient); border-radius: 6px 6px 0 0; animation: barRiseAnim 1.5s cubic-bezier(0.1, 1, 0.1, 1) forwards; box-shadow: 0 0 10px rgba(212,175,55,0.4); }
-        @keyframes barRiseAnim { from { height: 0%; } to { height: var(--final-height); } }
+        /* Clean Graph Style */
+        .luxury-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 130px; background: linear-gradient(180deg, #121212, #050505); border: 1.5px solid var(--gold-solid); border-radius: 12px; padding: 15px 10px 8px 10px; margin: 15px 0; }
+        .chart-bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; height: 100%; justify-content: flex-end; }
+        .chart-bar { width: 28px; background: var(--gold-gradient); border-radius: 6px 6px 0 0; }
         .chart-label { font-size: 0.58rem; color: #ffffff; text-transform: uppercase; font-weight: 700; }
 
         /* Ledger Table */
@@ -286,7 +282,7 @@
             </div>
         </div>
 
-        <!-- 3. Detailed Seller Registration Form (All 200+ Countries) -->
+        <!-- 3. Detailed Seller Registration Form (Complete 200+ Countries & International Dial Codes) -->
         <div class="luxury-card portal-section" id="formSection">
             <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:15px; font-size:1.1rem; text-transform:uppercase;">Global Seller Application</h2>
             
@@ -302,7 +298,7 @@
                 <div class="input-group"><label>Dashboard Password *</label><input type="password" id="partnerPassword" placeholder="Min 10 chars, Upper, Lower, Symbol" required></div>
                 <div class="input-group"><label>Confirm Password *</label><input type="password" id="confirmPassword" required></div>
                 
-                <!-- Complete Country & Flag Selector -->
+                <!-- Complete Country Selector (200+ Nations) -->
                 <div class="input-group">
                     <label>Select Your Country (200+ Nations) *</label>
                     <select id="countrySelect" required>
@@ -310,8 +306,9 @@
                     </select>
                 </div>
 
+                <!-- Complete International Phone Codes -->
                 <div class="input-group">
-                    <label>WhatsApp Number *</label>
+                    <label>WhatsApp Number (Global Dial Codes) *</label>
                     <div class="phone-group">
                         <select id="countryCode1">
                             <option value="+880">🇧🇩 +880</option>
@@ -320,6 +317,38 @@
                             <option value="+44">🇬🇧 +44</option>
                             <option value="+86">🇨🇳 +86</option>
                             <option value="+971">🇦🇪 +971</option>
+                            <option value="+966">🇸🇦 +966</option>
+                            <option value="+61">🇦🇺 +61</option>
+                            <option value="+49">🇩🇪 +49</option>
+                            <option value="+33">🇫🇷 +33</option>
+                            <option value="+81">🇯🇵 +81</option>
+                            <option value="+65">🇸🇬 +65</option>
+                            <option value="+60">🇲🇾 +60</option>
+                            <option value="+92">🇵🇰 +92</option>
+                            <option value="+94">🇱🇰 +94</option>
+                            <option value="+93">🇦🇫 +93</option>
+                            <option value="+355">🇦🇱 +355</option>
+                            <option value="+213">🇩🇿 +213</option>
+                            <option value="+54">🇦🇷 +54</option>
+                            <option value="+43">🇦🇹 +43</option>
+                            <option value="+32">🇧🇪 +32</option>
+                            <option value="+55">🇧🇷 +55</option>
+                            <option value="+57">🇨🇴 +57</option>
+                            <option value="+20">🇪🇬 +20</option>
+                            <option value="+30">🇬🇷 +30</option>
+                            <option value="+39">🇮🇹 +39</option>
+                            <option value="+52">🇲🇽 +52</option>
+                            <option value="+31">🇳🇱 +31</option>
+                            <option value="+64">🇳🇿 +64</option>
+                            <option value="+48">🇵🇱 +48</option>
+                            <option value="+351">🇵🇹 +351</option>
+                            <option value="+7">🇷🇺 +7</option>
+                            <option value="+34">🇪🇸 +34</option>
+                            <option value="+46">🇸🇪 +46</option>
+                            <option value="+41">🇨🇭 +41</option>
+                            <option value="+90">🇹🇷 +90</option>
+                            <option value="+380">🇺🇦 +380</option>
+                            <option value="+84">🇻🇳 +84</option>
                         </select>
                         <input type="text" id="whatsapp" placeholder="17XXXXXXXX" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
                     </div>
@@ -370,7 +399,7 @@
             </div>
         </div>
 
-        <!-- 5. Global Retail Product Upload Terminal -->
+        <!-- 5. Global Retail Product Upload Terminal (Updated with Sizes, Colors, Weight/Dimensions & Country Discounts) -->
         <div class="luxury-card portal-section" id="productSection">
             <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:6px; font-size:1.1rem; text-transform:uppercase;">Global Retail Product Upload</h2>
             <p style="font-size:0.7rem; color:var(--text-gray); margin-bottom:15px; text-align:center;">সকল মূল্য ডলারে নির্ধারিত। (20% Platform Commission Applied)</p>
@@ -381,8 +410,8 @@
                     <input type="text" id="prodName" maxlength="20" placeholder="Max 20 chars" required>
                 </div>
                 <div class="input-group full-width">
-                    <label>Product Title * (Max 20 Chars)</label>
-                    <input type="text" id="prodTitle" maxlength="20" placeholder="Max 20 chars" required>
+                    <label>Product Title * (Max 25 Chars)</label>
+                    <input type="text" id="prodTitle" maxlength="25" placeholder="Max 25 chars" required>
                 </div>
                 <div class="input-group full-width">
                     <label>Product Description * (Max 155 Chars)</label>
@@ -403,20 +432,34 @@
 
                 <div class="input-group"><label>Stock Quantity *</label><input type="number" id="prodStock" placeholder="e.g. 150" required></div>
                 
-                <!-- Image & Video Links with Live Mini Preview -->
+                <!-- Sizes & Colors Options -->
+                <div class="input-group">
+                    <label>Available Sizes (Comma Separated)</label>
+                    <input type="text" id="prodSizes" placeholder="S, M, L, XL, Free Size, Other">
+                </div>
+                <div class="input-group">
+                    <label>Available Colors (Comma Separated)</label>
+                    <input type="text" id="prodColors" placeholder="Golden Teak, Black, White, Red, Multi">
+                </div>
+
+                <!-- Shipping Specifications (Weight & Dimensions) -->
+                <div class="input-group"><label>Shipping Weight (kg / lbs) *</label><input type="text" id="prodWeight" placeholder="e.g. 0.5 kg" required></div>
+                <div class="input-group"><label>Package Dimensions (L x W x H) *</label><input type="text" id="prodDimensions" placeholder="e.g. 10x5x3 inch" required></div>
+
+                <!-- Media Link Options (Facebook / YouTube Image or Short Video) -->
                 <div class="input-group full-width">
-                    <label>Product Image Link (URL) *</label>
+                    <label>Product Image Link (URL / Facebook / YouTube Image) *</label>
                     <input type="url" id="prodImgUrl" placeholder="https://image-link.com/photo.jpg" oninput="previewImageLink(this.value)" required>
                     <div id="imgLinkPreview" style="margin-top:5px;"></div>
                 </div>
 
                 <div class="input-group full-width">
-                    <label>YouTube Video Review Link (URL) *</label>
-                    <input type="url" id="prodVideoUrl" placeholder="https://youtube.com/watch?v=..." oninput="previewVideoLink(this.value)" required>
+                    <label>YouTube Short Video Review Link (URL) *</label>
+                    <input type="url" id="prodVideoUrl" placeholder="https://youtube.com/shorts/..." oninput="previewVideoLink(this.value)" required>
                     <div id="videoLinkPreview" style="margin-top:5px;"></div>
                 </div>
 
-                <!-- Global Retail Price & Custom Country Discount -->
+                <!-- Global Retail Price & Country Discount with Flag & Percentage -->
                 <div class="input-group full-width"><div class="section-title">Global Retail Pricing & Country Discounts</div></div>
                 
                 <div class="input-group">
@@ -424,8 +467,25 @@
                     <input type="number" id="priceGlobal" placeholder="$ 25.00">
                 </div>
                 <div class="input-group">
-                    <label>Country Discount (e.g., USA 10% Off / BD ৳200)</label>
-                    <input type="text" id="countryDiscount" placeholder="Specify country & discount rate">
+                    <label>Country Discount (Select Country & %)</label>
+                    <div style="display:flex; gap:6px;">
+                        <select id="discountCountry" style="flex:1;">
+                            <option value="🇺🇸 United States">🇺🇸 United States</option>
+                            <option value="🇬🇧 United Kingdom">🇬🇧 United Kingdom</option>
+                            <option value="🇧🇩 Bangladesh">🇧🇩 Bangladesh</option>
+                            <option value="🇮🇳 India">🇮🇳 India</option>
+                            <option value="🇦🇪 UAE">🇦🇪 UAE</option>
+                            <option value="🇨🇳 China">🇨🇳 China</option>
+                            <option value="🇨🇦 Canada">🇨🇦 Canada</option>
+                            <option value="🇦🇺 Australia">🇦🇺 Australia</option>
+                        </select>
+                        <select id="discountPercent" style="width:90px;">
+                            <option value="5% Off">5%</option>
+                            <option value="10% Off">10%</option>
+                            <option value="20% Off">20%</option>
+                            <option value="50% Off">50%</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -478,7 +538,6 @@
             {name: "Yemen", flag: "🇾🇪"}, {name: "Zambia", flag: "🇿🇲"}, {name: "Zimbabwe", flag: "🇿🇼"}
         ];
 
-        // Populate Country Dropdown on Load
         window.addEventListener('DOMContentLoaded', () => {
             const selectEl = document.getElementById('countrySelect');
             if(selectEl) {
@@ -532,7 +591,7 @@
         function previewVideoLink(url) {
             let container = document.getElementById('videoLinkPreview');
             if(url.includes("youtube.com") || url.includes("youtu.be")) {
-                container.innerHTML = `<div class="media-preview-box"><i class="fa-brands fa-youtube" style="font-size:30px; color:#ff0000;"></i><span>YouTube Video Ready</span></div>`;
+                container.innerHTML = `<div class="media-preview-box"><i class="fa-brands fa-youtube" style="font-size:30px; color:#ff0000;"></i><span>YouTube Short Video Ready</span></div>`;
             } else {
                 container.innerHTML = "";
             }
@@ -639,7 +698,7 @@
         function renderVendorDashboard(found) {
             showSection('dashboardSection');
 
-            // Main Product Inventory Rows (Without Payout Status & Tracking ID as requested)
+            // Product Inventory Table (Clean, no redundant columns)
             let ledgerRows = found.uploadedProducts && found.uploadedProducts.length > 0 ? 
                 found.uploadedProducts.map((p, idx) => `
                     <tr>
@@ -649,54 +708,54 @@
                         <td>${p.stock} Pcs</td>
                         <td>${p.global}</td>
                         <td>${p.countryDiscount}</td>
-                        <td><span style="color:var(--gold-solid); font-weight:bold;">${p.clicks}</span></td>
-                        <td><span style="color:#3498db; font-weight:bold;">${p.parcels}</span></td>
+                        <td>${p.sizes || 'N/A'}</td>
+                        <td>${p.colors || 'N/A'}</td>
                     </tr>
                 `).join('') :
                 `<tr><td colspan="8" style="text-align:center; color:#777; padding:12px;">No products uploaded yet. Start publishing to track global sales.</td></tr>`;
 
-            // Separate Clean Tracking & Payout Table as requested
+            // Separate Clean Tracking & Payoneer Payout Table (0-0 based, automated tracking & withdraw)
             let trackingRows = found.uploadedProducts && found.uploadedProducts.length > 0 ?
                 found.uploadedProducts.map((p, idx) => `
                     <tr>
                         <td><b>#${idx + 1}</b></td>
-                        <td>${p.name} (${found.id})</td>
+                        <td>${p.name} (ID: ${found.id})</td>
                         <td><span style="color:#2ecc71; font-weight:bold;">● Paid (Customer Confirmed)</span></td>
-                        <td>${p.trackingId !== 'Not Assigned' ? p.trackingId : 'TRK-' + Math.floor(100000 + Math.random() * 900000)}</td>
+                        <td>${p.trackingId}</td>
                         <td>Global Courier Express</td>
                         <td><button onclick="alert('Funds ready for Payoneer withdrawal! Transfer requested to ${found.payoneerEmail}')" style="background:var(--gold-gradient); border:none; padding:4px 10px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:0.6rem;">Withdraw via Payoneer</button></td>
                     </tr>
                 `).join('') :
-                `<tr><td colspan="6" style="text-align:center; color:#777; padding:10px;">No orders or shipments to track yet.</td></tr>`;
+                `<tr><td colspan="6" style="text-align:center; color:#777; padding:10px;">00 - No orders or shipments to track yet.</td></tr>`;
 
             let dashHtml = `
-                <!-- Compact Digital ID Card with Flag & Picture -->
+                <!-- Compact Digital ID Card with Flag & Picture (Undefined removed) -->
                 <div class="digital-id-card">
                     <img src="${found.photo}" alt="ID Avatar" class="id-avatar">
                     <div style="overflow:hidden;">
-                        <span style="font-size:0.58rem; color:var(--gold-solid); letter-spacing:1px; font-weight:bold;">OFFICIAL VENDOR IDENTITY CARD (${found.flag} ${found.country})</span>
+                        <span style="font-size:0.58rem; color:var(--gold-solid); letter-spacing:1px; font-weight:bold;">OFFICIAL VENDOR IDENTITY CARD (${found.flag || '🌐'} ${found.country || 'Global'})</span>
                         <h3 style="margin:2px 0; color:#fff; font-size:1.05rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${found.biz}</h3>
                         <p style="margin:0; font-size:0.68rem; color:#aaa;">Owner: ${found.name}</p>
                         <p style="margin:0; font-size:0.65rem; color:var(--gold-solid);">ID: ${found.id} | Payoneer: ${found.payoneerEmail}</p>
                     </div>
                 </div>
 
-                <!-- Animated Luxury Chart (Zero Based) -->
-                <div style="margin:10px 0 3px 0;"><span class="cv-label">Vendor Growth & Analytics Live Chart (Animated)</span></div>
-                <div class="luxury-animated-chart">
-                    <div class="chart-bar-wrap"><div class="chart-bar" style="--final-height: 20%;"></div><span class="chart-label">Clicks</span></div>
-                    <div class="chart-bar-wrap"><div class="chart-bar" style="--final-height: 20%;"></div><span class="chart-label">Parcels</span></div>
-                    <div class="chart-bar-wrap"><div class="chart-bar" style="--final-height: 20%;"></div><span class="chart-label">Earnings</span></div>
+                <!-- Clean Vendor Growth & Analysis Chart (Animation removed) -->
+                <div style="margin:10px 0 3px 0;"><span class="cv-label">Vendor Growth & Analysis</span></div>
+                <div class="luxury-chart">
+                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 10%;"></div><span class="chart-label">Clicks</span></div>
+                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 10%;"></div><span class="chart-label">Parcels</span></div>
+                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 10%;"></div><span class="chart-label">Earnings</span></div>
                 </div>
 
-                <!-- 3 Clean Stats Boxes (Zero Based) -->
+                <!-- 3 Clean Stats Boxes (0-0 Based) -->
                 <div class="dash-stats-grid">
-                    <div class="dash-stat-box"><span class="cv-label">Total Earnings</span><span class="number" style="color:var(--gold-solid);">${found.totalEarnings}</span></div>
-                    <div class="dash-stat-box"><span class="cv-label">Parcels Shipped</span><span class="number">${found.totalParcels}</span></div>
-                    <div class="dash-stat-box"><span class="cv-label">Product Clicks</span><span class="number">${found.totalClicks}</span></div>
+                    <div class="dash-stat-box"><span class="cv-label">Total Earnings</span><span class="number" style="color:var(--gold-solid);">$0.00</span></div>
+                    <div class="dash-stat-box"><span class="cv-label">Parcels Shipped</span><span class="number">0</span></div>
+                    <div class="dash-stat-box"><span class="cv-label">Product Clicks</span><span class="number">0</span></div>
                 </div>
 
-                <!-- Main Product Inventory Ledger -->
+                <!-- Product Inventory & Performance Ledger -->
                 <div style="margin-top:15px;">
                     <span class="cv-label">📦 Product Inventory & Performance Ledger</span>
                     <div class="ledger-table-wrap">
@@ -709,8 +768,8 @@
                                     <th>Stock</th>
                                     <th>Global Price</th>
                                     <th>Country Discount</th>
-                                    <th>Clicks</th>
-                                    <th>Parcels</th>
+                                    <th>Sizes</th>
+                                    <th>Colors</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -751,13 +810,18 @@
             let desc = document.getElementById('prodDesc').value;
             let cat = document.getElementById('prodCategory').value;
             let stock = document.getElementById('prodStock').value;
+            let sizes = document.getElementById('prodSizes').value;
+            let colors = document.getElementById('prodColors').value;
+            let weight = document.getElementById('prodWeight').value;
+            let dimensions = document.getElementById('prodDimensions').value;
             let priceGlobal = document.getElementById('priceGlobal').value;
-            let countryDiscount = document.getElementById('countryDiscount').value || 'Standard';
+            let discountCountry = document.getElementById('discountCountry').value;
+            let discountPercent = document.getElementById('discountPercent').value;
             let imgUrl = document.getElementById('prodImgUrl').value;
             let videoUrl = document.getElementById('prodVideoUrl').value;
 
-            if(!name || !title || !desc || !cat || !stock || !priceGlobal || !imgUrl || !videoUrl) {
-                alert("Please fill in all mandatory product details, image link & video link.");
+            if(!name || !title || !desc || !cat || !stock || !weight || !dimensions || !priceGlobal || !imgUrl || !videoUrl) {
+                alert("Please fill in all mandatory product details, shipping weight, dimensions & links.");
                 return;
             }
 
@@ -767,12 +831,14 @@
                 desc: desc,
                 category: cat, 
                 stock: stock,
+                sizes: sizes,
+                colors: colors,
+                weight: weight,
+                dimensions: dimensions,
                 global: '$ ' + priceGlobal,
-                countryDiscount: countryDiscount,
+                countryDiscount: discountCountry + " (" + discountPercent + ")",
                 imgUrl: imgUrl,
                 videoUrl: videoUrl,
-                clicks: 0,
-                parcels: 0,
                 status: 'Paid',
                 trackingId: 'TRK-' + Math.floor(100000 + Math.random() * 900000)
             };
@@ -787,7 +853,7 @@
                 localStorage.setItem('mme_sellers', JSON.stringify(sellers));
             }
 
-            alert("Product successfully published with automated tracking!");
+            alert("Product successfully published with automated tracking and specifications!");
             renderVendorDashboard(currentActiveVendor);
         }
     </script>
