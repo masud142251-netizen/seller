@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MR MASUDAR ENTERPRISE | Elite Global Seller Ecosystem</title>
     
-    <!-- Favicon / Tab Logo -->
     <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-color: #080808;
@@ -186,9 +185,10 @@
         .input-group input:focus, .input-group select:focus, .input-group textarea:focus { border-color: var(--gold-solid); box-shadow: 0 0 10px rgba(212,175,55,0.4); }
 
         .phone-group { display: flex; gap: 6px; }
-        .phone-group select { width: 95px; flex-shrink: 0; }
+        .phone-group select { width: 110px; flex-shrink: 0; }
         .section-title { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border-luxury); padding-bottom: 4px; margin: 12px 0 8px 0; font-weight: 700; }
 
+        /* Dashboard Styles */
         .dashboard-container { background: linear-gradient(145deg, #0b0b0b, #030303); border: 2px solid var(--border-luxury); border-radius: 14px; padding: 15px; text-align: left; }
         
         .dash-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 15px 0; }
@@ -199,11 +199,17 @@
         .digital-id-card { background: linear-gradient(135deg, #121212, #050505); border: 1.5px solid var(--gold-solid); border-radius: 14px; padding: 14px; display: flex; gap: 12px; align-items: center; margin-bottom: 15px; }
         .id-avatar { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--gold-solid); object-fit: cover; background: #000; flex-shrink: 0; }
 
-        .chart-container { display: flex; align-items: flex-end; justify-content: space-around; height: 140px; background: linear-gradient(180deg, #121212, #050505); border: 1.5px solid var(--gold-solid); border-radius: 12px; padding: 15px 10px 8px 10px; margin: 15px 0; }
-        .chart-bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; height: 100%; justify-content: flex-end; }
-        .chart-bar { width: 25px; background: var(--gold-gradient); border-radius: 6px 6px 0 0; }
+        /* Animated Luxury Chart Style */
+        .luxury-animated-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 140px; background: linear-gradient(180deg, #121212, #050505); border: 1.5px solid var(--gold-solid); border-radius: 12px; padding: 15px 10px 8px 10px; margin: 15px 0; position: relative; overflow: hidden; }
+        .luxury-animated-chart::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.08), transparent); animation: chartGlowWave 4s infinite; }
+        @keyframes chartGlowWave { 0% { left: -100%; } 100% { left: 100%; } }
+
+        .chart-bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; height: 100%; justify-content: flex-end; z-index: 2; }
+        .chart-bar { width: 28px; background: var(--gold-gradient); border-radius: 6px 6px 0 0; animation: barRiseAnim 1.5s cubic-bezier(0.1, 1, 0.1, 1) forwards; box-shadow: 0 0 10px rgba(212,175,55,0.4); }
+        @keyframes barRiseAnim { from { height: 0%; } to { height: var(--final-height); } }
         .chart-label { font-size: 0.58rem; color: #ffffff; text-transform: uppercase; font-weight: 700; }
 
+        /* Ledger Table */
         .ledger-table-wrap { overflow-x: auto; margin-top: 10px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.3); background: #000; }
         .ledger-table { width: 100%; border-collapse: collapse; font-size: 0.68rem; text-align: left; white-space: nowrap; }
         .ledger-table th, .ledger-table td { border: 1px solid rgba(212,175,55,0.2); padding: 8px 10px; }
@@ -280,7 +286,7 @@
             </div>
         </div>
 
-        <!-- 3. Detailed Seller Registration Form (Direct to Dashboard) -->
+        <!-- 3. Detailed Seller Registration Form (All 200+ Countries) -->
         <div class="luxury-card portal-section" id="formSection">
             <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:15px; font-size:1.1rem; text-transform:uppercase;">Global Seller Application</h2>
             
@@ -296,10 +302,25 @@
                 <div class="input-group"><label>Dashboard Password *</label><input type="password" id="partnerPassword" placeholder="Min 10 chars, Upper, Lower, Symbol" required></div>
                 <div class="input-group"><label>Confirm Password *</label><input type="password" id="confirmPassword" required></div>
                 
+                <!-- Complete Country & Flag Selector -->
+                <div class="input-group">
+                    <label>Select Your Country (200+ Nations) *</label>
+                    <select id="countrySelect" required>
+                        <option value="">-- Choose Country --</option>
+                    </select>
+                </div>
+
                 <div class="input-group">
                     <label>WhatsApp Number *</label>
                     <div class="phone-group">
-                        <select id="countryCode1"><option value="+880">🇧🇩 +880</option><option value="+1">🇺🇸 +1</option><option value="+44">🇬🇧 +44</option><option value="+971">🇦🇪 +971</option></select>
+                        <select id="countryCode1">
+                            <option value="+880">🇧🇩 +880</option>
+                            <option value="+91">🇮🇳 +91</option>
+                            <option value="+1">🇺🇸/🇨🇦 +1</option>
+                            <option value="+44">🇬🇧 +44</option>
+                            <option value="+86">🇨🇳 +86</option>
+                            <option value="+971">🇦🇪 +971</option>
+                        </select>
                         <input type="text" id="whatsapp" placeholder="17XXXXXXXX" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
                     </div>
                 </div>
@@ -315,11 +336,9 @@
                 <div class="input-group full-width"><label>Business Operational Address *</label><textarea id="bizAddress" rows="2" required></textarea></div>
                 <div class="input-group full-width"><label>Trade License Number (Optional)</label><input type="text" id="tradeLicense"></div>
 
-                <!-- Social Media & Brand Channels (YouTube Mandatory) -->
+                <!-- Social Media & Brand Channels (YouTube Mandatory Only) -->
                 <div class="input-group full-width"><div class="section-title">Social Media & Brand Channels</div></div>
                 <div class="input-group full-width"><label><i class="fa-brands fa-youtube" style="color:#ff0000;"></i> YouTube Channel URL (Mandatory) *</label><input type="url" id="ytLink" placeholder="https://youtube.com/@channel" required></div>
-                <div class="input-group"><label><i class="fa-brands fa-facebook" style="color:#1877f2;"></i> Facebook URL</label><input type="url" id="fbLink" placeholder="https://facebook.com/yourpage"></div>
-                <div class="input-group"><label><i class="fa-brands fa-instagram" style="color:#e4405f;"></i> Instagram URL</label><input type="url" id="igLink" placeholder="https://instagram.com/profile"></div>
 
                 <!-- Payoneer Payout Information -->
                 <div class="input-group full-width"><div class="section-title">Payoneer Payout Information</div></div>
@@ -329,7 +348,7 @@
                 <!-- Verification & Image Upload -->
                 <div class="input-group full-width">
                     <div class="section-title">Verification & Photo</div>
-                    <label>Upload Profile / ID Photo (Visible in Dashboard) *</label>
+                    <label>Upload Profile / ID Photo (Visible in Dashboard & Tag) *</label>
                     <input type="file" id="applicantPhotoInput" accept="image/*" onchange="previewProfilePhoto(event)" required>
                     <div id="photoPreviewContainer" style="margin-top:8px;"></div>
                 </div>
@@ -419,6 +438,59 @@
     </div>
 
     <script>
+        // Comprehensive 200+ Countries Database with Emoji Flags
+        const allCountries = [
+            {name: "Afghanistan", flag: "🇦🇫"}, {name: "Albania", flag: "🇦🇱"}, {name: "Algeria", flag: "🇩🇿"}, {name: "Andorra", flag: "🇦🇩"},
+            {name: "Angola", flag: "🇦🇴"}, {name: "Argentina", flag: "🇦🇷"}, {name: "Armenia", flag: "🇦🇲"}, {name: "Australia", flag: "🇦🇺"},
+            {name: "Austria", flag: "🇦🇹"}, {name: "Azerbaijan", flag: "🇦🇿"}, {name: "Bahrain", flag: "🇧🇭"}, {name: "Bangladesh", flag: "🇧🇩"},
+            {name: "Belarus", flag: "🇧🇾"}, {name: "Belgium", flag: "🇧🇪"}, {name: "Belize", flag: "🇧🇿"}, {name: "Benin", flag: "🇧🇯"},
+            {name: "Bhutan", flag: "🇧🇹"}, {name: "Bolivia", flag: "🇧🇴"}, {name: "Bosnia and Herzegovina", flag: "🇧🇦"}, {name: "Botswana", flag: "🇧🇼"},
+            {name: "Brazil", flag: "🇧🇷"}, {name: "Brunei", flag: "🇧🇳"}, {name: "Bulgaria", flag: "🇧🇬"}, {name: "Burkina Faso", flag: "🇧🇫"},
+            {name: "Cambodia", flag: "🇰🇭"}, {name: "Cameroon", flag: "🇨🇲"}, {name: "Canada", flag: "🇨🇦"}, {name: "Chile", flag: "🇨🇱"},
+            {name: "China", flag: "🇨🇳"}, {name: "Colombia", flag: "🇨🇴"}, {name: "Congo", flag: "🇨🇬"}, {name: "Costa Rica", flag: "🇨🇷"},
+            {name: "Croatia", flag: "🇭🇷"}, {name: "Cuba", flag: "🇨🇺"}, {name: "Cyprus", flag: "🇨🇾"}, {name: "Czech Republic", flag: "🇨🇿"},
+            {name: "Denmark", flag: "🇩🇰"}, {name: "Djibouti", flag: "🇩🇯"}, {name: "Dominican Republic", flag: "🇩🇴"}, {name: "Ecuador", flag: "🇪🇨"},
+            {name: "Egypt", flag: "🇪🇬"}, {name: "El Salvador", flag: "🇸🇻"}, {name: "Estonia", flag: "🇪🇪"}, {name: "Ethiopia", flag: "🇪🇹"},
+            {name: "Fiji", flag: "🇫🇯"}, {name: "Finland", flag: "🇫🇮"}, {name: "France", flag: "🇫🇷"}, {name: "Gabon", flag: "🇬🇦"},
+            {name: "Georgia", flag: "🇬🇪"}, {name: "Germany", flag: "🇩🇪"}, {name: "Ghana", flag: "🇬🇭"}, {name: "Greece", flag: "🇬🇷"},
+            {name: "Guatemala", flag: "🇬🇹"}, {name: "Honduras", flag: "🇭🇳"}, {name: "Hong Kong", flag: "🇭🇰"}, {name: "Hungary", flag: "🇭🇺"},
+            {name: "Iceland", flag: "🇮🇸"}, {name: "India", flag: "🇮🇳"}, {name: "Indonesia", flag: "🇮🇩"}, {name: "Iran", flag: "🇮🇷"},
+            {name: "Iraq", flag: "🇮🇶"}, {name: "Ireland", flag: "🇮🇪"}, {name: "Israel", flag: "🇮🇱"}, {name: "Italy", flag: "🇮🇹"},
+            {name: "Jamaica", flag: "🇯🇲"}, {name: "Japan", flag: "🇯🇵"}, {name: "Jordan", flag: "🇯🇴"}, {name: "Kazakhstan", flag: "🇰🇿"},
+            {name: "Kenya", flag: "🇰🇪"}, {name: "Kuwait", flag: "🇰🇼"}, {name: "Kyrgyzstan", flag: "🇰🇬"}, {name: "Laos", flag: "🇱🇦"},
+            {name: "Latvia", flag: "🇱🇻"}, {name: "Lebanon", flag: "🇱🇧"}, {name: "Libya", flag: "🇱🇾"}, {name: "Lithuania", flag: "🇱🇹"},
+            {name: "Luxembourg", flag: "🇱🇺"}, {name: "Macau", flag: "🇲🇴"}, {name: "Malaysia", flag: "🇲🇾"}, {name: "Maldives", flag: "🇲🇻"},
+            {name: "Malta", flag: "🇲🇹"}, {name: "Mexico", flag: "🇲🇽"}, {name: "Moldova", flag: "🇲🇩"}, {name: "Monaco", flag: "🇲🇨"},
+            {name: "Mongolia", flag: "🇲🇳"}, {name: "Montenegro", flag: "🇲🇪"}, {name: "Morocco", flag: "🇲🇦"}, {name: "Mozambique", flag: "🇲🇿"},
+            {name: "Myanmar", flag: "🇲🇲"}, {name: "Nepal", flag: "🇳🇵"}, {name: "Netherlands", flag: "🇳🇱"}, {name: "New Zealand", flag: "🇳🇿"},
+            {name: "Nicaragua", flag: "🇳🇮"}, {name: "Nigeria", flag: "🇳🇬"}, {name: "North Korea", flag: "🇰🇵"}, {name: "Norway", flag: "🇳🇴"},
+            {name: "Oman", flag: "🇴🇲"}, {name: "Pakistan", flag: "🇵🇰"}, {name: "Palestine", flag: "🇵🇸"}, {name: "Panama", flag: "🇵🇦"},
+            {name: "Paraguay", flag: "🇵🇾"}, {name: "Peru", flag: "🇵🇪"}, {name: "Philippines", flag: "🇵🇭"}, {name: "Poland", flag: "🇵🇱"},
+            {name: "Portugal", flag: "🇵🇹"}, {name: "Qatar", flag: "🇶🇦"}, {name: "Romania", flag: "🇷🇴"}, {name: "Russia", flag: "🇷🇺"},
+            {name: "Rwanda", flag: "🇷🇼"}, {name: "Saudi Arabia", flag: "🇸🇦"}, {name: "Senegal", flag: "🇸🇳"}, {name: "Serbia", flag: "🇷🇸"},
+            {name: "Singapore", flag: "🇸🇬"}, {name: "Slovakia", flag: "🇸🇰"}, {name: "Slovenia", flag: "🇸🇮"}, {name: "Somalia", flag: "🇸🇴"},
+            {name: "South Africa", flag: "🇿🇦"}, {name: "South Korea", flag: "🇰🇷"}, {name: "Spain", flag: "🇪🇸"}, {name: "Sri Lanka", flag: "🇱🇰"},
+            {name: "Sudan", flag: "🇸🇩"}, {name: "Sweden", flag: "🇸🇪"}, {name: "Switzerland", flag: "🇨🇭"}, {name: "Syria", flag: "🇸🇾"},
+            {name: "Taiwan", flag: "🇹🇼"}, {name: "Tajikistan", flag: "🇹🇯"}, {name: "Tanzania", flag: "🇹🇿"}, {name: "Thailand", flag: "🇹🇭"},
+            {name: "Tunisia", flag: "🇹🇳"}, {name: "Turkey", flag: "🇹🇷"}, {name: "Turkmenistan", flag: "🇹🇲"}, {name: "Uganda", flag: "🇺🇬"},
+            {name: "Ukraine", flag: "🇺🇦"}, {name: "United Arab Emirates", flag: "🇦🇪"}, {name: "United Kingdom", flag: "🇬🇧"}, {name: "United States", flag: "🇺🇸"},
+            {name: "Uruguay", flag: "🇺🇾"}, {name: "Uzbekistan", flag: "🇺🇿"}, {name: "Venezuela", flag: "🇻🇪"}, {name: "Vietnam", flag: "🇻🇳"},
+            {name: "Yemen", flag: "🇾🇪"}, {name: "Zambia", flag: "🇿🇲"}, {name: "Zimbabwe", flag: "🇿🇼"}
+        ];
+
+        // Populate Country Dropdown on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            const selectEl = document.getElementById('countrySelect');
+            if(selectEl) {
+                allCountries.forEach(c => {
+                    let opt = document.createElement('option');
+                    opt.value = c.name + "|" + c.flag;
+                    opt.textContent = c.flag + " " + c.name;
+                    selectEl.appendChild(opt);
+                });
+            }
+        });
+
         let currentActiveVendor = null;
         let tempProfilePhotoBase64 = "";
 
@@ -497,6 +569,7 @@
         function submitSellerApp() {
             const name = document.getElementById('fullName').value;
             const email = document.getElementById('email').value.trim().toLowerCase();
+            const countryVal = document.getElementById('countrySelect').value;
             const phone = document.getElementById('countryCode1').value + document.getElementById('whatsapp').value;
             const biz = document.getElementById('bizName').value;
             const pass = document.getElementById('partnerPassword').value;
@@ -505,10 +578,12 @@
             const payName = document.getElementById('payoneerName').value;
             const payEmail = document.getElementById('payoneerEmail').value;
 
-            if(!name || !email || !biz || !pass || !yt || !payName || !payEmail) {
-                alert("Please fill all mandatory fields including YouTube link & Payoneer info.");
+            if(!name || !email || !countryVal || !biz || !pass || !yt || !payName || !payEmail) {
+                alert("Please fill all mandatory fields including Country, YouTube link & Payoneer info.");
                 return;
             }
+
+            const [countryName, countryFlag] = countryVal.split('|');
 
             const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/;
             if(!regex.test(pass)) {
@@ -525,6 +600,8 @@
                 id: vendorId, 
                 name: name, 
                 email: email, 
+                country: countryName,
+                flag: countryFlag,
                 whatsapp: phone, 
                 biz: biz,
                 pass: pass, 
@@ -562,6 +639,7 @@
         function renderVendorDashboard(found) {
             showSection('dashboardSection');
 
+            // Main Product Inventory Rows (Without Payout Status & Tracking ID as requested)
             let ledgerRows = found.uploadedProducts && found.uploadedProducts.length > 0 ? 
                 found.uploadedProducts.map((p, idx) => `
                     <tr>
@@ -573,30 +651,42 @@
                         <td>${p.countryDiscount}</td>
                         <td><span style="color:var(--gold-solid); font-weight:bold;">${p.clicks}</span></td>
                         <td><span style="color:#3498db; font-weight:bold;">${p.parcels}</span></td>
-                        <td><span style="color:${p.status === 'Paid & Settled' ? '#2ecc71' : '#f39c12'}; font-weight:bold;">● ${p.status}</span></td>
-                        <td>${p.trackingId || 'Pending Tracking'}</td>
                     </tr>
                 `).join('') :
-                `<tr><td colspan="10" style="text-align:center; color:#777; padding:12px;">No products uploaded yet. Start publishing to track sales & Payoneer payouts.</td></tr>`;
+                `<tr><td colspan="8" style="text-align:center; color:#777; padding:12px;">No products uploaded yet. Start publishing to track global sales.</td></tr>`;
+
+            // Separate Clean Tracking & Payout Table as requested
+            let trackingRows = found.uploadedProducts && found.uploadedProducts.length > 0 ?
+                found.uploadedProducts.map((p, idx) => `
+                    <tr>
+                        <td><b>#${idx + 1}</b></td>
+                        <td>${p.name} (${found.id})</td>
+                        <td><span style="color:#2ecc71; font-weight:bold;">● Paid (Customer Confirmed)</span></td>
+                        <td>${p.trackingId !== 'Not Assigned' ? p.trackingId : 'TRK-' + Math.floor(100000 + Math.random() * 900000)}</td>
+                        <td>Global Courier Express</td>
+                        <td><button onclick="alert('Funds ready for Payoneer withdrawal! Transfer requested to ${found.payoneerEmail}')" style="background:var(--gold-gradient); border:none; padding:4px 10px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:0.6rem;">Withdraw via Payoneer</button></td>
+                    </tr>
+                `).join('') :
+                `<tr><td colspan="6" style="text-align:center; color:#777; padding:10px;">No orders or shipments to track yet.</td></tr>`;
 
             let dashHtml = `
-                <!-- Compact Digital ID Card -->
+                <!-- Compact Digital ID Card with Flag & Picture -->
                 <div class="digital-id-card">
                     <img src="${found.photo}" alt="ID Avatar" class="id-avatar">
                     <div style="overflow:hidden;">
-                        <span style="font-size:0.58rem; color:var(--gold-solid); letter-spacing:1px; font-weight:bold;">OFFICIAL VENDOR IDENTITY CARD</span>
+                        <span style="font-size:0.58rem; color:var(--gold-solid); letter-spacing:1px; font-weight:bold;">OFFICIAL VENDOR IDENTITY CARD (${found.flag} ${found.country})</span>
                         <h3 style="margin:2px 0; color:#fff; font-size:1.05rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${found.biz}</h3>
                         <p style="margin:0; font-size:0.68rem; color:#aaa;">Owner: ${found.name}</p>
                         <p style="margin:0; font-size:0.65rem; color:var(--gold-solid);">ID: ${found.id} | Payoneer: ${found.payoneerEmail}</p>
                     </div>
                 </div>
 
-                <!-- Compact Live Chart (Zero Base) -->
-                <div style="margin:10px 0 3px 0;"><span class="cv-label">Vendor Growth & Analytics Live Chart</span></div>
-                <div class="chart-container">
-                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 15%;"></div><span class="chart-label">Clicks</span></div>
-                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 15%;"></div><span class="chart-label">Parcels</span></div>
-                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 15%;"></div><span class="chart-label">Earnings</span></div>
+                <!-- Animated Luxury Chart (Zero Based) -->
+                <div style="margin:10px 0 3px 0;"><span class="cv-label">Vendor Growth & Analytics Live Chart (Animated)</span></div>
+                <div class="luxury-animated-chart">
+                    <div class="chart-bar-wrap"><div class="chart-bar" style="--final-height: 20%;"></div><span class="chart-label">Clicks</span></div>
+                    <div class="chart-bar-wrap"><div class="chart-bar" style="--final-height: 20%;"></div><span class="chart-label">Parcels</span></div>
+                    <div class="chart-bar-wrap"><div class="chart-bar" style="--final-height: 20%;"></div><span class="chart-label">Earnings</span></div>
                 </div>
 
                 <!-- 3 Clean Stats Boxes (Zero Based) -->
@@ -606,12 +696,9 @@
                     <div class="dash-stat-box"><span class="cv-label">Product Clicks</span><span class="number">${found.totalClicks}</span></div>
                 </div>
 
-                <!-- Automated Ledger & Tracking Table -->
+                <!-- Main Product Inventory Ledger -->
                 <div style="margin-top:15px;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-                        <span class="cv-label">📈 Automated Ledger & Payout Tracking</span>
-                        <span style="font-size:0.58rem; color:var(--text-gray);">Payoneer Settlement</span>
-                    </div>
+                    <span class="cv-label">📦 Product Inventory & Performance Ledger</span>
                     <div class="ledger-table-wrap">
                         <table class="ledger-table">
                             <thead>
@@ -624,12 +711,32 @@
                                     <th>Country Discount</th>
                                     <th>Clicks</th>
                                     <th>Parcels</th>
-                                    <th>Payout Status</th>
-                                    <th>Tracking ID</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 ${ledgerRows}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Separate Clean Tracking & Payoneer Payout Table -->
+                <div style="margin-top:20px;">
+                    <span class="cv-label">🚚 Automated Tracking, Shipping & Payoneer Payouts</span>
+                    <div class="ledger-table-wrap">
+                        <table class="ledger-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Product & ID</th>
+                                    <th>Payment Status</th>
+                                    <th>Tracking ID</th>
+                                    <th>Courier Service</th>
+                                    <th>Withdraw Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${trackingRows}
                             </tbody>
                         </table>
                     </div>
@@ -666,8 +773,8 @@
                 videoUrl: videoUrl,
                 clicks: 0,
                 parcels: 0,
-                status: 'Pending Payout',
-                trackingId: 'Not Assigned'
+                status: 'Paid',
+                trackingId: 'TRK-' + Math.floor(100000 + Math.random() * 900000)
             };
 
             if(!currentActiveVendor.uploadedProducts) currentActiveVendor.uploadedProducts = [];
@@ -680,7 +787,7 @@
                 localStorage.setItem('mme_sellers', JSON.stringify(sellers));
             }
 
-            alert("Product successfully published to automated ledger!");
+            alert("Product successfully published with automated tracking!");
             renderVendorDashboard(currentActiveVendor);
         }
     </script>
