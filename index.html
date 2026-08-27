@@ -41,7 +41,7 @@
             justify-content: center;
             overflow-x: hidden;
             background-image: radial-gradient(circle at 50% 10%, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
-            padding: 20px;
+            padding: 12px;
         }
 
         .portal-wrapper { 
@@ -56,55 +56,51 @@
         .luxury-card { 
             background: var(--surface-card); 
             border: 2px solid var(--border-luxury); 
-            border-radius: 24px; 
-            padding: 40px 30px; 
+            border-radius: 20px; 
+            padding: 25px 18px; 
             text-align: center; 
-            box-shadow: 0 30px 60px rgba(0,0,0,0.9), 0 0 30px rgba(212,175,55,0.18); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.9), 0 0 25px rgba(212,175,55,0.15); 
             width: 100%; 
             position: relative; 
-            animation: fadeInCard 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
+            animation: fadeInCard 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
         }
         @keyframes fadeInCard { 
-            from { opacity: 0; transform: translateY(25px) scale(0.97); } 
+            from { opacity: 0; transform: translateY(20px) scale(0.98); } 
             to { opacity: 1; transform: translateY(0) scale(1); } 
         }
 
-        /* লোগোর অতিরিক্ত গ্লো ঠিক করে স্পষ্ট করা হয়েছে */
         .brand-logo { 
-            width: 85px; 
-            height: 85px; 
+            width: 70px; 
+            height: 70px; 
             border-radius: 50%; 
             border: 2px solid var(--gold-solid); 
             object-fit: cover; 
-            margin-bottom: 18px; 
-            box-shadow: 0 0 15px rgba(212,175,55,0.4); 
+            margin-bottom: 12px; 
+            box-shadow: 0 0 12px rgba(212,175,55,0.3); 
             background: #000; 
         }
 
-        /* টাইটেল এবং সাবটাইটেলের দৈর্ঘ্য ও সামঞ্জস্য পারফেক্ট করা হয়েছে */
         .title-container {
             display: inline-block;
-            margin-bottom: 25px;
+            margin-bottom: 18px;
             width: 100%;
-            max-width: 520px;
         }
 
         .luxury-card h1 { 
             font-family: 'Cinzel Decorative', serif; 
-            font-size: 1.55rem; 
+            font-size: 1.25rem; 
             font-weight: 900; 
             background: var(--gold-gradient); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
             text-transform: uppercase; 
-            margin-bottom: 6px; 
-            letter-spacing: 1px;
+            margin-bottom: 4px; 
         }
 
         .brand-subtitle-line { 
             color: var(--text-gray); 
-            font-size: 0.75rem; 
-            letter-spacing: 3.5px; 
+            font-size: 0.65rem; 
+            letter-spacing: 2px; 
             text-transform: uppercase; 
             font-weight: 600; 
             display: block;
@@ -115,65 +111,61 @@
         .gold-effect-banner { 
             background: var(--surface-glass); 
             border: 1px solid var(--border-luxury); 
-            padding: 22px; 
-            border-radius: 14px; 
-            margin-bottom: 25px; 
-            font-size: 0.82rem; 
+            padding: 16px; 
+            border-radius: 12px; 
+            margin-bottom: 20px; 
+            font-size: 0.76rem; 
             color: #fceea7; 
-            line-height: 1.7; 
+            line-height: 1.6; 
             text-align: left; 
-            box-shadow: inset 0 0 15px rgba(212,175,55,0.08); 
         }
         .gold-effect-banner b { 
             background: var(--gold-gradient); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
             font-family: 'Cinzel', serif; 
-            font-size: 1.05rem; 
+            font-size: 0.9rem; 
             display: block; 
-            margin-bottom: 8px; 
+            margin-bottom: 6px; 
         }
         .gold-effect-banner ul { 
-            margin-left: 18px; 
-            margin-top: 8px; 
-            font-size: 0.78rem; 
+            margin-left: 15px; 
+            margin-top: 6px; 
+            font-size: 0.72rem; 
             color: #ddd; 
         }
         .gold-effect-banner li { 
-            margin-bottom: 6px; 
+            margin-bottom: 5px; 
         }
 
         .apply-btn { 
             display: inline-block; 
             background: var(--gold-gradient); 
             color: #080808; 
-            padding: 13px 38px; 
-            border-radius: 12px; 
+            padding: 11px 28px; 
+            border-radius: 10px; 
             font-weight: 800; 
             text-transform: uppercase; 
-            font-size: 0.85rem; 
+            font-size: 0.78rem; 
             letter-spacing: 1px; 
             border: none; 
             cursor: pointer; 
-            box-shadow: 0 5px 20px rgba(212,175,55,0.45); 
+            box-shadow: 0 4px 15px rgba(212,175,55,0.4); 
             transition: all 0.3s ease; 
         }
         .apply-btn:hover { 
-            transform: translateY(-3px); 
-            box-shadow: 0 8px 25px rgba(212,175,55,0.7); 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 20px rgba(212,175,55,0.6); 
             filter: brightness(1.15); 
-        }
-        .apply-btn:active {
-            transform: scale(0.97);
         }
 
         .outline-btn { 
             background: transparent; 
             border: 1px solid var(--gold-solid); 
             color: var(--gold-solid); 
-            padding: 10px 25px; 
-            border-radius: 10px; 
-            font-size: 0.75rem; 
+            padding: 8px 20px; 
+            border-radius: 8px; 
+            font-size: 0.7rem; 
             text-transform: uppercase; 
             letter-spacing: 1px; 
             cursor: pointer; 
@@ -186,54 +178,53 @@
         }
 
         .portal-section { display: none; text-align: left; width: 100%; }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .full-width { grid-column: span 2; }
         
         .input-group { margin-bottom: 6px; }
-        .input-group label { display: block; font-size: 0.72rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; font-weight: 700; }
-        .input-group input, .input-group select, .input-group textarea { width: 100%; background: #000; border: 1.5px solid rgba(212,175,55,0.4); padding: 11px 14px; color: #fff; border-radius: 9px; font-size: 0.82rem; outline: none; transition: 0.3s; }
-        .input-group input:focus, .input-group select:focus, .input-group textarea:focus { border-color: var(--gold-solid); box-shadow: 0 0 12px rgba(212,175,55,0.4); }
+        .input-group label { display: block; font-size: 0.68rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 700; }
+        .input-group input, .input-group select, .input-group textarea { width: 100%; background: #000; border: 1.5px solid rgba(212,175,55,0.4); padding: 9px 12px; color: #fff; border-radius: 8px; font-size: 0.78rem; outline: none; transition: 0.3s; }
+        .input-group input:focus, .input-group select:focus, .input-group textarea:focus { border-color: var(--gold-solid); box-shadow: 0 0 10px rgba(212,175,55,0.4); }
 
-        .phone-group { display: flex; gap: 8px; }
-        .phone-group select { width: 110px; flex-shrink: 0; }
-        .section-title { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border-luxury); padding-bottom: 5px; margin: 15px 0 10px 0; font-weight: 700; }
+        .phone-group { display: flex; gap: 6px; }
+        .phone-group select { width: 95px; flex-shrink: 0; }
+        .section-title { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border-luxury); padding-bottom: 4px; margin: 12px 0 8px 0; font-weight: 700; }
 
-        /* Top-Level Luxury Dashboard Styles */
-        .dashboard-container { background: linear-gradient(145deg, #0b0b0b, #030303); border: 2px solid var(--border-luxury); border-radius: 18px; padding: 25px; text-align: left; box-shadow: inset 0 0 35px rgba(212,175,55,0.06); }
+        /* Dashboard Styles - Compact & Clean */
+        .dashboard-container { background: linear-gradient(145deg, #0b0b0b, #030303); border: 2px solid var(--border-luxury); border-radius: 14px; padding: 15px; text-align: left; }
         
-        .dash-stats-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 20px 0; }
-        .dash-stat-box { background: rgba(20,20,20,0.95); border: 1px solid rgba(212,175,55,0.35); border-radius: 12px; padding: 14px 10px; text-align: center; transition: 0.3s; }
-        .dash-stat-box:hover { transform: translateY(-4px); border-color: var(--gold-solid); box-shadow: 0 0 20px rgba(212,175,55,0.35); }
-        .dash-stat-box .number { font-size: 1.15rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-top: 5px; display: block; font-family: 'Cinzel', serif; }
-        .cv-label { color: var(--gold-light); font-weight: 700; text-transform: uppercase; font-size: 0.62rem; letter-spacing: 0.5px; }
+        .dash-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 15px 0; }
+        .dash-stat-box { background: rgba(20,20,20,0.95); border: 1px solid rgba(212,175,55,0.3); border-radius: 10px; padding: 10px 6px; text-align: center; }
+        .dash-stat-box .number { font-size: 1rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-top: 3px; display: block; font-family: 'Cinzel', serif; }
+        .cv-label { color: var(--gold-light); font-weight: 700; text-transform: uppercase; font-size: 0.58rem; letter-spacing: 0.5px; }
 
-        .digital-id-card { background: linear-gradient(135deg, #121212, #050505); border: 2px solid var(--gold-solid); border-radius: 18px; padding: 20px; display: flex; gap: 20px; align-items: center; margin-bottom: 20px; box-shadow: 0 0 25px rgba(212,175,55,0.25); animation: cardGlow 3s infinite alternate; }
-        @keyframes cardGlow { from { box-shadow: 0 0 15px rgba(212,175,55,0.2); } to { box-shadow: 0 0 30px rgba(212,175,55,0.4); } }
-        .id-avatar { width: 75px; height: 75px; border-radius: 50%; border: 2px solid var(--gold-solid); object-fit: cover; background: #000; }
+        .digital-id-card { background: linear-gradient(135deg, #121212, #050505); border: 1.5px solid var(--gold-solid); border-radius: 14px; padding: 14px; display: flex; gap: 12px; align-items: center; margin-bottom: 15px; }
+        .id-avatar { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--gold-solid); object-fit: cover; background: #000; flex-shrink: 0; }
 
-        /* Advanced Luxury Animated Bar Chart */
-        .chart-container { display: flex; align-items: flex-end; justify-content: space-around; height: 210px; background: linear-gradient(180deg, #121212, #050505); border: 2px solid var(--gold-solid); border-radius: 16px; padding: 30px 15px 15px 15px; margin: 20px 0; box-shadow: 0 0 25px rgba(212,175,55,0.3); }
-        .chart-bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; height: 100%; justify-content: flex-end; }
-        .chart-bar { width: 35px; background: var(--gold-gradient); border-radius: 8px 8px 0 0; animation: barAnimation 2.2s ease-in-out infinite alternate; transform-origin: bottom; box-shadow: 0 0 20px rgba(212,175,55,0.9); }
-        @keyframes barAnimation { 0% { transform: scaleY(0.3); filter: brightness(0.7); } 100% { transform: scaleY(1); filter: brightness(1.2); } }
-        .chart-label { font-size: 0.68rem; color: #ffffff; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.9); }
+        /* Compact Chart */
+        .chart-container { display: flex; align-items: flex-end; justify-content: space-around; height: 140px; background: linear-gradient(180deg, #121212, #050505); border: 1.5px solid var(--gold-solid); border-radius: 12px; padding: 15px 10px 8px 10px; margin: 15px 0; }
+        .chart-bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; height: 100%; justify-content: flex-end; }
+        .chart-bar { width: 25px; background: var(--gold-gradient); border-radius: 6px 6px 0 0; }
+        .chart-label { font-size: 0.58rem; color: #ffffff; text-transform: uppercase; font-weight: 700; }
 
-        /* Automated Ledger & Accounting Table Style */
-        .ledger-table-wrap { overflow-x: auto; margin-top: 15px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.35); background: #000; box-shadow: 0 5px 20px rgba(0,0,0,0.8); }
-        .ledger-table { width: 100%; border-collapse: collapse; font-size: 0.72rem; text-align: left; white-space: nowrap; }
-        .ledger-table th, .ledger-table td { border: 1px solid rgba(212,175,55,0.2); padding: 11px 14px; }
-        .ledger-table th { background: linear-gradient(135deg, #221c0b, #111); color: var(--gold-solid); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-        .ledger-table tr:nth-child(even) { background: rgba(255,255,255,0.02); }
-        .ledger-table tr:hover { background: rgba(212,175,55,0.08); }
+        /* Ledger Table */
+        .ledger-table-wrap { overflow-x: auto; margin-top: 10px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.3); background: #000; }
+        .ledger-table { width: 100%; border-collapse: collapse; font-size: 0.68rem; text-align: left; white-space: nowrap; }
+        .ledger-table th, .ledger-table td { border: 1px solid rgba(212,175,55,0.2); padding: 8px 10px; }
+        .ledger-table th { background: linear-gradient(135deg, #221c0b, #111); color: var(--gold-solid); font-weight: 700; text-transform: uppercase; }
 
-        @media(max-width: 800px) { .form-grid, .dash-stats-grid, .digital-id-card { grid-template-columns: 1fr; flex-direction: column; text-align: center; } .full-width { grid-column: span 1; } }
+        /* Media Preview Boxes */
+        .media-preview-box { display: flex; gap: 10px; align-items: center; background: #000; padding: 8px; border-radius: 8px; border: 1px solid rgba(212,175,55,0.3); margin-top: 5px; }
+        .media-preview-box img, .media-preview-box iframe { width: 50px; height: 50px; border-radius: 6px; object-fit: cover; background: #111; }
+
+        @media(max-width: 600px) { .form-grid, .dash-stats-grid { grid-template-columns: 1fr; } .full-width { grid-column: span 1; } }
     </style>
 </head>
 <body>
 
     <div class="portal-wrapper">
         
-        <!-- 1. Entrance Card with Mandatory Rules & 20% Commission Rule -->
+        <!-- 1. Entrance Card -->
         <div class="luxury-card portal-section" id="entranceCard" style="display:block;">
             <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" alt="Logo" class="brand-logo">
             
@@ -246,70 +237,68 @@
                 <b>📌 ESSENTIAL VENDOR RULES & PLATFORM GUIDELINES</b>
                 <ul>
                     <li><b>High-Quality Packaging:</b> All premium products must use export-grade, damage-proof luxury packaging.</li>
-                    <li><b>Strict Compliance:</b> Counterfeit items, misrepresentation, or customer fraud will result in immediate permanent account suspension and severe financial penalties.</li>
+                    <li><b>Strict Compliance:</b> Counterfeit items, misrepresentation, or customer fraud will result in immediate permanent account suspension.</li>
                     <li><b>Platform Commission:</b> A standard <b>20% global platform commission</b> is applicable on all completed orders.</li>
-                    <li><b>Daily Upload Limit:</b> Verified vendors are allowed to publish a maximum of <b>3 products per day</b>.</li>
                 </ul>
             </div>
 
             <button class="apply-btn" onclick="showSection('formSection')">Join as Elite Seller</button>
-            <div style="margin-top: 18px; text-align: center;">
-                <button onclick="showSection('loginSection')" class="outline-btn" style="padding: 8px 22px; font-size: 0.7rem;">Seller Sign In</button>
+            <div style="margin-top: 15px; text-align: center;">
+                <button onclick="showSection('loginSection')" class="outline-btn">Seller Sign In</button>
             </div>
         </div>
 
-        <!-- 2. Seller Login & Password Reset Section -->
+        <!-- 2. Seller Login Section -->
         <div class="luxury-card portal-section" id="loginSection">
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:20px; font-size:1.4rem;">Seller Dashboard Login</h2>
-            <div class="input-group" style="max-width:350px; margin:0 auto 15px auto;">
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:15px; font-size:1.2rem;">Seller Dashboard Login</h2>
+            <div class="input-group" style="max-width:320px; margin:0 auto 12px auto;">
                 <label>Official Gmail Address</label>
                 <input type="email" id="loginEmail" placeholder="seller@gmail.com" required>
             </div>
-            <div class="input-group" style="max-width:350px; margin:0 auto 10px auto;">
+            <div class="input-group" style="max-width:320px; margin:0 auto 8px auto;">
                 <label>Dashboard Password</label>
                 <input type="password" id="loginPass" placeholder="Enter Password" required>
             </div>
-            <div style="max-width:350px; margin:0 auto 20px auto; text-align:right;">
-                <button onclick="openPasswordReset()" style="background:none; border:none; color:var(--gold-light); font-size:0.7rem; cursor:pointer; text-decoration:underline;">Forgot Password?</button>
+            <div style="max-width:320px; margin:0 auto 15px auto; text-align:right;">
+                <button onclick="openPasswordReset()" style="background:none; border:none; color:var(--gold-light); font-size:0.68rem; cursor:pointer; text-decoration:underline;">Forgot Password?</button>
             </div>
             <div style="text-align:center;">
                 <button class="apply-btn" onclick="loginDashboard()">Access Dashboard</button>
-                <br><button onclick="showSection('entranceCard')" style="background:none; border:none; color:var(--text-gray); margin-top:15px; cursor:pointer; font-size:0.75rem;">Return Home</button>
+                <br><button onclick="showSection('entranceCard')" style="background:none; border:none; color:var(--text-gray); margin-top:12px; cursor:pointer; font-size:0.7rem;">Return Home</button>
             </div>
         </div>
 
-        <!-- Password Reset Modal Section -->
+        <!-- Password Recovery Section -->
         <div class="luxury-card portal-section" id="resetSection">
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:15px; font-size:1.3rem;">Password Recovery</h2>
-            <p style="font-size:0.75rem; color:var(--text-gray); margin-bottom:20px;">Enter your registered Gmail and new secure password to reset your access.</p>
-            <div class="input-group" style="max-width:350px; margin:0 auto 15px auto;">
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:12px; font-size:1.1rem;">Password Recovery</h2>
+            <div class="input-group" style="max-width:320px; margin:0 auto 12px auto;">
                 <label>Registered Gmail</label>
                 <input type="email" id="resetEmail" placeholder="seller@gmail.com">
             </div>
-            <div class="input-group" style="max-width:350px; margin:0 auto 20px auto;">
+            <div class="input-group" style="max-width:320px; margin:0 auto 15px auto;">
                 <label>New Secure Password</label>
-                <input type="password" id="newPassword" placeholder="New Password (10+ chars, Upper, Lower, Symbol)">
+                <input type="password" id="newPassword" placeholder="10+ chars, Upper, Lower, Symbol">
             </div>
             <div style="text-align:center;">
                 <button class="apply-btn" onclick="executePasswordReset()">Update Password</button>
-                <br><button onclick="showSection('loginSection')" style="background:none; border:none; color:var(--text-gray); margin-top:15px; cursor:pointer; font-size:0.75rem;">Back to Sign In</button>
+                <br><button onclick="showSection('loginSection')" style="background:none; border:none; color:var(--text-gray); margin-top:12px; cursor:pointer; font-size:0.7rem;">Back to Sign In</button>
             </div>
         </div>
 
-        <!-- 3. Detailed Seller Registration Form -->
+        <!-- 3. Detailed Seller Registration Form (Direct to Dashboard) -->
         <div class="luxury-card portal-section" id="formSection">
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:20px; font-size:1.3rem; text-transform:uppercase;">Global Seller Application</h2>
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:15px; font-size:1.1rem; text-transform:uppercase;">Global Seller Application</h2>
             
             <div class="form-grid">
-                <div class="input-group full-width"><label>Full Legal Name (As per NID/Passport) *</label><input type="text" id="fullName" placeholder="Enter full name" required></div>
+                <div class="input-group full-width"><label>Full Legal Name *</label><input type="text" id="fullName" placeholder="Enter full name" required></div>
                 
                 <div class="input-group"><label>Father's Name *</label><input type="text" id="fatherName" required></div>
                 <div class="input-group"><label>Mother's Name *</label><input type="text" id="motherName" required></div>
 
-                <div class="input-group"><label>Official Gmail Address (Used for Login) *</label><input type="email" id="email" required></div>
+                <div class="input-group"><label>Official Gmail Address *</label><input type="email" id="email" required></div>
                 <div class="input-group"><label>Date of Birth *</label><input type="date" id="dob" required></div>
 
-                <div class="input-group"><label>Dashboard Password (Min 10, Upper, Lower, Num, Symbol) *</label><input type="password" id="partnerPassword" required></div>
+                <div class="input-group"><label>Dashboard Password *</label><input type="password" id="partnerPassword" placeholder="Min 10 chars, Upper, Lower, Symbol" required></div>
                 <div class="input-group"><label>Confirm Password *</label><input type="password" id="confirmPassword" required></div>
                 
                 <div class="input-group">
@@ -320,55 +309,71 @@
                     </div>
                 </div>
 
-                <div class="input-group"><label>National ID (NID - Numbers Only) *</label><input type="text" id="nidNumber" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required></div>
+                <div class="input-group"><label>National ID (NID) *</label><input type="text" id="nidNumber" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required></div>
                 <div class="input-group"><label>Gender *</label><select id="gender"><option>Male</option><option>Female</option><option>Other</option></select></div>
-                <div class="input-group full-width"><label>Complete Residential Address *</label><textarea id="address" rows="2" required></textarea></div>
+                <div class="input-group full-width"><label>Residential Address *</label><textarea id="address" rows="2" required></textarea></div>
 
-                <!-- Business Information -->
+                <!-- Business & Store Information -->
                 <div class="input-group full-width"><div class="section-title">Business & Store Information</div></div>
                 <div class="input-group"><label>Store / Business Name *</label><input type="text" id="bizName" required></div>
                 <div class="input-group"><label>Years in Business *</label><input type="number" id="bizYears" required></div>
-                <div class="input-group full-width"><label>Exact Business Operational Location / Address *</label><textarea id="bizAddress" rows="2" required></textarea></div>
+                <div class="input-group full-width"><label>Business Operational Address *</label><textarea id="bizAddress" rows="2" required></textarea></div>
                 <div class="input-group full-width"><label>Trade License Number (Optional)</label><input type="text" id="tradeLicense"></div>
 
-                <!-- Social Media Channels -->
+                <!-- Social Media & Brand Channels (YouTube Mandatory) -->
                 <div class="input-group full-width"><div class="section-title">Social Media & Brand Channels</div></div>
+                <div class="input-group full-width"><label><i class="fa-brands fa-youtube" style="color:#ff0000;"></i> YouTube Channel URL (Mandatory) *</label><input type="url" id="ytLink" placeholder="https://youtube.com/@channel" required></div>
                 <div class="input-group"><label><i class="fa-brands fa-facebook" style="color:#1877f2;"></i> Facebook URL</label><input type="url" id="fbLink" placeholder="https://facebook.com/yourpage"></div>
-                <div class="input-group"><label><i class="fa-brands fa-youtube" style="color:#ff0000;"></i> YouTube URL</label><input type="url" id="ytLink" placeholder="https://youtube.com/@channel"></div>
                 <div class="input-group"><label><i class="fa-brands fa-instagram" style="color:#e4405f;"></i> Instagram URL</label><input type="url" id="igLink" placeholder="https://instagram.com/profile"></div>
-                <div class="input-group"><label><i class="fa-brands fa-tiktok" style="color:#fff;"></i> TikTok URL</label><input type="url" id="ttLink" placeholder="https://tiktok.com/@profile"></div>
 
+                <!-- Payoneer Payout Information -->
+                <div class="input-group full-width"><div class="section-title">Payoneer Payout Information</div></div>
+                <div class="input-group"><label>Payoneer Account Name *</label><input type="text" id="payoneerName" placeholder="Name on Payoneer" required></div>
+                <div class="input-group"><label>Payoneer Registered Email *</label><input type="email" id="payoneerEmail" placeholder="payoneer@gmail.com" required></div>
+
+                <!-- Verification & Image Upload -->
                 <div class="input-group full-width">
-                    <div class="section-title">Verification & Tracking</div>
-                    <label>Upload Passport Size Photo / ID Card Image *</label><input type="file" id="applicantPhoto" accept="image/*" required>
+                    <div class="section-title">Verification & Photo</div>
+                    <label>Upload Profile / ID Photo (Visible in Dashboard) *</label>
+                    <input type="file" id="applicantPhotoInput" accept="image/*" onchange="previewProfilePhoto(event)" required>
+                    <div id="photoPreviewContainer" style="margin-top:8px;"></div>
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 25px;">
-                <button class="apply-btn" onclick="submitSellerApp()">Complete Registration & Enter Dashboard</button>
-                <br><button onclick="showSection('entranceCard')" style="background:none; border:none; color:var(--text-gray); margin-top:15px; cursor:pointer; font-size:0.75rem;">Cancel & Return</button>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="apply-btn" onclick="submitSellerApp()">Register & Open Dashboard</button>
+                <br><button onclick="showSection('entranceCard')" style="background:none; border:none; color:var(--text-gray); margin-top:12px; cursor:pointer; font-size:0.7rem;">Cancel & Return</button>
             </div>
         </div>
 
-        <!-- 5. Approved Luxury Seller Dashboard Screen with Detailed Stats, Graphs & Automated Ledger -->
+        <!-- 4. Approved Luxury Seller Dashboard Screen -->
         <div class="luxury-card portal-section" id="dashboardSection">
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:15px; font-size:1.4rem;">Vendor Earning & Automated Operations Dashboard</h2>
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:12px; font-size:1.2rem;">Vendor Dashboard</h2>
             <div id="partnerWelcomeBox" class="dashboard-container"></div>
-            <div style="margin-top:20px; text-align:center; display:flex; gap:12px; justify-content:center;">
-                <button class="apply-btn" onclick="showSection('productSection')"><i class="fa-solid fa-plus"></i> Upload New Product (Max 3/Day)</button>
+            <div style="margin-top:15px; text-align:center; display:flex; gap:10px; justify-content:center;">
+                <button class="apply-btn" onclick="showSection('productSection')"><i class="fa-solid fa-plus"></i> Upload Product</button>
                 <button class="outline-btn" onclick="location.reload()">Logout</button>
             </div>
         </div>
 
-        <!-- 6. Advanced Global Retail Product Upload Terminal -->
+        <!-- 5. Global Retail Product Upload Terminal -->
         <div class="luxury-card portal-section" id="productSection">
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:8px; font-size:1.2rem; text-transform:uppercase;">Global Retail Product Upload</h2>
-            <p style="font-size:0.75rem; color:var(--text-gray); margin-bottom:20px; text-align:center;">দৈনিক সর্বোচ্চ ৩টি প্রোডাক্ট আপলোড করা যাবে। সকল মূল্য ডলারে নির্ধারিত। (20% Platform Commission Applied)</p>
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:6px; font-size:1.1rem; text-transform:uppercase;">Global Retail Product Upload</h2>
+            <p style="font-size:0.7rem; color:var(--text-gray); margin-bottom:15px; text-align:center;">সকল মূল্য ডলারে নির্ধারিত। (20% Platform Commission Applied)</p>
 
             <div class="form-grid" style="text-align:left;">
-                <div class="input-group full-width"><label>Product Name *</label><input type="text" id="prodName" placeholder="Product Name (e.g. Royal Teak Bed)" required></div>
-                <div class="input-group full-width"><label>Product Title *</label><input type="text" id="prodTitle" placeholder="Engaging Product Display Title" required></div>
-                <div class="input-group full-width"><label>Product Description *</label><textarea id="prodDesc" rows="3" placeholder="Full specifications, material details..." required></textarea></div>
+                <div class="input-group full-width">
+                    <label>Product Name * (Max 20 Chars)</label>
+                    <input type="text" id="prodName" maxlength="20" placeholder="Max 20 chars" required>
+                </div>
+                <div class="input-group full-width">
+                    <label>Product Title * (Max 20 Chars)</label>
+                    <input type="text" id="prodTitle" maxlength="20" placeholder="Max 20 chars" required>
+                </div>
+                <div class="input-group full-width">
+                    <label>Product Description * (Max 155 Chars)</label>
+                    <textarea id="prodDesc" rows="2" maxlength="155" placeholder="Max 155 characters..." required></textarea>
+                </div>
                 
                 <div class="input-group">
                     <label>Select Category *</label>
@@ -384,50 +389,33 @@
 
                 <div class="input-group"><label>Stock Quantity *</label><input type="number" id="prodStock" placeholder="e.g. 150" required></div>
                 
-                <div class="input-group"><label>Product Image / Video File *</label><input type="file" id="prodImg" accept="image/*,video/*" required></div>
-                <div class="input-group"><label>YouTube Review URL (Optional)</label><input type="url" id="prodVideo" placeholder="https://youtube.com/watch?v=..."></div>
+                <!-- Image & Video Links with Live Mini Preview -->
+                <div class="input-group full-width">
+                    <label>Product Image Link (URL) *</label>
+                    <input type="url" id="prodImgUrl" placeholder="https://image-link.com/photo.jpg" oninput="previewImageLink(this.value)" required>
+                    <div id="imgLinkPreview" style="margin-top:5px;"></div>
+                </div>
 
-                <!-- Retail Pricing in USD & Bangladesh Local Discount Field -->
-                <div class="input-group full-width"><div class="section-title">Global Retail Pricing & BD Special Discount</div></div>
+                <div class="input-group full-width">
+                    <label>YouTube Video Review Link (URL) *</label>
+                    <input type="url" id="prodVideoUrl" placeholder="https://youtube.com/watch?v=..." oninput="previewVideoLink(this.value)" required>
+                    <div id="videoLinkPreview" style="margin-top:5px;"></div>
+                </div>
+
+                <!-- Global Retail Price & Custom Country Discount -->
+                <div class="input-group full-width"><div class="section-title">Global Retail Pricing & Country Discounts</div></div>
                 
                 <div class="input-group">
-                    <label>Global Retail Price (USD $) [20% Commission]</label>
+                    <label>Global Retail Price (USD $) [20% Comm]</label>
                     <input type="number" id="priceGlobal" placeholder="$ 25.00">
                 </div>
                 <div class="input-group">
-                    <label>Bangladesh Special Discount Rate (BDT ৳ / % Off)</label>
-                    <input type="text" id="bdDiscount" placeholder="e.g. 15% OFF or ৳200 Discount">
-                </div>
-
-                <!-- International Shipping Matrix in USD -->
-                <div class="input-group full-width"><div class="section-title">International Shipping Matrix (USD $)</div></div>
-                <div class="input-group full-width">
-                    <div style="background:#000; padding:15px; border-radius:10px; border:1px solid rgba(212,175,55,0.3); font-size:0.8rem; display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-                        <div><label style="font-size:0.68rem; color:var(--gold-light);">United States (USA)</label><input type="number" id="shipUSA" placeholder="$ Rate" value="15.00"></div>
-                        <div><label style="font-size:0.68rem; color:var(--gold-light);">United Kingdom (UK)</label><input type="number" id="shipUK" placeholder="$ Rate" value="12.50"></div>
-                        <div><label style="font-size:0.68rem; color:var(--gold-light);">Canada</label><input type="number" id="shipCanada" placeholder="$ Rate"></div>
-                        <div><label style="font-size:0.68rem; color:var(--text-gray);">Australia</label><input type="number" id="shipAustralia" placeholder="$ Rate"></div>
-                        <div><label style="font-size:0.68rem; color:var(--text-gray);">Europe Continent</label><input type="number" id="shipEurope" placeholder="$ Rate"></div>
-                        <div><label style="font-size:0.68rem; color:var(--text-gray);">Asia Continent</label><input type="number" id="shipAsia" placeholder="$ Rate"></div>
-                    </div>
-                </div>
-
-                <!-- Others Custom Region Shipping -->
-                <div class="input-group full-width">
-                    <label>Others (Custom Country & Rate in $)</label>
-                    <div style="display:flex; gap:10px;">
-                        <input type="text" id="customCountryName" placeholder="Country Name (e.g., UAE, Japan)" style="flex:1;">
-                        <input type="number" id="customCountryRate" placeholder="Rate ($)" style="width:120px;">
-                    </div>
-                </div>
-
-                <div class="input-group full-width">
-                    <label>Uploader Auto-Tracking System</label>
-                    <input type="text" value="Upload Origin: Secured Global IP Tracked" readonly style="color:#2ecc71;">
+                    <label>Country Discount (e.g., USA 10% Off / BD ৳200)</label>
+                    <input type="text" id="countryDiscount" placeholder="Specify country & discount rate">
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 30px; display:flex; gap:15px; justify-content:center;">
+            <div style="text-align: center; margin-top: 20px; display:flex; gap:10px; justify-content:center;">
                 <button class="outline-btn" onclick="showSection('dashboardSection')">Cancel</button>
                 <button class="apply-btn" onclick="publishProduct()">Publish Product</button>
             </div>
@@ -437,6 +425,7 @@
 
     <script>
         let currentActiveVendor = null;
+        let tempProfilePhotoBase64 = "";
 
         function showSection(id) {
             const sections = ['entranceCard', 'loginSection', 'resetSection', 'formSection', 'dashboardSection', 'productSection'];
@@ -450,6 +439,36 @@
 
         function openPasswordReset() {
             showSection('resetSection');
+        }
+
+        function previewProfilePhoto(event) {
+            const file = event.target.files[0];
+            if(file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    tempProfilePhotoBase64 = e.target.result;
+                    document.getElementById('photoPreviewContainer').innerHTML = `<img src="${tempProfilePhotoBase64}" style="width:50px; height:50px; border-radius:50%; object-fit:cover; border:1px solid var(--gold-solid);">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function previewImageLink(url) {
+            let container = document.getElementById('imgLinkPreview');
+            if(url.trim() !== "") {
+                container.innerHTML = `<div class="media-preview-box"><img src="${url}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1160/1160358.png'"><span>Image Preview Loaded</span></div>`;
+            } else {
+                container.innerHTML = "";
+            }
+        }
+
+        function previewVideoLink(url) {
+            let container = document.getElementById('videoLinkPreview');
+            if(url.includes("youtube.com") || url.includes("youtu.be")) {
+                container.innerHTML = `<div class="media-preview-box"><i class="fa-brands fa-youtube" style="font-size:30px; color:#ff0000;"></i><span>YouTube Video Ready</span></div>`;
+            } else {
+                container.innerHTML = "";
+            }
         }
 
         function executePasswordReset() {
@@ -480,7 +499,7 @@
             }
         }
 
-        /* ডাইরেক্ট রেজিস্ট্রেশন করে রিভিউ পেজ বাদ দিয়ে সরাসরি ড্যাশবোর্ডে প্রবেশ করানোর লজিক */
+        /* Direct Registration and Login to Dashboard */
         function submitSellerApp() {
             const name = document.getElementById('fullName').value;
             const email = document.getElementById('email').value.trim().toLowerCase();
@@ -488,9 +507,12 @@
             const biz = document.getElementById('bizName').value;
             const pass = document.getElementById('partnerPassword').value;
             const confirmPass = document.getElementById('confirmPassword').value;
+            const yt = document.getElementById('ytLink').value;
+            const payName = document.getElementById('payoneerName').value;
+            const payEmail = document.getElementById('payoneerEmail').value;
 
-            if(!name || !email || !biz || !pass) {
-                alert("Please fill all mandatory fields.");
+            if(!name || !email || !biz || !pass || !yt || !payName || !payEmail) {
+                alert("Please fill all mandatory fields including YouTube link & Payoneer info.");
                 return;
             }
 
@@ -506,13 +528,19 @@
 
             const vendorId = 'VEN-' + Math.floor(1000 + Math.random() * 9000);
             const vendor = {
-                id: vendorId, name: name, email: email, whatsapp: phone, biz: biz,
-                pass: pass, status: 'Active', productsCount: 0, 
-                totalClicks: 142, totalParcels: 18, totalReviews: 24, totalEarnings: '$450.00', lastUploadDate: '',
-                uploadedProducts: [
-                    { name: "Royal Teak Bed", category: "🏡 HOME DECOR", stock: "50", global: "$ 120.00", bdDiscount: "10% OFF", clicks: "64", parcels: "10", reviews: "12", status: "Paid & Settled" },
-                    { name: "Silk Party Gown", category: "👗 FASHION (WOMEN)", stock: "30", global: "$ 85.00", bdDiscount: "৳ 300 Off", clicks: "78", parcels: "8", reviews: "12", status: "Pending Payout" }
-                ]
+                id: vendorId, 
+                name: name, 
+                email: email, 
+                whatsapp: phone, 
+                biz: biz,
+                pass: pass, 
+                photo: tempProfilePhotoBase64 || "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+                payoneerName: payName,
+                payoneerEmail: payEmail,
+                totalClicks: 0, 
+                totalParcels: 0, 
+                totalEarnings: '$0.00', 
+                uploadedProducts: []
             };
 
             let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
@@ -548,56 +576,47 @@
                         <td>${p.category}</td>
                         <td>${p.stock} Pcs</td>
                         <td>${p.global}</td>
-                        <td>${p.bdDiscount}</td>
-                        <td><span style="color:var(--gold-solid); font-weight:bold;">${p.clicks || '45'}</span></td>
-                        <td><span style="color:#3498db; font-weight:bold;">${p.parcels || '6'}</span></td>
-                        <td>⭐ ${p.reviews || '8'}</td>
-                        <td><span style="color:${p.status === 'Paid & Settled' ? '#2ecc71' : '#f39c12'}; font-weight:bold;">● ${p.status || 'Pending Payout'}</span></td>
+                        <td>${p.countryDiscount}</td>
+                        <td><span style="color:var(--gold-solid); font-weight:bold;">${p.clicks}</span></td>
+                        <td><span style="color:#3498db; font-weight:bold;">${p.parcels}</span></td>
+                        <td><span style="color:${p.status === 'Paid & Settled' ? '#2ecc71' : '#f39c12'}; font-weight:bold;">● ${p.status}</span></td>
+                        <td>${p.trackingId || 'Pending Tracking'}</td>
                     </tr>
                 `).join('') :
-                `<tr><td colspan="10" style="text-align:center; color:#777; padding:15px;">No products in automated ledger yet. Publish a product to track sales & payouts.</td></tr>`;
+                `<tr><td colspan="10" style="text-align:center; color:#777; padding:12px;">No products uploaded yet. Start publishing to track sales & Payoneer payouts.</td></tr>`;
 
             let dashHtml = `
-                <!-- Digital ID Card inside Dashboard -->
+                <!-- Compact Digital ID Card -->
                 <div class="digital-id-card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="ID Avatar" class="id-avatar">
-                    <div>
-                        <span style="font-size:0.68rem; color:var(--gold-solid); letter-spacing:2px; font-weight:bold;">OFFICIAL VENDOR IDENTITY CARD (20% COMMISSION MODEL)</span>
-                        <h3 style="margin:4px 0; color:#fff; font-size:1.3rem;">${found.biz}</h3>
-                        <p style="margin:0; font-size:0.75rem; color:#aaa;">Owner: ${found.name} | Vendor ID: <b style="color:var(--gold-solid);">${found.id}</b></p>
-                        <p style="margin:4px 0 0 0; font-size:0.7rem; color:#888;">Gmail: ${found.email} | WhatsApp: ${found.whatsapp}</p>
+                    <img src="${found.photo}" alt="ID Avatar" class="id-avatar">
+                    <div style="overflow:hidden;">
+                        <span style="font-size:0.58rem; color:var(--gold-solid); letter-spacing:1px; font-weight:bold;">OFFICIAL VENDOR IDENTITY CARD</span>
+                        <h3 style="margin:2px 0; color:#fff; font-size:1.05rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${found.biz}</h3>
+                        <p style="margin:0; font-size:0.68rem; color:#aaa;">Owner: ${found.name}</p>
+                        <p style="margin:0; font-size:0.65rem; color:var(--gold-solid);">ID: ${found.id} | Payoneer: ${found.payoneerEmail}</p>
                     </div>
                 </div>
 
-                <!-- Advanced Animated Bar Chart -->
-                <div style="margin:15px 0 5px 0;"><span class="cv-label">Vendor Growth & Analytics Live Chart</span></div>
+                <!-- Compact Live Chart (Zero Base) -->
+                <div style="margin:10px 0 3px 0;"><span class="cv-label">Vendor Growth & Analytics Live Chart</span></div>
                 <div class="chart-container">
-                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 75%; animation-delay: 0.1s;"></div><span class="chart-label">Views</span></div>
-                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 90%; animation-delay: 0.3s;"></div><span class="chart-label">Clicks</span></div>
-                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 60%; animation-delay: 0.5s;"></div><span class="chart-label">Parcels</span></div>
-                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 85%; animation-delay: 0.7s;"></div><span class="chart-label">Reviews</span></div>
-                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 95%; animation-delay: 0.9s;"></div><span class="chart-label">Earnings</span></div>
+                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 15%;"></div><span class="chart-label">Clicks</span></div>
+                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 15%;"></div><span class="chart-label">Parcels</span></div>
+                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 15%;"></div><span class="chart-label">Earnings</span></div>
                 </div>
 
-                <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(212,175,55,0.3); padding-bottom:10px; margin:20px 0 15px 0;">
-                    <h3 style="background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin:0; font-size:0.95rem; text-transform:uppercase;">Performance Summary</h3>
-                    <span style="background:rgba(46,204,113,0.18); color:#2ecc71; border:1px solid #2ecc71; padding:4px 12px; border-radius:20px; font-size:0.7rem; font-weight:bold;">● ACTIVE VENDOR (20% COMM)</span>
-                </div>
-
-                <!-- 5 Detailed Stats Boxes -->
+                <!-- 3 Clean Stats Boxes (Zero Based) -->
                 <div class="dash-stats-grid">
-                    <div class="dash-stat-box"><span class="cv-label">Total Earnings</span><span class="number" style="color:var(--gold-solid);">${found.totalEarnings || '$450.00'}</span></div>
-                    <div class="dash-stat-box"><span class="cv-label">Parcels Shipped</span><span class="number">${found.totalParcels || '18'}</span></div>
-                    <div class="dash-stat-box"><span class="cv-label">Product Clicks</span><span class="number">${found.totalClicks || '142'}</span></div>
-                    <div class="dash-stat-box"><span class="cv-label">Product Reviews</span><span class="number">⭐ ${found.totalReviews || '24'}</span></div>
-                    <div class="dash-stat-box"><span class="cv-label">Upload Limit</span><span class="number">${found.productsCount} / 3 Daily</span></div>
+                    <div class="dash-stat-box"><span class="cv-label">Total Earnings</span><span class="number" style="color:var(--gold-solid);">${found.totalEarnings}</span></div>
+                    <div class="dash-stat-box"><span class="cv-label">Parcels Shipped</span><span class="number">${found.totalParcels}</span></div>
+                    <div class="dash-stat-box"><span class="cv-label">Product Clicks</span><span class="number">${found.totalClicks}</span></div>
                 </div>
 
-                <!-- Automated Ledger & Payout Tracking Table -->
-                <div style="margin-top:25px;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                        <span class="cv-label">📈 Automated Ledger: Product Inventory, Sales & Payout Tracking</span>
-                        <span style="font-size:0.65rem; color:var(--text-gray);">Live System Calculations</span>
+                <!-- Automated Ledger & Tracking Table -->
+                <div style="margin-top:15px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                        <span class="cv-label">📈 Automated Ledger & Payout Tracking</span>
+                        <span style="font-size:0.58rem; color:var(--text-gray);">Payoneer Settlement</span>
                     </div>
                     <div class="ledger-table-wrap">
                         <table class="ledger-table">
@@ -608,11 +627,11 @@
                                     <th>Category</th>
                                     <th>Stock</th>
                                     <th>Global Price</th>
-                                    <th>BD Discount</th>
+                                    <th>Country Discount</th>
                                     <th>Clicks</th>
                                     <th>Parcels</th>
-                                    <th>Reviews</th>
                                     <th>Payout Status</th>
+                                    <th>Tracking ID</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -626,43 +645,39 @@
         }
 
         function publishProduct() {
-            let today = new Date().toDateString();
-            if(currentActiveVendor.lastUploadDate === today && currentActiveVendor.productsCount >= 3) {
-                alert("দৈনিক সর্বোচ্চ ৩টি প্রোডাক্ট আপলোডের লিমিট শেষ হয়ে গেছে। দয়া করে আগামীকাল আবার চেষ্টা করুন।");
-                return;
-            }
-
             let name = document.getElementById('prodName').value;
             let title = document.getElementById('prodTitle').value;
+            let desc = document.getElementById('prodDesc').value;
             let cat = document.getElementById('prodCategory').value;
             let stock = document.getElementById('prodStock').value;
             let priceGlobal = document.getElementById('priceGlobal').value;
-            let bdDiscount = document.getElementById('bdDiscount').value || 'Standard';
+            let countryDiscount = document.getElementById('countryDiscount').value || 'Standard';
+            let imgUrl = document.getElementById('prodImgUrl').value;
+            let videoUrl = document.getElementById('prodVideoUrl').value;
 
-            if(!name || !title || !cat || !stock || !priceGlobal) {
-                alert("Please fill in all mandatory product details including global price.");
+            if(!name || !title || !desc || !cat || !stock || !priceGlobal || !imgUrl || !videoUrl) {
+                alert("Please fill in all mandatory product details, image link & video link.");
                 return;
             }
 
             let product = {
-                name: name, title: title, category: cat, stock: stock,
+                name: name, 
+                title: title, 
+                desc: desc,
+                category: cat, 
+                stock: stock,
                 global: '$ ' + priceGlobal,
-                bdDiscount: bdDiscount,
-                clicks: Math.floor(20 + Math.random() * 50),
-                parcels: Math.floor(2 + Math.random() * 8),
-                reviews: Math.floor(3 + Math.random() * 10),
-                status: 'Pending Payout'
+                countryDiscount: countryDiscount,
+                imgUrl: imgUrl,
+                videoUrl: videoUrl,
+                clicks: 0,
+                parcels: 0,
+                status: 'Pending Payout',
+                trackingId: 'Not Assigned'
             };
 
             if(!currentActiveVendor.uploadedProducts) currentActiveVendor.uploadedProducts = [];
             currentActiveVendor.uploadedProducts.push(product);
-
-            if(currentActiveVendor.lastUploadDate !== today) {
-                currentActiveVendor.productsCount = 1;
-                currentActiveVendor.lastUploadDate = today;
-            } else {
-                currentActiveVendor.productsCount += 1;
-            }
 
             let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
             let idx = sellers.findIndex(s => s.id === currentActiveVendor.id);
