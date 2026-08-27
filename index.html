@@ -1,19 +1,25 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Globe, ShieldCheck, Store, ArrowRight, CheckCircle2 } from 'lucide-react';
+import countries from 'country-list';
 
-const countriesList = [
-  { name: 'China', code: 'CN', flag: '🇨🇳', phone: '+86' },
-  { name: 'United Kingdom', code: 'GB', flag: '🇬🇧', phone: '+44' },
-  { name: 'United States', code: 'US', flag: '🇺🇸', phone: '+1' },
-  { name: 'Bangladesh', code: 'BD', flag: '🇧🇩', phone: '+880' },
-  { name: 'Canada', code: 'CA', flag: '🇨🇦', phone: '+1' },
-  { name: 'Australia', code: 'AU', flag: '🇦🇺', phone: '+61' },
-  { name: 'Germany', code: 'DE', flag: '🇩🇪', phone: '+49' },
-  { name: 'United Arab Emirates', code: 'AE', flag: '🇦🇪', phone: '+971' },
-];
+// বিশ্বের সমস্ত দেশের তালিকা ও ফ্ল্যাগ জেনারেট করার লজিক
+const allCountriesData = countries.getData().map((country) => {
+  const code = country.code;
+  const flag = code
+    .toUpperCase()
+    .replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)));
+  
+  return {
+    name: country.name,
+    code: country.code,
+    flag: flag || '🌍',
+  };
+});
 
 export default function GlobalSellerRegistration() {
-  const [selectedCountry, setSelectedCountry] = useState(countriesList[0]);
+  const [selectedCountry, setSelectedCountry] = useState(allCountriesData[0] || { name: 'China', code: 'CN', flag: '🇨🇳' });
   const [formData, setFormData] = useState({
     businessName: '',
     email: '',
@@ -64,7 +70,7 @@ export default function GlobalSellerRegistration() {
           <div className="space-y-3 pt-2">
             <div className="flex items-center gap-3 text-sm text-gray-300">
               <CheckCircle2 className="w-5 h-5 text-amber-400 shrink-0" />
-              <span>Instant Country Flag & Code Auto-Detection</span>
+              <span>Instant Country Flag & Code Auto-Detection (200+ Countries)</span>
             </div>
             <div className="flex items-center gap-3 text-sm text-gray-300">
               <CheckCircle2 className="w-5 h-5 text-amber-400 shrink-0" />
@@ -101,15 +107,15 @@ export default function GlobalSellerRegistration() {
             </div>
 
             <div>
-              <label className="block text-xs uppercase tracking-wider text-gray-400 mb-2">Select Country & Location</label>
+              <label className="block text-xs uppercase tracking-wider text-gray-400 mb-2">Select Country (200+ Available)</label>
               <select 
                 onChange={(e) => {
-                  const country = countriesList.find(c => c.code === e.target.value);
+                  const country = allCountriesData.find(c => c.code === e.target.value);
                   if (country) setSelectedCountry(country);
                 }}
                 className="w-full bg-gray-950/60 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition-all text-sm cursor-pointer"
               >
-                {countriesList.map((c) => (
+                {allCountriesData.map((c) => (
                   <option key={c.code} value={c.code} className="bg-gray-900 text-white">
                     {c.flag} {c.name}
                   </option>
@@ -131,21 +137,16 @@ export default function GlobalSellerRegistration() {
             </div>
 
             <div>
-              <label className="block text-xs uppercase tracking-wider text-gray-400 mb-2">WhatsApp Number ({selectedCountry.phone})</label>
-              <div className="flex">
-                <span className="bg-gray-900 border border-r-0 border-gray-800 rounded-l-xl px-3 py-3 text-amber-400 text-sm flex items-center">
-                  {selectedCountry.phone}
-                </span>
-                <input 
-                  type="tel" 
-                  name="whatsapp"
-                  required
-                  placeholder="1700000000" 
-                  value={formData.whatsapp}
-                  onChange={handleInputChange}
-                  className="w-full bg-gray-950/60 border border-gray-800 rounded-r-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-amber-400 transition-all text-sm"
-                />
-              </div>
+              <label className="block text-xs uppercase tracking-wider text-gray-400 mb-2">WhatsApp Number</label>
+              <input 
+                type="tel" 
+                name="whatsapp"
+                required
+                placeholder="+1 234 567 890" 
+                value={formData.whatsapp}
+                onChange={handleInputChange}
+                className="w-full bg-gray-950/60 border border-gray-800 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-amber-400 transition-all text-sm"
+              />
             </div>
 
             <button 
