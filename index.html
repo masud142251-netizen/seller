@@ -248,7 +248,7 @@
 
     <div class="portal-wrapper">
         
-        <!-- 1. Entrance Card -->
+        <!-- 1. Entrance Card (Home Page Portal with Clear Vendor Login / Join Split) -->
         <div class="luxury-card portal-section" id="entranceCard" style="display:block;">
             <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" alt="Logo" class="brand-logo">
             
@@ -267,12 +267,12 @@
             </div>
 
             <button class="apply-btn" onclick="showSection('formSection')">Join as Elite Seller</button>
-            <div style="margin-top: 15px; text-align: center;">
-                <button onclick="showSection('loginSection')" class="outline-btn">Seller Sign In</button>
+            <div style="margin-top: 15px; text-align: center; display:flex; gap:10px; justify-content:center;">
+                <button onclick="showSection('loginSection')" class="outline-btn">Seller Sign In (Dashboard)</button>
             </div>
         </div>
 
-        <!-- 2. Seller Login Section -->
+        <!-- 2. Seller Login Section (Dedicated Dashboard Access) -->
         <div class="luxury-card portal-section" id="loginSection">
             <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:15px; font-size:1.1rem;">Seller Dashboard Login</h2>
             <div class="input-group" style="max-width:300px; margin:0 auto 12px auto;">
@@ -319,7 +319,7 @@
             </div>
         </div>
 
-        <!-- 3. Detailed Seller Registration Form -->
+        <!-- 3. Detailed Seller Registration Form with Unique Validation -->
         <div class="luxury-card portal-section" id="formSection">
             <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:15px; font-size:1.05rem; text-transform:uppercase;">Global Seller Application</h2>
             
@@ -555,8 +555,7 @@
             {name: "Taiwan", flag: "🇹🇼", dial: "+886"}, {name: "Tajikistan", flag: "🇹🇯", dial: "+992"}, {name: "Tanzania", flag: "🇹🇿", dial: "+255"}, {name: "Thailand", flag: "🇹🇭", dial: "+66"},
             {name: "Tunisia", flag: "🇹🇳", dial: "+216"}, {name: "Turkey", flag: "🇹🇷", dial: "+90"}, {name: "Turkmenistan", flag: "🇹🇲", dial: "+993"}, {name: "Uganda", flag: "🇺🇬", dial: "+256"},
             {name: "Ukraine", flag: "🇺🇦", dial: "+380"}, {name: "United Arab Emirates", flag: "🇦🇪", dial: "+971"}, {name: "United Kingdom", flag: "🇬🇧", dial: "+44"}, {name: "United States", flag: "🇺🇸", dial: "+1"},
-            {name: "Uruguay", flag: "🇺🇾", dial: "+598"}, {name: "Uzbekistan", flag: "🇺🇿", dial: "+998"}, {name: "Venezuela", flag: "🇻🇪", dial: "+58"}, {name: "Vietnam", flag: "🇻🇳", dial: "+84"},
-            {name: "Yemen", flag: "🇾🇪", dial: "+967"}, {name: "Zambia", flag: "🇿🇲", dial: "+260"}, {name: "Zimbabwe", flag: "🇿🇼", dial: "+263"}
+            {name: "Uruguay", flag: "🇺🇾", dial: "+598"}, {name: "Uzbekistan", flag: "🇺🇿", dial: "+998"}, {name: "Venezuela", flag: "🇻🇪", dial: "+58"}, {name: "Vietnam", flag: "🇻🇳", dial: "+84"}, {name: "Yemen", flag: "🇾🇪", dial: "+967"}, {name: "Zambia", flag: "🇿🇲", dial: "+260"}, {name: "Zimbabwe", flag: "🇿🇼", dial: "+263"}
         ];
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -740,6 +739,14 @@
                 return;
             }
 
+            // UNIQUE GMAIL & MOBILE NUMBER VALIDATION CHECK
+            let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
+            let existingUser = sellers.find(s => s.email === email || s.whatsapp === phone);
+            if(existingUser) {
+                alert("⚠️ Error: This Gmail address or Mobile/WhatsApp number is already registered! Multiple accounts using the same credentials are not allowed.");
+                return;
+            }
+
             const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/;
             if(!regex.test(pass)) {
                 alert("Password must be 10+ characters with Upper, Lower, Number & Symbol.");
@@ -777,7 +784,6 @@
                     { vendor_id: vendorId, name: name, email: email, biz_name: biz, country: countryName, photo_url: tempProfilePhotoUrl }
                 ]);
 
-                let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
                 sellers.push(vendor);
                 localStorage.setItem('mme_sellers', JSON.stringify(sellers));
 
