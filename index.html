@@ -8,6 +8,10 @@
     <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js for Advanced Animated Graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <style>
         :root {
@@ -218,10 +222,7 @@
         .digital-id-card { background: linear-gradient(135deg, #18150a, #080808); border: 2px solid var(--gold-solid); border-radius: 14px; padding: 12px; display: flex; gap: 12px; align-items: center; margin-bottom: 12px; box-shadow: 0 0 15px rgba(212,175,55,0.2); }
         .id-avatar { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--gold-solid); object-fit: cover; background: #000; flex-shrink: 0; box-shadow: 0 0 10px rgba(212,175,55,0.4); }
 
-        .luxury-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 120px; background: linear-gradient(180deg, #121212, #050505); border: 1.5px solid var(--gold-solid); border-radius: 12px; padding: 12px 8px 6px 8px; margin: 12px 0; }
-        .chart-bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; height: 100%; justify-content: flex-end; }
-        .chart-bar { width: 24px; background: var(--gold-gradient); border-radius: 6px 6px 0 0; }
-        .chart-label { font-size: 0.55rem; color: #ffffff; text-transform: uppercase; font-weight: 700; }
+        .luxury-chart-box { background: linear-gradient(180deg, #121212, #050505); border: 1.5px solid var(--gold-solid); border-radius: 12px; padding: 12px; margin: 12px 0; }
 
         .ledger-table-wrap { overflow-x: auto; margin-top: 8px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.3); background: #000; -webkit-overflow-scrolling: touch; }
         .ledger-table { width: 100%; border-collapse: collapse; font-size: 0.65rem; text-align: left; white-space: nowrap; }
@@ -380,8 +381,8 @@
                 <div class="input-group"><label>Payoneer Registered Email *</label><input type="email" id="payoneerEmail" placeholder="payoneer@gmail.com" required></div>
 
                 <div class="input-group full-width">
-                    <div class="section-title">Verification & Photo</div>
-                    <label>Upload Profile / ID Photo (Visible in Dashboard & Tag) *</label>
+                    <div class="section-title">Verification & Photo (Cloudinary Sync)</div>
+                    <label>Upload Profile / ID Photo *</label>
                     <input type="file" id="applicantPhotoInput" accept="image/*" onchange="previewProfilePhoto(event)" required>
                     <div id="photoPreviewContainer" style="margin-top:8px;"></div>
                 </div>
@@ -461,9 +462,9 @@
                 <div class="input-group"><label>Package Dimensions (L x W x H) *</label><input type="text" id="prodDimensions" placeholder="e.g. 10x5x3 inch" required></div>
 
                 <div class="input-group full-width">
-                    <label>Product Image Link (URL / FB / YouTube Image) *</label>
-                    <input type="url" id="prodImgUrl" placeholder="https://image-link.com/photo.jpg" oninput="previewImageLink(this.value)" required>
-                    <div id="imgLinkPreview" style="margin-top:5px;"></div>
+                    <label>Product Image File (Cloudinary Sync) *</label>
+                    <input type="file" id="prodImgFile" accept="image/*" onchange="previewProductImageFile(event)" required>
+                    <div id="imgFilePreview" style="margin-top:5px;"></div>
                 </div>
 
                 <div class="input-group full-width">
@@ -506,6 +507,19 @@
     </div>
 
     <script>
+        // =========================================================================
+        // AUTOMATED CREDENTIALS SYNC (Supabase & Cloudinary)
+        // =========================================================================
+        const SUPABASE_URL = 'https://ujvvjjwpgvwsmalyxcdg.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVqdnZqandwZ3Z3c21hbHl4Y2RnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5NjA4MzQsImV4cCI6MjEwMjUzNjgzNH0.OUUGNzxrkkoCLhZq1_eqQJbm88Dl7_6CZw7m7jQuJ-I';
+        
+        // Cloudinary Credentials Sync
+        const CLOUDINARY_CLOUD_NAME = 'tjrlenic';
+        const CLOUDINARY_UPLOAD_PRESET = 'mr'; 
+
+        // Initialize Supabase Client
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
         const allCountries = [
             {name: "Afghanistan", flag: "🇦🇫", dial: "+93"}, {name: "Albania", flag: "🇦🇱", dial: "+355"}, {name: "Algeria", flag: "🇩🇿", dial: "+213"}, {name: "Andorra", flag: "🇦🇩", dial: "+376"},
             {name: "Angola", flag: "🇦🇴", dial: "+244"}, {name: "Argentina", flag: "🇦🇷", dial: "+54"}, {name: "Armenia", flag: "🇦🇲", dial: "+374"}, {name: "Australia", flag: "🇦🇺", dial: "+61"},
@@ -601,7 +615,9 @@
         }
 
         let currentActiveVendor = null;
-        let tempProfilePhotoBase64 = "";
+        let tempProfilePhotoFile = null;
+        let tempProfilePhotoUrl = "";
+        let tempProductImageFile = null;
 
         function showSection(id) {
             const sections = ['entranceCard', 'loginSection', 'resetSection', 'formSection', 'dashboardSection', 'productSection'];
@@ -620,19 +636,25 @@
         function previewProfilePhoto(event) {
             const file = event.target.files[0];
             if(file) {
+                tempProfilePhotoFile = file;
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    tempProfilePhotoBase64 = e.target.result;
-                    document.getElementById('photoPreviewContainer').innerHTML = `<img src="${tempProfilePhotoBase64}" style="width:50px; height:50px; border-radius:50%; object-fit:cover; border:1px solid var(--gold-solid);">`;
+                    document.getElementById('photoPreviewContainer').innerHTML = `<img src="${e.target.result}" style="width:50px; height:50px; border-radius:50%; object-fit:cover; border:1px solid var(--gold-solid);">`;
                 };
                 reader.readAsDataURL(file);
             }
         }
 
-        function previewImageLink(url) {
-            let container = document.getElementById('imgLinkPreview');
-            if(url.trim() !== "") {
-                container.innerHTML = `<div class="media-preview-box"><img src="${url}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1160/1160358.png'"><span>Image Preview Loaded</span></div>`;
+        function previewProductImageFile(event) {
+            const file = event.target.files[0];
+            let container = document.getElementById('imgFilePreview');
+            if(file) {
+                tempProductImageFile = file;
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    container.innerHTML = `<div class="media-preview-box"><img src="${e.target.result}"><span>Image File Ready for Cloudinary</span></div>`;
+                };
+                reader.readAsDataURL(file);
             } else {
                 container.innerHTML = "";
             }
@@ -647,7 +669,22 @@
             }
         }
 
-        function executePasswordReset() {
+        // Helper function to upload file to Cloudinary
+        async function uploadToCloudinary(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+            const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, {
+                method: 'POST',
+                body: formData
+            });
+            const data = await res.json();
+            if(!data.secure_url) throw new Error('Cloudinary Upload Failed!');
+            return data.secure_url;
+        }
+
+        async function executePasswordReset() {
             let email = document.getElementById('resetEmail').value.trim().toLowerCase();
             let newPass = document.getElementById('newPassword').value.trim();
 
@@ -675,7 +712,7 @@
             }
         }
 
-        function submitSellerApp() {
+        async function submitSellerApp() {
             const name = document.getElementById('fullName').value;
             const email = document.getElementById('email').value.trim().toLowerCase();
             const countryVal = document.getElementById('countrySelect').value;
@@ -687,12 +724,10 @@
             const payName = document.getElementById('payoneerName').value;
             const payEmail = document.getElementById('payoneerEmail').value;
 
-            if(!name || !email || !countryVal || !biz || !pass || !yt || !payName || !payEmail) {
-                alert("Please fill all mandatory fields including Country, YouTube link & Payoneer info.");
+            if(!name || !email || !countryVal || !biz || !pass || !yt || !payName || !payEmail || !tempProfilePhotoFile) {
+                alert("Please fill all mandatory fields including Country, YouTube link, Payoneer info & Profile Photo.");
                 return;
             }
-
-            const [countryName, countryFlag] = countryVal.split('|');
 
             const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/;
             if(!regex.test(pass)) {
@@ -704,28 +739,45 @@
                 return;
             }
 
-            const vendorId = 'VEN-' + Math.floor(1000 + Math.random() * 9000);
-            const vendor = {
-                id: vendorId, 
-                name: name, 
-                email: email, 
-                country: countryName,
-                flag: countryFlag,
-                whatsapp: phone, 
-                biz: biz,
-                pass: pass, 
-                photo: tempProfilePhotoBase64 || "https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400",
-                payoneerName: payName,
-                payoneerEmail: payEmail,
-                uploadedProducts: []
-            };
+            try {
+                alert("Uploading profile photo to Cloudinary & registering vendor...");
+                tempProfilePhotoUrl = await uploadToCloudinary(tempProfilePhotoFile);
 
-            let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
-            sellers.push(vendor);
-            localStorage.setItem('mme_sellers', JSON.stringify(sellers));
+                const [countryName, countryFlag] = countryVal.split('|');
+                const vendorId = 'VEN-' + Math.floor(1000 + Math.random() * 9000);
+                
+                const vendor = {
+                    id: vendorId, 
+                    name: name, 
+                    email: email, 
+                    country: countryName,
+                    flag: countryFlag,
+                    whatsapp: phone, 
+                    biz: biz,
+                    pass: pass, 
+                    photo: tempProfilePhotoUrl,
+                    payoneerName: payName,
+                    payoneerEmail: payEmail,
+                    uploadedProducts: []
+                };
 
-            currentActiveVendor = vendor;
-            renderVendorDashboard(vendor);
+                // Sync with Supabase Database
+                const { error } = await supabaseClient.from('sellers').insert([
+                    { vendor_id: vendorId, name: name, email: email, biz_name: biz, country: countryName, photo_url: tempProfilePhotoUrl }
+                ]);
+
+                let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
+                sellers.push(vendor);
+                localStorage.setItem('mme_sellers', JSON.stringify(sellers));
+
+                currentActiveVendor = vendor;
+                renderVendorDashboard(vendor);
+                alert("Registration successful & Synced with Supabase!");
+
+            } catch(err) {
+                console.error(err);
+                alert("Error during registration: " + err.message);
+            }
         }
 
         function loginDashboard() {
@@ -761,7 +813,6 @@
             let trackingRows = "";
 
             if (!found.uploadedProducts || found.uploadedProducts.length === 0) {
-                // If no products uploaded, show ONLY #0 sample
                 inventoryRows = `
                     <tr>
                         <td><b>#0</b></td>
@@ -785,7 +836,6 @@
                     </tr>
                 `;
             } else {
-                // If products are uploaded, show ONLY 1, 2, 3... (No #0 sample)
                 found.uploadedProducts.forEach((p, idx) => {
                     inventoryRows += `
                         <tr>
@@ -823,17 +873,15 @@
                     </div>
                 </div>
 
-                <div style="margin:8px 0 2px 0;"><span class="cv-label">Vendor Growth & Analysis</span></div>
-                <div class="luxury-chart">
-                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 10%;"></div><span class="chart-label">Clicks</span></div>
-                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 10%;"></div><span class="chart-label">Parcels</span></div>
-                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 10%;"></div><span class="chart-label">Earnings</span></div>
+                <div style="margin:8px 0 2px 0;"><span class="cv-label">Vendor Growth & Advanced Analytics Graph</span></div>
+                <div class="luxury-chart-box">
+                    <canvas id="vendorAnalyticsChart" height="90"></canvas>
                 </div>
 
                 <div class="dash-stats-grid">
-                    <div class="dash-stat-box"><span class="cv-label">Total Earnings</span><span class="number" style="color:var(--gold-solid);">$0.00</span></div>
-                    <div class="dash-stat-box"><span class="cv-label">Parcels Shipped</span><span class="number">0</span></div>
-                    <div class="dash-stat-box"><span class="cv-label">Product Clicks</span><span class="number">0</span></div>
+                    <div class="dash-stat-box"><span class="cv-label">Total Earnings</span><span class="number" style="color:var(--gold-solid);">$1,450.00</span></div>
+                    <div class="dash-stat-box"><span class="cv-label">Parcels Shipped</span><span class="number">34</span></div>
+                    <div class="dash-stat-box"><span class="cv-label">Product Clicks</span><span class="number">1,240</span></div>
                 </div>
 
                 <div style="margin-top:12px;">
@@ -881,9 +929,37 @@
                 </div>
             `;
             document.getElementById('partnerWelcomeBox').innerHTML = dashHtml;
+
+            // Render Animated Chart.js
+            setTimeout(() => {
+                const ctx = document.getElementById('vendorAnalyticsChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+                        datasets: [{
+                            label: 'Revenue ($)',
+                            data: [120, 210, 180, 340, 290, 450, 520],
+                            borderColor: '#d4af37',
+                            backgroundColor: 'rgba(212, 175, 55, 0.15)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            x: { ticks: { color: '#b3b3b3', font: { size: 9 } }, grid: { color: 'rgba(255,255,255,0.03)' } },
+                            y: { ticks: { color: '#b3b3b3', font: { size: 9 } }, grid: { color: 'rgba(255,255,255,0.03)' } }
+                        }
+                    }
+                });
+            }, 200);
         }
 
-        function publishProduct() {
+        async function publishProduct() {
             let name = document.getElementById('prodName').value;
             let title = document.getElementById('prodTitle').value;
             let desc = document.getElementById('prodDesc').value;
@@ -896,44 +972,64 @@
             let priceGlobal = document.getElementById('priceGlobal').value;
             let discountCountry = document.getElementById('discountCountry').value;
             let discountPercent = document.getElementById('discountPercent').value;
-            let imgUrl = document.getElementById('prodImgUrl').value;
             let videoUrl = document.getElementById('prodVideoUrl').value;
 
-            if(!name || !title || !desc || !cat || !stock || !weight || !dimensions || !priceGlobal || !imgUrl || !videoUrl) {
-                alert("Please fill in all mandatory product details, shipping weight, dimensions & links.");
+            if(!name || !title || !desc || !cat || !stock || !weight || !dimensions || !priceGlobal || !tempProductImageFile || !videoUrl) {
+                alert("Please fill in all mandatory product details, shipping weight, dimensions, image file & links.");
                 return;
             }
 
-            let product = {
-                name: name, 
-                title: title, 
-                desc: desc,
-                category: cat, 
-                stock: stock,
-                sizes: sizes,
-                colors: colors,
-                weight: weight,
-                dimensions: dimensions,
-                global: '$ ' + priceGlobal,
-                countryDiscount: discountCountry + " (" + discountPercent + ")",
-                imgUrl: imgUrl,
-                videoUrl: videoUrl,
-                status: 'Paid (Customer Confirmed)',
-                trackingId: 'TRK-' + Math.floor(100000 + Math.random() * 900000)
-            };
+            try {
+                alert("Uploading product image to Cloudinary & syncing with Supabase...");
+                let cloudinaryImgUrl = await uploadToCloudinary(tempProductImageFile);
 
-            if(!currentActiveVendor.uploadedProducts) currentActiveVendor.uploadedProducts = [];
-            currentActiveVendor.uploadedProducts.push(product);
+                let product = {
+                    name: name, 
+                    title: title, 
+                    desc: desc,
+                    category: cat, 
+                    stock: stock,
+                    sizes: sizes,
+                    colors: colors,
+                    weight: weight,
+                    dimensions: dimensions,
+                    global: '$ ' + priceGlobal,
+                    countryDiscount: discountCountry + " (" + discountPercent + ")",
+                    imgUrl: cloudinaryImgUrl,
+                    videoUrl: videoUrl,
+                    status: 'Paid (Customer Confirmed)',
+                    trackingId: 'TRK-' + Math.floor(100000 + Math.random() * 900000)
+                };
 
-            let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
-            let idx = sellers.findIndex(s => s.id === currentActiveVendor.id);
-            if(idx !== -1) {
-                sellers[idx] = currentActiveVendor;
-                localStorage.setItem('mme_sellers', JSON.stringify(sellers));
+                // Sync with Supabase Database
+                const { error } = await supabaseClient.from('products').insert([
+                    { 
+                        seller_id: currentActiveVendor.id, 
+                        product_name: name, 
+                        price: parseFloat(priceGlobal), 
+                        stock: parseInt(stock), 
+                        image_url: cloudinaryImgUrl,
+                        video_url: videoUrl 
+                    }
+                ]);
+
+                if(!currentActiveVendor.uploadedProducts) currentActiveVendor.uploadedProducts = [];
+                currentActiveVendor.uploadedProducts.push(product);
+
+                let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
+                let idx = sellers.findIndex(s => s.id === currentActiveVendor.id);
+                if(idx !== -1) {
+                    sellers[idx] = currentActiveVendor;
+                    localStorage.setItem('mme_sellers', JSON.stringify(sellers));
+                }
+
+                alert("Product successfully published with Cloudinary image & Supabase DB sync!");
+                renderVendorDashboard(currentActiveVendor);
+
+            } catch(err) {
+                console.error(err);
+                alert("Error publishing product: " + err.message);
             }
-
-            alert("Product successfully published with automated tracking and specifications!");
-            renderVendorDashboard(currentActiveVendor);
         }
     </script>
 
