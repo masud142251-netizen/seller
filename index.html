@@ -583,6 +583,17 @@
                     discountSelect.appendChild(opt3);
                 });
             }
+
+            // Check if URL has vendor ID hash (e.g. seller.mrmasudar.com/#VEN-101)
+            let hash = window.location.hash.replace('#', '');
+            if(hash) {
+                let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
+                let found = sellers.find(s => s.id === hash);
+                if(found) {
+                    currentActiveVendor = found;
+                    renderVendorDashboard(found);
+                }
+            }
         });
 
         function togglePasswordVisibility(fieldId, btn) {
@@ -762,7 +773,7 @@
                 };
 
                 // Sync with Supabase Database
-                const { error } = await supabaseClient.from('sellers').insert([
+                await supabaseClient.from('sellers').insert([
                     { vendor_id: vendorId, name: name, email: email, biz_name: biz, country: countryName, photo_url: tempProfilePhotoUrl }
                 ]);
 
@@ -771,8 +782,12 @@
                 localStorage.setItem('mme_sellers', JSON.stringify(sellers));
 
                 currentActiveVendor = vendor;
+                
+                // Set Dynamic URL based on Vendor ID (e.g. seller.mrmasudar.com/#VEN-101)
+                window.location.hash = vendorId;
+
                 renderVendorDashboard(vendor);
-                alert("Registration successful & Synced with Supabase!");
+                alert("Registration successful & Synced with Supabase! URL updated to: #" + vendorId);
 
             } catch(err) {
                 console.error(err);
@@ -788,6 +803,8 @@
 
             if(found) {
                 currentActiveVendor = found;
+                // Update URL dynamically on login
+                window.location.hash = found.id;
                 renderVendorDashboard(found);
             } else {
                 alert("Invalid Gmail or Password!");
@@ -869,7 +886,7 @@
                         <span style="font-size:0.55rem; color:var(--gold-solid); letter-spacing:1px; font-weight:bold;">OFFICIAL VENDOR IDENTITY CARD (${found.flag || '🌐'} ${found.country || 'Global'})</span>
                         <h3 style="margin:2px 0; color:#fff; font-size:1.05rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${found.biz}</h3>
                         <p style="margin:0; font-size:0.65rem; color:#aaa;">Owner: ${found.name}</p>
-                        <p style="margin:0; font-size:0.63rem; color:var(--gold-solid);">ID: ${found.id}</p>
+                        <p style="margin:0; font-size:0.63rem; color:var(--gold-solid);">ID: ${found.id} | Store URL: seller.mrmasudar.com/#${found.id}</p>
                     </div>
                 </div>
 
@@ -1002,7 +1019,7 @@
                 };
 
                 // Sync with Supabase Database
-                const { error } = await supabaseClient.from('products').insert([
+                await supabaseClient.from('products').insert([
                     { 
                         seller_id: currentActiveVendor.id, 
                         product_name: name, 
