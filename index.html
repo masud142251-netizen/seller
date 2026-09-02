@@ -1,979 +1,883 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-    <!-- Supabase CDN Script -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-  // সুপাবেস কানেকশন ইনিশিয়ালাইজেশন
-  const supabaseUrl = 'https://eyfecqehygiivjtbhniy.supabase.co';
-  const supabaseKey = 'eyJhGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV5ZmVjcWVoeWdpaXZqdGJobml5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA2NjQ0NDcsImV4cCI6MjA4NjI0MDQ0N30.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV5ZmVjcWVoeWdpaXZqdGJobml5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA2NjQ0NDcsImV4cCI6MjA4NjI0MDQ0N30'; // আপনার প্রোভাইড করা অ্যানন কি
-  
-  const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
-  // পেজ লোড হওয়ার সাথে সাথে URL থেকে প্রোডাক্ট আইডি ধরে সুপাবেস থেকে ছবি ও তথ্য নিয়ে আসার ফাংশন
-  window.addEventListener('DOMContentLoaded', async () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const productId = urlParams.get('product_id');
-    const affiliateId = urlParams.get('ref'); // অ্যাফিলিয়েট আইডি ধরা
-
-    if (productId) {
-      // সুপাবেসের products টেবিল থেকে নির্দিষ্ট প্রোডাক্ট ফেচ করা
-      const { data, error } = await _supabase
-        .from('products')
-        .select('*')
-        .eq('id', productId)
-        .single();
-
-      if (data) {
-        // চেকআউট পেজে প্রোডাক্টের ছবি, নাম ও দাম অটো বসিয়ে দেওয়া
-        console.log("Product Loaded:", data);
-        
-        // উদাহরণস্বরূপ আপনার চেকআউট পেজের এলিমেন্টগুলোতে ডেটা বসানোর কোড:
-        // document.getElementById('product-image').src = data.product_image_url;
-        // document.getElementById('product-name').innerText = data.product_name;
-        // document.getElementById('product-price').innerText = '$' + data.global_price;
-      } else {
-        console.error("Product not found:", error);
-      }
-    }
-  });
-</script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MR MASUDAR ENTERPRISE | Elite Global Seller Ecosystem</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>mrmasudar.com - Luxury Enterprise</title>
     
-    <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400">
+    <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1POhz8vb-MocaPNHg-i6nDSKwV4ky16Lc">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyCvUftOHiXFCuAzivaBut1XvNLpGE-LQ-w",
+            authDomain: "mr-masudar.firebaseapp.com",
+            projectId: "mr-masudar",
+            storageBucket: "mr-masudar.firebasestorage.app",
+            messagingSenderId: "644110210393",
+            appId: "1:644110210393:web:dc756217266f0af039e848",
+            measurementId: "G-BZBCMZQ87M"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        window.db = getFirestore(app);
+        window.firebaseAddDoc = addDoc;
+        window.firebaseCollection = collection;
+
+        async function fetchCartCountFromFirebase() {
+            let badge = document.getElementById('cartCount');
+            try {
+                const querySnapshot = await getDocs(collection(window.db, "global_carts"));
+                let totalCount = 0;
+                querySnapshot.forEach((doc) => {
+                    let item = doc.data();
+                    totalCount += (item.quantity || 1);
+                });
+                localStorage.setItem('mme_cart_count', totalCount);
+                if(badge) badge.innerText = totalCount;
+            } catch(e) {
+                let cachedCount = localStorage.getItem('mme_cart_count') || '0';
+                if(badge) badge.innerText = cachedCount;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchCartCountFromFirebase();
+            if(typeof window.loadCombinedProducts === 'function') window.loadCombinedProducts();
+        });
+        window.fetchCartCountFromFirebase = fetchCartCountFromFirebase;
+    </script>
+
     <style>
         :root {
-            --bg-color: #080808;
-            --surface-card: #121212;
-            --surface-glass: rgba(18, 18, 18, 0.95);
+            --bg-black: #080808;
+            --card-bg: #121212;
             --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
             --gold-solid: #d4af37;
-            --gold-light: #f3e5ab;
-            --border-luxury: rgba(212, 175, 55, 0.4);
             --text-white: #ffffff;
-            --text-gray: #b3b3b3;
+            --text-gray: #dfdfdf;
+            --pink-heart: #ff2d55;
+            --font-luxury: 'Cinzel', serif;
+            --font-body: 'Poppins', sans-serif;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html, body { width: 100%; overflow-x: hidden !important; background-color: var(--bg-black); color: var(--text-white); position: relative; font-family: var(--font-body); }
+        body { padding-top: 74px; padding-bottom: 95px; }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-white);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% 10%, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
-            padding: 10px;
-        }
+        h1, h2, h3, h4, h5, h6, .brand-title-main, .category-modal-box h3 { font-family: var(--font-luxury); }
 
-        .portal-wrapper { 
-            width: 100%; 
-            max-width: 980px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
+        header.app-header {
+            display: flex; justify-content: space-between; align-items: center; padding: 6px 12px;
+            background: rgba(11, 11, 11, 0.98); position: fixed; top: 0; left: 0; z-index: 1000;
+            backdrop-filter: blur(12px); width: 100%;
         }
-
-        .luxury-card { 
-            background: var(--surface-card); 
-            border: 2px solid var(--border-luxury); 
-            border-radius: 20px; 
-            padding: 20px 15px; 
-            text-align: center; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.9), 0 0 25px rgba(212,175,55,0.15); 
-            width: 100%; 
-            position: relative; 
-            animation: fadeInCard 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
-        }
-        @keyframes fadeInCard { 
-            from { opacity: 0; transform: translateY(20px) scale(0.98); } 
-            to { opacity: 1; transform: translateY(0) scale(1); } 
-        }
-
-        .brand-logo { 
-            width: 70px; 
-            height: 70px; 
-            border-radius: 50%; 
-            border: 2px solid var(--gold-solid); 
-            object-fit: cover; 
-            margin-bottom: 12px; 
-            box-shadow: 0 0 12px rgba(212,175,55,0.3); 
-            background: #000; 
-        }
-
-        .title-container {
-            display: inline-block;
-            margin-bottom: 18px;
-            width: 100%;
-        }
-
-        .luxury-card h1 { 
-            font-family: 'Cinzel Decorative', serif; 
-            font-size: 1.15rem; 
-            font-weight: 900; 
-            background: var(--gold-gradient); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            text-transform: uppercase; 
-            margin-bottom: 4px; 
-        }
-
-        .brand-subtitle-line { 
+        .brand-container { display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; max-width: 68%; min-width: 0; }
+        .logo { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--gold-solid); background: #000; flex-shrink: 0; box-shadow: 0 0 10px rgba(212,175,55,0.4); transition: transform 0.4s ease; }
+        .logo:hover { transform: scale(1.12); }
+        
+        .brand-text-box { display: flex; flex-direction: column; justify-content: center; min-width: 0; width: 100%; }
+        .brand-title-main { font-size: 0.96rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.15; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0.8px; font-family: var(--font-luxury); }
+        
+        /* হ্যান্ডক্রাফটেড আর্ট ফিক্সড লেটার স্পেসিং ও দৈর্ঘ্য */
+        .brand-subtitle-craft { 
+            font-size: 0.45rem; 
             color: var(--text-gray); 
-            font-size: 0.6rem; 
-            letter-spacing: 2px; 
-            text-transform: uppercase; 
             font-weight: 600; 
-            display: block;
-            width: 100%;
-            text-align: center;
-        }
-
-        .gold-effect-banner { 
-            background: var(--surface-glass); 
-            border: 1px solid var(--border-luxury); 
-            padding: 14px; 
-            border-radius: 12px; 
-            margin-bottom: 18px; 
-            font-size: 0.73rem; 
-            color: #fceea7; 
-            line-height: 1.6; 
-            text-align: left; 
-        }
-        .gold-effect-banner b { 
-            background: var(--gold-gradient); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            font-family: 'Cinzel', serif; 
-            font-size: 0.85rem; 
+            white-space: nowrap; 
+            letter-spacing: 4.3px; 
+            text-transform: uppercase; 
             display: block; 
-            margin-bottom: 6px; 
-        }
-        .gold-effect-banner ul { 
-            margin-left: 15px; 
-            margin-top: 6px; 
-            font-size: 0.7rem; 
-            color: #ddd; 
-        }
-        .gold-effect-banner li { 
-            margin-bottom: 5px; 
+            width: 100%; 
+            text-align: justify; 
+            text-align-last: justify;
+            font-family: var(--font-body);
         }
 
-        .apply-btn { 
-            display: inline-block; 
-            background: var(--gold-gradient); 
-            color: #080808; 
-            padding: 11px 28px; 
-            border-radius: 10px; 
-            font-weight: 800; 
-            text-transform: uppercase; 
-            font-size: 0.75rem; 
-            letter-spacing: 1px; 
-            border: none; 
-            cursor: pointer; 
-            box-shadow: 0 4px 15px rgba(212,175,55,0.4); 
-            transition: all 0.3s ease; 
-        }
-        .apply-btn:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 6px 20px rgba(212,175,55,0.6); 
-            filter: brightness(1.15); 
-        }
+        .top-right-controls { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+        .country-square-badge { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; background: rgba(20,20,20,0.95); border: 1.5px solid var(--gold-solid); padding: 4px 8px; border-radius: 6px; }
+        .badge-top-text { font-size: 0.58rem; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; gap: 3px; font-family: var(--font-luxury); }
+        .badge-sub-text { font-size: 0.48rem; color: var(--text-gray); text-transform: uppercase; font-weight: 700; font-family: var(--font-body); }
 
-        .outline-btn { 
-            background: transparent; 
-            border: 1px solid var(--gold-solid); 
-            color: var(--gold-solid); 
-            padding: 8px 20px; 
-            border-radius: 8px; 
-            font-size: 0.68rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            cursor: pointer; 
-            font-weight: 700; 
-            transition: 0.3s; 
-        }
-        .outline-btn:hover { 
-            background: var(--gold-solid); 
-            color: #080808; 
-        }
+        .golden-cross-btn-top-right { background: transparent; border: 1.5px solid var(--gold-solid); color: var(--gold-solid); width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.95rem; font-weight: bold; position: absolute; top: 12px; right: 12px; z-index: 15; transition: 0.3s; }
+        .golden-cross-btn-top-right:hover { background: var(--gold-gradient); color: #000; }
 
-        .portal-section { display: none; text-align: left; width: 100%; }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .full-width { grid-column: span 2; }
+        .custom-toast { position: fixed; top: 78px; left: 50%; transform: translateX(-50%); background: rgba(18, 18, 18, 0.95); border: 1.5px solid var(--gold-solid); color: var(--gold-solid); padding: 8px 18px; border-radius: 30px; font-size: 0.75rem; font-weight: 700; z-index: 9999; display: none; font-family: var(--font-body); }
+
+        /* ফাস্টার মোডাল অ্যানিমেশন */
+        .share-modal-overlay, .category-modal-overlay, .ecosystem-modal-overlay, .modal-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.88); display: none; justify-content: center; align-items: center; z-index: 3000; backdrop-filter: blur(8px); padding: 10px; 
+            animation: fastModalFade 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes fastModalFade { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: scale(1); } }
+
+        .share-modal-box, .category-modal-box, .modal-content { background: #141414; border: 1.5px solid var(--gold-solid); width: 100%; max-width: 410px; border-radius: 20px; padding: 45px 18px 20px 18px; text-align: center; position: relative; max-height: 94vh; overflow-y: auto; box-shadow: 0 0 25px rgba(212,175,55,0.25); font-family: var(--font-body); }
+
+        .share-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin: 12px 0; }
+        .share-icon-btn { display: flex; flex-direction: column; align-items: center; gap: 3px; background: #1f1f1f; border: 1.5px solid rgba(212,175,55,0.4); border-radius: 8px; padding: 6px 2px; color: white; font-size: 0.52rem; cursor: pointer; font-weight: 600; transition: 0.2s; }
+        .share-icon-btn:hover { border-color: var(--gold-solid); transform: translateY(-2px); }
+        .share-icon-btn i { font-size: 1.05rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        .input-group { margin-bottom: 6px; }
-        .input-group label { display: block; font-size: 0.65rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 700; }
-        .input-group input, .input-group select, .input-group textarea { width: 100%; background: #000; border: 1.5px solid rgba(212,175,55,0.4); padding: 9px 12px; color: #fff; border-radius: 8px; font-size: 0.75rem; outline: none; transition: 0.3s; }
-        .input-group input:focus, .input-group select:focus, .input-group textarea:focus { border-color: var(--gold-solid); box-shadow: 0 0 10px rgba(212,175,55,0.4); }
+        .copy-link-box { display: flex; background: #000; border: 1.5px solid var(--gold-solid); border-radius: 8px; overflow: hidden; margin-top: 8px; margin-bottom: 8px; }
+        .copy-link-input { flex: 1; background: transparent; border: none; color: white; padding: 7px; font-size: 0.62rem; outline: none; font-weight: 600; font-family: var(--font-body); }
+        .copy-link-btn { background: var(--gold-gradient); border: none; padding: 0 12px; font-weight: 800; font-size: 0.68rem; cursor: pointer; color: #000; font-family: var(--font-luxury); transition: 0.2s; }
+        .copy-link-btn:hover { background: var(--gold-solid); }
 
-        .password-field-wrapper {
-            position: relative;
-            width: 100%;
-        }
-        .password-field-wrapper input {
-            width: 100%;
-            padding-right: 35px;
-        }
-        .toggle-password {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: var(--gold-solid);
-            cursor: pointer;
-            font-size: 0.85rem;
-        }
-
-        .phone-group { display: flex; gap: 6px; }
-        .phone-group select { width: 120px; flex-shrink: 0; }
-        .section-title { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border-luxury); padding-bottom: 4px; margin: 12px 0 8px 0; font-weight: 700; }
-
-        .dashboard-container { background: linear-gradient(145deg, #0b0b0b, #030303); border: 2px solid var(--border-luxury); border-radius: 14px; padding: 12px; text-align: left; width: 100%; overflow: hidden; }
+        /* ক্যাটাগরি পপআপ ও লাক্সারি জুম ইফেক্ট */
+        .category-grid-popup { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 5px; }
+        .cat-popup-item { background: rgba(20, 20, 20, 0.85); border: 1.5px solid rgba(212, 175, 55, 0.4); padding: 12px 8px; border-radius: 12px; color: var(--text-white); font-size: 0.68rem; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 5px; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); font-family: var(--font-body); }
+        .cat-popup-item:hover { border-color: var(--gold-solid); transform: scale(1.04); background: rgba(212, 175, 55, 0.08); color: #fff; }
+        .cat-popup-item:nth-child(1) { grid-column: span 2; flex-direction: row; justify-content: space-between; padding: 10px 14px; }
         
-        .dash-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 12px 0; }
-        .dash-stat-box { background: rgba(20,20,20,0.95); border: 1px solid rgba(212,175,55,0.3); border-radius: 10px; padding: 8px 4px; text-align: center; }
-        .dash-stat-box .number { font-size: 0.9rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-top: 3px; display: block; font-family: 'Cinzel', serif; }
-        .cv-label { color: var(--gold-light); font-weight: 700; text-transform: uppercase; font-size: 0.55rem; letter-spacing: 0.5px; }
+        /* ইমোজি/আইকন কালারফুল ও লাক্সারি লুক */
+        .cat-popup-item i { font-size: 1.25rem; transition: transform 0.3s ease; }
+        .cat-popup-item:hover i { transform: scale(1.2); }
+        .cat-popup-item:nth-child(2) i { color: #3b82f6; background: none; -webkit-text-fill-color: #3b82f6; } /* Men - Blue */
+        .cat-popup-item:nth-child(3) i { color: #ec4899; background: none; -webkit-text-fill-color: #ec4899; } /* Women - Pink */
+        .cat-popup-item:nth-child(4) i { color: #10b981; background: none; -webkit-text-fill-color: #10b981; } /* Kids - Emerald */
+        .cat-popup-item:nth-child(5) i { color: #f59e0b; background: none; -webkit-text-fill-color: #f59e0b; } /* Gifts - Amber */
+        .cat-popup-item:nth-child(6) i { color: #8b5cf6; background: none; -webkit-text-fill-color: #8b5cf6; } /* Home Decor - Purple */
+        .cat-popup-item:nth-child(7) i { color: #06b6d4; background: none; -webkit-text-fill-color: #06b6d4; } /* Art & Craft - Cyan */
 
-        .digital-id-card { background: linear-gradient(135deg, #18150a, #080808); border: 2px solid var(--gold-solid); border-radius: 14px; padding: 12px; display: flex; gap: 12px; align-items: center; margin-bottom: 12px; box-shadow: 0 0 15px rgba(212,175,55,0.2); }
-        .id-avatar { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--gold-solid); object-fit: cover; background: #000; flex-shrink: 0; box-shadow: 0 0 10px rgba(212,175,55,0.4); }
+        .ecosystem-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); display: none; flex-direction: column; z-index: 4000; }
+        .ecosystem-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #0f0f0f; border-bottom: 1.5px solid var(--gold-solid); }
+        .ecosystem-title { font-size: 1rem; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; font-family: var(--font-luxury); }
+        .ecosystem-body { flex: 1; width: 100%; background: #000; position: relative; }
+        .ecosystem-body iframe { width: 100%; height: 100%; border: none; }
 
-        .luxury-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 120px; background: linear-gradient(180deg, #121212, #050505); border: 1.5px solid var(--gold-solid); border-radius: 12px; padding: 12px 8px 6px 8px; margin: 12px 0; }
-        .chart-bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; height: 100%; justify-content: flex-end; }
-        .chart-bar { width: 24px; background: var(--gold-gradient); border-radius: 6px 6px 0 0; }
-        .chart-label { font-size: 0.55rem; color: #ffffff; text-transform: uppercase; font-weight: 700; }
+        .feed-container { padding: 12px 10px; column-count: 2; column-gap: 10px; width: 100%; max-width: 1650px; margin: 0 auto; }
+        @media (min-width: 768px) { .feed-container { column-count: 3; padding: 16px; column-gap: 12px; } }
+        @media (min-width: 1024px) { .feed-container { column-count: 4; column-gap: 14px; padding: 20px; } }
 
-        .ledger-table-wrap { overflow-x: auto; margin-top: 8px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.3); background: #000; -webkit-overflow-scrolling: touch; }
-        .ledger-table { width: 100%; border-collapse: collapse; font-size: 0.65rem; text-align: left; white-space: nowrap; }
-        .ledger-table th, .ledger-table td { border: 1px solid rgba(212,175,55,0.2); padding: 7px 9px; }
-        .ledger-table th { background: linear-gradient(135deg, #221c0b, #111); color: var(--gold-solid); font-weight: 700; text-transform: uppercase; }
+        .product-card { break-inside: avoid; background: var(--card-bg); border-radius: 14px; margin-bottom: 12px; overflow: hidden; border: 1.5px solid rgba(212, 175, 55, 0.4); display: flex; flex-direction: column; transition: 0.3s; }
+        .product-card:hover { border-color: var(--gold-solid); }
+        .product-media-box { position: relative; width: 100%; cursor: pointer; background: #000; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .product-media-box img { width: 100%; height: auto; max-height: 380px; display: block; object-fit: cover; }
+        
+        .video-wrapper { position: relative; width: 100%; padding-bottom: 145%; background: #000; overflow: hidden; }
+        .video-wrapper iframe { position: absolute; top: -22%; left: -15%; width: 130%; height: 144%; border: none; pointer-events: none; }
+        .video-click-shield { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 4; cursor: pointer; }
 
-        .media-preview-box { display: flex; gap: 10px; align-items: center; background: #000; padding: 8px; border-radius: 8px; border: 1px solid rgba(212,175,55,0.3); margin-top: 5px; }
-        .media-preview-box img, .media-preview-box iframe { width: 45px; height: 45px; border-radius: 6px; object-fit: cover; background: #111; }
+        .product-bottom-actions { display: flex; justify-content: space-around; align-items: center; background: #121212; padding: 9px 6px; border-top: 1.5px solid rgba(212, 175, 55, 0.3); font-size: 0.72rem; }
+        .action-item { display: flex; align-items: center; gap: 4px; color: var(--text-white); cursor: pointer; font-weight: 700; font-family: var(--font-body); }
+        .action-item span { font-family: var(--font-body); font-weight: 600; }
+        .action-item.view-icon i { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .action-item.like-icon i { color: var(--pink-heart); }
+        .action-item.like-icon.liked i { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .action-item.share-icon i { color: var(--gold-solid); }
 
-        @media(max-width: 600px) { 
-            body { padding: 4px; }
-            .luxury-card { padding: 12px 8px; border-radius: 12px; }
-            .form-grid, .dash-stats-grid { grid-template-columns: 1fr; } 
-            .full-width { grid-column: span 1; } 
-            .digital-id-card { padding: 10px; gap: 10px; }
-            .id-avatar { width: 48px; height: 48px; }
-            .luxury-card h1 { font-size: 1rem; }
-            .ledger-table { font-size: 0.6rem; }
-        }
+        .modal-media-slider { width: 100%; border-radius: 10px; overflow-x: auto; display: flex; scroll-snap-type: x mandatory; gap: 8px; margin-bottom: 5px; border: 1.5px solid rgba(212, 175, 55, 0.4); background: #000; scrollbar-width: none; }
+        .modal-media-slider::-webkit-scrollbar { display: none; }
+        .modal-slide-item { flex: 0 0 100%; width: 100%; height: 250px; scroll-snap-align: center; position: relative; background: #000; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .modal-slide-item img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+        .modal-thumbs-row { display: flex; gap: 5px; margin-bottom: 6px; overflow-x: auto; padding-bottom: 2px; justify-content: center; }
+        .modal-thumb-img { width: 36px; height: 36px; border-radius: 5px; object-fit: cover; border: 1px solid rgba(212,175,55,0.4); cursor: pointer; opacity: 0.7; transition: 0.2s; }
+        .modal-thumb-img.active { opacity: 1; border-color: var(--gold-solid); transform: scale(1.1); }
+
+        .modal-price-shipping-bar { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; background: rgba(18,18,18,0.95); padding: 8px 10px; border-radius: 8px; text-align: left; }
+        .modal-price-row { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+        .modal-price-group { display: flex; align-items: center; gap: 6px; }
+        .modal-price { font-size: 1.1rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: var(--font-body); }
+        .modal-bd-discount { background: linear-gradient(135deg, #ff2d55, #ff6b8b); color: white; font-size: 0.52rem; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-family: var(--font-body); }
+        
+        .free-shipping-tax-text { font-size: 0.65rem; color: #ffffff; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 5px; font-family: var(--font-body); }
+        .free-shipping-tax-text i { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .modal-actions-bar { display: flex; justify-content: space-around; align-items: center; background: #121212; padding: 6px; border-radius: 8px; margin-bottom: 8px; font-size: 0.7rem; color: #ffffff; font-weight: 600; font-family: var(--font-body); }
+        .modal-actions-bar span { font-family: var(--font-body); }
+
+        .animated-cycling-box { background: #141414; border: 1.5px solid var(--gold-solid); border-radius: 12px; padding: 12px 16px; margin-bottom: 10px; height: 90px; width: 100%; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; }
+        .cycling-content-item { display: none; width: 100%; height: 100%; opacity: 0; transition: opacity 0.4s ease-in-out; flex-direction: column; align-items: center; justify-content: center; gap: 6px; position: absolute; top: 0; left: 0; padding: 10px 14px; }
+        .cycling-content-item.active { display: flex; opacity: 1; }
+
+        .cycling-title { font-size: 0.92rem; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.35; width: 100%; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-family: var(--font-luxury); }
+        .cycling-desc { font-size: 0.72rem; color: #ffffff; line-height: 1.4; width: 100%; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-weight: 400; font-family: var(--font-body); }
+        .cycling-section-title { font-size: 0.68rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 2px; font-family: var(--font-luxury); }
+        
+        .modal-circle-item { width: 24px; height: 24px; border-radius: 50%; border: 2px solid rgba(212,175,55,0.7); cursor: pointer; display: inline-block; transition: 0.2s; }
+        .modal-circle-item.selected { transform: scale(1.2); border-color: #fff; box-shadow: 0 0 10px var(--gold-solid); }
+
+        .modal-pill-item { background: #1a1a1a; border: 1.5px solid rgba(212,175,55,0.4); padding: 3px 10px; border-radius: 6px; font-size: 0.7rem; cursor: pointer; color: #fff; font-weight: 600; display: inline-block; font-family: var(--font-body); transition: 0.2s; }
+        .modal-pill-item.selected { background: var(--gold-gradient); color: #000; font-weight: 800; border-color: #fff; }
+
+        .modal-footer-action-wrap { margin-top: 6px; display: flex; flex-direction: column; gap: 6px; width: 100%; }
+        .qty-label-top { font-size: 0.58rem; color: #ffffff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 2px; font-family: var(--font-body); }
+        .golden-round-qty-box { display: flex; align-items: center; justify-content: center; background: #000; border: 1.5px solid var(--gold-solid); border-radius: 20px; padding: 1px 6px; gap: 8px; margin: 0 auto; width: 105px; }
+        .round-qty-btn { width: 18px; height: 18px; border-radius: 50%; background: var(--gold-gradient); border: none; color: #000; font-size: 0.55rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .round-qty-input { width: 18px; background: transparent; border: none; color: white; text-align: center; font-size: 0.7rem; font-weight: 600; outline: none; font-family: var(--font-body); }
+        
+        /* বাটন ক্লিকের সময় ব্যাকগ্রাউন্ড কালার পরিবর্তন ও টেক্সট হোয়াইট থেকে ব্ল্যাক/গোল্ড */
+        .modal-add-btn { width: 100%; background: var(--gold-gradient); border: 1.5px solid var(--gold-solid); padding: 9px; border-radius: 10px; color: var(--bg-black); font-weight: 800; font-size: 0.8rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: var(--font-luxury); transition: all 0.25s ease; }
+        .modal-add-btn:hover { background: #000; color: var(--gold-solid); border-color: var(--gold-solid); }
+
+        /* বাউন্সিং ও হেভিয়ার জুম অ্যানিমেটেড কার্ট আইকন */
+        .floating-cart { position: fixed; bottom: 72px; right: 15px; background: var(--card-bg); border: 1.5px solid var(--gold-solid); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1050; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); animation: cartGentleBounce 3s infinite ease-in-out; }
+        @keyframes cartGentleBounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08) translateY(-3px); } }
+        .floating-cart.cart-zoom-anim { transform: scale(1.35) rotate(12deg); }
+        .floating-cart i { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.15rem; }
+        .cart-badge { position: absolute; top: -3px; right: -3px; background: var(--pink-heart); color: white; font-size: 0.62rem; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-family: var(--font-body); }
+        
+        .flying-coin { position: fixed; width: 22px; height: 22px; background: var(--gold-gradient); border-radius: 50%; border: 2px solid #fff; z-index: 9999; pointer-events: none; transition: all 0.95s cubic-bezier(0.15, 0.85, 0.35, 1.2); box-shadow: 0 0 12px var(--gold-solid); }
+
+        /* বটম ন্যাভ ও মোবাইল লেআউট পারফেক্ট ফিক্স */
+        nav.bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(11, 11, 11, 0.99); display: flex; justify-content: space-between; align-items: center; padding: 6px 8px; z-index: 1000; gap: 4px; }
+        .nav-menus-left { display: flex; gap: 4px; flex: 1; justify-content: space-between; align-items: center; min-width: 0; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--text-white); font-size: 0.48rem; font-weight: 600; padding: 3px 2px; border-radius: 6px; cursor: pointer; white-space: nowrap; font-family: var(--font-body); }
+        .nav-item i { font-size: 0.88rem; margin-bottom: 2px; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-item.active { color: var(--gold-solid); background: rgba(212, 175, 55, 0.12); }
+        
+        /* মোবাইল স্ক্রিনে সার্চ বক্স, ক্যামেরা ও মাইক পারফেক্ট ফিটিং */
+        .bottom-search-wrapper { display: flex; align-items: center; background: var(--card-bg); border: 1.5px solid var(--gold-solid); border-radius: 16px; padding: 3px 6px; width: 38%; flex-shrink: 0; gap: 3px; }
+        .bottom-search-wrapper input { flex: 1; background: transparent; border: none; outline: none; color: var(--text-white); font-size: 0.58rem; padding: 2px; font-weight: 600; min-width: 0; font-family: var(--font-body); }
+        .bottom-search-actions { display: flex; align-items: center; gap: 4px; color: var(--gold-solid); font-size: 0.65rem; flex-shrink: 0; }
+        .bottom-search-actions i { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; cursor: pointer; padding: 2px; }
+        .search-submit-btn { background: var(--gold-gradient); border: none; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--bg-black); font-size: 0.55rem; cursor: pointer; flex-shrink: 0; }
+        .search-submit-btn i { background: none !important; -webkit-text-fill-color: var(--bg-black) !important; color: var(--bg-black) !important; }
     </style>
 </head>
 <body>
 
-    <div class="portal-wrapper">
-        
-        <!-- 1. Entrance Card -->
-        <div class="luxury-card portal-section" id="entranceCard" style="display:block;">
-            <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" alt="Logo" class="brand-logo">
-            
-            <div class="title-container">
-                <h1>MR MASUDAR ENTERPRISE</h1>
-                <span class="brand-subtitle-line">Global Vendor & Elite Seller Ecosystem</span>
-            </div>
-            
-            <div class="gold-effect-banner">
-                <b>📌 ESSENTIAL VENDOR RULES & PLATFORM GUIDELINES</b>
-                <ul>
-                    <li><b>High-Quality Packaging:</b> All premium products must use export-grade, damage-proof luxury packaging.</li>
-                    <li><b>Strict Compliance:</b> Counterfeit items, misrepresentation, or customer fraud will result in immediate permanent account suspension.</li>
-                    <li><b>Platform Standards:</b> Complete cross-border logistics and secure global settlements.</li>
-                </ul>
-            </div>
+    <div class="custom-toast" id="customToast">Action completed successfully!</div>
 
-            <button class="apply-btn" onclick="showSection('formSection')">Join as Elite Seller</button>
-            <div style="margin-top: 15px; text-align: center;">
-                <button onclick="showSection('loginSection')" class="outline-btn">Seller Sign In</button>
+    <header class="app-header">
+        <div class="brand-container" onclick="showCustomToast('mrmasudar.com - Supreme Enterprise')">
+            <img src="https://lh3.googleusercontent.com/d/1POhz8vb-MocaPNHg-i6nDSKwV4ky16Lc" alt="Logo" class="logo" loading="lazy">
+            <div class="brand-text-box">
+                <span class="brand-title-main">mrmasudar.com</span>
+                <span class="brand-subtitle-craft">HANDCRAFTED ART</span>
             </div>
         </div>
-
-        <!-- 2. Seller Login Section -->
-        <div class="luxury-card portal-section" id="loginSection">
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:15px; font-size:1.1rem;">Seller Dashboard Login</h2>
-            <div class="input-group" style="max-width:300px; margin:0 auto 12px auto;">
-                <label>Official Gmail Address</label>
-                <input type="email" id="loginEmail" placeholder="seller@gmail.com" required>
-            </div>
-            
-            <div class="input-group" style="max-width:300px; margin:0 auto 8px auto;">
-                <label>Dashboard Password</label>
-                <div class="password-field-wrapper">
-                    <input type="password" id="loginPass" placeholder="Enter Password" required>
-                    <button type="button" class="toggle-password" onclick="togglePasswordVisibility('loginPass', this)"><i class="fa-solid fa-eye"></i></button>
-                </div>
-            </div>
-
-            <div style="max-width:300px; margin:0 auto 15px auto; text-align:right;">
-                <button onclick="openPasswordReset()" style="background:none; border:none; color:var(--gold-light); font-size:0.65rem; cursor:pointer; text-decoration:underline;">Forgot Password?</button>
-            </div>
-            <div style="text-align:center;">
-                <button class="apply-btn" onclick="loginDashboard()">Access Dashboard</button>
-                <br><button onclick="showSection('entranceCard')" style="background:none; border:none; color:var(--text-gray); margin-top:12px; cursor:pointer; font-size:0.68rem;">Return Home</button>
+        <div class="top-right-controls">
+            <div class="country-square-badge">
+                <span class="badge-top-text"><i class="fa-solid fa-globe"></i> GLOBAL</span>
+                <span class="badge-sub-text">ENTERPRISE</span>
             </div>
         </div>
+    </header>
 
-        <!-- Password Recovery Section -->
-        <div class="luxury-card portal-section" id="resetSection">
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:12px; font-size:1.05rem;">Password Recovery</h2>
-            <div class="input-group" style="max-width:300px; margin:0 auto 12px auto;">
-                <label>Registered Gmail</label>
-                <input type="email" id="resetEmail" placeholder="seller@gmail.com">
+    <!-- শেয়ার মোডাল (লগইন/অ্যাফিলিয়েট আইডি ডায়নামিক হ্যান্ডলিং) -->
+    <div class="share-modal-overlay" id="shareModalOverlay" onclick="closeShareModal(event)">
+        <div class="share-modal-box">
+            <h3 style="font-size:1rem; font-weight:800; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:10px;">Share Product</h3>
+            <div class="share-grid">
+                <div class="share-icon-btn" onclick="shareToPlatform('whatsapp')"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span></div>
+                <div class="share-icon-btn" onclick="shareToPlatform('telegram')"><i class="fa-brands fa-telegram"></i><span>Telegram</span></div>
+                <div class="share-icon-btn" onclick="shareToPlatform('imo')"><i class="fa-solid fa-comment-sms"></i><span>Imo</span></div>
+                <div class="share-icon-btn" onclick="shareToPlatform('facebook')"><i class="fa-brands fa-facebook"></i><span>Facebook</span></div>
+                <div class="share-icon-btn" onclick="shareToPlatform('messenger')"><i class="fa-brands fa-facebook-messenger"></i><span>Messenger</span></div>
+                <div class="share-icon-btn" onclick="shareToPlatform('tiktok')"><i class="fa-brands fa-tiktok"></i><span>TikTok</span></div>
+                <div class="share-icon-btn" onclick="shareToPlatform('instagram')"><i class="fa-brands fa-instagram"></i><span>Instagram</span></div>
+                <div class="share-icon-btn" onclick="shareToPlatform('youtube')"><i class="fa-brands fa-youtube"></i><span>YouTube</span></div>
+                <div class="share-icon-btn" onclick="shareToPlatform('linkedin')"><i class="fa-brands fa-linkedin"></i><span>LinkedIn</span></div>
+                <div class="share-icon-btn" onclick="shareToPlatform('twitter')"><i class="fa-brands fa-x-twitter"></i><span>X</span></div>
             </div>
-
-            <div class="input-group" style="max-width:300px; margin:0 auto 15px auto;">
-                <label>New Secure Password</label>
-                <div class="password-field-wrapper">
-                    <input type="password" id="newPassword" placeholder="10+ chars, Upper, Lower, Symbol">
-                    <button type="button" class="toggle-password" onclick="togglePasswordVisibility('newPassword', this)"><i class="fa-solid fa-eye"></i></button>
-                </div>
+            <div class="copy-link-box">
+                <input type="text" class="copy-link-input" id="shareLinkInput" readonly value="">
+                <button class="copy-link-btn" onclick="copyShareLink()">Copy Link</button>
             </div>
-
-            <div style="text-align:center;">
-                <button class="apply-btn" onclick="executePasswordReset()">Update Password</button>
-                <br><button onclick="showSection('loginSection')" style="background:none; border:none; color:var(--text-gray); margin-top:12px; cursor:pointer; font-size:0.68rem;">Back to Sign In</button>
-            </div>
+            <button class="golden-cross-btn-top-right" onclick="document.getElementById('shareModalOverlay').style.display='none'"><i class="fa-solid fa-xmark"></i></button>
         </div>
-
-        <!-- 3. Detailed Seller Registration Form -->
-        <div class="luxury-card portal-section" id="formSection">
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:15px; font-size:1.05rem; text-transform:uppercase;">Global Seller Application</h2>
-            
-            <div class="form-grid">
-                <div class="input-group full-width"><label>Full Legal Name *</label><input type="text" id="fullName" placeholder="Enter full name" required></div>
-                
-                <div class="input-group"><label>Father's Name *</label><input type="text" id="fatherName" required></div>
-                <div class="input-group"><label>Mother's Name *</label><input type="text" id="motherName" required></div>
-
-                <div class="input-group"><label>Official Gmail Address *</label><input type="email" id="email" required></div>
-                <div class="input-group"><label>Date of Birth *</label><input type="date" id="dob" required></div>
-
-                <div class="input-group">
-                    <label>Dashboard Password *</label>
-                    <div class="password-field-wrapper">
-                        <input type="password" id="partnerPassword" placeholder="Min 10 chars, Upper, Lower, Symbol" required>
-                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('partnerPassword', this)"><i class="fa-solid fa-eye"></i></button>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label>Confirm Password *</label>
-                    <div class="password-field-wrapper">
-                        <input type="password" id="confirmPassword" required>
-                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('confirmPassword', this)"><i class="fa-solid fa-eye"></i></button>
-                    </div>
-                </div>
-                
-                <div class="input-group">
-                    <label>Select Your Country (200+ Nations) *</label>
-                    <select id="countrySelect" required>
-                        <option value="">-- Choose Country --</option>
-                    </select>
-                </div>
-
-                <div class="input-group">
-                    <label>WhatsApp Number (Global Dial Codes) *</label>
-                    <div class="phone-group">
-                        <select id="whatsappCodeSelect"></select>
-                        <input type="text" id="whatsapp" placeholder="17XXXXXXXX" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
-                    </div>
-                </div>
-
-                <div class="input-group"><label>National ID (NID) *</label><input type="text" id="nidNumber" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required></div>
-                <div class="input-group"><label>Gender *</label><select id="gender"><option>Male</option><option>Female</option><option>Other</option></select></div>
-                <div class="input-group full-width"><label>Residential Address *</label><textarea id="address" rows="2" required></textarea></div>
-
-                <div class="input-group full-width"><div class="section-title">Business & Store Information</div></div>
-                <div class="input-group"><label>Store / Business Name *</label><input type="text" id="bizName" required></div>
-                <div class="input-group"><label>Years in Business *</label><input type="number" id="bizYears" required></div>
-                <div class="input-group full-width"><label>Business Operational Address *</label><textarea id="bizAddress" rows="2" required></textarea></div>
-                <div class="input-group full-width"><label>Trade License Number (Optional)</label><input type="text" id="tradeLicense"></div>
-
-                <div class="input-group full-width"><div class="section-title">Social Media & Brand Channels</div></div>
-                <div class="input-group full-width"><label><i class="fa-brands fa-youtube" style="color:#ff0000;"></i> YouTube Channel URL (Mandatory) *</label><input type="url" id="ytLink" placeholder="https://youtube.com/@channel" required></div>
-
-                <div class="input-group full-width"><div class="section-title">Payoneer Payout Information</div></div>
-                <div class="input-group"><label>Payoneer Account Name *</label><input type="text" id="payoneerName" placeholder="Name on Payoneer" required></div>
-                <div class="input-group"><label>Payoneer Registered Email *</label><input type="email" id="payoneerEmail" placeholder="payoneer@gmail.com" required></div>
-
-                <div class="input-group full-width">
-                    <div class="section-title">Verification & Photo</div>
-                    <label>Upload Profile / ID Photo (Visible in Dashboard & Tag) *</label>
-                    <input type="file" id="applicantPhotoInput" accept="image/*" onchange="previewProfilePhoto(event)" required>
-                    <div id="photoPreviewContainer" style="margin-top:8px;"></div>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 20px;">
-                <button class="apply-btn" onclick="submitSellerApp()">Register & Open Dashboard</button>
-                <br><button onclick="showSection('entranceCard')" style="background:none; border:none; color:var(--text-gray); margin-top:12px; cursor:pointer; font-size:0.68rem;">Cancel & Return</button>
-            </div>
-        </div>
-
-        <!-- 4. Approved Luxury Seller Dashboard Screen -->
-        <div class="luxury-card portal-section" id="dashboardSection">
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:12px; font-size:1.1rem;">Vendor Dashboard</h2>
-            <div id="partnerWelcomeBox" class="dashboard-container"></div>
-            <div style="margin-top:15px; text-align:center; display:flex; gap:10px; justify-content:center;">
-                <button class="apply-btn" onclick="showSection('productSection')"><i class="fa-solid fa-plus"></i> Upload Product</button>
-                <button class="outline-btn" onclick="location.reload()">Logout</button>
-            </div>
-        </div>
-
-        <!-- 5. Global Retail Product Upload Terminal -->
-        <div class="luxury-card portal-section" id="productSection">
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:6px; font-size:1.05rem; text-transform:uppercase;">Global Retail Product Upload</h2>
-            
-            <div class="form-grid" style="text-align:left;">
-                <div class="input-group full-width">
-                    <label>Product Name *</label>
-                    <input type="text" id="prodName" maxlength="20" placeholder="Max 20 chars" required>
-                </div>
-                <div class="input-group full-width">
-                    <label>Product Title *</label>
-                    <input type="text" id="prodTitle" maxlength="25" placeholder="Max 25 chars" required>
-                </div>
-                <div class="input-group full-width">
-                    <label>Product Description *</label>
-                    <textarea id="prodDesc" rows="2" maxlength="155" placeholder="Max 155 characters..." required></textarea>
-                </div>
-                
-                <div class="input-group">
-                    <label>Select Category *</label>
-                    <select id="prodCategory">
-                        <option value="👔 FASHION (MEN)">👔 FASHION (MEN)</option>
-                        <option value="👗 FASHION (WOMEN)">👗 FASHION (WOMEN)</option>
-                        <option value="👶 BABY & KIDS">👶 BABY & KIDS</option>
-                        <option value="🎁 LUXURY GIFTS">🎁 LUXURY GIFTS</option>
-                        <option value="🏡 HOME DECOR">🏡 HOME DECOR</option>
-                        <option value="🎨 ART & CRAFT">🎨 ART & CRAFT</option>
-                    </select>
-                </div>
-
-                <div class="input-group"><label>Stock Quantity *</label><input type="number" id="prodStock" placeholder="e.g. 150" required></div>
-                
-                <div class="input-group full-width">
-                    <label>Select Available Colors *</label>
-                    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:5px;">
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Golden Teak</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Black</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">White</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Red</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Blue</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Green</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Silver</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Gold</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Pink</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Multi</button>
-                    </div>
-                    <input type="text" id="prodColors" placeholder="Selected colors will appear here or type custom colors">
-                </div>
-
-                <div class="input-group">
-                    <label>Available Sizes</label>
-                    <input type="text" id="prodSizes" placeholder="S, M, L, XL, Free Size">
-                </div>
-
-                <div class="input-group"><label>Shipping Weight (kg / lbs) *</label><input type="text" id="prodWeight" placeholder="e.g. 0.5 kg" required></div>
-                <div class="input-group"><label>Package Dimensions (L x W x H) *</label><input type="text" id="prodDimensions" placeholder="e.g. 10x5x3 inch" required></div>
-
-                <div class="input-group full-width">
-                    <label>Product Image Link (URL / FB / YouTube Image) *</label>
-                    <input type="url" id="prodImgUrl" placeholder="https://image-link.com/photo.jpg" oninput="previewImageLink(this.value)" required>
-                    <div id="imgLinkPreview" style="margin-top:5px;"></div>
-                </div>
-
-                <div class="input-group full-width">
-                    <label>YouTube Short Video Review Link (URL) *</label>
-                    <input type="url" id="prodVideoUrl" placeholder="https://youtube.com/shorts/..." oninput="previewVideoLink(this.value)" required>
-                    <div id="videoLinkPreview" style="margin-top:5px;"></div>
-                </div>
-
-                <div class="input-group full-width"><div class="section-title">Global Retail Pricing & Country Discounts</div></div>
-                
-                <div class="input-group">
-                    <label>Global Retail Price (USD $)</label>
-                    <input type="number" id="priceGlobal" placeholder="$ 25.00">
-                </div>
-                <div class="input-group">
-                    <label>Country Discount (All Countries & %)</label>
-                    <div style="display:flex; gap:6px;">
-                        <select id="discountCountry" style="flex:1;"></select>
-                        <select id="discountPercent" style="width:95px;">
-                            <option value="3% Off">3%</option>
-                            <option value="5% Off">5%</option>
-                            <option value="10% Off">10%</option>
-                            <option value="15% Off">15%</option>
-                            <option value="20% Off">20%</option>
-                            <option value="25% Off">25%</option>
-                            <option value="30% Off">30%</option>
-                            <option value="40% Off">40%</option>
-                            <option value="50% Off">50%</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 20px; display:flex; gap:10px; justify-content:center;">
-                <button class="outline-btn" onclick="showSection('dashboardSection')">Cancel</button>
-                <button class="apply-btn" onclick="publishProduct()">Publish Product</button>
-            </div>
-        </div>
-
     </div>
 
+    <!-- ক্যাটাগরি মোডাল (কালারফুল লাক্সারি ইমোজি ও জুম ইফেক্টসহ) -->
+    <div class="category-modal-overlay" id="categoryModalOverlay" onclick="closeCategoryModal(event)">
+        <div class="category-modal-box">
+            <h3 class="cat-modal-title" style="font-size:1rem; font-weight:800; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:12px;">Luxury Categories</h3>
+            <div class="category-grid-popup">
+                <div class="cat-popup-item" onclick="selectCategory('All')">
+                    <span><i class="fa-solid fa-wand-magic-sparkles" style="margin-right: 6px; color:#d4af37;"></i> All Products</span> <i class="fa-solid fa-arrow-right" style="color:#d4af37;"></i>
+                </div>
+                <div class="cat-popup-item" onclick="selectCategory('👔 FASHION (MEN)')"><i class="fa-solid fa-shirt"></i><span>Men Fashion</span></div>
+                <div class="cat-popup-item" onclick="selectCategory('👗 FASHION (WOMEN)')"><i class="fa-solid fa-person-dress"></i><span>Women Fashion</span></div>
+                <div class="cat-popup-item" onclick="selectCategory('👶 BABY & KIDS')"><i class="fa-solid fa-child"></i><span>Baby & Kids</span></div>
+                <div class="cat-popup-item" onclick="selectCategory('🎁 LUXURY GIFTS')"><i class="fa-solid fa-gift"></i><span>Luxury Gifts</span></div>
+                <div class="cat-popup-item" onclick="selectCategory('🏡 HOME DECOR')"><i class="fa-solid fa-house-chimney"></i><span>Home Decor</span></div>
+                <div class="cat-popup-item" onclick="selectCategory('🎨 ART & CRAFT')"><i class="fa-solid fa-palette"></i><span>Art & Craft</span></div>
+            </div>
+            <button class="golden-cross-btn-top-right" onclick="document.getElementById('categoryModalOverlay').style.display='none'"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+    </div>
+
+    <!-- ইকোসিস্টেম মোডাল -->
+    <div class="ecosystem-modal-overlay" id="ecosystemModal">
+        <div class="ecosystem-header">
+            <span class="ecosystem-title" id="ecosystemModalTitle">Ecosystem Module</span>
+            <button class="golden-cross-btn-top-right" style="position:relative; top:auto; right:auto;" onclick="closeEcosystemModal()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="ecosystem-body">
+            <iframe id="ecosystemIframe" src="" loading="lazy"></iframe>
+        </div>
+    </div>
+
+    <!-- ফ্লোটিং কার্ট -->
+    <div class="floating-cart" id="floatingCart" onclick="handleCartClick()" title="View Cart & Go to Dashboard">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-badge" id="cartCount">0</span>
+    </div>
+
+    <!-- প্রোডাক্ট ফিড কন্টেইনার -->
+    <main class="feed-container" id="productFeed"></main>
+
+    <!-- প্রোডাক্ট ডিটেইলস মোডাল (ফাস্টার অ্যানিমেশন) -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal-content">
+            <button class="golden-cross-btn-top-right" onclick="closeProductModal()"><i class="fa-solid fa-xmark"></i></button>
+
+            <div class="modal-media-slider" id="modalMediaSlider"></div>
+            <div class="modal-thumbs-row" id="modalThumbsRow"></div>
+            
+            <div class="modal-price-shipping-bar">
+                <div class="modal-price-row">
+                    <div class="modal-price-group">
+                        <span class="modal-price" id="modalPrice">$0.00</span>
+                        <span class="modal-bd-discount" id="modalBdDiscount">BD 20% OFF</span>
+                    </div>
+                </div>
+                <div class="free-shipping-tax-text">
+                    <i class="fa-solid fa-circle-check"></i> Free Shipping | Tax & VAT Included
+                </div>
+            </div>
+
+            <div class="modal-actions-bar" id="modalActionsBar">
+                <div class="action-item view-icon"><i class="fa-solid fa-eye"></i> <span id="modalViewCount">1,240</span></div>
+                <div class="action-item like-icon" id="modalLikeBtnItem"><i class="fa-solid fa-heart"></i> <span id="modalLikeCount">450</span></div>
+                <div class="action-item share-icon" id="modalShareBtnItem"><i class="fa-solid fa-share-nodes"></i> Share</div>
+            </div>
+
+            <div class="animated-cycling-box" id="animatedCyclingBox">
+                <div class="cycling-content-item active">
+                    <h3 class="cycling-title" id="modalTitle">Product Title</h3>
+                </div>
+                <div class="cycling-content-item" id="cyclingColorItemBox">
+                    <span class="cycling-section-title">COLOR</span>
+                    <div id="modalColorCirclesInline" style="display:flex; gap:10px; align-items:center; justify-content:center;"></div>
+                </div>
+                <div class="cycling-content-item" id="cyclingSizeItemBox">
+                    <span class="cycling-section-title">SIZE</span>
+                    <div id="modalSizePillsInline" style="display:flex; gap:6px; align-items:center; justify-content:center; flex-wrap:wrap;"></div>
+                </div>
+                <div class="cycling-content-item">
+                    <p class="cycling-desc" id="modalDesc">Exquisite luxury craft.</p>
+                </div>
+                <div class="cycling-content-item">
+                    <div style="display:flex; flex-direction:column; gap:3px; align-items:center;">
+                        <span style="font-size:0.68rem; color:var(--text-white); font-weight:600;">Stock: <span style="background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent;" id="specStock">Available</span></span>
+                        <span style="font-size:0.68rem; color:var(--text-white); font-weight:600;">Packaging: <span style="background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent;" id="specPackaging">Luxury Box</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer-action-wrap">
+                <div style="text-align: center;">
+                    <span class="qty-label-top">Quantity</span>
+                    <div class="golden-round-qty-box">
+                        <button type="button" class="round-qty-btn" onclick="updateModalQuantity(-1)"><i class="fa-solid fa-minus"></i></button>
+                        <input type="text" id="modalProductQty" class="round-qty-input" value="1" readonly>
+                        <button type="button" class="round-qty-btn" onclick="updateModalQuantity(1)"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+                <button class="modal-add-btn" id="addToCartBtnElement" onclick="addToCartWithFirebase(this)">
+                    Add To Cart
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- বটম ন্যাভ ও মোবাইল সার্চ লেআউট ফুল ফিক্সড -->
+    <nav class="bottom-nav">
+        <div class="nav-menus-left">
+            <div class="nav-item" onclick="openEcosystemPage('https://affiliate.mrmasudar.com', 'Affiliate & Earn', this)"><i class="fa-solid fa-handshake"></i><span>Affiliate</span></div>
+            <div class="nav-item" onclick="openEcosystemPage('https://etech.mrmasudar.com', 'E-Tech Academy', this)"><i class="fa-solid fa-graduation-cap"></i><span>E-Tech</span></div>
+            <div class="nav-item" onclick="openEcosystemPage('https://seller.mrmasudar.com', 'Seller Dashboard', this)"><i class="fa-solid fa-chart-line"></i><span>Seller</span></div>
+            <div class="nav-item active" id="itemNavBtn" onclick="openCategoryModal(this)"><i class="fa-solid fa-clipboard-list"></i><span>Item</span></div>
+        </div>
+        <div class="bottom-search-wrapper">
+            <input type="text" id="searchInput" placeholder="Search product..." onkeypress="handleSearchKey(event)">
+            <div class="bottom-search-actions">
+                <i class="fa-solid fa-camera" onclick="triggerCameraAuto()" title="Visual Image Search"></i>
+                <i class="fa-solid fa-microphone" onclick="triggerVoiceAuto()" title="Voice Search"></i>
+                <button class="search-submit-btn" onclick="performSearchSubmit()"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </div>
+    </nav>
+
     <script>
-        const allCountries = [
-            {name: "Afghanistan", flag: "🇦🇫", dial: "+93"}, {name: "Albania", flag: "🇦🇱", dial: "+355"}, {name: "Algeria", flag: "🇩🇿", dial: "+213"}, {name: "Andorra", flag: "🇦🇩", dial: "+376"},
-            {name: "Angola", flag: "🇦🇴", dial: "+244"}, {name: "Argentina", flag: "🇦🇷", dial: "+54"}, {name: "Armenia", flag: "🇦🇲", dial: "+374"}, {name: "Australia", flag: "🇦🇺", dial: "+61"},
-            {name: "Austria", flag: "🇦🇹", dial: "+43"}, {name: "Azerbaijan", flag: "🇦🇿", dial: "+994"}, {name: "Bahrain", flag: "🇧🇭", dial: "+973"}, {name: "Bangladesh", flag: "🇧🇩", dial: "+880"},
-            {name: "Belarus", flag: "🇧🇾", dial: "+375"}, {name: "Belgium", flag: "🇧🇪", dial: "+32"}, {name: "Belize", flag: "🇧🇿", dial: "+501"}, {name: "Benin", flag: "🇧🇯", dial: "+229"},
-            {name: "Bhutan", flag: "🇧🇹", dial: "+975"}, {name: "Bolivia", flag: "🇧🇴", dial: "+591"}, {name: "Bosnia and Herzegovina", flag: "🇧🇦", dial: "+387"}, {name: "Botswana", flag: "🇧🇼", dial: "+267"},
-            {name: "Brazil", flag: "🇧🇷", dial: "+55"}, {name: "Brunei", flag: "🇧🇳", dial: "+673"}, {name: "Bulgaria", flag: "🇧🇬", dial: "+359"}, {name: "Burkina Faso", flag: "🇧🇫", dial: "+226"},
-            {name: "Cambodia", flag: "🇰🇭", dial: "+855"}, {name: "Cameroon", flag: "🇨🇲", dial: "+237"}, {name: "Canada", flag: "🇨🇦", dial: "+1"}, {name: "Chile", flag: "🇨🇱", dial: "+56"},
-            {name: "China", flag: "🇨🇳", dial: "+86"}, {name: "Colombia", flag: "🇨🇴", dial: "+57"}, {name: "Congo", flag: "🇨🇬", dial: "+242"}, {name: "Costa Rica", flag: "🇨🇷", dial: "+506"},
-            {name: "Croatia", flag: "🇭🇷", dial: "+385"}, {name: "Cuba", flag: "🇨🇺", dial: "+53"}, {name: "Cyprus", flag: "🇨🇾", dial: "+357"}, {name: "Czech Republic", flag: "🇨🇿", dial: "+420"},
-            {name: "Denmark", flag: "🇩🇰", dial: "+45"}, {name: "Djibouti", flag: "🇩🇯", dial: "+253"}, {name: "Dominican Republic", flag: "🇩🇴", dial: "+1809"}, {name: "Ecuador", flag: "🇪🇨", dial: "+593"},
-            {name: "Egypt", flag: "🇪🇬", dial: "+20"}, {name: "El Salvador", flag: "🇸🇻", dial: "+503"}, {name: "Estonia", flag: "🇪🇪", dial: "+372"}, {name: "Ethiopia", flag: "🇪🇹", dial: "+251"},
-            {name: "Fiji", flag: "🇫🇯", dial: "+679"}, {name: "Finland", flag: "🇫🇮", dial: "+358"}, {name: "France", flag: "🇫🇷", dial: "+33"}, {name: "Gabon", flag: "🇬🇦", dial: "+241"},
-            {name: "Georgia", flag: "🇬🇪", dial: "+995"}, {name: "Germany", flag: "🇩🇪", dial: "+49"}, {name: "Ghana", flag: "🇬🇭", dial: "+233"}, {name: "Greece", flag: "🇬🇷", dial: "+30"},
-            {name: "Guatemala", flag: "🇬🇹", dial: "+502"}, {name: "Honduras", flag: "🇭🇳", dial: "+504"}, {name: "Hong Kong", flag: "🇭🇰", dial: "+852"}, {name: "Hungary", flag: "🇭🇺", dial: "+36"},
-            {name: "Iceland", flag: "🇮🇸", dial: "+354"}, {name: "India", flag: "🇮🇳", dial: "+91"}, {name: "Indonesia", flag: "🇮🇩", dial: "+62"}, {name: "Iran", flag: "🇮🇷", dial: "+98"},
-            {name: "Iraq", flag: "🇮🇶", dial: "+964"}, {name: "Ireland", flag: "🇮🇪", dial: "+353"}, {name: "Israel", flag: "🇮🇱", dial: "+972"}, {name: "Italy", flag: "🇮🇹", dial: "+39"},
-            {name: "Jamaica", flag: "🇯🇲", dial: "+1876"}, {name: "Japan", flag: "🇯🇵", dial: "+81"}, {name: "Jordan", flag: "🇯🇴", dial: "+962"}, {name: "Kazakhstan", flag: "🇰🇿", dial: "+7"},
-            {name: "Kenya", flag: "🇰🇪", dial: "+254"}, {name: "Kuwait", flag: "🇰🇼", dial: "+965"}, {name: "Kyrgyzstan", flag: "🇰🇬", dial: "+996"}, {name: "Laos", flag: "🇱🇦", dial: "+856"},
-            {name: "Latvia", flag: "🇱🇻", dial: "+371"}, {name: "Lebanon", flag: "🇱🇧", dial: "+961"}, {name: "Libya", flag: "🇱🇾", dial: "+218"}, {name: "Lithuania", flag: "🇱🇹", dial: "+370"},
-            {name: "Luxembourg", flag: "🇱🇺", dial: "+352"}, {name: "Macau", flag: "🇲🇴", dial: "+853"}, {name: "Malaysia", flag: "🇲🇾", dial: "+60"}, {name: "Maldives", flag: "🇲🇻", dial: "+960"},
-            {name: "Malta", flag: "🇲🇹", dial: "+356"}, {name: "Mexico", flag: "🇲🇽", dial: "+52"}, {name: "Moldova", flag: "🇲🇩", dial: "+373"}, {name: "Monaco", flag: "🇲🇨", dial: "+377"},
-            {name: "Mongolia", flag: "🇲🇳", dial: "+976"}, {name: "Montenegro", flag: "🇲🇪", dial: "+382"}, {name: "Morocco", flag: "🇲🇦", dial: "+212"}, {name: "Mozambique", flag: "🇲🇿", dial: "+258"},
-            {name: "Myanmar", flag: "🇲🇲", dial: "+95"}, {name: "Nepal", flag: "🇳🇵", dial: "+977"}, {name: "Netherlands", flag: "🇳🇱", dial: "+31"}, {name: "New Zealand", flag: "🇳🇿", dial: "+64"},
-            {name: "Nicaragua", flag: "🇳🇮", dial: "+505"}, {name: "Nigeria", flag: "🇳🇬", dial: "+234"}, {name: "North Korea", flag: "🇰🇵", dial: "+850"}, {name: "Norway", flag: "🇳🇴", dial: "+47"},
-            {name: "Oman", flag: "🇴🇲", dial: "+968"}, {name: "Pakistan", flag: "🇵🇰", dial: "+92"}, {name: "Palestine", flag: "🇵🇸", dial: "+970"}, {name: "Panama", flag: "🇵🇦", dial: "+507"},
-            {name: "Paraguay", flag: "🇵🇾", dial: "+595"}, {name: "Peru", flag: "🇵🇪", dial: "+51"}, {name: "Philippines", flag: "🇵🇭", dial: "+63"}, {name: "Poland", flag: "🇵🇱", dial: "+48"},
-            {name: "Portugal", flag: "🇵🇹", dial: "+351"}, {name: "Qatar", flag: "🇶🇦", dial: "+974"}, {name: "Romania", flag: "🇷🇴", dial: "+40"}, {name: "Russia", flag: "🇷🇺", dial: "+7"},
-            {name: "Rwanda", flag: "🇷🇼", dial: "+250"}, {name: "Saudi Arabia", flag: "🇸🇦", dial: "+966"}, {name: "Senegal", flag: "🇸🇳", dial: "+221"}, {name: "Serbia", flag: "🇷🇸", dial: "+381"},
-            {name: "Singapore", flag: "🇸🇬", dial: "+65"}, {name: "Slovakia", flag: "🇸🇰", dial: "+421"}, {name: "Slovenia", flag: "🇸🇮", dial: "+386"}, {name: "Somalia", flag: "🇸🇴", dial: "+252"},
-            {name: "South Africa", flag: "🇿🇦", dial: "+27"}, {name: "South Korea", flag: "🇰🇷", dial: "+82"}, {name: "Spain", flag: "🇪🇸", dial: "+34"}, {name: "Sri Lanka", flag: "🇱🇰", dial: "+94"},
-            {name: "Sudan", flag: "🇸🇩", dial: "+249"}, {name: "Sweden", flag: "🇸🇪", dial: "+46"}, {name: "Switzerland", flag: "🇨🇭", dial: "+41"}, {name: "Syria", flag: "🇸🇾", dial: "+963"},
-            {name: "Taiwan", flag: "🇹🇼", dial: "+886"}, {name: "Tajikistan", flag: "🇹🇯", dial: "+992"}, {name: "Tanzania", flag: "🇹🇿", dial: "+255"}, {name: "Thailand", flag: "🇹🇭", dial: "+66"},
-            {name: "Tunisia", flag: "🇹🇳", dial: "+216"}, {name: "Turkey", flag: "🇹🇷", dial: "+90"}, {name: "Turkmenistan", flag: "🇹🇲", dial: "+993"}, {name: "Uganda", flag: "🇺🇬", dial: "+256"},
-            {name: "Ukraine", flag: "🇺🇦", dial: "+380"}, {name: "United Arab Emirates", flag: "🇦🇪", dial: "+971"}, {name: "United Kingdom", flag: "🇬🇧", dial: "+44"}, {name: "United States", flag: "🇺🇸", dial: "+1"},
-            {name: "Uruguay", flag: "🇺🇾", dial: "+598"}, {name: "Uzbekistan", flag: "🇺🇿", dial: "+998"}, {name: "Venezuela", flag: "🇻🇪", dial: "+58"}, {name: "Vietnam", flag: "🇻🇳", dial: "+84"},
-            {name: "Yemen", flag: "🇾🇪", dial: "+967"}, {name: "Zambia", flag: "🇿🇲", dial: "+260"}, {name: "Zimbabwe", flag: "🇿🇼", dial: "+263"}
-        ];
+        let activeCurrentProduct = null;
+        let selectedColor = "Standard";
+        let selectedSize = "Standard";
+        let currentModalQty = 1;
+        let cyclingInterval = null;
+        let currentShareTitle = "";
+
+        // ডায়নামিক অ্যাফিলিয়েট আইডি হ্যান্ডলিং (লগইন বা সাইন আপ ছাড়া ডিফল্ট আইডি দেখাবে না)
+        let urlParams = new URLSearchParams(window.location.search);
+        let urlAff = urlParams.get('aff') || urlParams.get('ref') || urlParams.get('partner');
+        if(urlAff) { 
+            sessionStorage.setItem('mme_active_aff', urlAff.toLowerCase()); 
+            localStorage.setItem('mme_active_aff', urlAff.toLowerCase()); 
+        }
+        let currentAffiliateId = sessionStorage.getItem('mme_active_aff') || localStorage.getItem('mme_active_aff') || '';
 
         window.addEventListener('DOMContentLoaded', () => {
-            const selectEl = document.getElementById('countrySelect');
-            const whatsappSelect = document.getElementById('whatsappCodeSelect');
-            const discountSelect = document.getElementById('discountCountry');
-
-            if(selectEl && whatsappSelect && discountSelect) {
-                allCountries.forEach(c => {
-                    let opt1 = document.createElement('option');
-                    opt1.value = c.name + "|" + c.flag;
-                    opt1.textContent = c.flag + " " + c.name;
-                    selectEl.appendChild(opt1);
-
-                    let opt2 = document.createElement('option');
-                    opt2.value = c.dial;
-                    opt2.textContent = c.flag + " " + c.dial;
-                    if(c.name === "Bangladesh") opt2.selected = true;
-                    whatsappSelect.appendChild(opt2);
-
-                    let opt3 = document.createElement('option');
-                    opt3.value = c.flag + " " + c.name;
-                    opt3.textContent = c.flag + " " + c.name;
-                    discountSelect.appendChild(opt3);
-                });
-            }
+            fetchCartCountFromFirebase();
+            loadCombinedProducts();
         });
 
-        function togglePasswordVisibility(fieldId, btn) {
-            const inputField = document.getElementById(fieldId);
-            const icon = btn.querySelector('i');
-            if (inputField.type === "password") {
-                inputField.type = "text";
-                icon.classList.remove("fa-eye");
-                icon.classList.add("fa-eye-slash");
-            } else {
-                inputField.type = "password";
-                icon.classList.remove("fa-eye-slash");
-                icon.classList.add("fa-eye");
-            }
+        function showCustomToast(msg) {
+            let toast = document.getElementById('customToast');
+            toast.innerText = msg;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 2200);
         }
 
-        function toggleColorTag(btn) {
-            let colorInput = document.getElementById('prodColors');
-            let currentVal = colorInput.value.trim();
-            let colorName = btn.textContent;
-            
-            if(currentVal.includes(colorName)) {
-                colorInput.value = currentVal.replace(colorName, '').replace(/,,/g, ',').trim();
-                btn.style.background = '#222';
+        function getDynamicProductStats(productId) {
+            let storageKeyViews = `mme_views_${productId}`;
+            let storageKeyLikes = `mme_likes_${productId}`;
+            let storageKeyLikedByMe = `mme_liked_time_${productId}`;
+
+            let views = parseInt(localStorage.getItem(storageKeyViews));
+            if(!views) {
+                views = Math.floor(2000 + Math.random() * 1500);
+                localStorage.setItem(storageKeyViews, views);
             } else {
-                colorInput.value = currentVal ? currentVal + ", " + colorName : colorName;
-                btn.style.background = 'var(--gold-solid)';
-                btn.style.color = '#000';
+                if(Math.random() > 0.5) {
+                    views += Math.floor(1 + Math.random() * 5);
+                    localStorage.setItem(storageKeyViews, views);
+                }
             }
+
+            let likes = parseInt(localStorage.getItem(storageKeyLikes)) || Math.floor(300 + Math.random() * 200);
+            let likedTime = parseInt(localStorage.getItem(storageKeyLikedByMe)) || 0;
+            let isLiked = (Date.now() - likedTime) < 86400000;
+
+            return { views, likes, isLiked };
         }
 
-        let currentActiveVendor = null;
-        let tempProfilePhotoBase64 = "";
+        function toggleProductLike(productId, el) {
+            let storageKeyLikes = `mme_likes_${productId}`;
+            let storageKeyLikedByMe = `mme_liked_time_${productId}`;
+            let likedTime = parseInt(localStorage.getItem(storageKeyLikedByMe)) || 0;
+            if((Date.now() - likedTime) < 86400000) return;
 
-        function showSection(id) {
-            const sections = ['entranceCard', 'loginSection', 'resetSection', 'formSection', 'dashboardSection', 'productSection'];
-            sections.forEach(sec => {
-                let el = document.getElementById(sec);
-                if(el) el.style.display = 'none';
+            let likes = parseInt(localStorage.getItem(storageKeyLikes)) || 300;
+            likes += 1;
+            localStorage.setItem(storageKeyLikes, likes);
+            localStorage.setItem(storageKeyLikedByMe, Date.now());
+
+            let span = el.querySelector('span');
+            if(span) span.innerText = likes;
+            el.classList.add('liked');
+            showCustomToast("Product liked successfully!");
+        }
+
+        function openCategoryModal(element) {
+            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+            element.classList.add('active');
+            document.getElementById('categoryModalOverlay').style.display = 'flex';
+        }
+
+        function closeCategoryModal(e) {
+            if(!e || e.target.id === 'categoryModalOverlay') document.getElementById('categoryModalOverlay').style.display = 'none';
+        }
+
+        function selectCategory(cat) {
+            document.getElementById('categoryModalOverlay').style.display = 'none';
+            let all = getAllProducts();
+            if(cat === 'All') loadCombinedProducts(all);
+            else loadCombinedProducts(all.filter(p => p.category === cat));
+        }
+
+        function openEcosystemPage(url, title, element) {
+            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+            if(element) element.classList.add('active');
+            document.getElementById('ecosystemModalTitle').innerText = title;
+            document.getElementById('ecosystemIframe').src = url;
+            document.getElementById('ecosystemModal').style.display = 'flex';
+        }
+
+        function closeEcosystemModal() {
+            document.getElementById('ecosystemModal').style.display = 'none';
+            document.getElementById('ecosystemIframe').src = '';
+            document.getElementById('itemNavBtn').classList.add('active');
+        }
+
+        function getAllProducts() {
+            let defaultProds = [
+                {
+                    id: 1, title: "Luxury Silk Designer Evening Gown", price: "$185.00", bdDiscount: "BD 20% OFF",
+                    category: "👗 FASHION (WOMEN)",
+                    videoUrl: "https://www.youtube.com/embed/EjSt6U8SQ0I?autoplay=1&mute=1&loop=1&playlist=EjSt6U8SQ0I&controls=0&showinfo=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0",
+                    images: [
+                        "https://lh3.googleusercontent.com/d/18yy4G5Nd4OUf5a1T4mKHhvUFTq_6Eds5",
+                        "https://lh3.googleusercontent.com/d/1POhz8vb-MocaPNHg-i6nDSKwV4ky16Lc"
+                    ],
+                    desc: "Exquisite hand-stitched silk evening gown with golden embroidery detailing.",
+                    stock: "45 Units Ready", packaging: "Luxury Gift Box", quantity: "1 Piece", sku: "mme-fashion-01",
+                    colors: ["#d4af37", "#111111", "#b76e79", "#ffffff", "#8b0000"], 
+                    sizes: ["XS", "S", "M", "L", "XL"]
+                }
+            ];
+
+            let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
+            sellers.forEach(s => {
+                if(s.uploadedProducts) {
+                    s.uploadedProducts.forEach((p, i) => {
+                        let cleanVid = "";
+                        if(p.videoUrl && p.videoUrl.trim() !== "") {
+                            let rawBase = p.videoUrl.replace("watch?v=", "embed/").split('?')[0];
+                            let videoIdMatch = rawBase.split('/').pop();
+                            cleanVid = `${rawBase}?autoplay=1&mute=1&loop=1&playlist=${videoIdMatch}&controls=0&showinfo=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0`;
+                        }
+                        defaultProds.push({
+                            id: 'v-' + s.id + '-' + i,
+                            sellerId: s.id,
+                            title: p.title || p.name || "Exclusive Item",
+                            price: p.global || '$35.00',
+                            bdDiscount: p.countryDiscount || 'BD 15% OFF',
+                            category: p.category || '👗 FASHION (WOMEN)',
+                            videoUrl: cleanVid,
+                            images: [p.imgUrl || "https://lh3.googleusercontent.com/d/18yy4G5Nd4OUf5a1T4mKHhvUFTq_6Eds5"],
+                            desc: p.desc || 'Exclusive premium collection.',
+                            stock: p.stock || 'In Stock',
+                            packaging: p.packaging || 'Secure Box',
+                            quantity: p.quantity || '1 Unit',
+                            sku: (p.sku || `mme-ven-${s.id}-${i}`).toLowerCase(),
+                            colors: p.colors || ["#d4af37", "#111111", "#ffffff"],
+                            sizes: p.sizes || ["Standard", "Large"]
+                        });
+                    });
+                }
             });
-            let target = document.getElementById(id);
-            if(target) target.style.display = 'block';
+            return defaultProds;
         }
 
-        function openPasswordReset() {
-            showSection('resetSection');
+        function shuffleArray(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
         }
 
-        function previewProfilePhoto(event) {
-            const file = event.target.files[0];
-            if(file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    tempProfilePhotoBase64 = e.target.result;
-                    document.getElementById('photoPreviewContainer').innerHTML = `<img src="${tempProfilePhotoBase64}" style="width:50px; height:50px; border-radius:50%; object-fit:cover; border:1px solid var(--gold-solid);">`;
-                };
-                reader.readAsDataURL(file);
-            }
-        }
+        function loadCombinedProducts(list = getAllProducts()) {
+            let randomizedList = shuffleArray([...list]);
+            const feed = document.getElementById('productFeed');
+            if(!feed) return;
+            feed.innerHTML = "";
 
-        function previewImageLink(url) {
-            let container = document.getElementById('imgLinkPreview');
-            if(url.trim() !== "") {
-                container.innerHTML = `<div class="media-preview-box"><img src="${url}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1160/1160358.png'"><span>Image Preview Loaded</span></div>`;
-            } else {
-                container.innerHTML = "";
-            }
-        }
-
-        function previewVideoLink(url) {
-            let container = document.getElementById('videoLinkPreview');
-            if(url.includes("youtube.com") || url.includes("youtu.be")) {
-                container.innerHTML = `<div class="media-preview-box"><i class="fa-brands fa-youtube" style="font-size:28px; color:#ff0000;"></i><span>YouTube Short Video Ready</span></div>`;
-            } else {
-                container.innerHTML = "";
-            }
-        }
-
-        function executePasswordReset() {
-            let email = document.getElementById('resetEmail').value.trim().toLowerCase();
-            let newPass = document.getElementById('newPassword').value.trim();
-
-            if(!email || !newPass) {
-                alert("Please fill in both fields.");
-                return;
-            }
-
-            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/;
-            if(!regex.test(newPass)) {
-                alert("Password must be 10+ characters with Upper, Lower, Number & Symbol.");
-                return;
-            }
-
-            let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
-            let found = sellers.find(s => s.email === email);
-
-            if(found) {
-                found.pass = newPass;
-                localStorage.setItem('mme_sellers', JSON.stringify(sellers));
-                alert("Password successfully updated! You can now sign in.");
-                showSection('loginSection');
-            } else {
-                alert("No registered vendor found with this Gmail address.");
-            }
-        }
-
-        function submitSellerApp() {
-            const name = document.getElementById('fullName').value;
-            const email = document.getElementById('email').value.trim().toLowerCase();
-            const countryVal = document.getElementById('countrySelect').value;
-            const phone = document.getElementById('whatsappCodeSelect').value + document.getElementById('whatsapp').value;
-            const biz = document.getElementById('bizName').value;
-            const pass = document.getElementById('partnerPassword').value;
-            const confirmPass = document.getElementById('confirmPassword').value;
-            const yt = document.getElementById('ytLink').value;
-            const payName = document.getElementById('payoneerName').value;
-            const payEmail = document.getElementById('payoneerEmail').value;
-
-            if(!name || !email || !countryVal || !biz || !pass || !yt || !payName || !payEmail) {
-                alert("Please fill all mandatory fields including Country, YouTube link & Payoneer info.");
-                return;
-            }
-
-            const [countryName, countryFlag] = countryVal.split('|');
-
-            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/;
-            if(!regex.test(pass)) {
-                alert("Password must be 10+ characters with Upper, Lower, Number & Symbol.");
-                return;
-            }
-            if(pass !== confirmPass) {
-                alert("Passwords do not match!");
-                return;
-            }
-
-            const vendorId = 'VEN-' + Math.floor(1000 + Math.random() * 9000);
-            const vendor = {
-                id: vendorId, 
-                name: name, 
-                email: email, 
-                country: countryName,
-                flag: countryFlag,
-                whatsapp: phone, 
-                biz: biz,
-                pass: pass, 
-                photo: tempProfilePhotoBase64 || "https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400",
-                payoneerName: payName,
-                payoneerEmail: payEmail,
-                uploadedProducts: []
-            };
-
-            let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
-            sellers.push(vendor);
-            localStorage.setItem('mme_sellers', JSON.stringify(sellers));
-
-            currentActiveVendor = vendor;
-            renderVendorDashboard(vendor);
-        }
-
-        function loginDashboard() {
-            let email = document.getElementById('loginEmail').value.trim().toLowerCase();
-            let pass = document.getElementById('loginPass').value.trim();
-            let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
-            let found = sellers.find(s => s.email === email && s.pass === pass);
-
-            if(found) {
-                currentActiveVendor = found;
-                renderVendorDashboard(found);
-            } else {
-                alert("Invalid Gmail or Password!");
-            }
-        }
-
-        function renderVendorDashboard(found) {
-            showSection('dashboardSection');
-
-            let sampleProduct = {
-                name: "Royal Teak Bed",
-                category: "🏡 HOME DECOR",
-                stock: "50 Pcs",
-                global: "$ 120.00",
-                countryDiscount: "🇺🇸 United States (10% Off)",
-                sizes: "Standard",
-                colors: "Golden Teak",
-                status: "Paid & Settled",
-                trackingId: "TRK-948210"
-            };
-
-            let inventoryRows = "";
-            let trackingRows = "";
-
-            if (!found.uploadedProducts || found.uploadedProducts.length === 0) {
-                // If no products uploaded, show ONLY #0 sample
-                inventoryRows = `
-                    <tr>
-                        <td><b>#0</b></td>
-                        <td><b style="color:var(--gold-light);">${sampleProduct.name}</b></td>
-                        <td>${sampleProduct.category}</td>
-                        <td>${sampleProduct.stock}</td>
-                        <td>${sampleProduct.global}</td>
-                        <td>${sampleProduct.countryDiscount}</td>
-                        <td>${sampleProduct.sizes}</td>
-                        <td>${sampleProduct.colors}</td>
-                    </tr>
-                `;
-                trackingRows = `
-                    <tr>
-                        <td><b>#0</b></td>
-                        <td>${sampleProduct.name} (ID: ${found.id})</td>
-                        <td><span style="color:#2ecc71; font-weight:bold;">● ${sampleProduct.status}</span></td>
-                        <td>${sampleProduct.trackingId}</td>
-                        <td>Global Express Courier</td>
-                        <td><button onclick="alert('Funds ready for Payoneer withdrawal! Transfer requested to ${found.payoneerEmail}')" style="background:var(--gold-gradient); border:none; padding:4px 10px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:0.6rem;">Withdraw via Payoneer</button></td>
-                    </tr>
-                `;
-            } else {
-                // If products are uploaded, show ONLY 1, 2, 3... (No #0 sample)
-                found.uploadedProducts.forEach((p, idx) => {
-                    inventoryRows += `
-                        <tr>
-                            <td><b>#${idx + 1}</b></td>
-                            <td><b style="color:var(--gold-light);">${p.name}</b></td>
-                            <td>${p.category}</td>
-                            <td>${p.stock} Pcs</td>
-                            <td>${p.global}</td>
-                            <td>${p.countryDiscount}</td>
-                            <td>${p.sizes || 'N/A'}</td>
-                            <td>${p.colors || 'N/A'}</td>
-                        </tr>
+            randomizedList.forEach(item => {
+                let stats = getDynamicProductStats(item.id);
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                
+                let mediaContent = "";
+                if (item.videoUrl && item.videoUrl.trim() !== "") {
+                    mediaContent = `
+                        <div class="video-wrapper">
+                            <iframe src="${item.videoUrl}" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
+                            <div class="video-click-shield" onclick="openProductModal('${item.id}')"></div>
+                        </div>
                     `;
-                    trackingRows += `
-                        <tr>
-                            <td><b>#${idx + 1}</b></td>
-                            <td>${p.name} (ID: ${found.id})</td>
-                            <td><span style="color:#2ecc71; font-weight:bold;">● ${p.status}</span></td>
-                            <td>${p.trackingId}</td>
-                            <td>Global Express Courier</td>
-                            <td><button onclick="alert('Funds ready for Payoneer withdrawal! Transfer requested to ${found.payoneerEmail}')" style="background:var(--gold-gradient); border:none; padding:4px 10px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:0.6rem;">Withdraw via Payoneer</button></td>
-                        </tr>
+                } else {
+                    mediaContent = `
+                        <div class="product-media-box" onclick="openProductModal('${item.id}')">
+                            <img src="${item.images[0]}" alt="${item.title}" loading="lazy">
+                        </div>
                     `;
-                });
-            }
+                }
 
-            let dashHtml = `
-                <div class="digital-id-card">
-                    <img src="${found.photo}" alt="ID Avatar" class="id-avatar">
-                    <div style="overflow:hidden;">
-                        <span style="font-size:0.55rem; color:var(--gold-solid); letter-spacing:1px; font-weight:bold;">OFFICIAL VENDOR IDENTITY CARD (${found.flag || '🌐'} ${found.country || 'Global'})</span>
-                        <h3 style="margin:2px 0; color:#fff; font-size:1.05rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${found.biz}</h3>
-                        <p style="margin:0; font-size:0.65rem; color:#aaa;">Owner: ${found.name}</p>
-                        <p style="margin:0; font-size:0.63rem; color:var(--gold-solid);">ID: ${found.id}</p>
+                card.innerHTML = `
+                    ${mediaContent}
+                    <div class="product-bottom-actions">
+                        <div class="action-item view-icon"><i class="fa-solid fa-eye"></i> <span>${stats.views}</span></div>
+                        <div class="action-item like-icon ${stats.isLiked ? 'liked' : ''}" onclick="toggleProductLike('${item.id}', this)"><i class="fa-solid fa-heart"></i> <span>${stats.likes}</span></div>
+                        <div class="action-item share-icon" onclick="openShareModal('${item.title}')"><i class="fa-solid fa-share-nodes"></i> Share</div>
                     </div>
-                </div>
+                `;
+                feed.appendChild(card);
+            });
+        }
+        window.loadCombinedProducts = loadCombinedProducts;
 
-                <div style="margin:8px 0 2px 0;"><span class="cv-label">Vendor Growth & Analysis</span></div>
-                <div class="luxury-chart">
-                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 10%;"></div><span class="chart-label">Clicks</span></div>
-                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 10%;"></div><span class="chart-label">Parcels</span></div>
-                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 10%;"></div><span class="chart-label">Earnings</span></div>
-                </div>
-
-                <div class="dash-stats-grid">
-                    <div class="dash-stat-box"><span class="cv-label">Total Earnings</span><span class="number" style="color:var(--gold-solid);">$0.00</span></div>
-                    <div class="dash-stat-box"><span class="cv-label">Parcels Shipped</span><span class="number">0</span></div>
-                    <div class="dash-stat-box"><span class="cv-label">Product Clicks</span><span class="number">0</span></div>
-                </div>
-
-                <div style="margin-top:12px;">
-                    <span class="cv-label">📦 Product Inventory & Performance Ledger</span>
-                    <div class="ledger-table-wrap">
-                        <table class="ledger-table">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Product Name</th>
-                                    <th>Category</th>
-                                    <th>Stock</th>
-                                    <th>Global Price</th>
-                                    <th>Country Discount</th>
-                                    <th>Sizes</th>
-                                    <th>Colors</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${inventoryRows}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div style="margin-top:16px;">
-                    <span class="cv-label">🚚 Automated Tracking, Shipping & Payoneer Payouts</span>
-                    <div class="ledger-table-wrap">
-                        <table class="ledger-table">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Product & ID</th>
-                                    <th>Payment Status</th>
-                                    <th>Tracking ID</th>
-                                    <th>Courier Service</th>
-                                    <th>Withdraw Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${trackingRows}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            `;
-            document.getElementById('partnerWelcomeBox').innerHTML = dashHtml;
+        function openShareModal(title) {
+            currentShareTitle = title;
+            let currentUrl = window.location.href.split('?')[0];
+            let affiliateShareLink = currentAffiliateId ? `${currentUrl}?aff=${currentAffiliateId}` : currentUrl;
+            document.getElementById('shareLinkInput').value = affiliateShareLink;
+            document.getElementById('shareModalOverlay').style.display = 'flex';
         }
 
-        function publishProduct() {
-            let name = document.getElementById('prodName').value;
-            let title = document.getElementById('prodTitle').value;
-            let desc = document.getElementById('prodDesc').value;
-            let cat = document.getElementById('prodCategory').value;
-            let stock = document.getElementById('prodStock').value;
-            let sizes = document.getElementById('prodSizes').value;
-            let colors = document.getElementById('prodColors').value;
-            let weight = document.getElementById('prodWeight').value;
-            let dimensions = document.getElementById('prodDimensions').value;
-            let priceGlobal = document.getElementById('priceGlobal').value;
-            let discountCountry = document.getElementById('discountCountry').value;
-            let discountPercent = document.getElementById('discountPercent').value;
-            let imgUrl = document.getElementById('prodImgUrl').value;
-            let videoUrl = document.getElementById('prodVideoUrl').value;
+        function closeShareModal(e) {
+            if(e.target.id === 'shareModalOverlay') document.getElementById('shareModalOverlay').style.display = 'none';
+        }
 
-            if(!name || !title || !desc || !cat || !stock || !weight || !dimensions || !priceGlobal || !imgUrl || !videoUrl) {
-                alert("Please fill in all mandatory product details, shipping weight, dimensions & links.");
-                return;
-            }
+        function copyShareLink() {
+            let input = document.getElementById('shareLinkInput');
+            input.select();
+            navigator.clipboard.writeText(input.value);
+            showCustomToast("Affiliate referral link copied successfully!");
+            document.getElementById('shareModalOverlay').style.display = 'none';
+        }
 
-            let product = {
-                name: name, 
-                title: title, 
-                desc: desc,
-                category: cat, 
-                stock: stock,
-                sizes: sizes,
-                colors: colors,
-                weight: weight,
-                dimensions: dimensions,
-                global: '$ ' + priceGlobal,
-                countryDiscount: discountCountry + " (" + discountPercent + ")",
-                imgUrl: imgUrl,
-                videoUrl: videoUrl,
-                status: 'Paid (Customer Confirmed)',
-                trackingId: 'TRK-' + Math.floor(100000 + Math.random() * 900000)
+        function shareToPlatform(platform) {
+            let linkVal = document.getElementById('shareLinkInput').value;
+            let url = encodeURIComponent(linkVal);
+            let text = encodeURIComponent(`✨ Check out "${currentShareTitle}" on mrmasudar.com 🌟`);
+            let targetUrl = `https://api.whatsapp.com/send?text=${text}%20${url}`;
+            if(platform === 'telegram') targetUrl = `https://t.me/share/url?url=${url}&text=${text}`;
+            else if(platform === 'imo') targetUrl = `https://api.whatsapp.com/send?text=${text}%20${url}`;
+            else if(platform === 'facebook' || platform === 'messenger') targetUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+            else if(platform === 'tiktok') targetUrl = `https://www.tiktok.com/`;
+            else if(platform === 'instagram') targetUrl = `https://www.instagram.com/`;
+            else if(platform === 'youtube') targetUrl = `https://www.youtube.com/`;
+            else if(platform === 'linkedin') targetUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+            else if(platform === 'twitter') targetUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+            window.open(targetUrl, '_blank');
+            document.getElementById('shareModalOverlay').style.display = 'none';
+        }
+
+        // ফাস্টার এনিমেশন সাইক্লিং (স্পিড বৃদ্ধি করা হয়েছে)
+        function startSequentialAnimation() {
+            if(cyclingInterval) clearInterval(cyclingInterval);
+            const items = document.querySelectorAll('.cycling-content-item');
+            let currentIndex = 0;
+            
+            items.forEach(el => el.classList.remove('active'));
+            items[0].classList.add('active');
+
+            cyclingInterval = setInterval(() => {
+                items[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % items.length;
+                items[currentIndex].classList.add('active');
+            }, 2200);
+        }
+
+        function openProductModal(id) {
+            let product = getAllProducts().find(p => p.id == id);
+            if(!product) return;
+            activeCurrentProduct = product;
+            currentModalQty = 1;
+            document.getElementById('modalProductQty').value = currentModalQty;
+
+            let stats = getDynamicProductStats(product.id);
+            document.getElementById('modalViewCount').innerText = stats.views;
+            document.getElementById('modalLikeCount').innerText = stats.likes;
+            let likeBtnItem = document.getElementById('modalLikeBtnItem');
+            if(stats.isLiked) likeBtnItem.classList.add('liked');
+            else likeBtnItem.classList.remove('liked');
+            likeBtnItem.onclick = () => toggleProductLike(product.id, likeBtnItem);
+
+            document.getElementById('modalShareBtnItem').onclick = () => {
+                document.getElementById('productModal').style.display = 'none';
+                openShareModal(product.title);
             };
 
-            if(!currentActiveVendor.uploadedProducts) currentActiveVendor.uploadedProducts = [];
-            currentActiveVendor.uploadedProducts.push(product);
+            document.getElementById('modalTitle').innerText = product.title;
+            document.getElementById('modalPrice').innerText = product.price;
+            document.getElementById('modalBdDiscount').innerText = product.bdDiscount;
+            document.getElementById('modalDesc').innerText = product.desc;
+            document.getElementById('specStock').innerText = product.stock || "Available";
+            document.getElementById('specPackaging').innerText = product.packaging || "Luxury Box";
 
-            let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
-            let idx = sellers.findIndex(s => s.id === currentActiveVendor.id);
-            if(idx !== -1) {
-                sellers[idx] = currentActiveVendor;
-                localStorage.setItem('mme_sellers', JSON.stringify(sellers));
+            const slider = document.getElementById('modalMediaSlider');
+            const thumbs = document.getElementById('modalThumbsRow');
+            
+            slider.innerHTML = product.images.map((img, idx) => `<div class="modal-slide-item" id="slide-${idx}"><img src="${img}"></div>`).join('');
+            thumbs.innerHTML = product.images.map((img, idx) => `<img src="${img}" class="modal-thumb-img ${idx === 0 ? 'active' : ''}" onclick="switchSlide(${idx})">`).join('');
+
+            const colorBox = document.getElementById('modalColorCirclesInline');
+            const colorItemBox = document.getElementById('cyclingColorItemBox');
+            if(product.colors && product.colors.length > 0) {
+                colorItemBox.style.display = 'flex';
+                selectedColor = product.colors[0];
+                colorBox.innerHTML = product.colors.map((c, idx) => `
+                    <span class="modal-circle-item ${idx === 0 ? 'selected' : ''}" style="background-color: ${c};" onclick="selectModalColor('${c}', this)"></span>
+                `).join('');
+            } else { colorItemBox.style.display = 'none'; selectedColor = "Standard"; }
+
+            const sizeBox = document.getElementById('modalSizePillsInline');
+            const sizeItemBox = document.getElementById('cyclingSizeItemBox');
+            if(product.sizes && product.sizes.length > 0) {
+                sizeItemBox.style.display = 'flex';
+                selectedSize = product.sizes[0];
+                sizeBox.innerHTML = product.sizes.map((s, idx) => `
+                    <span class="modal-pill-item ${idx === 0 ? 'selected' : ''}" onclick="selectModalSize('${s}', this)">${s}</span>
+                `).join('');
+            } else { sizeItemBox.style.display = 'none'; selectedSize = "Standard"; }
+
+            document.getElementById('productModal').style.display = 'flex';
+            startSequentialAnimation();
+        }
+
+        function switchSlide(idx) {
+            let slideEl = document.getElementById(`slide-${idx}`);
+            if(slideEl) slideEl.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+            document.querySelectorAll('.modal-thumb-img').forEach((t, i) => {
+                if(i === idx) t.classList.add('active');
+                else t.classList.remove('active');
+            });
+        }
+
+        function selectModalColor(cVal, el) {
+            selectedColor = cVal;
+            document.querySelectorAll('.modal-circle-item').forEach(i => i.classList.remove('selected'));
+            el.classList.add('selected');
+        }
+
+        function selectModalSize(sVal, el) {
+            selectedSize = sVal;
+            document.querySelectorAll('.modal-pill-item').forEach(i => i.classList.remove('selected'));
+            el.classList.add('selected');
+        }
+
+        function updateModalQuantity(change) {
+            currentModalQty += change;
+            if(currentModalQty < 1) currentModalQty = 1;
+            document.getElementById('modalProductQty').value = currentModalQty;
+        }
+
+        function closeProductModal() {
+            if(cyclingInterval) clearInterval(cyclingInterval);
+            document.getElementById('productModal').style.display = 'none';
+        }
+
+        // ঝুড়ির লাক্সারি রিয়েলিস্টিক কয়েন সাউন্ড ও বাউন্সিং এফেক্ট
+        function playHeavyLuxuryCoinSound() {
+            try {
+                let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                let osc = audioCtx.createOscillator();
+                let gainNode = audioCtx.createGain();
+                
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
+                osc.frequency.exponentialRampToValueAtTime(880.00, audioCtx.currentTime + 0.15); // A5
+                
+                gainNode.gain.setValueAtTime(0.25, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.55);
+                
+                osc.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.55);
+            } catch(e) {}
+        }
+
+        async function addToCartWithFirebase(buttonEl) {
+            if(!activeCurrentProduct) return;
+            
+            let cartItem = {
+                productId: activeCurrentProduct.id,
+                sellerId: activeCurrentProduct.sellerId || 'admin-masud',
+                title: activeCurrentProduct.title,
+                price: activeCurrentProduct.price,
+                quantity: currentModalQty,
+                color: selectedColor,
+                size: selectedSize,
+                image: activeCurrentProduct.images[0],
+                affiliateRef: currentAffiliateId || 'direct',
+                timestamp: new Date().toISOString()
+            };
+
+            let badge = document.getElementById('cartCount');
+            let currentCount = parseInt(localStorage.getItem('mme_cart_count') || badge.innerText || '0') + currentModalQty;
+            localStorage.setItem('mme_cart_count', currentCount);
+            if(badge) badge.innerText = currentCount;
+
+            try {
+                if(window.db && window.firebaseAddDoc && window.firebaseCollection) {
+                    await window.firebaseAddDoc(window.firebaseCollection(window.db, "global_carts"), cartItem);
+                    if(typeof window.fetchCartCountFromFirebase === 'function') {
+                        window.fetchCartCountFromFirebase();
+                    }
+                }
+            } catch(e) {}
+
+            closeProductModal();
+            playFlyingCoinAnimation(buttonEl);
+            showCustomToast("Product added to cart successfully!");
+        }
+
+        function playFlyingCoinAnimation(buttonEl) {
+            try {
+                let btnRect = buttonEl.getBoundingClientRect();
+                let cartRect = document.getElementById('floatingCart').getBoundingClientRect();
+                
+                let coin = document.createElement('div');
+                coin.className = 'flying-coin';
+                coin.style.left = `${btnRect.left + btnRect.width/2 - 11}px`;
+                coin.style.top = `${btnRect.top + btnRect.height/2 - 11}px`;
+                document.body.appendChild(coin);
+
+                setTimeout(() => {
+                    coin.style.left = `${cartRect.left + cartRect.width/2 - 11}px`;
+                    coin.style.top = `${cartRect.top + cartRect.height/2 - 11}px`;
+                    coin.style.transform = 'scale(0.35) rotate(1080deg)';
+                    coin.style.opacity = '0.3';
+                }, 40);
+
+                setTimeout(() => {
+                    coin.remove();
+                    playHeavyLuxuryCoinSound();
+                    let cartEl = document.getElementById('floatingCart');
+                    cartEl.classList.add('cart-zoom-anim');
+                    setTimeout(() => cartEl.classList.remove('cart-zoom-anim'), 500);
+                }, 950);
+            } catch(e) {}
+        }
+
+        async function handleCartClick() {
+            if(typeof window.fetchCartCountFromFirebase === 'function') {
+                await window.fetchCartCountFromFirebase();
             }
+            window.location.href = "https://out.mrmasudar.com";
+        }
 
-            alert("Product successfully published with automated tracking and specifications!");
-            renderVendorDashboard(currentActiveVendor);
+        function performSearchSubmit() {
+            let q = document.getElementById('searchInput').value.toLowerCase();
+            loadCombinedProducts(getAllProducts().filter(p => p.title.toLowerCase().includes(q)));
+        }
+        function handleSearchKey(e) { if(e.key === 'Enter') performSearchSubmit(); }
+
+        function triggerCameraAuto() {
+            let input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = (e) => {
+                let file = e.target.files[0];
+                if(file) showCustomToast("Visual image loaded: " + file.name);
+            };
+            input.click();
+        }
+
+        function triggerVoiceAuto() {
+            if('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                try {
+                    let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                    let recognition = new SpeechRecognition();
+                    recognition.lang = 'en-US';
+                    recognition.start();
+                    recognition.onresult = (event) => {
+                        let query = event.results[0][0].transcript;
+                        document.getElementById('searchInput').value = query;
+                        performSearchSubmit();
+                    };
+                } catch(e) {
+                    let text = prompt("Voice Search Keyword:");
+                    if(text) { document.getElementById('searchInput').value = text; performSearchSubmit(); }
+                }
+            } else {
+                let text = prompt("Voice Search Keyword:");
+                if(text) { document.getElementById('searchInput').value = text; performSearchSubmit(); }
+            }
         }
     </script>
-
 </body>
 </html>
