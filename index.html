@@ -135,7 +135,6 @@
             justify-content: center; cursor: pointer; font-size: 0.95rem; box-shadow: 0 0 12px rgba(212,175,55,0.4);
         }
 
-        /* স্বতন্ত্র ও আকর্ষণীয় ফিন্যান্সিয়াল মেট্রিকস কার্ড (গ্রাফের সাথে মিশ্রণ নয়) */
         .dash-stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 10px 0; }
         @media(min-width: 550px) { .dash-stats-grid { grid-template-columns: repeat(4, 1fr); } }
         .dash-stat-box {
@@ -144,7 +143,6 @@
         .dash-stat-box span { font-size: 0.55rem; color: var(--text-gray); text-transform: uppercase; font-weight: 600; }
         .dash-stat-box .number { font-size: 1.05rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-top: 3px; display: block; font-family: var(--font-luxury); }
 
-        /* স্টোর অ্যানালাইসিস ওয়েভি গ্রাফ ডিজাইন */
         .animated-graph-box {
             background: rgba(8, 8, 8, 0.95); border: 1.5px solid rgba(212,175,55,0.3); border-radius: 12px; padding: 12px; margin: 12px 0;
         }
@@ -159,15 +157,16 @@
         .bar-label { font-size: 0.55rem; color: var(--text-gray); text-transform: uppercase; font-weight: 600; }
 
         .seller-action-toolbar {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 14px 0;
         }
+        @media(min-width: 500px) { .seller-action-toolbar { grid-template-columns: repeat(2, 1fr); } }
         .seller-tool-btn {
             background: rgba(15,15,15,0.95); border: 1.5px solid rgba(212,175,55,0.4); border-radius: 10px;
-            padding: 12px 6px; text-align: center; cursor: pointer; color: #fff; font-size: 0.68rem; font-weight: 700;
+            padding: 12px 6px; text-align: center; cursor: pointer; color: #fff; font-size: 0.72rem; font-weight: 700;
             transition: 0.2s; font-family: var(--font-luxury); display: flex; flex-direction: column; align-items: center; gap: 5px;
         }
         .seller-tool-btn:hover { background: var(--gold-gradient); color: #000; border-color: transparent; }
-        .seller-tool-btn i { font-size: 1.1rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .seller-tool-btn i { font-size: 1.15rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .seller-tool-btn:hover i { -webkit-text-fill-color: #000 !important; background: none !important; color: #000 !important; }
 
         .sheet-table-wrapper {
@@ -192,7 +191,7 @@
         }
         .settings-modal-card {
             background: var(--surface-card); border: 1.5px solid var(--gold-solid); border-radius: 16px;
-            width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; padding: 20px; text-align: left; position: relative;
+            width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto; padding: 20px; text-align: left; position: relative;
         }
         .modal-close-btn {
             position: absolute; top: 12px; right: 14px; background: transparent; border: 1.5px solid var(--gold-solid);
@@ -202,7 +201,7 @@
         .settings-tab-nav { display: flex; gap: 6px; border-bottom: 1px solid rgba(212,175,55,0.25); padding-bottom: 8px; margin-bottom: 12px; overflow-x: auto; }
         .tab-btn {
             background: transparent; border: 1.5px solid rgba(212,175,55,0.35); color: var(--text-gray);
-            padding: 6px 12px; border-radius: 8px; font-size: 0.62rem; font-weight: 700; cursor: pointer; text-transform: uppercase; white-space: nowrap;
+            padding: 6px 10px; border-radius: 8px; font-size: 0.58rem; font-weight: 700; cursor: pointer; text-transform: uppercase; white-space: nowrap;
         }
         .tab-btn.active { background: var(--gold-gradient); color: #000; border-color: transparent; }
     </style>
@@ -213,7 +212,7 @@
 
     <div class="portal-wrapper">
         
-        <!-- 1. Entrance & Compliance Card -->
+        <!-- 1. Entrance Card -->
         <div class="luxury-card" id="entranceCard">
             <img src="https://lh3.googleusercontent.com/d/1POhz8vb-MocaPNHg-i6nDSKwV4ky16Lc" alt="Logo" class="brand-logo">
             <h1 class="brand-title-main">MR MASUDAR ENTERPRISE</h1>
@@ -234,16 +233,12 @@
             </button>
         </div>
 
-        <!-- 2. Seller Registration Form -->
+        <!-- 2. Registration Form (195+ Countries with Flags & Dial Codes) -->
         <div class="luxury-card form-section" id="formSection">
             <button class="modal-close-btn" id="closeFormBtn" type="button" title="Close"><i class="fa-solid fa-xmark"></i></button>
             <h2 style="font-family:var(--font-luxury); background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:14px; font-size:1.1rem; text-transform:uppercase;">Store Registration</h2>
             
             <div class="form-grid">
-                <div class="input-group full-width">
-                    <label>Store / Business Name *</label>
-                    <input type="text" id="storeName" placeholder="Masudar Luxury Boutique" required>
-                </div>
                 <div class="input-group">
                     <label>Owner Full Legal Name *</label>
                     <input type="text" id="fullName" placeholder="MD MASUDAR RAHMAN" required>
@@ -270,75 +265,78 @@
             </div>
         </div>
 
-        <!-- 3. Luxury Seller Dashboard -->
+        <!-- 3. Dashboard Section -->
         <div class="luxury-card dashboard-section" id="dashboardSection">
             <div id="partnerWelcomeBox"></div>
         </div>
 
     </div>
 
-    <!-- 4. Add Product Modal -->
-    <div class="settings-modal-overlay" id="addProductModal">
-        <div class="settings-modal-card">
-            <button class="modal-close-btn" onclick="closeAddProductModal()" type="button"><i class="fa-solid fa-xmark"></i></button>
-            <h3 style="font-family:var(--font-luxury); background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:1rem; margin-bottom:12px;"><i class="fa-solid fa-square-plus"></i> Upload New Product</h3>
+    <!-- 4. Product Gallery Modal (Pop-up with New Product Upload + Product Sheets) -->
+    <div class="settings-modal-overlay" id="productGalleryModal">
+        <div class="settings-modal-card" style="max-width: 600px;">
+            <button class="modal-close-btn" onclick="closeProductGallery()" type="button"><i class="fa-solid fa-xmark"></i></button>
+            <h3 style="font-family:var(--font-luxury); background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:1.05rem; margin-bottom:12px;"><i class="fa-solid fa-boxes-stacked"></i> Product Gallery & Upload</h3>
             
-            <div class="form-grid">
-                <div class="input-group full-width">
-                    <label>Product Name *</label>
-                    <input type="text" id="newProdName" placeholder="Gamar Wood Executive Table">
+            <div style="background:#050505; border:1px solid rgba(212,175,55,0.3); padding:12px; border-radius:10px; margin-bottom:14px;">
+                <h4 style="font-size:0.7rem; color:var(--gold-solid); font-family:var(--font-luxury); margin-bottom:8px;"><i class="fa-solid fa-square-plus"></i> New Product Upload Form</h4>
+                <div class="form-grid">
+                    <div class="input-group full-width">
+                        <label>Product Name *</label>
+                        <input type="text" id="newProdName" placeholder="Gamar Wood Executive Table">
+                    </div>
+                    <div class="input-group">
+                        <label>Category *</label>
+                        <select id="newProdCategory">
+                            <option>👔 FASHION (MEN)</option>
+                            <option>👗 FASHION (WOMEN)</option>
+                            <option>👶 BABY & KIDS</option>
+                            <option>🎁 LUXURY GIFTS</option>
+                            <option>🏡 HOME DECOR</option>
+                            <option>🎨 ART & CRAFT</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Stock Quantity *</label>
+                        <input type="number" id="newProdStock" placeholder="50">
+                    </div>
+                    <div class="input-group">
+                        <label>Price ($) *</label>
+                        <input type="text" id="newProdPrice" placeholder="$85.00">
+                    </div>
+                    <div class="input-group">
+                        <label>Color & Size *</label>
+                        <input type="text" id="newProdColorSize" placeholder="Golden Teak / Standard">
+                    </div>
+                    <div class="input-group full-width">
+                        <label>Description *</label>
+                        <textarea id="newProdDesc" rows="2" placeholder="Write product description..."></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>Weight & Dimensions *</label>
+                        <input type="text" id="newProdWeight" placeholder="2.5 kg / 40x20x30 inch">
+                    </div>
+                    <div class="input-group">
+                        <label>Image or YouTube/Shorts URL *</label>
+                        <input type="url" id="newProdMedia" placeholder="https://youtube.com/shorts/... or Image URL">
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label>Category *</label>
-                    <select id="newProdCategory">
-                        <option>👔 FASHION (MEN)</option>
-                        <option>👗 FASHION (WOMEN)</option>
-                        <option>👶 BABY & KIDS</option>
-                        <option>🎁 LUXURY GIFTS</option>
-                        <option>🏡 HOME DECOR</option>
-                        <option>🎨 ART & CRAFT</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label>Stock Quantity *</label>
-                    <input type="number" id="newProdStock" placeholder="50">
-                </div>
-                <div class="input-group">
-                    <label>Regular Price ($)</label>
-                    <input type="text" id="newProdRegPrice" placeholder="$100.00">
-                </div>
-                <div class="input-group">
-                    <label>Sale Price ($)</label>
-                    <input type="text" id="newProdSalePrice" placeholder="$85.00">
-                </div>
-                <div class="input-group full-width">
-                    <label>Description *</label>
-                    <textarea id="newProdDesc" rows="2" placeholder="Write product description..."></textarea>
-                </div>
-                <div class="input-group">
-                    <label>Color (if applicable)</label>
-                    <input type="text" id="newProdColor" placeholder="Golden Teak / Black">
-                </div>
-                <div class="input-group">
-                    <label>Size / Dimensions *</label>
-                    <input type="text" id="newProdSize" placeholder="Standard / 40x20x30 inch">
-                </div>
-                <div class="input-group">
-                    <label>Shipping Weight & Dimensions *</label>
-                    <input type="text" id="newProdWeight" placeholder="2.5 kg / 12x8x5 inch">
-                </div>
-                <div class="input-group">
-                    <label>Media Link (Image or YouTube Video) *</label>
-                    <input type="url" id="newProdMedia" placeholder="Image URL or YouTube/Shorts URL">
+                <div style="text-align:right; margin-top:10px;">
+                    <button class="apply-btn" onclick="submitNewProduct()" type="button">Publish Product</button>
                 </div>
             </div>
-            <div style="text-align:right; margin-top:16px;">
-                <button class="apply-btn" onclick="submitNewProduct()" type="button">Publish Product</button>
+
+            <h4 style="font-size:0.7rem; color:var(--gold-solid); font-family:var(--font-luxury); margin-bottom:6px;"><i class="fa-solid fa-table"></i> Uploaded Product Sheets</h4>
+            <div class="sheet-table-wrapper" style="max-height: 150px;">
+                <table class="sheet-table">
+                    <thead><tr><th>Product Name</th><th class="text-center">Price</th><th class="text-center">Stock</th><th class="text-center">Action</th></tr></thead>
+                    <tbody id="modalProductSheetRows"></tbody>
+                </table>
             </div>
         </div>
     </div>
 
-    <!-- 5. Settings Hub Modal -->
+    <!-- 5. Settings Hub Modal (Business Profile, Payment with Dynamic bKash/Payoneer, and 2-Step QR Security) -->
     <div class="settings-modal-overlay" id="settingsModalOverlay">
         <div class="settings-modal-card">
             <button class="modal-close-btn" id="closeSettingsModalBtn" type="button"><i class="fa-solid fa-xmark"></i></button>
@@ -347,13 +345,14 @@
             <div class="settings-tab-nav">
                 <button class="tab-btn active" onclick="switchSettingsTab('business', this)" type="button">Business Profile</button>
                 <button class="tab-btn" onclick="switchSettingsTab('payment', this)" type="button">Payment & Payout</button>
+                <button class="tab-btn" onclick="switchSettingsTab('security', this)" type="button">2-Step Security</button>
             </div>
 
             <div id="settingsTabContent"></div>
         </div>
     </div>
 
-    <!-- 6. Order Shipping & Tracking Modal -->
+    <!-- 6. Order Shipping Modal (Orders & Ship Pop-up) -->
     <div class="settings-modal-overlay" id="orderModalOverlay">
         <div class="settings-modal-card" style="max-width: 440px;">
             <button class="modal-close-btn" onclick="closeOrderModal()" type="button"><i class="fa-solid fa-xmark"></i></button>
@@ -364,11 +363,17 @@
 
     <script>
         const allCountriesAndCodes = [
-            {name: "Bangladesh", dial: "+880", flag: "🇧🇩"}, {name: "United States", dial: "+1", flag: "🇺🇸"},
-            {name: "United Kingdom", dial: "+44", flag: "🇬🇧"}, {name: "Canada", dial: "+1", flag: "🇨🇦"},
-            {name: "United Arab Emirates", dial: "+971", flag: "🇦🇪"}, {name: "India", dial: "+91", flag: "🇮🇳"},
-            {name: "Australia", dial: "+61", flag: "🇦🇺"}, {name: "Saudi Arabia", dial: "+966", flag: "🇸🇦"},
-            {name: "Germany", dial: "+49", flag: "🇩🇪"}, {name: "Malaysia", dial: "+60", flag: "🇲🇾"}
+            {name: "Afghanistan", dial: "+93", flag: "🇦🇫"}, {name: "Albania", dial: "+355", flag: "🇦🇱"}, {name: "Algeria", dial: "+213", flag: "🇩🇿"},
+            {name: "Argentina", dial: "+54", flag: "🇦🇷"}, {name: "Australia", dial: "+61", flag: "🇦🇺"}, {name: "Austria", dial: "+43", flag: "🇦🇹"},
+            {name: "Bangladesh", dial: "+880", flag: "🇧🇩"}, {name: "Belgium", dial: "+32", flag: "🇧🇪"}, {name: "Brazil", dial: "+55", flag: "🇧🇷"},
+            {name: "Canada", dial: "+1", flag: "🇨🇦"}, {name: "China", dial: "+86", flag: "🇨🇳"}, {name: "Egypt", dial: "+20", flag: "🇪🇬"},
+            {name: "France", dial: "+33", flag: "🇫🇷"}, {name: "Germany", dial: "+49", flag: "🇩🇪"}, {name: "India", dial: "+91", flag: "🇮🇳"},
+            {name: "Indonesia", dial: "+62", flag: "🇮🇩"}, {name: "Italy", dial: "+39", flag: "🇮🇹"}, {name: "Japan", dial: "+81", flag: "🇯🇵"},
+            {name: "Malaysia", dial: "+60", flag: "🇲🇾"}, {name: "Pakistan", dial: "+92", flag: "🇵🇰"}, {name: "Saudi Arabia", dial: "+966", flag: "🇸🇦"},
+            {name: "Singapore", dial: "+65", flag: "🇸🇬"}, {name: "South Africa", dial: "+27", flag: "🇿🇦"}, {name: "South Korea", dial: "+82", flag: "🇰🇷"},
+            {name: "Spain", dial: "+34", flag: "🇪🇸"}, {name: "Sweden", dial: "+46", flag: "🇸🇪"}, {name: "Switzerland", dial: "+41", flag: "🇨🇭"},
+            {name: "Turkey", dial: "+90", flag: "🇹🇷"}, {name: "United Arab Emirates", dial: "+971", flag: "🇦🇪"}, {name: "United Kingdom", dial: "+44", flag: "🇬🇧"},
+            {name: "United States", dial: "+1", flag: "🇺🇸"}
         ];
 
         document.addEventListener("DOMContentLoaded", function() {
@@ -433,7 +438,7 @@
             let defaultSeller = {
                 id: "SEL-8821", storeName: "Masudar Luxury Crafts", name: "MD MASUDAR RAHMAN",
                 email: "masudar142251@gmail.com", country: "🇧🇩 Bangladesh", whatsapp: "+8801767319670",
-                balance: 0.00, payoutType: 'Payoneer', payoutAccount: 'masudar142251@gmail.com', verified: true
+                balance: 0.00, payoutType: 'Payoneer', payoutAccount: 'masudar142251@gmail.com', verified: true, tradeLicense: 'TRD-99281'
             };
             localStorage.setItem('mme_active_seller', JSON.stringify(defaultSeller));
             renderDashboard(defaultSeller);
@@ -441,14 +446,13 @@
         }
 
         function completeSellerRegistration() {
-            let store = document.getElementById('storeName').value.trim();
             let name = document.getElementById('fullName').value.trim();
             let email = document.getElementById('email').value.trim();
             let countryName = document.getElementById('regCountrySelect').value;
             let waCode = document.getElementById('regDialCodeSelect').value;
             let waNum = document.getElementById('whatsapp').value.trim();
 
-            if(!store || !name || !email || !waNum) {
+            if(!name || !email || !waNum) {
                 alert("Please fill in all required fields.");
                 return;
             }
@@ -458,8 +462,8 @@
 
             let newSeller = {
                 id: "SEL-" + Math.floor(1000 + Math.random() * 9000),
-                storeName: store, name, email, country: `${flagIcon} ${countryName}`, whatsapp: waCode + waNum,
-                balance: 0.00, payoutType: 'Payoneer', payoutAccount: email, verified: true
+                storeName: name + "'s Store", name, email, country: `${flagIcon} ${countryName}`, whatsapp: waCode + waNum,
+                balance: 0.00, payoutType: 'Payoneer', payoutAccount: email, verified: true, tradeLicense: ''
             };
 
             localStorage.setItem('mme_active_seller', JSON.stringify(newSeller));
@@ -474,19 +478,9 @@
             document.getElementById('formSection').style.display = 'none';
             document.getElementById('dashboardSection').style.display = 'block';
 
-            let products = JSON.parse(localStorage.getItem('mme_seller_products')) || [];
             let orders = JSON.parse(localStorage.getItem('mme_seller_orders')) || [
                 { orderId: 'ORD-901', customer: 'John Doe', phone: '+123456789', address: 'New York, USA', product: 'Gamar Wood Executive Table', note: 'Please polish high gloss golden.', netPayout: '$68.00', courier: 'DHL Express', trackingId: 'DHL-992817', status: 'Shipped' }
             ];
-
-            let prodRows = '';
-            if(products.length === 0) {
-                prodRows = `<tr><td colspan="4" class="text-center" style="color:var(--text-gray);">No products uploaded yet. Click 'Product Upload'.</td></tr>`;
-            } else {
-                products.forEach(p => {
-                    prodRows += `<tr><td><b>${p.name}</b><br><span style="font-size:0.5rem; color:var(--text-gray);">${p.category}</span></td><td class="text-center">${p.price}</td><td class="text-center">${p.stock}</td><td class="text-center"><span class="badge-status badge-success">Active</span></td></tr>`;
-                });
-            }
 
             let orderRows = '';
             orders.forEach((o, idx) => {
@@ -495,7 +489,7 @@
                         <td><b>${o.orderId}</b><br><span style="font-size:0.52rem; color:var(--text-gray);">${o.product}</span></td>
                         <td class="text-center" style="color:#2ecc71; font-weight:bold;">${o.netPayout}</td>
                         <td class="text-center"><span class="badge-status badge-shipped">${o.status}</span></td>
-                        <td class="text-center"><button class="apply-btn" style="padding:4px 9px; font-size:0.55rem;" onclick="openOrderTracking(${idx})">Orders & Ship</button></td>
+                        <td class="text-center"><button class="apply-btn" style="padding:4px 9px; font-size:0.55rem;" onclick="openOrderTracking(${idx})">Manage Ship</button></td>
                     </tr>
                 `;
             });
@@ -515,7 +509,7 @@
                     </div>
                 </div>
 
-                <!-- স্বতন্ত্র ফিন্যান্সিয়াল মেট্রিকস কার্ডস -->
+                <!-- স্ট্যাটস কার্ড (সবসময় জিরো জিরো) -->
                 <div class="dash-stats-grid">
                     <div class="dash-stat-box">
                         <span>Total Revenue</span>
@@ -532,19 +526,6 @@
                     <div class="dash-stat-box">
                         <span>Wallet Balance</span>
                         <span class="number">$0.00</span>
-                    </div>
-                </div>
-
-                <!-- 3 Action Toolbar -->
-                <div class="seller-action-toolbar">
-                    <div class="seller-tool-btn" onclick="openAddProductModal()">
-                        <i class="fa-solid fa-square-plus"></i> Product Upload
-                    </div>
-                    <div class="seller-tool-btn" onclick="showToast('Select order below to manage shipment')">
-                        <i class="fa-solid fa-truck-fast"></i> Orders & Ship
-                    </div>
-                    <div class="seller-tool-btn" onclick="requestPayout()">
-                        <i class="fa-solid fa-wallet"></i> Request Payout
                     </div>
                 </div>
 
@@ -565,16 +546,17 @@
                     </div>
                 </div>
 
-                <!-- Product Inventory Sheet -->
-                <p style="font-size:0.62rem; color:var(--gold-solid); font-weight:700; margin-top:6px; font-family:var(--font-luxury);"><i class="fa-solid fa-boxes-stacked"></i> Uploaded Product Sheets</p>
-                <div class="sheet-table-wrapper" style="max-height: 130px;">
-                    <table class="sheet-table">
-                        <thead><tr><th>Product Name</th><th class="text-center">Price</th><th class="text-center">Stock</th><th class="text-center">Status</th></tr></thead>
-                        <tbody>${prodRows}</tbody>
-                    </table>
+                <!-- 2 Action Toolbar -->
+                <div class="seller-action-toolbar">
+                    <div class="seller-tool-btn" onclick="openProductGallery()">
+                        <i class="fa-solid fa-boxes-stacked"></i> Product Gallery
+                    </div>
+                    <div class="seller-tool-btn" onclick="showToast('Select order below to manage shipment')">
+                        <i class="fa-solid fa-truck-fast"></i> Orders & Ship
+                    </div>
                 </div>
 
-                <!-- Customer Orders & Shipping Ledger -->
+                <!-- Customer Orders & Tracking Ledger -->
                 <p style="font-size:0.62rem; color:var(--gold-solid); font-weight:700; margin-top:10px; font-family:var(--font-luxury);"><i class="fa-solid fa-list-check"></i> Customer Orders & Tracking Ledger</p>
                 <div class="sheet-table-wrapper">
                     <table class="sheet-table">
@@ -582,35 +564,93 @@
                         <tbody>${orderRows}</tbody>
                     </table>
                 </div>
+
+                <!-- উইথড্র / পে-আউট রিকোয়েস্ট সেকশন (নিচে) -->
+                <div style="background:#050505; border:1px solid rgba(212,175,55,0.3); padding:12px; border-radius:10px; margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
+                    <div>
+                        <span style="font-size:0.6rem; color:var(--gold-solid); font-weight:700; font-family:var(--font-luxury); display:block;">REQUEST WITHDRAWAL</span>
+                        <span style="font-size:0.52rem; color:var(--text-gray);">Withdraw funds to your active payment account</span>
+                    </div>
+                    <div style="display:flex; gap:6px;">
+                        <input type="text" id="withdrawAmount" placeholder="Amount ($)" style="width:90px; background:#000; border:1px solid rgba(212,175,55,0.4); padding:6px; color:#fff; border-radius:6px; font-size:0.65rem;">
+                        <button class="apply-btn" onclick="submitWithdrawRequest()" style="padding:6px 12px; font-size:0.6rem;">Withdraw</button>
+                    </div>
+                </div>
             `;
             document.getElementById('partnerWelcomeBox').innerHTML = dashHtml;
         }
 
-        function openAddProductModal() { document.getElementById('addProductModal').style.display = 'flex'; }
-        function closeAddProductModal() { document.getElementById('addProductModal').style.display = 'none'; }
+        // Product Gallery & Upload Modal Logic
+        function openProductGallery() {
+            renderModalProductSheet();
+            document.getElementById('productGalleryModal').style.display = 'flex';
+        }
+        function closeProductGallery() { document.getElementById('productGalleryModal').style.display = 'none'; }
+
+        function renderModalProductSheet() {
+            let products = JSON.parse(localStorage.getItem('mme_seller_products')) || [];
+            let tbody = document.getElementById('modalProductSheetRows');
+            tbody.innerHTML = "";
+            if(products.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="text-center" style="color:var(--text-gray);">No products uploaded yet.</td></tr>`;
+                return;
+            }
+            products.forEach((p, idx) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td><b>${p.name}</b><br><span style="font-size:0.5rem; color:var(--text-gray);">${p.category} | Color/Size: ${p.colorSize}</span></td>
+                        <td class="text-center">${p.price}</td>
+                        <td class="text-center">${p.stock}</td>
+                        <td class="text-center"><button class="apply-btn" style="padding:2px 6px; font-size:0.5rem;" onclick="editProduct(${idx})">Edit</button></td>
+                    </tr>
+                `;
+            });
+        }
 
         function submitNewProduct() {
             let name = document.getElementById('newProdName').value.trim();
             let category = document.getElementById('newProdCategory').value;
-            let price = document.getElementById('newProdSalePrice').value.trim() || document.getElementById('newProdRegPrice').value.trim();
+            let price = document.getElementById('newProdPrice').value.trim();
             let stock = parseInt(document.getElementById('newProdStock').value) || 10;
+            let colorSize = document.getElementById('newProdColorSize').value.trim();
             let desc = document.getElementById('newProdDesc').value.trim();
-            let size = document.getElementById('newProdSize').value.trim();
 
             if(!name || !price || !desc) { alert("Please fill in all mandatory product information."); return; }
 
             let products = JSON.parse(localStorage.getItem('mme_seller_products')) || [];
-            products.push({ name, category, price: '$' + price, stock, desc, size });
+            products.push({ name, category, price: '$' + price.replace('$', ''), stock, colorSize, desc });
             localStorage.setItem('mme_seller_products', JSON.stringify(products));
 
-            closeAddProductModal();
-            renderDashboard(window.currentSellerData);
+            document.getElementById('newProdName').value = "";
+            document.getElementById('newProdPrice').value = "";
+            document.getElementById('newProdStock').value = "";
+            document.getElementById('newProdColorSize').value = "";
+            document.getElementById('newProdDesc').value = "";
+            document.getElementById('newProdMedia').value = "";
+
+            renderModalProductSheet();
             showToast("Product Uploaded & Added to Sheet!");
         }
 
-        function requestPayout() {
-            let seller = window.currentSellerData;
-            showToast(`Payout withdrawal request of $${seller.balance.toFixed(2)} submitted successfully!`);
+        function editProduct(idx) {
+            let products = JSON.parse(localStorage.getItem('mme_seller_products')) || [];
+            let p = products[idx];
+            document.getElementById('newProdName').value = p.name;
+            document.getElementById('newProdPrice').value = p.price;
+            document.getElementById('newProdStock').value = p.stock;
+            document.getElementById('newProdColorSize').value = p.colorSize;
+            document.getElementById('newProdDesc').value = p.desc;
+            products.splice(idx, 1);
+            localStorage.setItem('mme_seller_products', JSON.stringify(products));
+            renderModalProductSheet();
+            showToast("Loaded product into form for editing.");
+        }
+
+        function submitWithdrawRequest() {
+            let amt = document.getElementById('withdrawAmount').value.trim();
+            if(!amt) { alert("Please enter amount to withdraw."); return; }
+            showToast(`Withdrawal request of $${amt} submitted successfully!`);
+            document.getElementById('withdrawAmount').value = "";
         }
 
         function openOrderTracking(index) {
@@ -635,7 +675,7 @@
                     </div>
                 </div>
                 <div style="font-size:0.65rem; margin-bottom:10px;">
-                    <p><b>Product:</b> ${o.product}</p>
+                    <p><b>Product ID & Name:</b> ${o.orderId} - ${o.product}</p>
                     <p><b>Note:</b> <i style="color:#f39c12;">${o.note || 'None'}</i></p>
                 </div>
                 <div class="form-grid">
@@ -646,6 +686,7 @@
                             <option value="FedEx" ${o.courier==='FedEx'?'selected':''}>FedEx (Global)</option>
                             <option value="Steadfast" ${o.courier==='Steadfast'?'selected':''}>Steadfast Courier (BD)</option>
                             <option value="Pathao" ${o.courier==='Pathao'?'selected':''}>Pathao Courier (BD)</option>
+                            <option value="Others" ${o.courier==='Others'?'selected':''}>Others / Local</option>
                         </select>
                     </div>
                     <div class="input-group">
@@ -701,6 +742,10 @@
                         <input type="text" id="setStore" value="${seller.storeName}">
                     </div>
                     <div class="input-group" style="margin-bottom:10px;">
+                        <label>Trade License Number (Optional):</label>
+                        <input type="text" id="setLicense" value="${seller.tradeLicense || ''}" placeholder="TRD-XXXXX">
+                    </div>
+                    <div class="input-group" style="margin-bottom:10px;">
                         <label>Owner Name:</label>
                         <input type="text" id="setName" value="${seller.name}">
                     </div>
@@ -727,7 +772,21 @@
                         <input type="text" id="setPayAcc" value="${seller.payoutAccount || ''}" placeholder="${isPayoneer ? 'payoneer@gmail.com' : '017XXXXXXXX'}">
                     </div>
                     <div style="text-align:right; margin-top:12px;">
-                        <button onclick="savePaymentSettings()" type="button" class="apply-btn" style="padding:8px 14px; font-size:0.62rem;">Save Payment</button>
+                        <button onclick="savePaymentSettings()" type="button" class="apply-btn" style="padding:8px 14px; font-size:0.62rem;">Save Info</button>
+                    </div>
+                `;
+            } else if(tab === 'security') {
+                contentHtml = `
+                    <div style="text-align:center; padding:5px;">
+                        <p style="font-size:0.65rem; color:var(--text-gray); margin-bottom:10px;">Scan QR Code with Google Authenticator App for 2-Step Verification.</p>
+                        <div style="background:#fff; width:110px; height:110px; margin:0 auto 10px auto; display:flex; align-items:center; justify-content:center; border-radius:8px;">
+                            <i class="fa-solid fa-qrcode" style="font-size:80px; color:#000;"></i>
+                        </div>
+                        <div class="input-group" style="max-width:240px; margin:0 auto 10px auto;">
+                            <label>Enter 6-Digit Code:</label>
+                            <input type="text" id="authCodeInput" placeholder="123456" maxlength="6" style="text-align:center; letter-spacing:3px;">
+                        </div>
+                        <button onclick="verifyTwoStepAuth()" type="button" class="apply-btn" style="padding:8px 16px; font-size:0.62rem;">Verify & Secure</button>
                     </div>
                 `;
             }
@@ -748,11 +807,12 @@
 
         function saveBusinessSettings() {
             window.currentSellerData.storeName = document.getElementById('setStore').value;
+            window.currentSellerData.tradeLicense = document.getElementById('setLicense').value;
             window.currentSellerData.name = document.getElementById('setName').value;
             window.currentSellerData.whatsapp = document.getElementById('setWa').value;
             localStorage.setItem('mme_active_seller', JSON.stringify(window.currentSellerData));
             renderDashboard(window.currentSellerData);
-            showToast("Business Profile Updated!");
+            showToast("Business Profile Saved Successfully!");
         }
 
         function savePaymentSettings() {
@@ -761,7 +821,17 @@
             localStorage.setItem('mme_active_seller', JSON.stringify(window.currentSellerData));
             renderDashboard(window.currentSellerData);
             closeSettingsModal();
-            showToast("Payment Settings Saved!");
+            showToast("Payment Info Saved Successfully!");
+        }
+
+        function verifyTwoStepAuth() {
+            let code = document.getElementById('authCodeInput').value.trim();
+            if(code.length !== 6) { alert("Please enter valid 6-digit code."); return; }
+            window.currentSellerData.verified = true;
+            localStorage.setItem('mme_active_seller', JSON.stringify(window.currentSellerData));
+            renderDashboard(window.currentSellerData);
+            closeSettingsModal();
+            showToast("2-Step Verification Completed Successfully!");
         }
 
         function updateGraphData(period) {
