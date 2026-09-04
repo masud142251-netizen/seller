@@ -11,15 +11,15 @@
     
     <style>
         :root {
-            --bg-color: #080808;
-            --surface-card: #121212;
-            --surface-glass: rgba(18, 18, 18, 0.95);
+            --bg-color: #030303;
+            --surface-card: #0c0c0c;
+            --surface-glass: rgba(12, 12, 12, 0.95);
             --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
             --gold-solid: #d4af37;
             --gold-light: #f3e5ab;
-            --border-luxury: rgba(212, 175, 55, 0.4);
+            --border-luxury: rgba(212, 175, 55, 0.35);
             --text-white: #ffffff;
-            --text-gray: #b3b3b3;
+            --text-gray: #b0b0b0;
         }
 
         * {
@@ -39,8 +39,8 @@
             align-items: center;
             justify-content: center;
             overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% 10%, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
-            padding: 10px;
+            background-image: radial-gradient(circle at 50% 10%, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            padding: 8px;
         }
 
         .portal-wrapper { 
@@ -54,50 +54,50 @@
         .luxury-card { 
             background: var(--surface-card); 
             border: 2px solid var(--border-luxury); 
-            border-radius: 20px; 
-            padding: 20px 15px; 
+            border-radius: 16px; 
+            padding: 18px 12px; 
             text-align: center; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.9), 0 0 25px rgba(212,175,55,0.15); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.95), 0 0 25px rgba(212,175,55,0.12); 
             width: 100%; 
             position: relative; 
-            animation: fadeInCard 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
+            animation: fadeInCard 0.5s ease-out; 
         }
         @keyframes fadeInCard { 
-            from { opacity: 0; transform: translateY(20px) scale(0.98); } 
+            from { opacity: 0; transform: translateY(15px) scale(0.98); } 
             to { opacity: 1; transform: translateY(0) scale(1); } 
         }
 
         .brand-logo { 
-            width: 70px; 
-            height: 70px; 
+            width: 65px; 
+            height: 65px; 
             border-radius: 50%; 
             border: 2px solid var(--gold-solid); 
             object-fit: cover; 
-            margin-bottom: 12px; 
+            margin-bottom: 10px; 
             box-shadow: 0 0 12px rgba(212,175,55,0.3); 
             background: #000; 
         }
 
         .title-container {
             display: inline-block;
-            margin-bottom: 18px;
+            margin-bottom: 14px;
             width: 100%;
         }
 
         .luxury-card h1 { 
             font-family: 'Cinzel Decorative', serif; 
-            font-size: 1.15rem; 
+            font-size: 1.1rem; 
             font-weight: 900; 
             background: var(--gold-gradient); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
             text-transform: uppercase; 
-            margin-bottom: 4px; 
+            margin-bottom: 3px; 
         }
 
         .brand-subtitle-line { 
             color: var(--text-gray); 
-            font-size: 0.6rem; 
+            font-size: 0.58rem; 
             letter-spacing: 2px; 
             text-transform: uppercase; 
             font-weight: 600; 
@@ -109,12 +109,12 @@
         .gold-effect-banner { 
             background: var(--surface-glass); 
             border: 1px solid var(--border-luxury); 
-            padding: 14px; 
-            border-radius: 12px; 
-            margin-bottom: 18px; 
-            font-size: 0.73rem; 
+            padding: 12px; 
+            border-radius: 10px; 
+            margin-bottom: 15px; 
+            font-size: 0.7rem; 
             color: #fceea7; 
-            line-height: 1.6; 
+            line-height: 1.5; 
             text-align: left; 
         }
         .gold-effect-banner b { 
@@ -122,48 +122,48 @@
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
             font-family: 'Cinzel', serif; 
-            font-size: 0.85rem; 
+            font-size: 0.8rem; 
             display: block; 
-            margin-bottom: 6px; 
+            margin-bottom: 5px; 
         }
         .gold-effect-banner ul { 
-            margin-left: 15px; 
-            margin-top: 6px; 
-            font-size: 0.7rem; 
+            margin-left: 14px; 
+            margin-top: 5px; 
+            font-size: 0.66rem; 
             color: #ddd; 
         }
         .gold-effect-banner li { 
-            margin-bottom: 5px; 
+            margin-bottom: 4px; 
         }
 
         .apply-btn { 
             display: inline-block; 
             background: var(--gold-gradient); 
-            color: #080808; 
-            padding: 11px 28px; 
-            border-radius: 10px; 
+            color: #030303; 
+            padding: 10px 24px; 
+            border-radius: 8px; 
             font-weight: 800; 
             text-transform: uppercase; 
-            font-size: 0.75rem; 
+            font-size: 0.72rem; 
             letter-spacing: 1px; 
             border: none; 
             cursor: pointer; 
-            box-shadow: 0 4px 15px rgba(212,175,55,0.4); 
+            box-shadow: 0 4px 15px rgba(212,175,55,0.3); 
             transition: all 0.3s ease; 
         }
         .apply-btn:hover { 
             transform: translateY(-2px); 
-            box-shadow: 0 6px 20px rgba(212,175,55,0.6); 
-            filter: brightness(1.15); 
+            box-shadow: 0 6px 20px rgba(212,175,55,0.5); 
+            filter: brightness(1.1); 
         }
 
         .outline-btn { 
             background: transparent; 
             border: 1px solid var(--gold-solid); 
             color: var(--gold-solid); 
-            padding: 8px 20px; 
+            padding: 8px 18px; 
             border-radius: 8px; 
-            font-size: 0.68rem; 
+            font-size: 0.65rem; 
             text-transform: uppercase; 
             letter-spacing: 1px; 
             cursor: pointer; 
@@ -172,58 +172,53 @@
         }
         .outline-btn:hover { 
             background: var(--gold-solid); 
-            color: #080808; 
+            color: #030303; 
         }
 
         .portal-section { display: none; text-align: left; width: 100%; }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .full-width { grid-column: span 2; }
         
-        .input-group { margin-bottom: 6px; }
-        .input-group label { display: block; font-size: 0.65rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 700; }
-        .input-group input, .input-group select, .input-group textarea { width: 100%; background: #000; border: 1.5px solid rgba(212,175,55,0.4); padding: 9px 12px; color: #fff; border-radius: 8px; font-size: 0.75rem; outline: none; transition: 0.3s; }
-        .input-group input:focus, .input-group select:focus, .input-group textarea:focus { border-color: var(--gold-solid); box-shadow: 0 0 10px rgba(212,175,55,0.4); }
+        .input-group { margin-bottom: 5px; }
+        .input-group label { display: block; font-size: 0.62rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; font-weight: 700; }
+        .input-group input, .input-group select, .input-group textarea { width: 100%; background: #000; border: 1.5px solid rgba(212,175,55,0.35); padding: 8px 10px; color: #fff; border-radius: 6px; font-size: 0.72rem; outline: none; transition: 0.3s; }
+        .input-group input:focus, .input-group select:focus, .input-group textarea:focus { border-color: var(--gold-solid); box-shadow: 0 0 8px rgba(212,175,55,0.3); }
 
         .password-field-wrapper { position: relative; width: 100%; }
-        .password-field-wrapper input { width: 100%; padding-right: 35px; }
-        .toggle-password { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--gold-solid); cursor: pointer; font-size: 0.85rem; }
+        .password-field-wrapper input { width: 100%; padding-right: 32px; }
+        .toggle-password { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--gold-solid); cursor: pointer; font-size: 0.8rem; }
 
         .phone-group { display: flex; gap: 6px; }
-        .phone-group select { width: 120px; flex-shrink: 0; }
-        .section-title { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border-luxury); padding-bottom: 4px; margin: 12px 0 8px 0; font-weight: 700; }
+        .phone-group select { width: 110px; flex-shrink: 0; }
+        .section-title { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border-luxury); padding-bottom: 3px; margin: 10px 0 6px 0; font-weight: 700; }
 
-        .dashboard-container { background: linear-gradient(145deg, #0b0b0b, #030303); border: 2px solid var(--border-luxury); border-radius: 14px; padding: 12px; text-align: left; width: 100%; overflow: hidden; }
+        .dashboard-container { background: linear-gradient(145deg, #080808, #020202); border: 1.5px solid var(--border-luxury); border-radius: 12px; padding: 10px; text-align: left; width: 100%; overflow: hidden; }
         
-        .dash-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 12px 0; }
-        .dash-stat-box { background: rgba(20,20,20,0.95); border: 1px solid rgba(212,175,55,0.3); border-radius: 10px; padding: 8px 4px; text-align: center; }
-        .dash-stat-box .number { font-size: 0.9rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-top: 3px; display: block; font-family: 'Cinzel', serif; }
-        .cv-label { color: var(--gold-light); font-weight: 700; text-transform: uppercase; font-size: 0.55rem; letter-spacing: 0.5px; }
+        .dash-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 10px 0; }
+        .dash-stat-box { background: rgba(18,18,18,0.95); border: 1px solid rgba(212,175,55,0.25); border-radius: 8px; padding: 7px 4px; text-align: center; }
+        .dash-stat-box .number { font-size: 0.85rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-top: 2px; display: block; font-family: 'Cinzel', serif; }
+        .cv-label { color: var(--gold-light); font-weight: 700; text-transform: uppercase; font-size: 0.52rem; letter-spacing: 0.5px; }
 
-        .digital-id-card { background: linear-gradient(135deg, #18150a, #080808); border: 2px solid var(--gold-solid); border-radius: 14px; padding: 12px; display: flex; gap: 12px; align-items: center; margin-bottom: 12px; box-shadow: 0 0 15px rgba(212,175,55,0.2); }
-        .id-avatar { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--gold-solid); object-fit: cover; background: #000; flex-shrink: 0; box-shadow: 0 0 10px rgba(212,175,55,0.4); }
+        .digital-id-card { background: linear-gradient(135deg, #141108, #050505); border: 1.5px solid var(--gold-solid); border-radius: 12px; padding: 10px; display: flex; gap: 10px; align-items: center; margin-bottom: 10px; box-shadow: 0 0 12px rgba(212,175,55,0.15); }
+        .id-avatar { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--gold-solid); object-fit: cover; background: #000; flex-shrink: 0; box-shadow: 0 0 8px rgba(212,175,55,0.3); }
 
-        .luxury-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 120px; background: linear-gradient(180deg, #121212, #050505); border: 1.5px solid var(--gold-solid); border-radius: 12px; padding: 12px 8px 6px 8px; margin: 12px 0; }
-        .chart-bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; height: 100%; justify-content: flex-end; }
-        .chart-bar { width: 24px; background: var(--gold-gradient); border-radius: 6px 6px 0 0; }
-        .chart-label { font-size: 0.55rem; color: #ffffff; text-transform: uppercase; font-weight: 700; }
+        .ledger-table-wrap { overflow-x: auto; margin-top: 6px; border-radius: 8px; border: 1px solid rgba(212,175,55,0.25); background: #000; -webkit-overflow-scrolling: touch; }
+        .ledger-table { width: 100%; border-collapse: collapse; font-size: 0.62rem; text-align: left; white-space: nowrap; }
+        .ledger-table th, .ledger-table td { border: 1px solid rgba(212,175,55,0.15); padding: 6px 8px; }
+        .ledger-table th { background: linear-gradient(135deg, #1a1508, #0a0a0a); color: var(--gold-solid); font-weight: 700; text-transform: uppercase; }
 
-        .ledger-table-wrap { overflow-x: auto; margin-top: 8px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.3); background: #000; -webkit-overflow-scrolling: touch; }
-        .ledger-table { width: 100%; border-collapse: collapse; font-size: 0.65rem; text-align: left; white-space: nowrap; }
-        .ledger-table th, .ledger-table td { border: 1px solid rgba(212,175,55,0.2); padding: 7px 9px; }
-        .ledger-table th { background: linear-gradient(135deg, #221c0b, #111); color: var(--gold-solid); font-weight: 700; text-transform: uppercase; }
-
-        .media-preview-box { display: flex; gap: 10px; align-items: center; background: #000; padding: 8px; border-radius: 8px; border: 1px solid rgba(212,175,55,0.3); margin-top: 5px; }
-        .media-preview-box img, .media-preview-box iframe { width: 45px; height: 45px; border-radius: 6px; object-fit: cover; background: #111; }
+        .media-preview-box { display: flex; gap: 8px; align-items: center; background: #000; padding: 6px; border-radius: 6px; border: 1px solid rgba(212,175,55,0.3); margin-top: 4px; }
+        .media-preview-box img, .media-preview-box iframe { width: 40px; height: 40px; border-radius: 4px; object-fit: cover; background: #111; }
 
         @media(max-width: 600px) { 
             body { padding: 4px; }
-            .luxury-card { padding: 12px 8px; border-radius: 12px; }
+            .luxury-card { padding: 14px 8px; border-radius: 12px; }
             .form-grid, .dash-stats-grid { grid-template-columns: 1fr; } 
             .full-width { grid-column: span 1; } 
-            .digital-id-card { padding: 10px; gap: 10px; }
-            .id-avatar { width: 48px; height: 48px; }
-            .luxury-card h1 { font-size: 1rem; }
-            .ledger-table { font-size: 0.6rem; }
+            .digital-id-card { padding: 8px; gap: 8px; }
+            .id-avatar { width: 44px; height: 44px; }
+            .luxury-card h1 { font-size: 0.98rem; }
+            .ledger-table { font-size: 0.58rem; }
         }
     </style>
 </head>
@@ -243,27 +238,28 @@
             <div class="gold-effect-banner">
                 <b>📌 ESSENTIAL VENDOR RULES & PLATFORM GUIDELINES</b>
                 <ul>
-                    <li><b>High-Quality Packaging:</b> All premium products must use export-grade, damage-proof luxury packaging.</li>
-                    <li><b>Strict Compliance:</b> Counterfeit items, misrepresentation, or customer fraud will result in immediate permanent account suspension.</li>
-                    <li><b>3-Day Dispatch:</b> Orders must be handed over to courier within 3 days. 20% platform commission applies.</li>
+                    <li><b>Authentic Products Only:</b> Zero tolerance for replicas; items must be 100% genuine.</li>
+                    <li><b>High-Quality Packaging:</b> Premium, damage-proof export-grade packaging is mandatory.</li>
+                    <li><b>3-Day Dispatch:</b> Must handover parcels to courier within 3 business days.</li>
+                    <li><b>Platform Settlement:</b> 20% platform commission applies on successful sales (80% net to seller).</li>
                 </ul>
             </div>
 
             <button class="apply-btn" onclick="showSection('formSection')">Join as Elite Seller</button>
-            <div style="margin-top: 15px; text-align: center; display:flex; gap:10px; justify-content:center;">
+            <div style="margin-top: 12px; text-align: center; display:flex; gap:8px; justify-content:center;">
                 <button onclick="showSection('loginSection')" class="outline-btn">Seller Sign In</button>
             </div>
         </div>
 
         <!-- 2. Seller Login Section -->
         <div class="luxury-card portal-section" id="loginSection">
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:15px; font-size:1.1rem;">Seller Dashboard Login</h2>
-            <div class="input-group" style="max-width:300px; margin:0 auto 12px auto;">
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:12px; font-size:1.05rem;">Seller Dashboard Login</h2>
+            <div class="input-group" style="max-width:280px; margin:0 auto 10px auto;">
                 <label>Official Gmail Address</label>
                 <input type="email" id="loginEmail" placeholder="seller@gmail.com" required>
             </div>
             
-            <div class="input-group" style="max-width:300px; margin:0 auto 8px auto;">
+            <div class="input-group" style="max-width:280px; margin:0 auto 6px auto;">
                 <label>Dashboard Password</label>
                 <div class="password-field-wrapper">
                     <input type="password" id="loginPass" placeholder="Enter Password" required>
@@ -271,24 +267,24 @@
                 </div>
             </div>
 
-            <div style="max-width:300px; margin:0 auto 15px auto; text-align:right;">
-                <button onclick="openPasswordReset()" style="background:none; border:none; color:var(--gold-light); font-size:0.65rem; cursor:pointer; text-decoration:underline;">Forgot Password?</button>
+            <div style="max-width:280px; margin:0 auto 12px auto; text-align:right;">
+                <button onclick="openPasswordReset()" style="background:none; border:none; color:var(--gold-light); font-size:0.62rem; cursor:pointer; text-decoration:underline;">Forgot Password?</button>
             </div>
             <div style="text-align:center;">
                 <button class="apply-btn" onclick="loginDashboard()">Access Dashboard</button>
-                <br><button onclick="showSection('entranceCard')" style="background:none; border:none; color:var(--text-gray); margin-top:12px; cursor:pointer; font-size:0.68rem;">Return Home</button>
+                <br><button onclick="showSection('entranceCard')" style="background:none; border:none; color:var(--text-gray); margin-top:10px; cursor:pointer; font-size:0.65rem;">Return Home</button>
             </div>
         </div>
 
         <!-- Password Recovery Section -->
         <div class="luxury-card portal-section" id="resetSection">
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:12px; font-size:1.05rem;">Password Recovery</h2>
-            <div class="input-group" style="max-width:300px; margin:0 auto 12px auto;">
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:10px; font-size:1rem;">Password Recovery</h2>
+            <div class="input-group" style="max-width:280px; margin:0 auto 10px auto;">
                 <label>Registered Gmail</label>
                 <input type="email" id="resetEmail" placeholder="seller@gmail.com">
             </div>
 
-            <div class="input-group" style="max-width:300px; margin:0 auto 15px auto;">
+            <div class="input-group" style="max-width:280px; margin:0 auto 12px auto;">
                 <label>New Secure Password</label>
                 <div class="password-field-wrapper">
                     <input type="password" id="newPassword" placeholder="10+ chars, Upper, Lower, Symbol">
@@ -298,13 +294,13 @@
 
             <div style="text-align:center;">
                 <button class="apply-btn" onclick="executePasswordReset()">Update Password</button>
-                <br><button onclick="showSection('loginSection')" style="background:none; border:none; color:var(--text-gray); margin-top:12px; cursor:pointer; font-size:0.68rem;">Back to Sign In</button>
+                <br><button onclick="showSection('loginSection')" style="background:none; border:none; color:var(--text-gray); margin-top:10px; cursor:pointer; font-size:0.65rem;">Back to Sign In</button>
             </div>
         </div>
 
         <!-- 3. Detailed Seller Registration Form -->
         <div class="luxury-card portal-section" id="formSection">
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:15px; font-size:1.05rem; text-transform:uppercase;">Global Seller Application</h2>
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:12px; font-size:1rem; text-transform:uppercase;">Global Seller Application</h2>
             
             <div class="form-grid">
                 <div class="input-group full-width"><label>Full Legal Name *</label><input type="text" id="fullName" placeholder="Enter full name" required></div>
@@ -367,21 +363,21 @@
                     <div class="section-title">Verification & Photo</div>
                     <label>Upload Profile / ID Photo (Visible in Dashboard & Tag) *</label>
                     <input type="file" id="applicantPhotoInput" accept="image/*" onchange="previewProfilePhoto(event)" required>
-                    <div id="photoPreviewContainer" style="margin-top:8px;"></div>
+                    <div id="photoPreviewContainer" style="margin-top:6px;"></div>
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 20px;">
+            <div style="text-align: center; margin-top: 15px;">
                 <button class="apply-btn" onclick="submitSellerApp()">Register & Open Dashboard</button>
-                <br><button onclick="showSection('entranceCard')" style="background:none; border:none; color:var(--text-gray); margin-top:12px; cursor:pointer; font-size:0.68rem;">Cancel & Return</button>
+                <br><button onclick="showSection('entranceCard')" style="background:none; border:none; color:var(--text-gray); margin-top:10px; cursor:pointer; font-size:0.65rem;">Cancel & Return</button>
             </div>
         </div>
 
         <!-- 4. Approved Luxury Seller Dashboard Screen (All Open & Unlocked) -->
         <div class="luxury-card portal-section" id="dashboardSection">
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:12px; font-size:1.1rem;">Vendor Dashboard</h2>
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:10px; font-size:1.05rem;">Vendor Control Dashboard</h2>
             <div id="partnerWelcomeBox" class="dashboard-container"></div>
-            <div style="margin-top:15px; text-align:center; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+            <div style="margin-top:12px; text-align:center; display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
                 <button class="apply-btn" onclick="showSection('productSection')"><i class="fa-solid fa-plus"></i> Upload Product</button>
                 <button class="outline-btn" onclick="requestPayout()"><i class="fa-solid fa-wallet"></i> Request Payout</button>
                 <button class="outline-btn" onclick="location.reload()" style="border-color:#e74c3c; color:#e74c3c;">Logout</button>
@@ -390,7 +386,7 @@
 
         <!-- 5. Global Retail Product Upload Terminal -->
         <div class="luxury-card portal-section" id="productSection">
-            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:6px; font-size:1.05rem; text-transform:uppercase;">Global Retail Product Upload</h2>
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:5px; font-size:1rem; text-transform:uppercase;">Global Retail Product Upload</h2>
             
             <div class="form-grid" style="text-align:left;">
                 <div class="input-group full-width">
@@ -422,13 +418,13 @@
                 
                 <div class="input-group full-width">
                     <label>Select Available Colors *</label>
-                    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:5px;">
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Golden Teak</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Black</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">White</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Red</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Blue</button>
-                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Gold</button>
+                    <div style="display:flex; flex-wrap:wrap; gap:5px; margin-bottom:4px;">
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:3px 8px; border-radius:5px; font-size:0.6rem; cursor:pointer;">Golden Teak</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:3px 8px; border-radius:5px; font-size:0.6rem; cursor:pointer;">Black</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:3px 8px; border-radius:5px; font-size:0.6rem; cursor:pointer;">White</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:3px 8px; border-radius:5px; font-size:0.6rem; cursor:pointer;">Red</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:3px 8px; border-radius:5px; font-size:0.6rem; cursor:pointer;">Blue</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:3px 8px; border-radius:5px; font-size:0.6rem; cursor:pointer;">Gold</button>
                     </div>
                     <input type="text" id="prodColors" placeholder="Selected colors will appear here">
                 </div>
@@ -444,13 +440,13 @@
                 <div class="input-group full-width">
                     <label>Product Image Link (URL) *</label>
                     <input type="url" id="prodImgUrl" placeholder="https://image-link.com/photo.jpg" oninput="previewImageLink(this.value)" required>
-                    <div id="imgLinkPreview" style="margin-top:5px;"></div>
+                    <div id="imgLinkPreview" style="margin-top:4px;"></div>
                 </div>
 
                 <div class="input-group full-width">
                     <label>YouTube Short Video Review Link *</label>
                     <input type="url" id="prodVideoUrl" placeholder="https://youtube.com/shorts/..." oninput="previewVideoLink(this.value)" required>
-                    <div id="videoLinkPreview" style="margin-top:5px;"></div>
+                    <div id="videoLinkPreview" style="margin-top:4px;"></div>
                 </div>
 
                 <div class="input-group full-width"><div class="section-title">Global Retail Pricing & Country Discounts</div></div>
@@ -463,7 +459,7 @@
                     <label>Country Discount (%)</label>
                     <div style="display:flex; gap:6px;">
                         <select id="discountCountry" style="flex:1;"></select>
-                        <select id="discountPercent" style="width:95px;">
+                        <select id="discountPercent" style="width:90px;">
                             <option value="10% Off">10%</option>
                             <option value="15% Off">15%</option>
                             <option value="20% Off">20%</option>
@@ -473,7 +469,7 @@
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 20px; display:flex; gap:10px; justify-content:center;">
+            <div style="text-align: center; margin-top: 15px; display:flex; gap:8px; justify-content:center;">
                 <button class="outline-btn" onclick="showSection('dashboardSection')">Cancel</button>
                 <button class="apply-btn" onclick="publishProduct()">Publish Product</button>
             </div>
@@ -572,7 +568,7 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     tempProfilePhotoBase64 = e.target.result;
-                    document.getElementById('photoPreviewContainer').innerHTML = `<img src="${tempProfilePhotoBase64}" style="width:50px; height:50px; border-radius:50%; object-fit:cover; border:1px solid var(--gold-solid);">`;
+                    document.getElementById('photoPreviewContainer').innerHTML = `<img src="${tempProfilePhotoBase64}" style="width:45px; height:45px; border-radius:50%; object-fit:cover; border:1px solid var(--gold-solid);">`;
                 };
                 reader.readAsDataURL(file);
             }
@@ -588,7 +584,7 @@
         function previewVideoLink(url) {
             let container = document.getElementById('videoLinkPreview');
             if(url.includes("youtube.com") || url.includes("youtu.be")) {
-                container.innerHTML = `<div class="media-preview-box"><i class="fa-brands fa-youtube" style="font-size:28px; color:#ff0000;"></i><span>YouTube Short Video Ready</span></div>`;
+                container.innerHTML = `<div class="media-preview-box"><i class="fa-brands fa-youtube" style="font-size:24px; color:#ff0000;"></i><span>YouTube Short Video Ready</span></div>`;
             } else { container.innerHTML = ""; }
         }
 
@@ -632,8 +628,8 @@
                 id: vendorId, name, email, country: countryName, flag: countryFlag,
                 whatsapp: phone, biz, pass, photo: tempProfilePhotoBase64 || "https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400",
                 payoneerName: payName, payoneerEmail: payEmail,
-                balance: 0.00, uploadedProducts: [], orders: [
-                    { orderId: 'ORD-501', customer: 'John Smith', phone: '+12025550143', address: 'New York, USA', product: 'Sample Luxury Item', note: 'Gift wrap required', netPayout: '$45.00', courier: 'DHL Express', trackingId: 'DHL-882194', status: 'Shipped' }
+                balance: 180.00, uploadedProducts: [], orders: [
+                    { orderId: 'ORD-901', customer: 'John Doe', phone: '+123456789', address: 'New York, USA', product: 'Luxury Executive Chair', note: 'Please check high gloss polish.', netPayout: '$68.00', courier: 'DHL Express', trackingId: 'DHL-992817', status: 'Shipped' }
                 ]
             };
 
@@ -643,7 +639,7 @@
 
             currentActiveVendor = vendor;
             renderVendorDashboard(vendor);
-            alert("Registration successful! Welcome to your vendor dashboard.");
+            alert("Registration successful! Welcome to MR MASUDAR ENTERPRISE Elite Seller Dashboard.");
         }
 
         function loginDashboard() {
@@ -659,12 +655,12 @@
         }
 
         function requestPayout() {
-            alert(`Payout withdrawal request of $${currentActiveVendor.balance.toFixed(2)} sent to Payoneer (${currentActiveVendor.payoneerEmail})!`);
+            alert(`Payout withdrawal request of $${currentActiveVendor.balance.toFixed(2)} sent successfully to Payoneer account (${currentActiveVendor.payoneerEmail})!`);
         }
 
         function updateOrderTracking(orderIdx) {
-            let courier = prompt("Enter Courier Name (DHL, FedEx, Steadfast, Pathao):", currentActiveVendor.orders[orderIdx].courier);
-            let trkId = prompt("Enter Waybill / Tracking ID:", currentActiveVendor.orders[orderIdx].trackingId);
+            let courier = prompt("Select Courier Partner (DHL Express, FedEx, Steadfast, Pathao, RedX):", currentActiveVendor.orders[orderIdx].courier);
+            let trkId = prompt("Enter Courier Waybill / Tracking ID:", currentActiveVendor.orders[orderIdx].trackingId);
             if(courier && trkId) {
                 currentActiveVendor.orders[orderIdx].courier = courier;
                 currentActiveVendor.orders[orderIdx].trackingId = trkId;
@@ -688,7 +684,7 @@
             let orderRows = "";
 
             if (!found.uploadedProducts || found.uploadedProducts.length === 0) {
-                inventoryRows = `<tr><td colspan="7" style="text-align:center; color:var(--text-gray);">No custom products uploaded yet. Click 'Upload Product'.</td></tr>`;
+                inventoryRows = `<tr><td colspan="7" style="text-align:center; color:var(--text-gray);">No custom products uploaded yet. Click 'Upload Product' to add items.</td></tr>`;
             } else {
                 found.uploadedProducts.forEach((p, idx) => {
                     inventoryRows += `
@@ -709,12 +705,12 @@
                 found.orders.forEach((o, idx) => {
                     orderRows += `
                         <tr>
-                            <td><b>${o.orderId}</b><br><span style="font-size:0.5rem; color:#aaa;">${o.customer} (${o.phone})</span><br><span style="font-size:0.5rem; color:var(--gold-light);">Addr: ${o.address}</span></td>
-                            <td><b>${o.product}</b><br><i style="font-size:0.5rem; color:#f39c12;">Note: ${o.note || 'None'}</i></td>
+                            <td><b>${o.orderId}</b><br><span style="font-size:0.48rem; color:#aaa;">${o.customer} (${o.phone})</span><br><span style="font-size:0.48rem; color:var(--gold-light);">Addr: ${o.address}</span></td>
+                            <td><b>${o.product}</b><br><i style="font-size:0.48rem; color:#f39c12;">Note: ${o.note || 'None'}</i></td>
                             <td style="color:#2ecc71; font-weight:bold;">${o.netPayout}</td>
                             <td><span style="color:#3498db; font-weight:bold;">${o.status}</span></td>
-                            <td><b>${o.trackingId}</b><br><span style="font-size:0.5rem;">${o.courier}</span></td>
-                            <td><button onclick="updateOrderTracking(${idx})" style="background:var(--gold-gradient); border:none; padding:4px 8px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:0.55rem;">Manage Shipping</button></td>
+                            <td><b>${o.trackingId}</b><br><span style="font-size:0.48rem;">${o.courier}</span></td>
+                            <td><button onclick="updateOrderTracking(${idx})" style="background:var(--gold-gradient); border:none; padding:3px 7px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:0.52rem;">Manage Shipping</button></td>
                         </tr>
                     `;
                 });
@@ -724,20 +720,20 @@
                 <div class="digital-id-card">
                     <img src="${found.photo}" alt="ID Avatar" class="id-avatar">
                     <div style="overflow:hidden;">
-                        <span style="font-size:0.52rem; color:var(--gold-solid); letter-spacing:1px; font-weight:bold;">OFFICIAL VENDOR IDENTITY (${found.flag || '🌐'} ${found.country || 'Global'})</span>
-                        <h3 style="margin:2px 0; color:#fff; font-size:1.05rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${found.biz}</h3>
-                        <p style="margin:0; font-size:0.62rem; color:#aaa;">Owner: ${found.name}</p>
-                        <p style="margin:0; font-size:0.6rem; color:var(--gold-solid);">ID: ${found.id} | Status: <b style="color:#2ecc71">Active & Open</b></p>
+                        <span style="font-size:0.5rem; color:var(--gold-solid); letter-spacing:1px; font-weight:bold;">OFFICIAL VENDOR IDENTITY (${found.flag || '🌐'} ${found.country || 'Global'})</span>
+                        <h3 style="margin:2px 0; color:#fff; font-size:1rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${found.biz}</h3>
+                        <p style="margin:0; font-size:0.6rem; color:#aaa;">Owner: ${found.name}</p>
+                        <p style="margin:0; font-size:0.58rem; color:var(--gold-solid);">ID: ${found.id} | Ecosystem Status: <b style="color:#2ecc71">Fully Open & Active</b></p>
                     </div>
                 </div>
 
                 <div class="dash-stats-grid">
-                    <div class="dash-stat-box"><span class="cv-label">Total Earnings</span><span class="number" style="color:var(--gold-solid);">$${found.balance.toFixed(2)}</span></div>
-                    <div class="dash-stat-box"><span class="cv-label">Orders Shipped</span><span class="number">${found.orders ? found.orders.length : 0}</span></div>
-                    <div class="dash-stat-box"><span class="cv-label">Payout System</span><span class="number" style="font-size:0.7rem; color:#2ecc71">Ready</span></div>
+                    <div class="dash-stat-box"><span class="cv-label">Store Balance</span><span class="number" style="color:var(--gold-solid);">$${found.balance.toFixed(2)}</span></div>
+                    <div class="dash-stat-box"><span class="cv-label">Parcels Shipped</span><span class="number">${found.orders ? found.orders.length : 0}</span></div>
+                    <div class="dash-stat-box"><span class="cv-label">Platform Share</span><span class="number" style="font-size:0.68rem; color:#2ecc71">20% / 80% Net</span></div>
                 </div>
 
-                <div style="margin-top:10px;">
+                <div style="margin-top:8px;">
                     <span class="cv-label">📦 Product Inventory Ledger</span>
                     <div class="ledger-table-wrap">
                         <table class="ledger-table">
@@ -749,7 +745,7 @@
                     </div>
                 </div>
 
-                <div style="margin-top:14px;">
+                <div style="margin-top:12px;">
                     <span class="cv-label">🚚 Customer Orders, Delivery & Courier Tracking</span>
                     <div class="ledger-table-wrap">
                         <table class="ledger-table">
@@ -801,7 +797,7 @@
                 localStorage.setItem('mme_sellers', JSON.stringify(sellers));
             }
 
-            alert("Product published successfully to store!");
+            alert("Product published successfully to store database!");
             renderVendorDashboard(currentActiveVendor);
         }
     </script>
