@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1POhz8vb-MocaPNHg-i6nDSKwV4ky16Lc">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <!-- Firebase SDKs -->
     <script type="module">
@@ -50,10 +51,10 @@
             align-items: center;
             justify-content: center;
             overflow-x: hidden;
-            padding: 16px 12px;
+            padding: 12px 8px;
         }
 
-        body.dashboard-active { align-items: flex-start !important; padding-top: 20px; }
+        body.dashboard-active { align-items: flex-start !important; padding-top: 15px; }
 
         .portal-wrapper { width: 100%; max-width: 750px; }
 
@@ -61,138 +62,138 @@
             position: fixed; top: 15px; left: 50%; transform: translateX(-50%); 
             background: #080808; border: 1.5px solid var(--gold-solid); 
             color: var(--gold-solid); padding: 8px 18px; border-radius: 25px; 
-            font-size: 0.75rem; font-weight: 700; z-index: 999999; display: none; 
+            font-size: 0.72rem; font-weight: 700; z-index: 999999; display: none; 
             box-shadow: 0 0 20px rgba(212,175,55,0.4); 
         }
 
         .luxury-card {
             background: var(--surface-card);
-            border: 1.5px solid rgba(212, 175, 55, 0.35);
-            border-radius: 18px;
-            padding: 24px 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            padding: 20px 16px;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.95);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             width: 100%;
             position: relative;
             margin: 0 auto;
         }
 
         .brand-logo {
-            width: 75px; height: 75px; border-radius: 50%; border: 2px solid var(--gold-solid);
-            object-fit: cover; margin-bottom: 10px; box-shadow: 0 0 15px rgba(212,175,55,0.4); background: #000;
+            width: 70px; height: 70px; border-radius: 50%; border: 2px solid var(--gold-solid);
+            object-fit: cover; margin-bottom: 8px; box-shadow: 0 0 12px rgba(212,175,55,0.3); background: #000;
         }
 
         .brand-title-main {
-            font-family: var(--font-luxury); font-size: 1.3rem; font-weight: 900;
+            font-family: var(--font-luxury); font-size: 1.2rem; font-weight: 900;
             background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-transform: uppercase; margin-bottom: 4px;
+            text-transform: uppercase; margin-bottom: 2px;
         }
 
         .brand-subtitle {
-            color: var(--text-gray); font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
-            margin-bottom: 16px; font-weight: 600; font-family: var(--font-luxury);
+            color: var(--text-gray); font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;
+            margin-bottom: 14px; font-weight: 600; font-family: var(--font-luxury);
         }
 
         .compliance-rules-box {
             background: rgba(12, 12, 12, 0.95);
-            border: 1px dashed rgba(212, 175, 55, 0.5);
+            border: 1px dashed rgba(212, 175, 55, 0.4);
             border-radius: 10px;
-            padding: 14px;
+            padding: 12px;
             text-align: left;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
         .compliance-rules-box h4 {
-            font-size: 0.75rem; font-family: var(--font-luxury);
+            font-size: 0.72rem; font-family: var(--font-luxury);
             background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 8px; text-transform: uppercase; font-weight: 800;
+            margin-bottom: 6px; text-transform: uppercase; font-weight: 800;
         }
         .compliance-rules-box ul { list-style: none; padding-left: 0; }
         .compliance-rules-box li {
-            font-size: 0.65rem; color: var(--text-gray); margin-bottom: 6px; display: flex; align-items: flex-start; gap: 6px;
+            font-size: 0.62rem; color: var(--text-gray); margin-bottom: 5px; display: flex; align-items: flex-start; gap: 6px;
         }
-        .compliance-rules-box li i { color: var(--gold-solid); margin-top: 2px; font-size: 0.7rem; }
+        .compliance-rules-box li i { color: var(--gold-solid); margin-top: 2px; font-size: 0.65rem; }
 
         .google-auth-btn {
             width: 100%; background: #ffffff; color: #111;
-            border: 1.5px solid var(--gold-solid); padding: 12px 18px; border-radius: 30px; font-weight: 700;
-            font-size: 0.8rem; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); transition: all 0.3s ease; text-transform: uppercase; font-family: var(--font-luxury);
+            border: 1px solid var(--gold-solid); padding: 11px 16px; border-radius: 30px; font-weight: 700;
+            font-size: 0.78rem; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.25); transition: all 0.3s ease; text-transform: uppercase; font-family: var(--font-luxury);
         }
         .google-auth-btn:hover { background: var(--gold-gradient); color: #050505; }
 
         .apply-btn {
-            display: inline-block; background: var(--gold-gradient); color: #050505; padding: 10px 22px;
-            border-radius: 20px; font-weight: 800; text-transform: uppercase; font-size: 0.72rem;
-            letter-spacing: 1px; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(212,175,55,0.3);
+            display: inline-block; background: var(--gold-gradient); color: #050505; padding: 9px 18px;
+            border-radius: 20px; font-weight: 800; text-transform: uppercase; font-size: 0.68rem;
+            letter-spacing: 1px; border: none; cursor: pointer; box-shadow: 0 3px 10px rgba(212,175,55,0.25);
             font-family: var(--font-luxury);
         }
 
         .form-section, .dashboard-section { display: none; text-align: left; }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .full-width { grid-column: span 2; }
         @media(max-width: 600px) { .form-grid { grid-template-columns: 1fr; } .full-width { grid-column: span 1; } }
         
         .input-group label {
-            display: block; font-size: 0.62rem; background: var(--gold-gradient);
+            display: block; font-size: 0.58rem; background: var(--gold-gradient);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase;
-            letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 700; font-family: var(--font-luxury);
+            letter-spacing: 0.5px; margin-bottom: 3px; font-weight: 700; font-family: var(--font-luxury);
         }
         .input-group input, .input-group select, .input-group textarea {
-            width: 100%; background: #000; border: 1.5px solid rgba(212,175,55,0.35); padding: 10px 12px;
-            color: #fff; border-radius: 8px; font-size: 0.78rem; outline: none;
+            width: 100%; background: #000; border: 1px solid rgba(212,175,55,0.3); padding: 9px 11px;
+            color: #fff; border-radius: 8px; font-size: 0.75rem; outline: none;
         }
         .phone-group { display: flex; gap: 6px; }
-        .phone-group select { width: 120px; flex-shrink: 0; }
+        .phone-group select { width: 110px; flex-shrink: 0; }
 
         .dash-top-bar {
             display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid rgba(212,175,55,0.25); padding-bottom: 10px; margin-bottom: 12px;
+            border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 8px; margin-bottom: 10px;
         }
         .settings-gear-icon {
             background: var(--gold-gradient); border: none; color: #000;
-            width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center;
-            justify-content: center; cursor: pointer; font-size: 0.95rem; box-shadow: 0 0 12px rgba(212,175,55,0.4);
+            width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; cursor: pointer; font-size: 0.9rem; box-shadow: 0 0 10px rgba(212,175,55,0.3);
         }
 
-        .dash-stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 10px 0; }
+        .dash-stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 8px 0; }
         @media(min-width: 550px) { .dash-stats-grid { grid-template-columns: repeat(4, 1fr); } }
         .dash-stat-box {
-            background: rgba(12, 12, 12, 0.95); border: 1.5px solid rgba(212, 175, 55, 0.25); border-radius: 10px; padding: 10px; text-align: center;
+            background: rgba(10, 10, 10, 0.9); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 8px; padding: 8px; text-align: center;
         }
-        .dash-stat-box span { font-size: 0.52rem; color: var(--text-gray); text-transform: uppercase; font-weight: 600; }
-        .dash-stat-box .number { font-size: 1.05rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-top: 3px; display: block; font-family: var(--font-luxury); }
+        .dash-stat-box span { font-size: 0.5rem; color: var(--text-gray); text-transform: uppercase; font-weight: 600; }
+        .dash-stat-box .number { font-size: 0.98rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-top: 2px; display: block; font-family: var(--font-luxury); }
 
         .animated-graph-box {
-            background: rgba(8, 8, 8, 0.95); border: 1.5px solid rgba(212,175,55,0.3); border-radius: 12px; padding: 12px; margin: 12px 0;
+            background: rgba(8, 8, 8, 0.95); border: 1px solid rgba(212,175,55,0.25); border-radius: 10px; padding: 10px; margin: 10px 0;
         }
-        .graph-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .graph-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
         .graph-filter-select {
-            background: #000; border: 1.5px solid rgba(212,175,55,0.4); color: var(--gold-solid);
-            padding: 4px 8px; font-size: 0.62rem; border-radius: 6px; outline: none; font-family: var(--font-luxury);
+            background: #000; border: 1px solid rgba(212,175,55,0.35); color: var(--gold-solid);
+            padding: 3px 6px; font-size: 0.58rem; border-radius: 6px; outline: none; font-family: var(--font-luxury);
         }
-        .graph-bars { display: flex; align-items: flex-end; justify-content: space-around; height: 110px; border-bottom: 1.5px solid rgba(212,175,55,0.3); padding-top: 8px; }
-        .bar-col { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 12%; }
-        .bar { width: 16px; background: var(--gold-gradient); border-radius: 4px 4px 0 0; }
-        .bar-label { font-size: 0.55rem; color: var(--text-gray); text-transform: uppercase; font-weight: 600; }
+        .graph-bars { display: flex; align-items: flex-end; justify-content: space-around; height: 100px; border-bottom: 1px solid rgba(212,175,55,0.25); padding-top: 6px; }
+        .bar-col { display: flex; flex-direction: column; align-items: center; gap: 3px; width: 12%; }
+        .bar { width: 14px; background: var(--gold-gradient); border-radius: 3px 3px 0 0; }
+        .bar-label { font-size: 0.52rem; color: var(--text-gray); text-transform: uppercase; font-weight: 600; }
 
         .seller-action-toolbar {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 14px 0;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 12px 0;
         }
         .seller-tool-btn {
-            background: rgba(15,15,15,0.95); border: 1.5px solid rgba(212,175,55,0.4); border-radius: 10px;
-            padding: 12px 6px; text-align: center; cursor: pointer; color: #fff; font-size: 0.72rem; font-weight: 700;
-            transition: 0.2s; font-family: var(--font-luxury); display: flex; flex-direction: column; align-items: center; gap: 5px;
+            background: rgba(12,12,12,0.9); border: 1px solid rgba(212,175,55,0.3); border-radius: 8px;
+            padding: 10px 6px; text-align: center; cursor: pointer; color: #fff; font-size: 0.68rem; font-weight: 700;
+            transition: 0.2s; font-family: var(--font-luxury); display: flex; flex-direction: column; align-items: center; gap: 4px;
         }
         .seller-tool-btn:hover { background: var(--gold-gradient); color: #000; border-color: transparent; }
-        .seller-tool-btn i { font-size: 1.15rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .seller-tool-btn i { font-size: 1.05rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .seller-tool-btn:hover i { -webkit-text-fill-color: #000 !important; background: none !important; color: #000 !important; }
 
         .sheet-table-wrapper {
-            max-height: 220px; overflow-y: auto; margin: 8px 0; background: rgba(10,10,10,0.9);
-            border-radius: 8px; border: 1.5px solid rgba(212,175,55,0.25);
+            max-height: 200px; overflow-y: auto; margin: 6px 0; background: rgba(8,8,8,0.85);
+            border-radius: 8px; border: 1px solid rgba(212,175,55,0.2);
         }
-        .sheet-table { width: 100%; border-collapse: collapse; font-size: 0.65rem; }
-        .sheet-table th, .sheet-table td { padding: 8px 6px; border-bottom: 1px solid rgba(212,175,55,0.15); text-align: left; }
+        .sheet-table { width: 100%; border-collapse: collapse; font-size: 0.62rem; }
+        .sheet-table th, .sheet-table td { padding: 7px 5px; border-bottom: 1px solid rgba(212,175,55,0.1); text-align: left; }
         .sheet-table th {
             background: #080808; position: sticky; top: 0; z-index: 2;
             background-image: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -202,21 +203,21 @@
 
         .settings-modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.88); display: none; align-items: center; justify-content: center; z-index: 99999; padding: 12px;
+            background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 99999; padding: 10px;
         }
         .settings-modal-card {
-            background: var(--surface-card); border: 1.5px solid var(--gold-solid); border-radius: 16px;
-            width: 100%; max-width: 680px; max-height: 90vh; overflow-y: auto; padding: 20px; text-align: left; position: relative;
+            background: var(--surface-card); border: 1.5px solid var(--gold-solid); border-radius: 14px;
+            width: 100%; max-width: 650px; max-height: 90vh; overflow-y: auto; padding: 18px; text-align: left; position: relative;
         }
         .modal-close-btn {
-            position: absolute; top: 12px; right: 14px; background: transparent; border: 1.5px solid var(--gold-solid);
-            color: var(--gold-solid); width: 28px; height: 28px; border-radius: 50%; font-size: 0.78rem;
+            position: absolute; top: 10px; right: 12px; background: transparent; border: 1px solid var(--gold-solid);
+            color: var(--gold-solid); width: 26px; height: 26px; border-radius: 50%; font-size: 0.72rem;
             cursor: pointer; display: flex; align-items: center; justify-content: center;
         }
-        .settings-tab-nav { display: flex; gap: 6px; border-bottom: 1px solid rgba(212,175,55,0.25); padding-bottom: 8px; margin-bottom: 12px; overflow-x: auto; }
+        .settings-tab-nav { display: flex; gap: 5px; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 6px; margin-bottom: 10px; overflow-x: auto; }
         .tab-btn {
-            background: transparent; border: 1.5px solid rgba(212,175,55,0.35); color: var(--text-gray);
-            padding: 6px 10px; border-radius: 8px; font-size: 0.58rem; font-weight: 700; cursor: pointer; text-transform: uppercase; white-space: nowrap;
+            background: transparent; border: 1px solid rgba(212,175,55,0.3); color: var(--text-gray);
+            padding: 5px 10px; border-radius: 6px; font-size: 0.55rem; font-weight: 700; cursor: pointer; text-transform: uppercase; white-space: nowrap;
         }
         .tab-btn.active { background: var(--gold-gradient); color: #000; border-color: transparent; }
     </style>
@@ -244,14 +245,14 @@
             </div>
 
             <button class="google-auth-btn" id="googleVerifyBtn" type="button">
-                <i class="fa-brands fa-google" style="color:#ea4335; font-size:1rem;"></i> Continue with Google Verify
+                <i class="fa-brands fa-google" style="color:#ea4335; font-size:0.95rem;"></i> Continue with Google Verify
             </button>
         </div>
 
         <!-- 2. Registration Form -->
         <div class="luxury-card form-section" id="formSection">
             <button class="modal-close-btn" id="closeFormBtn" type="button" title="Close"><i class="fa-solid fa-xmark"></i></button>
-            <h2 style="font-family:var(--font-luxury); background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:14px; font-size:1.1rem; text-transform:uppercase;">Store Registration</h2>
+            <h2 style="font-family:var(--font-luxury); background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:12px; font-size:1.05rem; text-transform:uppercase;">Store Registration</h2>
             
             <div class="form-grid">
                 <div class="input-group">
@@ -275,7 +276,7 @@
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 16px;">
+            <div style="text-align: center; margin-top: 14px;">
                 <button class="apply-btn" id="completeRegBtn" type="button">Submit & Enter Dashboard</button>
             </div>
         </div>
@@ -289,12 +290,12 @@
 
     <!-- 4. Product Gallery Modal -->
     <div class="settings-modal-overlay" id="productGalleryModal">
-        <div class="settings-modal-card" style="max-width: 640px;">
+        <div class="settings-modal-card" style="max-width: 620px;">
             <button class="modal-close-btn" onclick="closeProductGallery()" type="button"><i class="fa-solid fa-xmark"></i></button>
-            <h3 style="font-family:var(--font-luxury); background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:1.05rem; margin-bottom:12px;"><i class="fa-solid fa-boxes-stacked"></i> Product Gallery</h3>
+            <h3 style="font-family:var(--font-luxury); background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:1rem; margin-bottom:10px;"><i class="fa-solid fa-boxes-stacked"></i> Product Gallery</h3>
             
-            <div style="background:#050505; border:1px solid rgba(212,175,55,0.3); padding:12px; border-radius:10px; margin-bottom:14px;">
-                <h4 style="font-size:0.7rem; color:var(--gold-solid); font-family:var(--font-luxury); margin-bottom:8px;"><i class="fa-solid fa-square-plus"></i> New Product</h4>
+            <div style="background:#050505; border:1px solid rgba(212,175,55,0.25); padding:10px; border-radius:8px; margin-bottom:12px;">
+                <h4 style="font-size:0.65rem; color:var(--gold-solid); font-family:var(--font-luxury); margin-bottom:6px;"><i class="fa-solid fa-square-plus"></i> New Product</h4>
                 <input type="hidden" id="editProductIndex" value="-1">
                 <div class="form-grid">
                     <div class="input-group">
@@ -317,7 +318,7 @@
                         </select>
                     </div>
                     <div class="input-group">
-                        <label>Stock Quantity (Numbers) *</label>
+                        <label>Stock Quantity *</label>
                         <input type="number" id="newProdStock" placeholder="50" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     </div>
                     <div class="input-group">
@@ -326,7 +327,7 @@
                     </div>
                     <div class="input-group">
                         <label>Color & Code *</label>
-                        <input type="text" id="newProdColor" placeholder="Color name or code...">
+                        <input type="text" id="newProdColor" placeholder="Golden Teak (#D4AF37)">
                     </div>
                     <div class="input-group full-width">
                         <label>Description (Max 155 Words) *</label>
@@ -342,20 +343,20 @@
                     </div>
                     <div class="input-group">
                         <label>Product Size</label>
-                        <input type="text" id="newProdSize" placeholder="Size details...">
+                        <input type="text" id="newProdSize" placeholder="40x20x30 inch">
                     </div>
                     <div class="input-group">
                         <label>Packaging Size & Weight *</label>
-                        <input type="text" id="newProdWeight" placeholder="Box size & KG...">
+                        <input type="text" id="newProdWeight" placeholder="Box size & 2.5 kg">
                     </div>
                 </div>
-                <div style="text-align:right; margin-top:10px;">
+                <div style="text-align:right; margin-top:8px;">
                     <button class="apply-btn" onclick="submitNewProduct()" type="button" id="publishBtnText">Publish Product</button>
                 </div>
             </div>
 
-            <h4 style="font-size:0.7rem; color:var(--gold-solid); font-family:var(--font-luxury); margin-bottom:6px;"><i class="fa-solid fa-table"></i> Product List</h4>
-            <div class="sheet-table-wrapper" style="max-height: 150px;">
+            <h4 style="font-size:0.65rem; color:var(--gold-solid); font-family:var(--font-luxury); margin-bottom:5px;"><i class="fa-solid fa-table"></i> Product List</h4>
+            <div class="sheet-table-wrapper" style="max-height: 140px;">
                 <table class="sheet-table">
                     <thead><tr><th>Product Name</th><th class="text-center">Price</th><th class="text-center">Stock</th><th class="text-center">Action</th></tr></thead>
                     <tbody id="modalProductSheetRows"></tbody>
@@ -368,7 +369,7 @@
     <div class="settings-modal-overlay" id="settingsModalOverlay">
         <div class="settings-modal-card">
             <button class="modal-close-btn" id="closeSettingsModalBtn" type="button"><i class="fa-solid fa-xmark"></i></button>
-            <h3 style="font-family:var(--font-luxury); background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:1.05rem; margin-bottom:12px;"><i class="fa-solid fa-gear"></i> Seller Settings Hub</h3>
+            <h3 style="font-family:var(--font-luxury); background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:1rem; margin-bottom:10px;"><i class="fa-solid fa-gear"></i> Seller Settings Hub</h3>
             
             <div class="settings-tab-nav">
                 <button class="tab-btn active" onclick="switchSettingsTab('business', this)" type="button">Profile</button>
@@ -382,19 +383,19 @@
 
     <!-- 6. Shipment Management Modal (6 Columns Permanent Sheet) -->
     <div class="settings-modal-overlay" id="orderModalOverlay">
-        <div class="settings-modal-card" style="max-width: 720px;">
+        <div class="settings-modal-card" style="max-width: 680px;">
             <button class="modal-close-btn" onclick="closeOrderModal()" type="button"><i class="fa-solid fa-xmark"></i></button>
-            <h3 style="font-family:var(--font-luxury); background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:1rem; margin-bottom:12px;"><i class="fa-solid fa-truck-fast"></i> Shipment Management</h3>
-            <div class="sheet-table-wrapper" style="max-height: 350px;">
+            <h3 style="font-family:var(--font-luxury); background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:0.95rem; margin-bottom:10px;"><i class="fa-solid fa-truck-fast"></i> Shipment Management</h3>
+            <div class="sheet-table-wrapper" style="max-height: 320px;">
                 <table class="sheet-table" id="shipmentTableElement">
                     <thead>
                         <tr>
-                            <th>1. Order Time</th>
-                            <th>2. Product Details</th>
-                            <th>3. Customer Info</th>
-                            <th>4. Courier Service</th>
-                            <th>5. Tracking ID</th>
-                            <th class="text-center">6. Status / Actions</th>
+                            <th style="font-size:0.55rem;">1. Time</th>
+                            <th style="font-size:0.55rem;">2. Product Details</th>
+                            <th style="font-size:0.55rem;">3. Customer Info</th>
+                            <th style="font-size:0.55rem;">4. Courier Service</th>
+                            <th style="font-size:0.55rem;">5. Tracking ID</th>
+                            <th style="font-size:0.55rem;" class="text-center">6. Status / Actions</th>
                         </tr>
                     </thead>
                     <tbody id="shipmentModalBody"></tbody>
@@ -480,7 +481,7 @@
             let defaultSeller = {
                 id: "SEL-5622", storeName: "MD MASUDAR RAHMAN'S Store", name: "MD MASUDAR RAHMAN",
                 email: "masudar142251@gmail.com", country: "🇧🇩 Bangladesh", whatsapp: "+8801767319670",
-                balance: 0.00, payoutType: 'Payoneer', payoutAccount: 'masudar142251@gmail.com', verified: false, 
+                balance: 0.00, totalWithdrawn: 0.00, payoutType: 'Payoneer', payoutAccount: 'masudar142251@gmail.com', verified: false, 
                 tradeLicense: 'TRD-99281', address: 'Dhaka, Bangladesh'
             };
             localStorage.setItem('mme_active_seller', JSON.stringify(defaultSeller));
@@ -506,7 +507,7 @@
             let newSeller = {
                 id: "SEL-" + Math.floor(1000 + Math.random() * 9000),
                 storeName: name + "'s Store", name, email, country: `${flagIcon} ${countryName}`, whatsapp: waCode + waNum,
-                balance: 0.00, payoutType: 'Payoneer', payoutAccount: email, verified: false, tradeLicense: '', address: ''
+                balance: 0.00, totalWithdrawn: 0.00, payoutType: 'Payoneer', payoutAccount: email, verified: false, tradeLicense: '', address: ''
             };
 
             localStorage.setItem('mme_active_seller', JSON.stringify(newSeller));
@@ -524,40 +525,40 @@
             let dashHtml = `
                 <div class="dash-top-bar">
                     <div>
-                        <h3 style="background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin:0; font-family:var(--font-luxury); font-size:1.05rem;">
+                        <h3 style="background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin:0; font-family:var(--font-luxury); font-size:1rem;">
                             ${seller.storeName} 
-                            ${seller.verified ? '<i class="fa-solid fa-circle-check" style="color:#2ecc71; font-size:0.85rem;" title="Verified Account"></i>' : ''}
+                            ${seller.verified ? '<i class="fa-solid fa-circle-check" style="color:#2ecc71; font-size:0.8rem;" title="Verified Account"></i>' : ''}
                         </h3>
-                        <span style="font-size:0.55rem; color:var(--text-gray);">Sellers ID: ${seller.id} | ${seller.country} | 80% Net Payable</span>
+                        <span style="font-size:0.52rem; color:var(--text-gray);">Sellers ID: ${seller.id} | ${seller.country} | 80% Net Payable</span>
                     </div>
                     <div style="display:flex; gap:8px; align-items:center;">
                         <button class="settings-gear-icon" onclick="openSettingsModal('business')" title="Settings" type="button"><i class="fa-solid fa-gear"></i></button>
-                        <button onclick="logoutSession()" type="button" style="background:none; border:none; color:var(--text-gray); cursor:pointer; font-size:0.6rem; text-decoration:underline;">Logout</button>
+                        <button onclick="logoutSession()" type="button" style="background:none; border:none; color:var(--text-gray); cursor:pointer; font-size:0.58rem; text-decoration:underline;">Logout</button>
                     </div>
                 </div>
 
                 <div class="dash-stats-grid">
                     <div class="dash-stat-box">
                         <span>Total Revenue</span>
-                        <span class="number">$0.00</span>
+                        <span class="number">$${(seller.totalWithdrawn + seller.balance).toFixed(2)}</span>
                     </div>
                     <div class="dash-stat-box">
                         <span>Pending Orders</span>
-                        <span class="number">0</span>
+                        <span class="number">1</span>
                     </div>
                     <div class="dash-stat-box">
                         <span>Complete Orders</span>
                         <span class="number">0</span>
                     </div>
                     <div class="dash-stat-box">
-                        <span>Withdrawable Net Balance (80%)</span>
-                        <span class="number">$0.00</span>
+                        <span>Available Balance (80%)</span>
+                        <span class="number">$${seller.balance.toFixed(2)}</span>
                     </div>
                 </div>
 
                 <div class="animated-graph-box">
                     <div class="graph-header-flex">
-                        <span style="font-size:0.65rem; color:var(--gold-solid); text-transform:uppercase; font-weight:700; font-family:var(--font-luxury);"><i class="fa-solid fa-chart-line"></i> Store Analytics</span>
+                        <span style="font-size:0.62rem; color:var(--gold-solid); text-transform:uppercase; font-weight:700; font-family:var(--font-luxury);"><i class="fa-solid fa-chart-line"></i> Store Analytics</span>
                         <select class="graph-filter-select" onchange="updateGraphData(this.value)">
                             <option value="1m">Last 1 Month</option>
                             <option value="1y">Last 1 Year</option>
@@ -580,14 +581,14 @@
                     </div>
                 </div>
 
-                <div style="background:#050505; border:1px solid rgba(212,175,55,0.3); padding:12px; border-radius:10px; margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
+                <div style="background:#050505; border:1px solid rgba(212,175,55,0.25); padding:10px; border-radius:8px; margin-top:10px; display:flex; justify-content:space-between; align-items:center;">
                     <div>
-                        <span style="font-size:0.6rem; color:var(--gold-solid); font-weight:700; font-family:var(--font-luxury); display:block;">WITHDRAW FUNDS</span>
-                        <span style="font-size:0.52rem; color:var(--text-gray);">Auto deducts from available balance</span>
+                        <span style="font-size:0.58rem; color:var(--gold-solid); font-weight:700; font-family:var(--font-luxury); display:block;">WITHDRAW FUNDS (Total Withdrawn: $${seller.totalWithdrawn.toFixed(2)})</span>
+                        <span style="font-size:0.5rem; color:var(--text-gray);">Requires active payout setup & 2FA</span>
                     </div>
-                    <div style="display:flex; gap:6px;">
-                        <input type="text" id="withdrawAmount" placeholder="Amount ($)" style="width:90px; background:#000; border:1px solid rgba(212,175,55,0.4); padding:6px; color:#fff; border-radius:6px; font-size:0.65rem;">
-                        <button class="apply-btn" onclick="submitWithdrawRequest()" style="padding:6px 12px; font-size:0.6rem;">Withdraw</button>
+                    <div style="display:flex; gap:5px;">
+                        <input type="text" id="withdrawAmount" placeholder="Amount ($)" style="width:85px; background:#000; border:1px solid rgba(212,175,55,0.35); padding:5px; color:#fff; border-radius:6px; font-size:0.62rem;">
+                        <button class="apply-btn" onclick="submitWithdrawRequest()" style="padding:5px 10px; font-size:0.58rem;">Withdraw</button>
                     </div>
                 </div>
             `;
@@ -611,12 +612,12 @@
             products.forEach((p, idx) => {
                 tbody.innerHTML += `
                     <tr>
-                        <td><b>${p.name}</b><br><span style="font-size:0.5rem; color:var(--text-gray);">Title: ${p.title}</span></td>
+                        <td><b>${p.name}</b><br><span style="font-size:0.48rem; color:var(--text-gray);">Title: ${p.title}</span></td>
                         <td class="text-center">${p.price}</td>
                         <td class="text-center">${p.stock}</td>
                         <td class="text-center">
-                            <button class="apply-btn" style="padding:2px 6px; font-size:0.5rem;" onclick="editProduct(${idx})">Edit</button>
-                            <button class="apply-btn" style="padding:2px 6px; font-size:0.5rem; background:#c0392b; color:#fff;" onclick="deleteProduct(${idx})">Del</button>
+                            <button class="apply-btn" style="padding:2px 5px; font-size:0.48rem;" onclick="editProduct(${idx})">Edit</button>
+                            <button class="apply-btn" style="padding:2px 5px; font-size:0.48rem; background:#c0392b; color:#fff;" onclick="deleteProduct(${idx})">Del</button>
                         </td>
                     </tr>
                 `;
@@ -693,13 +694,31 @@
             products.splice(idx, 1);
             localStorage.setItem('mme_seller_products', JSON.stringify(products));
             renderModalProductSheet();
-            showToast("Product removed from list.");
+            showToast("Product removed & deleted from website!");
         }
 
         function submitWithdrawRequest() {
-            let amt = document.getElementById('withdrawAmount').value.trim();
-            if(!amt) { alert("Please enter amount to withdraw."); return; }
-            showToast(`Withdrawal request of $${amt} processed successfully!`);
+            let seller = window.currentSellerData;
+            if(!seller.verified) {
+                alert("Please complete 2FA Security Verification in Settings before withdrawing funds.");
+                openSettingsModal('security');
+                return;
+            }
+            if(!seller.payoutAccount) {
+                alert("Please configure your Payment & Payout method in Settings first.");
+                openSettingsModal('payment');
+                return;
+            }
+
+            let amt = parseFloat(document.getElementById('withdrawAmount').value);
+            if(!amt || isNaN(amt) || amt <= 0) { alert("Please enter a valid withdrawal amount."); return; }
+            if(amt > seller.balance) { alert("Requested amount exceeds available balance."); return; }
+
+            seller.balance -= amt;
+            seller.totalWithdrawn = (seller.totalWithdrawn || 0) + amt;
+            localStorage.setItem('mme_active_seller', JSON.stringify(seller));
+            renderDashboard(seller);
+            showToast(`Withdrawal of $${amt.toFixed(2)} processed successfully!`);
             document.getElementById('withdrawAmount').value = "";
         }
 
@@ -712,32 +731,32 @@
             tbody.innerHTML = "";
             
             if(orders.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="text-center" style="color:var(--text-gray); padding:15px;">No shipments found.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="6" class="text-center" style="color:var(--text-gray); padding:12px;">No shipments found.</td></tr>`;
             } else {
                 orders.forEach((o, idx) => {
                     tbody.innerHTML += `
                         <tr>
-                            <td style="font-size:0.58rem; color:var(--text-gray);">${o.time}</td>
-                            <td><a href="${o.productLink || '#'}" target="_blank" style="color:var(--gold-solid); text-decoration:underline;"><b>${o.product}</b></a><br><span style="font-size:0.5rem; color:#2ecc71;">Net: ${o.net}</span></td>
-                            <td style="font-size:0.58rem;">${o.customer}</td>
+                            <td style="font-size:0.52rem; color:var(--text-gray);">${o.time}</td>
+                            <td><a href="${o.productLink || '#'}" target="_blank" style="color:var(--gold-solid); text-decoration:underline; font-size:0.58rem;"><b>${o.product}</b></a><br><span style="font-size:0.48rem; color:#2ecc71;">Net: ${o.net}</span></td>
+                            <td style="font-size:0.52rem;">${o.customer}</td>
                             <td>
-                                <select id="courier_${idx}" onchange="checkOtherCourier(${idx})" style="background:#000; color:#fff; border:1px solid rgba(212,175,55,0.4); font-size:0.6rem; padding:4px; border-radius:4px; width:105px;">
+                                <select id="courier_${idx}" onchange="checkOtherCourier(${idx})" style="background:#000; color:#fff; border:1px solid rgba(212,175,55,0.3); font-size:0.55rem; padding:3px; border-radius:4px; width:95px;">
                                     <option value="DHL Express" ${o.courier==='DHL Express'?'selected':''}>DHL Express</option>
                                     <option value="FedEx" ${o.courier==='FedEx'?'selected':''}>FedEx</option>
                                     <option value="Steadfast" ${o.courier==='Steadfast'?'selected':''}>Steadfast (BD)</option>
                                     <option value="Pathao" ${o.courier==='Pathao'?'selected':''}>Pathao (BD)</option>
                                     <option value="Others" ${o.courier==='Others'?'selected':''}>Others</option>
                                 </select>
-                                <input type="text" id="otherCourier_${idx}" placeholder="Type Courier Name" style="display:${o.courier==='Others'?'block':'none'}; margin-top:4px; background:#000; color:#fff; border:1px solid rgba(212,175,55,0.4); font-size:0.58rem; padding:3px; width:105px;" value="${o.otherCourier || ''}">
+                                <input type="text" id="otherCourier_${idx}" placeholder="Courier Name" style="display:${o.courier==='Others'?'block':'none'}; margin-top:3px; background:#000; color:#fff; border:1px solid rgba(212,175,55,0.3); font-size:0.52rem; padding:2px; width:95px;" value="${o.otherCourier || ''}">
                             </td>
                             <td>
-                                <input type="text" id="tracking_${idx}" placeholder="Tracking ID" value="${o.tracking || ''}" style="background:#000; color:#fff; border:1px solid rgba(212,175,55,0.4); font-size:0.58rem; padding:4px; width:95px; border-radius:4px;">
+                                <input type="text" id="tracking_${idx}" placeholder="Tracking ID" value="${o.tracking || ''}" style="background:#000; color:#fff; border:1px solid rgba(212,175,55,0.3); font-size:0.52rem; padding:3px; width:85px; border-radius:4px;">
                             </td>
                             <td class="text-center">
-                                <span style="font-size:0.55rem; color:${o.status==='Delivered'?'#2ecc71':(o.status==='Cancelled'?'#e74c3c':'#f39c12')}; font-weight:700; display:block; margin-bottom:4px;">${o.status}</span>
-                                <div style="display:flex; gap:3px; justify-content:center;">
-                                    <button class="apply-btn" style="padding:3px 6px; font-size:0.5rem;" onclick="updateShipmentStatus(${idx}, 'Delivered')">Deliver</button>
-                                    <button class="apply-btn" style="padding:3px 6px; font-size:0.5rem; background:#c0392b; color:#fff;" onclick="updateShipmentStatus(${idx}, 'Cancelled')">Cancel</button>
+                                <span style="font-size:0.5rem; color:${o.status==='Delivered'?'#2ecc71':(o.status==='Cancelled'?'#e74c3c':'#f39c12')}; font-weight:700; display:block; margin-bottom:3px;">${o.status}</span>
+                                <div style="display:flex; gap:2px; justify-content:center;">
+                                    <button class="apply-btn" style="padding:2px 5px; font-size:0.46rem;" onclick="updateShipmentStatus(${idx}, 'Delivered')">Confirm</button>
+                                    <button class="apply-btn" style="padding:2px 5px; font-size:0.46rem; background:#c0392b; color:#fff;" onclick="updateShipmentStatus(${idx}, 'Cancelled')">Cancel</button>
                                 </div>
                             </td>
                         </tr>
@@ -773,8 +792,15 @@
             orders[index].status = newStatus;
             localStorage.setItem('mme_seller_orders', JSON.stringify(orders));
 
+            if(newStatus === 'Delivered') {
+                let seller = window.currentSellerData;
+                seller.balance += 68.00;
+                localStorage.setItem('mme_active_seller', JSON.stringify(seller));
+                renderDashboard(seller);
+            }
+
             openShipmentManagement();
-            showToast("Shipment Updated: " + newStatus);
+            showToast("Shipment Status: " + newStatus);
         }
 
         function closeOrderModal() { document.getElementById('orderModalOverlay').style.display = 'none'; }
@@ -817,7 +843,7 @@
                         <input type="text" id="setWa" value="${seller.whatsapp || ''}">
                     </div>
                     <div style="text-align:right; margin-top:10px;">
-                        <button onclick="saveBusinessSettings()" type="button" class="apply-btn" style="padding:8px 14px; font-size:0.62rem;">Save Info</button>
+                        <button onclick="saveBusinessSettings()" type="button" class="apply-btn" style="padding:7px 12px; font-size:0.58rem;">Save Info</button>
                     </div>
                 `;
             } else if(tab === 'payment') {
@@ -834,37 +860,49 @@
                         <label id="payoutLabel">${isPayoneer ? 'Payoneer Email Address:' : 'bKash Mobile Number:'}</label>
                         <input type="text" id="setPayAcc" value="${seller.payoutAccount || ''}" placeholder="${isPayoneer ? 'payoneer@gmail.com' : '017XXXXXXXX'}">
                     </div>
-                    <div style="text-align:right; margin-top:12px;">
-                        <button onclick="savePaymentSettings()" type="button" class="apply-btn" style="padding:8px 14px; font-size:0.62rem;">Save Info</button>
+                    <div style="text-align:right; margin-top:10px;">
+                        <button onclick="savePaymentSettings()" type="button" class="apply-btn" style="padding:7px 12px; font-size:0.58rem;">Save Info</button>
                     </div>
                 `;
             } else if(tab === 'security') {
                 let isVerified = seller.verified;
                 contentHtml = `
-                    <div style="text-align:center; padding:5px;">
-                        <p style="font-size:0.7rem; color: ${isVerified ? '#2ecc71' : '#e67e22'}; margin-bottom:10px; font-weight:700;">
-                            Status: ${isVerified ? 'Active & Verified <i class="fa-solid fa-circle-check" style="font-size:1.1rem; vertical-align:middle;"></i>' : 'Disabled (Required for Payouts)'}
+                    <div style="text-align:center; padding:4px;">
+                        <p style="font-size:0.65rem; color: ${isVerified ? '#2ecc71' : '#e67e22'}; margin-bottom:8px; font-weight:700;">
+                            Status: ${isVerified ? 'Active & Verified <i class="fa-solid fa-circle-check" style="font-size:1rem; vertical-align:middle;"></i>' : 'Disabled (Required for Payouts)'}
                         </p>
                         ${!isVerified ? `
-                            <div style="background:#fff; width:110px; height:110px; margin:0 auto 8px auto; display:flex; align-items:center; justify-content:center; border-radius:8px;">
-                                <i class="fa-solid fa-qrcode" style="font-size:80px; color:#000;"></i>
-                            </div>
-                            <p style="font-size:0.58rem; color:var(--text-gray); margin-bottom:6px;">Key: <span style="color:var(--gold-solid);">JBSWY3DPEHPK3PXP</span></p>
-                            <div class="input-group" style="max-width:240px; margin:0 auto 10px auto;">
+                            <div style="background:#fff; width:120px; height:120px; margin:0 auto 6px auto; padding:6px; border-radius:8px; display:flex; align-items:center; justify-content:center;" id="qrcodeContainer"></div>
+                            <p style="font-size:0.55rem; color:var(--text-gray); margin-bottom:5px;">Key: <span style="color:var(--gold-solid);">JBSWY3DPEHPK3PXP</span></p>
+                            <div class="input-group" style="max-width:220px; margin:0 auto 8px auto;">
                                 <label>Enter 6-digit Code:</label>
-                                <input type="text" id="authCodeInput" placeholder="123456" maxlength="6" style="text-align:center; letter-spacing:3px;">
+                                <input type="text" id="authCodeInput" placeholder="123456" maxlength="6" style="text-align:center; letter-spacing:2px; font-size:0.75rem;">
                             </div>
-                            <button onclick="verifyTwoStepAuth()" type="button" class="apply-btn" style="padding:8px 16px; font-size:0.62rem;">Verify & Enable</button>
+                            <button onclick="verifyTwoStepAuth()" type="button" class="apply-btn" style="padding:7px 14px; font-size:0.58rem;">Verify & Enable</button>
                         ` : `
-                            <div style="padding:20px 0;">
-                                <i class="fa-solid fa-shield-halved" style="font-size:50px; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:10px; display:block;"></i>
-                                <p style="font-size:0.65rem; color:var(--text-gray);">Your account is fully secured with 2-Step Google Authenticator.</p>
+                            <div style="padding:15px 0;">
+                                <i class="fa-solid fa-shield-halved" style="font-size:45px; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:8px; display:block;"></i>
+                                <p style="font-size:0.62rem; color:var(--text-gray);">Your account is fully secured with 2-Step Google Authenticator.</p>
                             </div>
                         `}
                     </div>
                 `;
             }
             document.getElementById('settingsTabContent').innerHTML = contentHtml;
+            
+            if(tab === 'security' && !seller.verified) {
+                setTimeout(() => {
+                    let container = document.getElementById('qrcodeContainer');
+                    if(container) {
+                        container.innerHTML = "";
+                        new QRCode(container, {
+                            text: "otpauth://totp/MRMASUDAR:seller?secret=JBSWY3DPEHPK3PXP&issuer=MRMASUDAR",
+                            width: 108,
+                            height: 108
+                        });
+                    }
+                }, 100);
+            }
         }
 
         function togglePayoutField(method) {
