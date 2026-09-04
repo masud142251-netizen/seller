@@ -9,6 +9,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        const app = initializeApp(firebaseConfig);
+        window.db = getFirestore(app);
+        window.auth = getAuth(app);
+    </script>
+
     <style>
         :root {
             --bg-color: #030303;
@@ -159,7 +178,6 @@
         .seller-action-toolbar {
             display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 14px 0;
         }
-        @media(min-width: 500px) { .seller-action-toolbar { grid-template-columns: repeat(2, 1fr); } }
         .seller-tool-btn {
             background: rgba(15,15,15,0.95); border: 1.5px solid rgba(212,175,55,0.4); border-radius: 10px;
             padding: 12px 6px; text-align: center; cursor: pointer; color: #fff; font-size: 0.72rem; font-weight: 700;
@@ -191,7 +209,7 @@
         }
         .settings-modal-card {
             background: var(--surface-card); border: 1.5px solid var(--gold-solid); border-radius: 16px;
-            width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto; padding: 20px; text-align: left; position: relative;
+            width: 100%; max-width: 540px; max-height: 90vh; overflow-y: auto; padding: 20px; text-align: left; position: relative;
         }
         .modal-close-btn {
             position: absolute; top: 12px; right: 14px; background: transparent; border: 1.5px solid var(--gold-solid);
@@ -272,14 +290,14 @@
 
     </div>
 
-    <!-- 4. Product Gallery Modal (Pop-up with New Product Upload + Product Sheets) -->
+    <!-- 4. Product Gallery Modal (New Product + Product List) -->
     <div class="settings-modal-overlay" id="productGalleryModal">
-        <div class="settings-modal-card" style="max-width: 600px;">
+        <div class="settings-modal-card" style="max-width: 620px;">
             <button class="modal-close-btn" onclick="closeProductGallery()" type="button"><i class="fa-solid fa-xmark"></i></button>
-            <h3 style="font-family:var(--font-luxury); background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:1.05rem; margin-bottom:12px;"><i class="fa-solid fa-boxes-stacked"></i> Product Gallery & Upload</h3>
+            <h3 style="font-family:var(--font-luxury); background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:1.05rem; margin-bottom:12px;"><i class="fa-solid fa-boxes-stacked"></i> Product Gallery & Management</h3>
             
             <div style="background:#050505; border:1px solid rgba(212,175,55,0.3); padding:12px; border-radius:10px; margin-bottom:14px;">
-                <h4 style="font-size:0.7rem; color:var(--gold-solid); font-family:var(--font-luxury); margin-bottom:8px;"><i class="fa-solid fa-square-plus"></i> New Product Upload Form</h4>
+                <h4 style="font-size:0.7rem; color:var(--gold-solid); font-family:var(--font-luxury); margin-bottom:8px;"><i class="fa-solid fa-square-plus"></i> New Product</h4>
                 <div class="form-grid">
                     <div class="input-group full-width">
                         <label>Product Name *</label>
@@ -313,12 +331,12 @@
                         <textarea id="newProdDesc" rows="2" placeholder="Write product description..."></textarea>
                     </div>
                     <div class="input-group">
-                        <label>Weight & Dimensions *</label>
-                        <input type="text" id="newProdWeight" placeholder="2.5 kg / 40x20x30 inch">
+                        <label>Image URL (FB / YouTube Link)</label>
+                        <input type="url" id="newProdImgUrl" placeholder="https://facebook.com/... or image link">
                     </div>
                     <div class="input-group">
-                        <label>Image or YouTube/Shorts URL *</label>
-                        <input type="url" id="newProdMedia" placeholder="https://youtube.com/shorts/... or Image URL">
+                        <label>Short Video URL (YouTube Shorts)</label>
+                        <input type="url" id="newProdVidUrl" placeholder="https://youtube.com/shorts/...">
                     </div>
                 </div>
                 <div style="text-align:right; margin-top:10px;">
@@ -326,7 +344,7 @@
                 </div>
             </div>
 
-            <h4 style="font-size:0.7rem; color:var(--gold-solid); font-family:var(--font-luxury); margin-bottom:6px;"><i class="fa-solid fa-table"></i> Uploaded Product Sheets</h4>
+            <h4 style="font-size:0.7rem; color:var(--gold-solid); font-family:var(--font-luxury); margin-bottom:6px;"><i class="fa-solid fa-table"></i> Product List</h4>
             <div class="sheet-table-wrapper" style="max-height: 150px;">
                 <table class="sheet-table">
                     <thead><tr><th>Product Name</th><th class="text-center">Price</th><th class="text-center">Stock</th><th class="text-center">Action</th></tr></thead>
@@ -336,7 +354,7 @@
         </div>
     </div>
 
-    <!-- 5. Settings Hub Modal (Business Profile, Payment with Dynamic bKash/Payoneer, and 2-Step QR Security) -->
+    <!-- 5. Settings Hub Modal (Business Profile, Payment, 2-Step Authenticator Security) -->
     <div class="settings-modal-overlay" id="settingsModalOverlay">
         <div class="settings-modal-card">
             <button class="modal-close-btn" id="closeSettingsModalBtn" type="button"><i class="fa-solid fa-xmark"></i></button>
@@ -352,11 +370,11 @@
         </div>
     </div>
 
-    <!-- 6. Order Shipping Modal (Orders & Ship Pop-up) -->
+    <!-- 6. Shipment Management Modal -->
     <div class="settings-modal-overlay" id="orderModalOverlay">
         <div class="settings-modal-card" style="max-width: 440px;">
             <button class="modal-close-btn" onclick="closeOrderModal()" type="button"><i class="fa-solid fa-xmark"></i></button>
-            <h3 style="font-family:var(--font-luxury); background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:1rem; margin-bottom:10px;"><i class="fa-solid fa-truck-fast"></i> Order Shipping & Tracking</h3>
+            <h3 style="font-family:var(--font-luxury); background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:1rem; margin-bottom:10px;"><i class="fa-solid fa-truck-fast"></i> Shipment Management</h3>
             <div id="orderModalBody"></div>
         </div>
     </div>
@@ -438,7 +456,8 @@
             let defaultSeller = {
                 id: "SEL-8821", storeName: "Masudar Luxury Crafts", name: "MD MASUDAR RAHMAN",
                 email: "masudar142251@gmail.com", country: "🇧🇩 Bangladesh", whatsapp: "+8801767319670",
-                balance: 0.00, payoutType: 'Payoneer', payoutAccount: 'masudar142251@gmail.com', verified: true, tradeLicense: 'TRD-99281'
+                balance: 0.00, payoutType: 'Payoneer', payoutAccount: 'masudar142251@gmail.com', verified: true, 
+                tradeLicense: 'TRD-99281', address: 'Dhaka, Bangladesh', storePhoto: 'https://lh3.googleusercontent.com/d/1POhz8vb-MocaPNHg-i6nDSKwV4ky16Lc'
             };
             localStorage.setItem('mme_active_seller', JSON.stringify(defaultSeller));
             renderDashboard(defaultSeller);
@@ -463,7 +482,7 @@
             let newSeller = {
                 id: "SEL-" + Math.floor(1000 + Math.random() * 9000),
                 storeName: name + "'s Store", name, email, country: `${flagIcon} ${countryName}`, whatsapp: waCode + waNum,
-                balance: 0.00, payoutType: 'Payoneer', payoutAccount: email, verified: true, tradeLicense: ''
+                balance: 0.00, payoutType: 'Payoneer', payoutAccount: email, verified: true, tradeLicense: '', address: '', storePhoto: ''
             };
 
             localStorage.setItem('mme_active_seller', JSON.stringify(newSeller));
@@ -479,20 +498,24 @@
             document.getElementById('dashboardSection').style.display = 'block';
 
             let orders = JSON.parse(localStorage.getItem('mme_seller_orders')) || [
-                { orderId: 'ORD-901', customer: 'John Doe', phone: '+123456789', address: 'New York, USA', product: 'Gamar Wood Executive Table', note: 'Please polish high gloss golden.', netPayout: '$68.00', courier: 'DHL Express', trackingId: 'DHL-992817', status: 'Shipped' }
+                { orderId: 'ORD-901', customer: 'John Doe', phone: '+123456789', address: 'New York, USA', product: 'Gamar Wood Executive Table', note: 'Please polish high gloss golden.', netPayout: '$68.00', courier: 'DHL Express', trackingId: 'DHL-992817', status: 'Pending' }
             ];
 
             let orderRows = '';
-            orders.forEach((o, idx) => {
-                orderRows += `
-                    <tr>
-                        <td><b>${o.orderId}</b><br><span style="font-size:0.52rem; color:var(--text-gray);">${o.product}</span></td>
-                        <td class="text-center" style="color:#2ecc71; font-weight:bold;">${o.netPayout}</td>
-                        <td class="text-center"><span class="badge-status badge-shipped">${o.status}</span></td>
-                        <td class="text-center"><button class="apply-btn" style="padding:4px 9px; font-size:0.55rem;" onclick="openOrderTracking(${idx})">Manage Ship</button></td>
-                    </tr>
-                `;
-            });
+            if(orders.length === 0) {
+                orderRows = `<tr><td colspan="4" class="text-center" style="color:var(--text-gray);">No pending shipments.</td></tr>`;
+            } else {
+                orders.forEach((o, idx) => {
+                    orderRows += `
+                        <tr>
+                            <td><b>${o.orderId}</b><br><span style="font-size:0.52rem; color:var(--text-gray);">${o.product}</span></td>
+                            <td class="text-center" style="color:#2ecc71; font-weight:bold;">${o.netPayout}</td>
+                            <td class="text-center"><span class="badge-status badge-shipped">${o.status}</span></td>
+                            <td class="text-center"><button class="apply-btn" style="padding:4px 9px; font-size:0.55rem;" onclick="openOrderTracking(${idx})">Manage Ship</button></td>
+                        </tr>
+                    `;
+                });
+            }
 
             let dashHtml = `
                 <div class="dash-top-bar">
@@ -509,7 +532,7 @@
                     </div>
                 </div>
 
-                <!-- স্ট্যাটস কার্ড (সবসময় জিরো জিরো) -->
+                <!-- স্ট্যাটস কার্ড (সবসময় জিরো) -->
                 <div class="dash-stats-grid">
                     <div class="dash-stat-box">
                         <span>Total Revenue</span>
@@ -529,7 +552,7 @@
                     </div>
                 </div>
 
-                <!-- Store Analytics Graph (শুধুমাত্র 1 Month ও 1 Year ফিল্টার সহ) -->
+                <!-- Store Analytics Graph -->
                 <div class="animated-graph-box">
                     <div class="graph-header-flex">
                         <span style="font-size:0.65rem; color:var(--gold-solid); text-transform:uppercase; font-weight:700; font-family:var(--font-luxury);"><i class="fa-solid fa-chart-line"></i> Store Analytics</span>
@@ -552,12 +575,12 @@
                         <i class="fa-solid fa-boxes-stacked"></i> Product Gallery
                     </div>
                     <div class="seller-tool-btn" onclick="showToast('Select order below to manage shipment')">
-                        <i class="fa-solid fa-truck-fast"></i> Orders & Ship
+                        <i class="fa-solid fa-truck-fast"></i> Shipment Management
                     </div>
                 </div>
 
-                <!-- Customer Orders & Tracking Ledger -->
-                <p style="font-size:0.62rem; color:var(--gold-solid); font-weight:700; margin-top:10px; font-family:var(--font-luxury);"><i class="fa-solid fa-list-check"></i> Customer Orders & Tracking Ledger</p>
+                <!-- Shipment Management Ledger -->
+                <p style="font-size:0.62rem; color:var(--gold-solid); font-weight:700; margin-top:10px; font-family:var(--font-luxury);"><i class="fa-solid fa-list-check"></i> Shipment Management Ledger</p>
                 <div class="sheet-table-wrapper">
                     <table class="sheet-table">
                         <thead><tr><th>Order & Product</th><th class="text-center">Net (80%)</th><th class="text-center">Status</th><th class="text-center">Action</th></tr></thead>
@@ -565,7 +588,7 @@
                     </table>
                 </div>
 
-                <!-- উইথড্র / পে-আউট রিকোয়েস্ট সেকশন (নিচে) -->
+                <!-- পে-আউট উইথড্র সেকশন -->
                 <div style="background:#050505; border:1px solid rgba(212,175,55,0.3); padding:12px; border-radius:10px; margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
                     <div>
                         <span style="font-size:0.6rem; color:var(--gold-solid); font-weight:700; font-family:var(--font-luxury); display:block;">REQUEST WITHDRAWAL</span>
@@ -580,7 +603,6 @@
             document.getElementById('partnerWelcomeBox').innerHTML = dashHtml;
         }
 
-        // Product Gallery & Upload Modal Logic
         function openProductGallery() {
             renderModalProductSheet();
             document.getElementById('productGalleryModal').style.display = 'flex';
@@ -598,10 +620,13 @@
             products.forEach((p, idx) => {
                 tbody.innerHTML += `
                     <tr>
-                        <td><b>${p.name}</b><br><span style="font-size:0.5rem; color:var(--text-gray);">${p.category} | Color/Size: ${p.colorSize}</span></td>
+                        <td><b>${p.name}</b><br><span style="font-size:0.5rem; color:var(--text-gray);">Color/Size: ${p.colorSize}</span></td>
                         <td class="text-center">${p.price}</td>
                         <td class="text-center">${p.stock}</td>
-                        <td class="text-center"><button class="apply-btn" style="padding:2px 6px; font-size:0.5rem;" onclick="editProduct(${idx})">Edit</button></td>
+                        <td class="text-center">
+                            <button class="apply-btn" style="padding:2px 6px; font-size:0.5rem;" onclick="editProduct(${idx})">Edit</button>
+                            <button class="apply-btn" style="padding:2px 6px; font-size:0.5rem; background:#c0392b; color:#fff;" onclick="deleteProduct(${idx})">Del</button>
+                        </td>
                     </tr>
                 `;
             });
@@ -614,11 +639,13 @@
             let stock = parseInt(document.getElementById('newProdStock').value) || 10;
             let colorSize = document.getElementById('newProdColorSize').value.trim();
             let desc = document.getElementById('newProdDesc').value.trim();
+            let imgUrl = document.getElementById('newProdImgUrl').value.trim();
+            let vidUrl = document.getElementById('newProdVidUrl').value.trim();
 
             if(!name || !price || !desc) { alert("Please fill in all mandatory product information."); return; }
 
             let products = JSON.parse(localStorage.getItem('mme_seller_products')) || [];
-            products.push({ name, category, price: '$' + price.replace('$', ''), stock, colorSize, desc });
+            products.push({ name, category, price: '$' + price.replace('$', ''), stock, colorSize, desc, imgUrl, vidUrl });
             localStorage.setItem('mme_seller_products', JSON.stringify(products));
 
             document.getElementById('newProdName').value = "";
@@ -626,10 +653,11 @@
             document.getElementById('newProdStock').value = "";
             document.getElementById('newProdColorSize').value = "";
             document.getElementById('newProdDesc').value = "";
-            document.getElementById('newProdMedia').value = "";
+            document.getElementById('newProdImgUrl').value = "";
+            document.getElementById('newProdVidUrl').value = "";
 
             renderModalProductSheet();
-            showToast("Product Uploaded & Added to Sheet!");
+            showToast("Product Published & Added to List!");
         }
 
         function editProduct(idx) {
@@ -640,10 +668,20 @@
             document.getElementById('newProdStock').value = p.stock;
             document.getElementById('newProdColorSize').value = p.colorSize;
             document.getElementById('newProdDesc').value = p.desc;
+            document.getElementById('newProdImgUrl').value = p.imgUrl || '';
+            document.getElementById('newProdVidUrl').value = p.vidUrl || '';
             products.splice(idx, 1);
             localStorage.setItem('mme_seller_products', JSON.stringify(products));
             renderModalProductSheet();
             showToast("Loaded product into form for editing.");
+        }
+
+        function deleteProduct(idx) {
+            let products = JSON.parse(localStorage.getItem('mme_seller_products')) || [];
+            products.splice(idx, 1);
+            localStorage.setItem('mme_seller_products', JSON.stringify(products));
+            renderModalProductSheet();
+            showToast("Product removed from list.");
         }
 
         function submitWithdrawRequest() {
@@ -682,20 +720,20 @@
                     <div class="input-group">
                         <label>Courier Service</label>
                         <select id="courierSelect">
-                            <option value="DHL Express" ${o.courier==='DHL Express'?'selected':''}>DHL Express (Global)</option>
-                            <option value="FedEx" ${o.courier==='FedEx'?'selected':''}>FedEx (Global)</option>
-                            <option value="Steadfast" ${o.courier==='Steadfast'?'selected':''}>Steadfast Courier (BD)</option>
-                            <option value="Pathao" ${o.courier==='Pathao'?'selected':''}>Pathao Courier (BD)</option>
-                            <option value="Others" ${o.courier==='Others'?'selected':''}>Others / Local</option>
+                            <option value="DHL Express">DHL Express (Global)</option>
+                            <option value="FedEx">FedEx (Global)</option>
+                            <option value="Steadfast">Steadfast Courier (BD)</option>
+                            <option value="Pathao">Pathao Courier (BD)</option>
+                            <option value="Others">Others / Local</option>
                         </select>
                     </div>
                     <div class="input-group">
                         <label>Tracking ID / Waybill</label>
-                        <input type="text" id="trackingIdInput" value="${o.trackingId || ''}" placeholder="Enter Tracking Code">
+                        <input type="text" id="trackingIdInput" placeholder="Enter Tracking Code">
                     </div>
                 </div>
                 <div style="text-align:right; margin-top:12px;">
-                    <button class="apply-btn" onclick="saveOrderTracking(${index})" type="button">Update & Shipped</button>
+                    <button class="apply-btn" onclick="saveOrderTracking(${index})" type="button">Update & Vanish</button>
                 </div>
             `;
             document.getElementById('orderModalOverlay').style.display = 'flex';
@@ -703,19 +741,17 @@
 
         function saveOrderTracking(index) {
             let orders = JSON.parse(localStorage.getItem('mme_seller_orders')) || [];
-            let courier = document.getElementById('courierSelect').value;
             let tracking = document.getElementById('trackingIdInput').value.trim();
 
             if(!tracking) { alert("Please enter tracking ID."); return; }
 
-            orders[index].courier = courier;
-            orders[index].trackingId = tracking;
-            orders[index].status = 'Shipped';
+            // আপডেট করার পর অর্ডারটি লিস্ট থেকে ভ্যানিশ হয়ে যাবে
+            orders.splice(index, 1);
             localStorage.setItem('mme_seller_orders', JSON.stringify(orders));
 
             closeOrderModal();
             renderDashboard(window.currentSellerData);
-            showToast("Order Shipping & Tracking Updated!");
+            showToast("Shipment Updated & Order Dispatched!");
         }
 
         function closeOrderModal() { document.getElementById('orderModalOverlay').style.display = 'none'; }
@@ -737,23 +773,31 @@
 
             if(tab === 'business') {
                 contentHtml = `
-                    <div class="input-group" style="margin-bottom:10px;">
+                    <div class="input-group" style="margin-bottom:8px;">
                         <label>Store Name:</label>
-                        <input type="text" id="setStore" value="${seller.storeName}">
+                        <input type="text" id="setStore" value="${seller.storeName || ''}">
                     </div>
-                    <div class="input-group" style="margin-bottom:10px;">
-                        <label>Trade License Number (Optional):</label>
+                    <div class="input-group" style="margin-bottom:8px;">
+                        <label>Trade License Name / Number:</label>
                         <input type="text" id="setLicense" value="${seller.tradeLicense || ''}" placeholder="TRD-XXXXX">
                     </div>
-                    <div class="input-group" style="margin-bottom:10px;">
+                    <div class="input-group" style="margin-bottom:8px;">
                         <label>Owner Name:</label>
-                        <input type="text" id="setName" value="${seller.name}">
+                        <input type="text" id="setName" value="${seller.name || ''}">
                     </div>
-                    <div class="input-group" style="margin-bottom:10px;">
-                        <label>WhatsApp:</label>
-                        <input type="text" id="setWa" value="${seller.whatsapp}">
+                    <div class="input-group" style="margin-bottom:8px;">
+                        <label>Full Address:</label>
+                        <input type="text" id="setAddress" value="${seller.address || ''}" placeholder="House, Road, City, Country">
                     </div>
-                    <div style="text-align:right; margin-top:12px;">
+                    <div class="input-group" style="margin-bottom:8px;">
+                        <label>WhatsApp Number:</label>
+                        <input type="text" id="setWa" value="${seller.whatsapp || ''}">
+                    </div>
+                    <div class="input-group" style="margin-bottom:8px;">
+                        <label>Store Profile Photo URL:</label>
+                        <input type="url" id="setPhoto" value="${seller.storePhoto || ''}" placeholder="https://image-link.com/photo.jpg">
+                    </div>
+                    <div style="text-align:right; margin-top:10px;">
                         <button onclick="saveBusinessSettings()" type="button" class="apply-btn" style="padding:8px 14px; font-size:0.62rem;">Save Info</button>
                     </div>
                 `;
@@ -809,7 +853,9 @@
             window.currentSellerData.storeName = document.getElementById('setStore').value;
             window.currentSellerData.tradeLicense = document.getElementById('setLicense').value;
             window.currentSellerData.name = document.getElementById('setName').value;
+            window.currentSellerData.address = document.getElementById('setAddress').value;
             window.currentSellerData.whatsapp = document.getElementById('setWa').value;
+            window.currentSellerData.storePhoto = document.getElementById('setPhoto').value;
             localStorage.setItem('mme_active_seller', JSON.stringify(window.currentSellerData));
             renderDashboard(window.currentSellerData);
             showToast("Business Profile Saved Successfully!");
