@@ -445,7 +445,9 @@
                 try {
                     window.currentSellerData = JSON.parse(savedJson);
                     renderDashboard(window.currentSellerData);
-                } catch(e) {}
+                } catch(e) {
+                    localStorage.removeItem('mme_active_seller');
+                }
             }
         });
 
@@ -604,6 +606,7 @@
         function renderModalProductSheet() {
             let products = JSON.parse(localStorage.getItem('mme_seller_products')) || [];
             let tbody = document.getElementById('modalProductSheetRows');
+            if(!tbody) return;
             tbody.innerHTML = "";
             if(products.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="4" class="text-center" style="color:var(--text-gray);">No products uploaded yet.</td></tr>`;
@@ -728,6 +731,7 @@
             ];
             
             let tbody = document.getElementById('shipmentModalBody');
+            if(!tbody) return;
             tbody.innerHTML = "";
             
             if(orders.length === 0) {
@@ -767,23 +771,29 @@
         }
 
         function checkOtherCourier(idx) {
-            let val = document.getElementById('courier_' + idx).value;
+            let sel = document.getElementById('courier_' + idx);
             let otherInput = document.getElementById('otherCourier_' + idx);
-            if(val === 'Others') {
-                otherInput.style.display = 'block';
-            } else {
-                otherInput.style.display = 'none';
+            if(sel && otherInput) {
+                if(sel.value === 'Others') {
+                    otherInput.style.display = 'block';
+                } else {
+                    otherInput.style.display = 'none';
+                }
             }
         }
 
         function updateShipmentStatus(index, newStatus) {
             let orders = JSON.parse(localStorage.getItem('mme_seller_orders')) || [];
-            let courier = document.getElementById('courier_' + index).value;
+            let courierSelect = document.getElementById('courier_' + index);
+            if(!courierSelect) return;
+            let courier = courierSelect.value;
             if(courier === 'Others') {
-                let otherName = document.getElementById('otherCourier_' + index).value.trim();
+                let otherField = document.getElementById('otherCourier_' + index);
+                let otherName = otherField ? otherField.value.trim() : '';
                 if(otherName) courier = otherName;
             }
-            let tracking = document.getElementById('tracking_' + index).value.trim();
+            let trackingField = document.getElementById('tracking_' + index);
+            let tracking = trackingField ? trackingField.value.trim() : '';
 
             if(!tracking) { alert("Please enter tracking ID."); return; }
 
@@ -816,6 +826,15 @@
             if(btnElem) {
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
                 btnElem.classList.add('active');
+            } else {
+                let tabs = document.querySelectorAll('.tab-btn');
+                tabs.forEach((b, idx) => {
+                    if((tab === 'business' && idx === 0) || (tab === 'payment' && idx === 1) || (tab === 'security' && idx === 2)) {
+                        b.classList.add('active');
+                    } else {
+                        b.classList.remove('active');
+                    }
+                });
             }
             let seller = window.currentSellerData;
             let contentHtml = '';
@@ -908,12 +927,14 @@
         function togglePayoutField(method) {
             let label = document.getElementById('payoutLabel');
             let input = document.getElementById('setPayAcc');
-            if(method === 'bKash') {
-                label.innerText = "bKash Mobile Number:";
-                input.placeholder = "017XXXXXXXX";
-            } else {
-                label.innerText = "Payoneer Email Address:";
-                input.placeholder = "payoneer@gmail.com";
+            if(label && input) {
+                if(method === 'bKash') {
+                    label.innerText = "bKash Mobile Number:";
+                    input.placeholder = "017XXXXXXXX";
+                } else {
+                    label.innerText = "Payoneer Email Address:";
+                    input.placeholder = "payoneer@gmail.com";
+                }
             }
         }
 
@@ -949,6 +970,7 @@
 
         function updateGraphData(period) {
             let container = document.getElementById('graphContainerBars');
+            if(!container) return;
             if(period === '1m') {
                 container.innerHTML = `<div class="bar-col"><div class="bar" style="height: 35px;"></div><span class="bar-label">W1</span></div><div class="bar-col"><div class="bar" style="height: 60px;"></div><span class="bar-label">W2</span></div><div class="bar-col"><div class="bar" style="height: 45px;"></div><span class="bar-label">W3</span></div><div class="bar-col"><div class="bar" style="height: 85px;"></div><span class="bar-label">W4</span></div>`;
             } else if(period === '1y') {
