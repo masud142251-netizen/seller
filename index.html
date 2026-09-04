@@ -144,7 +144,7 @@
             color: #fff; border-radius: 8px; font-size: 0.78rem; outline: none;
         }
         .phone-group { display: flex; gap: 6px; }
-        .phone-group select { width: 110px; flex-shrink: 0; }
+        .phone-group select { width: 120px; flex-shrink: 0; }
 
         .dash-top-bar {
             display: flex; justify-content: space-between; align-items: center;
@@ -265,7 +265,7 @@
                     <input type="email" id="email" placeholder="masudar142251@gmail.com" required>
                 </div>
                 <div class="input-group">
-                    <label>Country (195+ Nations) *</label>
+                    <label>Country (195+ Nations Auto-Tracked) *</label>
                     <select id="regCountrySelect" required></select>
                 </div>
                 <div class="input-group">
@@ -416,33 +416,54 @@
 
     <script>
         const allCountriesAndCodes = [
-            {name: "Afghanistan", dial: "+93", flag: "🇦🇫"}, {name: "Albania", dial: "+355", flag: "🇦🇱"}, {name: "Algeria", dial: "+213", flag: "🇩🇿"},
-            {name: "Argentina", dial: "+54", flag: "🇦🇷"}, {name: "Australia", dial: "+61", flag: "🇦🇺"}, {name: "Austria", dial: "+43", flag: "🇦🇹"},
-            {name: "Bangladesh", dial: "+880", flag: "🇧🇩"}, {name: "Belgium", dial: "+32", flag: "🇧🇪"}, {name: "Brazil", dial: "+55", flag: "🇧🇷"},
-            {name: "Canada", dial: "+1", flag: "🇨🇦"}, {name: "China", dial: "+86", flag: "🇨🇳"}, {name: "Egypt", dial: "+20", flag: "🇪🇬"},
-            {name: "France", dial: "+33", flag: "🇫🇷"}, {name: "Germany", dial: "+49", flag: "🇩🇪"}, {name: "India", dial: "+91", flag: "🇮🇳"},
-            {name: "Indonesia", dial: "+62", flag: "🇮🇩"}, {name: "Italy", dial: "+39", flag: "🇮🇹"}, {name: "Japan", dial: "+81", flag: "🇯🇵"},
-            {name: "Malaysia", dial: "+60", flag: "🇲🇾"}, {name: "Pakistan", dial: "+92", flag: "🇵🇰"}, {name: "Saudi Arabia", dial: "+966", flag: "🇸🇦"},
-            {name: "Singapore", dial: "+65", flag: "🇸🇬"}, {name: "South Africa", dial: "+27", flag: "🇿🇦"}, {name: "South Korea", dial: "+82", flag: "🇰🇷"},
-            {name: "Spain", dial: "+34", flag: "🇪🇸"}, {name: "Sweden", dial: "+46", flag: "🇸🇪"}, {name: "Switzerland", dial: "+41", flag: "🇨🇭"},
-            {name: "Turkey", dial: "+90", flag: "🇹🇷"}, {name: "United Arab Emirates", dial: "+971", flag: "🇦🇪"}, {name: "United Kingdom", dial: "+44", flag: "🇬🇧"},
-            {name: "United States", dial: "+1", flag: "🇺🇸"}
+            {name: "Afghanistan", dial: "+93"}, {name: "Albania", dial: "+355"}, {name: "Algeria", dial: "+213"},
+            {name: "Argentina", dial: "+54"}, {name: "Australia", dial: "+61"}, {name: "Austria", dial: "+43"},
+            {name: "Bangladesh", dial: "+880"}, {name: "Belgium", dial: "+32"}, {name: "Brazil", dial: "+55"},
+            {name: "Canada", dial: "+1"}, {name: "China", dial: "+86"}, {name: "Egypt", dial: "+20"},
+            {name: "France", dial: "+33"}, {name: "Germany", dial: "+49"}, {name: "India", dial: "+91"},
+            {name: "Indonesia", dial: "+62"}, {name: "Italy", dial: "+39"}, {name: "Japan", dial: "+81"},
+            {name: "Malaysia", dial: "+60"}, {name: "Pakistan", dial: "+92"}, {name: "Saudi Arabia", dial: "+966"},
+            {name: "Singapore", dial: "+65"}, {name: "South Africa", dial: "+27"}, {name: "South Korea", dial: "+82"},
+            {name: "Spain", dial: "+34"}, {name: "Sweden", dial: "+46"}, {name: "Switzerland", dial: "+41"},
+            {name: "Turkey", dial: "+90"}, {name: "United Arab Emirates", dial: "+971"}, {name: "United Kingdom", dial: "+44"},
+            {name: "United States", dial: "+1"}
         ];
 
         document.addEventListener("DOMContentLoaded", function() {
             const countrySelect = document.getElementById('regCountrySelect');
             const dialSelect = document.getElementById('regDialCodeSelect');
+            
             if(countrySelect && dialSelect) {
                 allCountriesAndCodes.forEach(c => {
                     let opt1 = document.createElement('option');
-                    opt1.value = c.name; opt1.textContent = c.flag + " " + c.name;
+                    opt1.value = c.name; opt1.textContent = c.name;
                     countrySelect.appendChild(opt1);
 
                     let opt2 = document.createElement('option');
-                    opt2.value = c.dial; opt2.textContent = c.flag + " " + c.dial;
-                    if(c.name === "Bangladesh") opt2.selected = true;
+                    opt2.value = c.dial; opt2.textContent = c.dial;
                     dialSelect.appendChild(opt2);
                 });
+
+                // Auto-detect user country and dial code via IP geolocation API
+                fetch('https://ipapi.co/json/')
+                    .then(response => response.json())
+                    .then(data => {
+                        let detectedCountry = data.country_name;
+                        let detectedDial = data.country_calling_code; // e.g. "+880"
+                        
+                        if(detectedCountry) {
+                            countrySelect.value = detectedCountry;
+                        }
+                        if(detectedDial) {
+                            if(!detectedDial.startsWith('+')) detectedDial = '+' + detectedDial;
+                            dialSelect.value = detectedDial;
+                        }
+                    })
+                    .catch(() => {
+                        // Fallback to Bangladesh if network fails
+                        countrySelect.value = "Bangladesh";
+                        dialSelect.value = "+880";
+                    });
             }
 
             document.getElementById('googleVerifyBtn').addEventListener('click', googleVerifyAndOpenForm);
@@ -492,7 +513,7 @@
         function skipFormToDashboard() {
             let defaultSeller = {
                 id: "SEL-5622", storeName: "MR MASUDAR RAHMAN", name: "MR MASUDAR RAHMAN",
-                email: "masudar142251@gmail.com", country: "🇧🇩 Bangladesh", whatsapp: "+8801767319670",
+                email: "masudar142251@gmail.com", country: "Bangladesh", whatsapp: "+8801767319670",
                 balance: 0.00, totalWithdrawn: 0.00, payoutType: 'Payoneer', payoutAccount: 'masudar142251@gmail.com', verified: false, 
                 tradeLicense: 'TRD-99281', address: 'Dhaka, Bangladesh'
             };
@@ -513,12 +534,9 @@
                 return;
             }
 
-            let matchObj = allCountriesAndCodes.find(c => c.name === countryName);
-            let flagIcon = matchObj ? matchObj.flag : '🇧🇩';
-
             let newSeller = {
                 id: "SEL-" + Math.floor(1000 + Math.random() * 9000),
-                storeName: name, name, email, country: `${flagIcon} ${countryName}`, whatsapp: waCode + waNum,
+                storeName: name, name, email, country: countryName, whatsapp: waCode + waNum,
                 balance: 0.00, totalWithdrawn: 0.00, payoutType: 'Payoneer', payoutAccount: email, verified: false, tradeLicense: '', address: ''
             };
 
