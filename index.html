@@ -60,10 +60,10 @@
 
         .custom-toast { 
             position: fixed; top: 15px; left: 50%; transform: translateX(-50%); 
-            background: #080808; border: 1.5px solid var(--gold-solid); 
+            background: #080808; border: 1px solid var(--gold-solid); 
             color: var(--gold-solid); padding: 8px 18px; border-radius: 25px; 
             font-size: 0.72rem; font-weight: 700; z-index: 999999; display: none; 
-            box-shadow: 0 0 20px rgba(212,175,55,0.4); 
+            box-shadow: 0 0 15px rgba(212,175,55,0.3); 
         }
 
         .luxury-card {
@@ -299,12 +299,12 @@
                 <input type="hidden" id="editProductIndex" value="-1">
                 <div class="form-grid">
                     <div class="input-group">
-                        <label>Product Name (Max 22 Char) *</label>
-                        <input type="text" id="newProdName" maxlength="22" placeholder="Product name...">
+                        <label>Product Name *</label>
+                        <input type="text" id="newProdName" maxlength="22" placeholder="Max 22 characters">
                     </div>
                     <div class="input-group">
-                        <label>Product Title (Max 25 Char) *</label>
-                        <input type="text" id="newProdTitle" maxlength="25" placeholder="Product title...">
+                        <label>Product Title *</label>
+                        <input type="text" id="newProdTitle" maxlength="25" placeholder="Max 25 characters">
                     </div>
                     <div class="input-group">
                         <label>Category *</label>
@@ -330,8 +330,8 @@
                         <input type="text" id="newProdColor" placeholder="Golden Teak (#D4AF37)">
                     </div>
                     <div class="input-group full-width">
-                        <label>Description (Max 155 Words) *</label>
-                        <textarea id="newProdDesc" rows="2" maxlength="155" placeholder="Write description..."></textarea>
+                        <label>Description *</label>
+                        <textarea id="newProdDesc" rows="2" maxlength="155" placeholder="Max 155 words description..."></textarea>
                     </div>
                     <div class="input-group">
                         <label>Image URL (FB / YouTube)</label>
