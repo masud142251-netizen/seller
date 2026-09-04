@@ -135,6 +135,7 @@
             justify-content: center; cursor: pointer; font-size: 0.95rem; box-shadow: 0 0 12px rgba(212,175,55,0.4);
         }
 
+        /* স্বতন্ত্র ও আকর্ষণীয় ফিন্যান্সিয়াল মেট্রিকস কার্ড (গ্রাফের সাথে মিশ্রণ নয়) */
         .dash-stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 10px 0; }
         @media(min-width: 550px) { .dash-stats-grid { grid-template-columns: repeat(4, 1fr); } }
         .dash-stat-box {
@@ -143,6 +144,7 @@
         .dash-stat-box span { font-size: 0.55rem; color: var(--text-gray); text-transform: uppercase; font-weight: 600; }
         .dash-stat-box .number { font-size: 1.05rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-top: 3px; display: block; font-family: var(--font-luxury); }
 
+        /* স্টোর অ্যানালাইসিস ওয়েভি গ্রাফ ডিজাইন */
         .animated-graph-box {
             background: rgba(8, 8, 8, 0.95); border: 1.5px solid rgba(212,175,55,0.3); border-radius: 12px; padding: 12px; margin: 12px 0;
         }
@@ -275,7 +277,7 @@
 
     </div>
 
-    <!-- 4. Add Product Modal (Advanced with all specs) -->
+    <!-- 4. Add Product Modal -->
     <div class="settings-modal-overlay" id="addProductModal">
         <div class="settings-modal-card">
             <button class="modal-close-btn" onclick="closeAddProductModal()" type="button"><i class="fa-solid fa-xmark"></i></button>
@@ -336,7 +338,7 @@
         </div>
     </div>
 
-    <!-- 5. Settings Hub Modal (Business Profile & Dynamic Payment) -->
+    <!-- 5. Settings Hub Modal -->
     <div class="settings-modal-overlay" id="settingsModalOverlay">
         <div class="settings-modal-card">
             <button class="modal-close-btn" id="closeSettingsModalBtn" type="button"><i class="fa-solid fa-xmark"></i></button>
@@ -513,10 +515,11 @@
                     </div>
                 </div>
 
+                <!-- স্বতন্ত্র ফিন্যান্সিয়াল মেট্রিকস কার্ডস -->
                 <div class="dash-stats-grid">
                     <div class="dash-stat-box">
                         <span>Total Revenue</span>
-                        <span class="number">$${seller.balance.toFixed(2)}</span>
+                        <span class="number">$0.00</span>
                     </div>
                     <div class="dash-stat-box">
                         <span>Pending Orders</span>
@@ -528,7 +531,7 @@
                     </div>
                     <div class="dash-stat-box">
                         <span>Wallet Balance</span>
-                        <span class="number">$${seller.balance.toFixed(2)}</span>
+                        <span class="number">$0.00</span>
                     </div>
                 </div>
 
@@ -545,7 +548,7 @@
                     </div>
                 </div>
 
-                <!-- Store Analytics Graph (1 Month & 1 Year) -->
+                <!-- Store Analytics Graph (শুধুমাত্র 1 Month ও 1 Year ফিল্টার সহ) -->
                 <div class="animated-graph-box">
                     <div class="graph-header-flex">
                         <span style="font-size:0.65rem; color:var(--gold-solid); text-transform:uppercase; font-weight:700; font-family:var(--font-luxury);"><i class="fa-solid fa-chart-line"></i> Store Analytics</span>
