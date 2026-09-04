@@ -290,23 +290,23 @@
 
     </div>
 
-    <!-- 4. Product Gallery & Management Modal -->
+    <!-- 4. Product Gallery Modal -->
     <div class="settings-modal-overlay" id="productGalleryModal">
         <div class="settings-modal-card" style="max-width: 640px;">
             <button class="modal-close-btn" onclick="closeProductGallery()" type="button"><i class="fa-solid fa-xmark"></i></button>
-            <h3 style="font-family:var(--font-luxury); background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:1.05rem; margin-bottom:12px;"><i class="fa-solid fa-boxes-stacked"></i> Product Gallery & Management</h3>
+            <h3 style="font-family:var(--font-luxury); background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:1.05rem; margin-bottom:12px;"><i class="fa-solid fa-boxes-stacked"></i> Product Gallery</h3>
             
             <div style="background:#050505; border:1px solid rgba(212,175,55,0.3); padding:12px; border-radius:10px; margin-bottom:14px;">
                 <h4 style="font-size:0.7rem; color:var(--gold-solid); font-family:var(--font-luxury); margin-bottom:8px;"><i class="fa-solid fa-square-plus"></i> New Product</h4>
                 <input type="hidden" id="editProductIndex" value="-1">
                 <div class="form-grid">
                     <div class="input-group">
-                        <label>Product Name (Max 22 Char) *</label>
-                        <input type="text" id="newProdName" maxlength="22" placeholder="Gamar Table">
+                        <label>Product Name *</label>
+                        <input type="text" id="newProdName" maxlength="22" placeholder="Product name...">
                     </div>
                     <div class="input-group">
-                        <label>Product Title (Max 25 Char) *</label>
-                        <input type="text" id="newProdTitle" maxlength="25" placeholder="Luxury Wood Table">
+                        <label>Product Title *</label>
+                        <input type="text" id="newProdTitle" maxlength="25" placeholder="Product title...">
                     </div>
                     <div class="input-group">
                         <label>Category *</label>
@@ -320,7 +320,7 @@
                         </select>
                     </div>
                     <div class="input-group">
-                        <label>Stock Quantity (Numbers Only) *</label>
+                        <label>Stock Quantity *</label>
                         <input type="number" id="newProdStock" placeholder="50" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     </div>
                     <div class="input-group">
@@ -328,28 +328,28 @@
                         <input type="text" id="newProdPrice" placeholder="85.00">
                     </div>
                     <div class="input-group">
-                        <label>Color Name & Code *</label>
-                        <input type="text" id="newProdColor" placeholder="Golden Teak (#D4AF37)">
+                        <label>Color & Code *</label>
+                        <input type="text" id="newProdColor" placeholder="Color name or code...">
                     </div>
                     <div class="input-group full-width">
-                        <label>Description (Max 155 Words) *</label>
-                        <textarea id="newProdDesc" rows="2" maxlength="155" placeholder="Write product description..."></textarea>
+                        <label>Description *</label>
+                        <textarea id="newProdDesc" rows="2" maxlength="155" placeholder="Write description..."></textarea>
                     </div>
                     <div class="input-group">
-                        <label>Image URL (FB / YouTube Link)</label>
-                        <input type="url" id="newProdImgUrl" placeholder="https://facebook.com/... or image link">
+                        <label>Image URL (FB / YouTube)</label>
+                        <input type="url" id="newProdImgUrl" placeholder="https://...">
                     </div>
                     <div class="input-group">
                         <label>Short Video (YouTube Shorts)</label>
                         <input type="url" id="newProdVidUrl" placeholder="https://youtube.com/shorts/...">
                     </div>
                     <div class="input-group">
-                        <label>Product & Packaging Size (H x W x L)</label>
-                        <input type="text" id="newProdSize" placeholder="40x20x30 inch | Box: 42x22">
+                        <label>Product Size</label>
+                        <input type="text" id="newProdSize" placeholder="Size details...">
                     </div>
                     <div class="input-group">
-                        <label>Weight in KG *</label>
-                        <input type="text" id="newProdWeight" placeholder="2.5 kg">
+                        <label>Packaging Size & Weight *</label>
+                        <input type="text" id="newProdWeight" placeholder="Box size & KG...">
                     </div>
                 </div>
                 <div style="text-align:right; margin-top:10px;">
@@ -367,7 +367,7 @@
         </div>
     </div>
 
-    <!-- 5. Settings Hub Modal (Business Profile, Payment, 2FA Security) -->
+    <!-- 5. Settings Hub Modal (Profile, Payment, 2FA Security) -->
     <div class="settings-modal-overlay" id="settingsModalOverlay">
         <div class="settings-modal-card">
             <button class="modal-close-btn" id="closeSettingsModalBtn" type="button"><i class="fa-solid fa-xmark"></i></button>
@@ -467,10 +467,10 @@
 
         function skipFormToDashboard() {
             let defaultSeller = {
-                id: "SEL-8821", storeName: "Masudar Luxury Crafts", name: "MD MASUDAR RAHMAN",
+                id: "SEL-4738", storeName: "MD MASUDAR RAHMAN'S Store", name: "MD MASUDAR RAHMAN",
                 email: "masudar142251@gmail.com", country: "🇧🇩 Bangladesh", whatsapp: "+8801767319670",
                 balance: 0.00, payoutType: 'Payoneer', payoutAccount: 'masudar142251@gmail.com', verified: true, 
-                tradeLicense: 'TRD-99281', address: 'Dhaka, Bangladesh', storePhoto: 'https://lh3.googleusercontent.com/d/1POhz8vb-MocaPNHg-i6nDSKwV4ky16Lc'
+                tradeLicense: 'TRD-99281', address: 'Dhaka, Bangladesh'
             };
             localStorage.setItem('mme_active_seller', JSON.stringify(defaultSeller));
             renderDashboard(defaultSeller);
@@ -495,7 +495,7 @@
             let newSeller = {
                 id: "SEL-" + Math.floor(1000 + Math.random() * 9000),
                 storeName: name + "'s Store", name, email, country: `${flagIcon} ${countryName}`, whatsapp: waCode + waNum,
-                balance: 0.00, payoutType: 'Payoneer', payoutAccount: email, verified: true, tradeLicense: '', address: '', storePhoto: ''
+                balance: 0.00, payoutType: 'Payoneer', payoutAccount: email, verified: true, tradeLicense: '', address: ''
             };
 
             localStorage.setItem('mme_active_seller', JSON.stringify(newSeller));
@@ -545,7 +545,6 @@
                     </div>
                 </div>
 
-                <!-- স্ট্যাটস কার্ড (সবসময় জিরো) -->
                 <div class="dash-stats-grid">
                     <div class="dash-stat-box">
                         <span>Total Revenue</span>
@@ -565,7 +564,6 @@
                     </div>
                 </div>
 
-                <!-- Store Analytics Graph -->
                 <div class="animated-graph-box">
                     <div class="graph-header-flex">
                         <span style="font-size:0.65rem; color:var(--gold-solid); text-transform:uppercase; font-weight:700; font-family:var(--font-luxury);"><i class="fa-solid fa-chart-line"></i> Store Analytics</span>
@@ -582,7 +580,6 @@
                     </div>
                 </div>
 
-                <!-- 2 Action Buttons -->
                 <div class="seller-action-toolbar">
                     <div class="seller-tool-btn" onclick="openProductGallery()">
                         <i class="fa-solid fa-boxes-stacked"></i> Product Gallery
@@ -592,8 +589,7 @@
                     </div>
                 </div>
 
-                <!-- Shipment Management Ledger -->
-                <p style="font-size:0.62rem; color:var(--gold-solid); font-weight:700; margin-top:10px; font-family:var(--font-luxury);"><i class="fa-solid fa-list-check"></i> Shipment Management Ledger</p>
+                <p style="font-size:0.62rem; color:var(--gold-solid); font-weight:700; margin-top:10px; font-family:var(--font-luxury);"><i class="fa-solid fa-list-check"></i> Shipment Orders Ledger</p>
                 <div class="sheet-table-wrapper">
                     <table class="sheet-table">
                         <thead><tr><th>Order & Product</th><th class="text-center">Net (80%)</th><th class="text-center">Status</th><th class="text-center">Action</th></tr></thead>
@@ -601,7 +597,6 @@
                     </table>
                 </div>
 
-                <!-- পে-আউট উইথড্র সেকশন -->
                 <div style="background:#050505; border:1px solid rgba(212,175,55,0.3); padding:12px; border-radius:10px; margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
                     <div>
                         <span style="font-size:0.6rem; color:var(--gold-solid); font-weight:700; font-family:var(--font-luxury); display:block;">WITHDRAW FUNDS</span>
@@ -777,7 +772,6 @@
             let tracking = document.getElementById('trackingIdInput').value.trim();
             if(!tracking) { alert("Please enter tracking ID."); return; }
 
-            // কনফার্ম বা আপডেট হওয়ার সাথে সাথে লিস্ট থেকে ভ্যানিশ হয়ে যাবে
             orders.splice(index, 1);
             localStorage.setItem('mme_seller_orders', JSON.stringify(orders));
 
@@ -834,10 +828,6 @@
                     <div class="input-group" style="margin-bottom:8px;">
                         <label>WhatsApp Number:</label>
                         <input type="text" id="setWa" value="${seller.whatsapp || ''}">
-                    </div>
-                    <div class="input-group" style="margin-bottom:8px;">
-                        <label>Store Profile Photo URL:</label>
-                        <input type="url" id="setPhoto" value="${seller.storePhoto || ''}" placeholder="https://image-link.com/photo.jpg">
                     </div>
                     <div style="text-align:right; margin-top:10px;">
                         <button onclick="saveBusinessSettings()" type="button" class="apply-btn" style="padding:8px 14px; font-size:0.62rem;">Save Info</button>
@@ -901,7 +891,6 @@
             window.currentSellerData.name = document.getElementById('setName').value;
             window.currentSellerData.address = document.getElementById('setAddress').value;
             window.currentSellerData.whatsapp = document.getElementById('setWa').value;
-            window.currentSellerData.storePhoto = document.getElementById('setPhoto').value;
             localStorage.setItem('mme_active_seller', JSON.stringify(window.currentSellerData));
             renderDashboard(window.currentSellerData);
             showToast("Business Profile Saved Successfully!");
