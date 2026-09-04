@@ -383,11 +383,11 @@
         </div>
     </div>
 
-    <!-- 6. Shipment Management Modal -->
+    <!-- 6. Shipment Management Modal (Popup Sheet) -->
     <div class="settings-modal-overlay" id="orderModalOverlay">
-        <div class="settings-modal-card" style="max-width: 440px;">
+        <div class="settings-modal-card" style="max-width: 520px;">
             <button class="modal-close-btn" onclick="closeOrderModal()" type="button"><i class="fa-solid fa-xmark"></i></button>
-            <h3 style="font-family:var(--font-luxury); background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:1rem; margin-bottom:10px;"><i class="fa-solid fa-truck-fast"></i> Shipment Management</h3>
+            <h3 style="font-family:var(--font-luxury); background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:1rem; margin-bottom:12px;"><i class="fa-solid fa-truck-fast"></i> Shipment Management</h3>
             <div id="orderModalBody"></div>
         </div>
     </div>
@@ -467,7 +467,7 @@
 
         function skipFormToDashboard() {
             let defaultSeller = {
-                id: "SEL-4738", storeName: "MD MASUDAR RAHMAN'S Store", name: "MD MASUDAR RAHMAN",
+                id: "SEL-5622", storeName: "MD MASUDAR RAHMAN'S Store", name: "MD MASUDAR RAHMAN",
                 email: "masudar142251@gmail.com", country: "🇧🇩 Bangladesh", whatsapp: "+8801767319670",
                 balance: 0.00, payoutType: 'Payoneer', payoutAccount: 'masudar142251@gmail.com', verified: true, 
                 tradeLicense: 'TRD-99281', address: 'Dhaka, Bangladesh'
@@ -509,26 +509,6 @@
             document.getElementById('entranceCard').style.display = 'none';
             document.getElementById('formSection').style.display = 'none';
             document.getElementById('dashboardSection').style.display = 'block';
-
-            let orders = JSON.parse(localStorage.getItem('mme_seller_orders')) || [
-                { orderId: 'ORD-901', customer: 'John Doe', phone: '+123456789', address: 'New York, USA', product: 'Gamar Wood Table', netPayout: '$68.00', status: 'Pending' }
-            ];
-
-            let orderRows = '';
-            if(orders.length === 0) {
-                orderRows = `<tr><td colspan="4" class="text-center" style="color:var(--text-gray);">No pending shipments.</td></tr>`;
-            } else {
-                orders.forEach((o, idx) => {
-                    orderRows += `
-                        <tr>
-                            <td><b>${o.orderId}</b><br><span style="font-size:0.52rem; color:var(--text-gray);">${o.product}</span></td>
-                            <td class="text-center" style="color:#2ecc71; font-weight:bold;">${o.netPayout}</td>
-                            <td class="text-center"><span class="badge-status badge-shipped">${o.status}</span></td>
-                            <td class="text-center"><button class="apply-btn" style="padding:4px 9px; font-size:0.55rem;" onclick="openOrderTracking(${idx})">Manage Ship</button></td>
-                        </tr>
-                    `;
-                });
-            }
 
             let dashHtml = `
                 <div class="dash-top-bar">
@@ -584,17 +564,9 @@
                     <div class="seller-tool-btn" onclick="openProductGallery()">
                         <i class="fa-solid fa-boxes-stacked"></i> Product Gallery
                     </div>
-                    <div class="seller-tool-btn" onclick="showToast('Select shipment below to manage')">
+                    <div class="seller-tool-btn" onclick="openShipmentManagement()">
                         <i class="fa-solid fa-truck-fast"></i> Shipment Management
                     </div>
-                </div>
-
-                <p style="font-size:0.62rem; color:var(--gold-solid); font-weight:700; margin-top:10px; font-family:var(--font-luxury);"><i class="fa-solid fa-list-check"></i> Shipment Orders Ledger</p>
-                <div class="sheet-table-wrapper">
-                    <table class="sheet-table">
-                        <thead><tr><th>Order & Product</th><th class="text-center">Net (80%)</th><th class="text-center">Status</th><th class="text-center">Action</th></tr></thead>
-                        <tbody>${orderRows}</tbody>
-                    </table>
                 </div>
 
                 <div style="background:#050505; border:1px solid rgba(212,175,55,0.3); padding:12px; border-radius:10px; margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
@@ -720,64 +692,63 @@
             document.getElementById('withdrawAmount').value = "";
         }
 
-        function openOrderTracking(index) {
-            let orders = JSON.parse(localStorage.getItem('mme_seller_orders')) || [];
-            let o = orders[index];
-            let seller = window.currentSellerData;
-
+        function openShipmentManagement() {
+            let orders = JSON.parse(localStorage.getItem('mme_seller_orders')) || [
+                { orderId: 'ORD-901', customer: 'John Doe', phone: '+123456789', address: 'New York, USA', product: 'Gamar Wood Table', netPayout: '$68.00', status: 'Pending' }
+            ];
+            
             let modalBody = document.getElementById('orderModalBody');
-            modalBody.innerHTML = `
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; background:#000; padding:10px; border-radius:8px; border:1px solid rgba(212,175,55,0.3); font-size:0.65rem; margin-bottom:10px;">
-                    <div>
-                        <p style="color:var(--gold-solid); font-weight:700;">Seller Info:</p>
-                        <p>ID: ${seller.id}</p>
-                        <p>Store: ${seller.storeName}</p>
-                    </div>
-                    <div>
-                        <p style="color:var(--gold-solid); font-weight:700;">Customer Info:</p>
-                        <p>Name: ${o.customer}</p>
-                        <p>Phone: ${o.phone}</p>
-                        <p>Addr: ${o.address}</p>
-                    </div>
-                </div>
-                <div style="font-size:0.65rem; margin-bottom:10px;">
-                    <p><b>Product ID & Name:</b> ${o.orderId} - ${o.product}</p>
-                </div>
-                <div class="form-grid">
-                    <div class="input-group">
-                        <label>Courier Service</label>
-                        <select id="courierSelect">
-                            <option value="DHL Express">DHL Express (Global)</option>
-                            <option value="FedEx">FedEx (Global)</option>
-                            <option value="Steadfast">Steadfast Courier (BD)</option>
-                            <option value="Pathao">Pathao Courier (BD)</option>
-                            <option value="Others">Others / Local</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label>Tracking ID / Waybill</label>
-                        <input type="text" id="trackingIdInput" placeholder="Enter Tracking Code">
-                    </div>
-                </div>
-                <div style="display:flex; justify-content:space-between; margin-top:12px;">
-                    <button class="apply-btn" style="background:#c0392b; color:#fff;" onclick="cancelDelivery(${index})" type="button">Cancel Order</button>
-                    <button class="apply-btn" onclick="confirmAndVanishOrder(${index})" type="button">Confirm Delivery</button>
-                </div>
-            `;
+            if(orders.length === 0) {
+                modalBody.innerHTML = `<p style="text-align:center; color:var(--text-gray); font-size:0.7rem; padding:15px;">No active shipments found.</p>`;
+            } else {
+                let rows = '';
+                orders.forEach((o, idx) => {
+                    rows += `
+                        <div style="background:#000; border:1px solid rgba(212,175,55,0.3); padding:10px; border-radius:8px; margin-bottom:10px; font-size:0.65rem;">
+                            <p style="color:var(--gold-solid); font-weight:700; margin-bottom:4px;">${o.orderId} - ${o.product}</p>
+                            <p><b>Customer:</b> ${o.customer} (${o.phone})</p>
+                            <p><b>Address:</b> ${o.address}</p>
+                            <p><b>Net Payout (80%):</b> <span style="color:#2ecc71;">${o.netPayout}</span></p>
+                            
+                            <div style="margin-top:8px;" class="form-grid">
+                                <div class="input-group">
+                                    <label>Courier Service</label>
+                                    <select id="courierSelect_${idx}">
+                                        <option value="DHL Express">DHL Express (Global)</option>
+                                        <option value="FedEx">FedEx (Global)</option>
+                                        <option value="Steadfast">Steadfast Courier (BD)</option>
+                                        <option value="Pathao">Pathao Courier (BD)</option>
+                                        <option value="Others">Others / Local</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label>Tracking ID / Waybill</label>
+                                    <input type="text" id="trackingIdInput_${idx}" placeholder="Enter Tracking Code">
+                                </div>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; margin-top:10px;">
+                                <button class="apply-btn" style="background:#c0392b; color:#fff; padding:6px 12px; font-size:0.58rem;" onclick="cancelDelivery(${idx})">Cancel Order</button>
+                                <button class="apply-btn" style="padding:6px 12px; font-size:0.58rem;" onclick="confirmAndVanishOrder(${idx})">Confirm Delivery</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                modalBody.innerHTML = rows;
+            }
             document.getElementById('orderModalOverlay').style.display = 'flex';
         }
 
         function confirmAndVanishOrder(index) {
             let orders = JSON.parse(localStorage.getItem('mme_seller_orders')) || [];
-            let tracking = document.getElementById('trackingIdInput').value.trim();
+            let tracking = document.getElementById('trackingIdInput_' + index).value.trim();
             if(!tracking) { alert("Please enter tracking ID."); return; }
 
             orders.splice(index, 1);
             localStorage.setItem('mme_seller_orders', JSON.stringify(orders));
 
             closeOrderModal();
-            renderDashboard(window.currentSellerData);
             showToast("Delivery Confirmed & Order Dispatched!");
+            openShipmentManagement();
         }
 
         function cancelDelivery(index) {
@@ -786,8 +757,8 @@
             localStorage.setItem('mme_seller_orders', JSON.stringify(orders));
 
             closeOrderModal();
-            renderDashboard(window.currentSellerData);
             showToast("Order Cancelled Successfully!");
+            openShipmentManagement();
         }
 
         function closeOrderModal() { document.getElementById('orderModalOverlay').style.display = 'none'; }
@@ -855,18 +826,25 @@
                 let isVerified = seller.verified;
                 contentHtml = `
                     <div style="text-align:center; padding:5px;">
-                        <p style="font-size:0.65rem; color: ${isVerified ? '#2ecc71' : '#e67e22'}; margin-bottom:8px; font-weight:700;">
+                        <p style="font-size:0.7rem; color: ${isVerified ? '#2ecc71' : '#e67e22'}; margin-bottom:10px; font-weight:700;">
                             Status: ${isVerified ? 'Active & Verified <i class="fa-solid fa-circle-check" style="font-size:1.1rem; vertical-align:middle;"></i>' : 'Disabled (Required for Payouts)'}
                         </p>
-                        <div style="background:#fff; width:110px; height:110px; margin:0 auto 8px auto; display:flex; align-items:center; justify-content:center; border-radius:8px;">
-                            <i class="fa-solid fa-qrcode" style="font-size:80px; color:#000;"></i>
-                        </div>
-                        <p style="font-size:0.58rem; color:var(--text-gray); margin-bottom:6px;">Key: <span style="color:var(--gold-solid);">JBSWY3DPEHPK3PXP</span></p>
-                        <div class="input-group" style="max-width:240px; margin:0 auto 10px auto;">
-                            <label>Enter 6-digit Code:</label>
-                            <input type="text" id="authCodeInput" placeholder="123456" maxlength="6" style="text-align:center; letter-spacing:3px;">
-                        </div>
-                        <button onclick="verifyTwoStepAuth()" type="button" class="apply-btn" style="padding:8px 16px; font-size:0.62rem;">Verify & Enable</button>
+                        ${!isVerified ? `
+                            <div style="background:#fff; width:110px; height:110px; margin:0 auto 8px auto; display:flex; align-items:center; justify-content:center; border-radius:8px;">
+                                <i class="fa-solid fa-qrcode" style="font-size:80px; color:#000;"></i>
+                            </div>
+                            <p style="font-size:0.58rem; color:var(--text-gray); margin-bottom:6px;">Key: <span style="color:var(--gold-solid);">JBSWY3DPEHPK3PXP</span></p>
+                            <div class="input-group" style="max-width:240px; margin:0 auto 10px auto;">
+                                <label>Enter 6-digit Code:</label>
+                                <input type="text" id="authCodeInput" placeholder="123456" maxlength="6" style="text-align:center; letter-spacing:3px;">
+                            </div>
+                            <button onclick="verifyTwoStepAuth()" type="button" class="apply-btn" style="padding:8px 16px; font-size:0.62rem;">Verify & Enable</button>
+                        ` : `
+                            <div style="padding:20px 0;">
+                                <i class="fa-solid fa-shield-halved" style="font-size:50px; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:10px; display:block;"></i>
+                                <p style="font-size:0.65rem; color:var(--text-gray);">Your account is fully secured with 2-Step Google Authenticator.</p>
+                            </div>
+                        `}
                     </div>
                 `;
             }
@@ -911,7 +889,7 @@
             window.currentSellerData.verified = true;
             localStorage.setItem('mme_active_seller', JSON.stringify(window.currentSellerData));
             renderDashboard(window.currentSellerData);
-            closeSettingsModal();
+            switchSettingsTab('security');
             showToast("2FA Security Enabled with Green Checkmark!");
         }
 
