@@ -159,7 +159,7 @@
         .dash-stat-box {
             background: rgba(12, 12, 12, 0.95); border: 1.5px solid rgba(212, 175, 55, 0.25); border-radius: 10px; padding: 10px; text-align: center;
         }
-        .dash-stat-box span { font-size: 0.55rem; color: var(--text-gray); text-transform: uppercase; font-weight: 600; }
+        .dash-stat-box span { font-size: 0.52rem; color: var(--text-gray); text-transform: uppercase; font-weight: 600; }
         .dash-stat-box .number { font-size: 1.05rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-top: 3px; display: block; font-family: var(--font-luxury); }
 
         .animated-graph-box {
@@ -209,7 +209,7 @@
         }
         .settings-modal-card {
             background: var(--surface-card); border: 1.5px solid var(--gold-solid); border-radius: 16px;
-            width: 100%; max-width: 540px; max-height: 90vh; overflow-y: auto; padding: 20px; text-align: left; position: relative;
+            width: 100%; max-width: 580px; max-height: 90vh; overflow-y: auto; padding: 20px; text-align: left; position: relative;
         }
         .modal-close-btn {
             position: absolute; top: 12px; right: 14px; background: transparent; border: 1.5px solid var(--gold-solid);
@@ -251,7 +251,7 @@
             </button>
         </div>
 
-        <!-- 2. Registration Form (195+ Countries with Flags & Dial Codes) -->
+        <!-- 2. Registration Form -->
         <div class="luxury-card form-section" id="formSection">
             <button class="modal-close-btn" id="closeFormBtn" type="button" title="Close"><i class="fa-solid fa-xmark"></i></button>
             <h2 style="font-family:var(--font-luxury); background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:14px; font-size:1.1rem; text-transform:uppercase;">Store Registration</h2>
@@ -290,18 +290,23 @@
 
     </div>
 
-    <!-- 4. Product Gallery Modal (New Product + Product List) -->
+    <!-- 4. Product Gallery & Management Modal -->
     <div class="settings-modal-overlay" id="productGalleryModal">
-        <div class="settings-modal-card" style="max-width: 620px;">
+        <div class="settings-modal-card" style="max-width: 640px;">
             <button class="modal-close-btn" onclick="closeProductGallery()" type="button"><i class="fa-solid fa-xmark"></i></button>
             <h3 style="font-family:var(--font-luxury); background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:1.05rem; margin-bottom:12px;"><i class="fa-solid fa-boxes-stacked"></i> Product Gallery & Management</h3>
             
             <div style="background:#050505; border:1px solid rgba(212,175,55,0.3); padding:12px; border-radius:10px; margin-bottom:14px;">
                 <h4 style="font-size:0.7rem; color:var(--gold-solid); font-family:var(--font-luxury); margin-bottom:8px;"><i class="fa-solid fa-square-plus"></i> New Product</h4>
+                <input type="hidden" id="editProductIndex" value="-1">
                 <div class="form-grid">
-                    <div class="input-group full-width">
-                        <label>Product Name *</label>
-                        <input type="text" id="newProdName" placeholder="Gamar Wood Executive Table">
+                    <div class="input-group">
+                        <label>Product Name (Max 22 Char) *</label>
+                        <input type="text" id="newProdName" maxlength="22" placeholder="Gamar Table">
+                    </div>
+                    <div class="input-group">
+                        <label>Product Title (Max 25 Char) *</label>
+                        <input type="text" id="newProdTitle" maxlength="25" placeholder="Luxury Wood Table">
                     </div>
                     <div class="input-group">
                         <label>Category *</label>
@@ -315,32 +320,40 @@
                         </select>
                     </div>
                     <div class="input-group">
-                        <label>Stock Quantity *</label>
-                        <input type="number" id="newProdStock" placeholder="50">
+                        <label>Stock Quantity (Numbers Only) *</label>
+                        <input type="number" id="newProdStock" placeholder="50" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     </div>
                     <div class="input-group">
                         <label>Price ($) *</label>
-                        <input type="text" id="newProdPrice" placeholder="$85.00">
+                        <input type="text" id="newProdPrice" placeholder="85.00">
                     </div>
                     <div class="input-group">
-                        <label>Color & Size *</label>
-                        <input type="text" id="newProdColorSize" placeholder="Golden Teak / Standard">
+                        <label>Color Name & Code *</label>
+                        <input type="text" id="newProdColor" placeholder="Golden Teak (#D4AF37)">
                     </div>
                     <div class="input-group full-width">
-                        <label>Description *</label>
-                        <textarea id="newProdDesc" rows="2" placeholder="Write product description..."></textarea>
+                        <label>Description (Max 155 Words) *</label>
+                        <textarea id="newProdDesc" rows="2" maxlength="155" placeholder="Write product description..."></textarea>
                     </div>
                     <div class="input-group">
                         <label>Image URL (FB / YouTube Link)</label>
                         <input type="url" id="newProdImgUrl" placeholder="https://facebook.com/... or image link">
                     </div>
                     <div class="input-group">
-                        <label>Short Video URL (YouTube Shorts)</label>
+                        <label>Short Video (YouTube Shorts)</label>
                         <input type="url" id="newProdVidUrl" placeholder="https://youtube.com/shorts/...">
+                    </div>
+                    <div class="input-group">
+                        <label>Product & Packaging Size (H x W x L)</label>
+                        <input type="text" id="newProdSize" placeholder="40x20x30 inch | Box: 42x22">
+                    </div>
+                    <div class="input-group">
+                        <label>Weight in KG *</label>
+                        <input type="text" id="newProdWeight" placeholder="2.5 kg">
                     </div>
                 </div>
                 <div style="text-align:right; margin-top:10px;">
-                    <button class="apply-btn" onclick="submitNewProduct()" type="button">Publish Product</button>
+                    <button class="apply-btn" onclick="submitNewProduct()" type="button" id="publishBtnText">Publish Product</button>
                 </div>
             </div>
 
@@ -354,16 +367,16 @@
         </div>
     </div>
 
-    <!-- 5. Settings Hub Modal (Business Profile, Payment, 2-Step Authenticator Security) -->
+    <!-- 5. Settings Hub Modal (Business Profile, Payment, 2FA Security) -->
     <div class="settings-modal-overlay" id="settingsModalOverlay">
         <div class="settings-modal-card">
             <button class="modal-close-btn" id="closeSettingsModalBtn" type="button"><i class="fa-solid fa-xmark"></i></button>
             <h3 style="font-family:var(--font-luxury); background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:1.05rem; margin-bottom:12px;"><i class="fa-solid fa-gear"></i> Seller Settings Hub</h3>
             
             <div class="settings-tab-nav">
-                <button class="tab-btn active" onclick="switchSettingsTab('business', this)" type="button">Business Profile</button>
-                <button class="tab-btn" onclick="switchSettingsTab('payment', this)" type="button">Payment & Payout</button>
-                <button class="tab-btn" onclick="switchSettingsTab('security', this)" type="button">2-Step Security</button>
+                <button class="tab-btn active" onclick="switchSettingsTab('business', this)" type="button">Profile</button>
+                <button class="tab-btn" onclick="switchSettingsTab('payment', this)" type="button">Payment</button>
+                <button class="tab-btn" onclick="switchSettingsTab('security', this)" type="button">2FA Security</button>
             </div>
 
             <div id="settingsTabContent"></div>
@@ -498,7 +511,7 @@
             document.getElementById('dashboardSection').style.display = 'block';
 
             let orders = JSON.parse(localStorage.getItem('mme_seller_orders')) || [
-                { orderId: 'ORD-901', customer: 'John Doe', phone: '+123456789', address: 'New York, USA', product: 'Gamar Wood Executive Table', note: 'Please polish high gloss golden.', netPayout: '$68.00', courier: 'DHL Express', trackingId: 'DHL-992817', status: 'Pending' }
+                { orderId: 'ORD-901', customer: 'John Doe', phone: '+123456789', address: 'New York, USA', product: 'Gamar Wood Table', netPayout: '$68.00', status: 'Pending' }
             ];
 
             let orderRows = '';
@@ -547,7 +560,7 @@
                         <span class="number">0</span>
                     </div>
                     <div class="dash-stat-box">
-                        <span>Wallet Balance</span>
+                        <span>Withdrawable Net Balance (80%)</span>
                         <span class="number">$0.00</span>
                     </div>
                 </div>
@@ -569,12 +582,12 @@
                     </div>
                 </div>
 
-                <!-- 2 Action Toolbar -->
+                <!-- 2 Action Buttons -->
                 <div class="seller-action-toolbar">
                     <div class="seller-tool-btn" onclick="openProductGallery()">
                         <i class="fa-solid fa-boxes-stacked"></i> Product Gallery
                     </div>
-                    <div class="seller-tool-btn" onclick="showToast('Select order below to manage shipment')">
+                    <div class="seller-tool-btn" onclick="showToast('Select shipment below to manage')">
                         <i class="fa-solid fa-truck-fast"></i> Shipment Management
                     </div>
                 </div>
@@ -591,8 +604,8 @@
                 <!-- পে-আউট উইথড্র সেকশন -->
                 <div style="background:#050505; border:1px solid rgba(212,175,55,0.3); padding:12px; border-radius:10px; margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
                     <div>
-                        <span style="font-size:0.6rem; color:var(--gold-solid); font-weight:700; font-family:var(--font-luxury); display:block;">REQUEST WITHDRAWAL</span>
-                        <span style="font-size:0.52rem; color:var(--text-gray);">Withdraw funds to your active payment account</span>
+                        <span style="font-size:0.6rem; color:var(--gold-solid); font-weight:700; font-family:var(--font-luxury); display:block;">WITHDRAW FUNDS</span>
+                        <span style="font-size:0.52rem; color:var(--text-gray);">Auto deducts from available balance</span>
                     </div>
                     <div style="display:flex; gap:6px;">
                         <input type="text" id="withdrawAmount" placeholder="Amount ($)" style="width:90px; background:#000; border:1px solid rgba(212,175,55,0.4); padding:6px; color:#fff; border-radius:6px; font-size:0.65rem;">
@@ -620,7 +633,7 @@
             products.forEach((p, idx) => {
                 tbody.innerHTML += `
                     <tr>
-                        <td><b>${p.name}</b><br><span style="font-size:0.5rem; color:var(--text-gray);">Color/Size: ${p.colorSize}</span></td>
+                        <td><b>${p.name}</b><br><span style="font-size:0.5rem; color:var(--text-gray);">Title: ${p.title}</span></td>
                         <td class="text-center">${p.price}</td>
                         <td class="text-center">${p.stock}</td>
                         <td class="text-center">
@@ -634,45 +647,66 @@
 
         function submitNewProduct() {
             let name = document.getElementById('newProdName').value.trim();
+            let title = document.getElementById('newProdTitle').value.trim();
             let category = document.getElementById('newProdCategory').value;
             let price = document.getElementById('newProdPrice').value.trim();
             let stock = parseInt(document.getElementById('newProdStock').value) || 10;
-            let colorSize = document.getElementById('newProdColorSize').value.trim();
+            let color = document.getElementById('newProdColor').value.trim();
             let desc = document.getElementById('newProdDesc').value.trim();
             let imgUrl = document.getElementById('newProdImgUrl').value.trim();
             let vidUrl = document.getElementById('newProdVidUrl').value.trim();
+            let size = document.getElementById('newProdSize').value.trim();
+            let weight = document.getElementById('newProdWeight').value.trim();
+            let editIdx = parseInt(document.getElementById('editProductIndex').value);
 
-            if(!name || !price || !desc) { alert("Please fill in all mandatory product information."); return; }
+            if(!name || !title || !price || !desc) { alert("Please fill in all mandatory product fields."); return; }
 
             let products = JSON.parse(localStorage.getItem('mme_seller_products')) || [];
-            products.push({ name, category, price: '$' + price.replace('$', ''), stock, colorSize, desc, imgUrl, vidUrl });
+            let prodData = { name, title, category, price: '$' + price.replace('$', ''), stock, color, desc, imgUrl, vidUrl, size, weight };
+
+            if(editIdx >= 0) {
+                products[editIdx] = prodData;
+                document.getElementById('editProductIndex').value = "-1";
+                document.getElementById('publishBtnText').innerText = "Publish Product";
+                showToast("Product Updated Successfully!");
+            } else {
+                products.push(prodData);
+                showToast("Product Published & Added to List!");
+            }
+
             localStorage.setItem('mme_seller_products', JSON.stringify(products));
 
             document.getElementById('newProdName').value = "";
+            document.getElementById('newProdTitle').value = "";
             document.getElementById('newProdPrice').value = "";
             document.getElementById('newProdStock').value = "";
-            document.getElementById('newProdColorSize').value = "";
+            document.getElementById('newProdColor').value = "";
             document.getElementById('newProdDesc').value = "";
             document.getElementById('newProdImgUrl').value = "";
             document.getElementById('newProdVidUrl').value = "";
+            document.getElementById('newProdSize').value = "";
+            document.getElementById('newProdWeight').value = "";
 
             renderModalProductSheet();
-            showToast("Product Published & Added to List!");
         }
 
         function editProduct(idx) {
             let products = JSON.parse(localStorage.getItem('mme_seller_products')) || [];
             let p = products[idx];
             document.getElementById('newProdName').value = p.name;
-            document.getElementById('newProdPrice').value = p.price;
+            document.getElementById('newProdTitle').value = p.title;
+            document.getElementById('newProdCategory').value = p.category;
+            document.getElementById('newProdPrice').value = p.price.replace('$', '');
             document.getElementById('newProdStock').value = p.stock;
-            document.getElementById('newProdColorSize').value = p.colorSize;
+            document.getElementById('newProdColor').value = p.color;
             document.getElementById('newProdDesc').value = p.desc;
             document.getElementById('newProdImgUrl').value = p.imgUrl || '';
             document.getElementById('newProdVidUrl').value = p.vidUrl || '';
-            products.splice(idx, 1);
-            localStorage.setItem('mme_seller_products', JSON.stringify(products));
-            renderModalProductSheet();
+            document.getElementById('newProdSize').value = p.size || '';
+            document.getElementById('newProdWeight').value = p.weight || '';
+            
+            document.getElementById('editProductIndex').value = idx;
+            document.getElementById('publishBtnText').innerText = "Update Product";
             showToast("Loaded product into form for editing.");
         }
 
@@ -687,7 +721,7 @@
         function submitWithdrawRequest() {
             let amt = document.getElementById('withdrawAmount').value.trim();
             if(!amt) { alert("Please enter amount to withdraw."); return; }
-            showToast(`Withdrawal request of $${amt} submitted successfully!`);
+            showToast(`Withdrawal request of $${amt} processed successfully!`);
             document.getElementById('withdrawAmount').value = "";
         }
 
@@ -703,7 +737,6 @@
                         <p style="color:var(--gold-solid); font-weight:700;">Seller Info:</p>
                         <p>ID: ${seller.id}</p>
                         <p>Store: ${seller.storeName}</p>
-                        <p>Name: ${seller.name}</p>
                     </div>
                     <div>
                         <p style="color:var(--gold-solid); font-weight:700;">Customer Info:</p>
@@ -714,7 +747,6 @@
                 </div>
                 <div style="font-size:0.65rem; margin-bottom:10px;">
                     <p><b>Product ID & Name:</b> ${o.orderId} - ${o.product}</p>
-                    <p><b>Note:</b> <i style="color:#f39c12;">${o.note || 'None'}</i></p>
                 </div>
                 <div class="form-grid">
                     <div class="input-group">
@@ -732,26 +764,36 @@
                         <input type="text" id="trackingIdInput" placeholder="Enter Tracking Code">
                     </div>
                 </div>
-                <div style="text-align:right; margin-top:12px;">
-                    <button class="apply-btn" onclick="saveOrderTracking(${index})" type="button">Update & Vanish</button>
+                <div style="display:flex; justify-content:space-between; margin-top:12px;">
+                    <button class="apply-btn" style="background:#c0392b; color:#fff;" onclick="cancelDelivery(${index})" type="button">Cancel Order</button>
+                    <button class="apply-btn" onclick="confirmAndVanishOrder(${index})" type="button">Confirm Delivery</button>
                 </div>
             `;
             document.getElementById('orderModalOverlay').style.display = 'flex';
         }
 
-        function saveOrderTracking(index) {
+        function confirmAndVanishOrder(index) {
             let orders = JSON.parse(localStorage.getItem('mme_seller_orders')) || [];
             let tracking = document.getElementById('trackingIdInput').value.trim();
-
             if(!tracking) { alert("Please enter tracking ID."); return; }
 
-            // আপডেট করার পর অর্ডারটি লিস্ট থেকে ভ্যানিশ হয়ে যাবে
+            // কনফার্ম বা আপডেট হওয়ার সাথে সাথে লিস্ট থেকে ভ্যানিশ হয়ে যাবে
             orders.splice(index, 1);
             localStorage.setItem('mme_seller_orders', JSON.stringify(orders));
 
             closeOrderModal();
             renderDashboard(window.currentSellerData);
-            showToast("Shipment Updated & Order Dispatched!");
+            showToast("Delivery Confirmed & Order Dispatched!");
+        }
+
+        function cancelDelivery(index) {
+            let orders = JSON.parse(localStorage.getItem('mme_seller_orders')) || [];
+            orders.splice(index, 1);
+            localStorage.setItem('mme_seller_orders', JSON.stringify(orders));
+
+            closeOrderModal();
+            renderDashboard(window.currentSellerData);
+            showToast("Order Cancelled Successfully!");
         }
 
         function closeOrderModal() { document.getElementById('orderModalOverlay').style.display = 'none'; }
@@ -820,17 +862,21 @@
                     </div>
                 `;
             } else if(tab === 'security') {
+                let isVerified = seller.verified;
                 contentHtml = `
                     <div style="text-align:center; padding:5px;">
-                        <p style="font-size:0.65rem; color:var(--text-gray); margin-bottom:10px;">Scan QR Code with Google Authenticator App for 2-Step Verification.</p>
-                        <div style="background:#fff; width:110px; height:110px; margin:0 auto 10px auto; display:flex; align-items:center; justify-content:center; border-radius:8px;">
+                        <p style="font-size:0.65rem; color: ${isVerified ? '#2ecc71' : '#e67e22'}; margin-bottom:8px; font-weight:700;">
+                            Status: ${isVerified ? 'Active & Verified <i class="fa-solid fa-circle-check" style="font-size:1.1rem; vertical-align:middle;"></i>' : 'Disabled (Required for Payouts)'}
+                        </p>
+                        <div style="background:#fff; width:110px; height:110px; margin:0 auto 8px auto; display:flex; align-items:center; justify-content:center; border-radius:8px;">
                             <i class="fa-solid fa-qrcode" style="font-size:80px; color:#000;"></i>
                         </div>
+                        <p style="font-size:0.58rem; color:var(--text-gray); margin-bottom:6px;">Key: <span style="color:var(--gold-solid);">JBSWY3DPEHPK3PXP</span></p>
                         <div class="input-group" style="max-width:240px; margin:0 auto 10px auto;">
-                            <label>Enter 6-Digit Code:</label>
+                            <label>Enter 6-digit Code:</label>
                             <input type="text" id="authCodeInput" placeholder="123456" maxlength="6" style="text-align:center; letter-spacing:3px;">
                         </div>
-                        <button onclick="verifyTwoStepAuth()" type="button" class="apply-btn" style="padding:8px 16px; font-size:0.62rem;">Verify & Secure</button>
+                        <button onclick="verifyTwoStepAuth()" type="button" class="apply-btn" style="padding:8px 16px; font-size:0.62rem;">Verify & Enable</button>
                     </div>
                 `;
             }
@@ -877,7 +923,7 @@
             localStorage.setItem('mme_active_seller', JSON.stringify(window.currentSellerData));
             renderDashboard(window.currentSellerData);
             closeSettingsModal();
-            showToast("2-Step Verification Completed Successfully!");
+            showToast("2FA Security Enabled with Green Checkmark!");
         }
 
         function updateGraphData(period) {
