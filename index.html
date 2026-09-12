@@ -49,7 +49,7 @@
             background-color: var(--bg-black); 
             color: var(--text-white); 
             font-family: var(--font-body); 
-            padding-top: 115px; 
+            padding-top: 75px; 
             padding-bottom: 60px; 
             overflow-x: hidden; 
             -webkit-font-smoothing: antialiased; 
@@ -57,13 +57,12 @@
 
         h1, h2, h3, h4, .brand-title-main { font-family: var(--font-luxury); }
 
-        /* হেডার: লোগো একদম পরিষ্কার (কোনো বর্ডার বা শ্যাডো ইফেক্ট নেই) */
+        /* হেডার: লোগো ও ব্র্যান্ড নাম এক লাইনে (Inline) */
         header.app-header {
             display: flex; 
-            flex-direction: column;
-            justify-content: center; 
+            justify-content: flex-start; 
             align-items: center; 
-            padding: 14px;
+            padding: 10px 16px;
             background: rgba(10, 10, 10, 0.98); 
             position: fixed; 
             top: 0; 
@@ -72,19 +71,16 @@
             backdrop-filter: blur(12px); 
             width: 100%; 
             border-bottom: 1px solid rgba(212,175,55,0.25);
-            gap: 6px;
         }
         .brand-container { 
             display: flex; 
-            flex-direction: column;
             align-items: center; 
-            gap: 6px; 
+            gap: 10px; 
             text-decoration: none; 
-            text-align: center;
         }
         .logo { 
-            width: 55px; 
-            height: 55px; 
+            width: 42px; 
+            height: 42px; 
             border-radius: 50%; 
             object-fit: contain; 
             background: transparent; 
@@ -93,17 +89,17 @@
             filter: drop-shadow(0 0 2px rgba(212,175,55,0.2));
         }
         .brand-title-main { 
-            font-size: 1.15rem; 
+            font-size: 1.1rem; 
             font-weight: 900; 
             background: var(--gold-gradient); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
             text-transform: uppercase; 
-            letter-spacing: 2.5px; 
+            letter-spacing: 2px; 
             white-space: nowrap; 
         }
 
-        .custom-toast { position: fixed; top: 125px; left: 50%; transform: translateX(-50%); background: rgba(16, 16, 16, 0.98); border: 1.5px solid var(--gold-solid); color: var(--gold-solid); padding: 8px 16px; border-radius: 30px; font-size: 0.7rem; font-weight: 700; z-index: 999999; display: none; box-shadow: 0 0 15px rgba(212,175,55,0.3); }
+        .custom-toast { position: fixed; top: 85px; left: 50%; transform: translateX(-50%); background: rgba(16, 16, 16, 0.98); border: 1.5px solid var(--gold-solid); color: var(--gold-solid); padding: 8px 16px; border-radius: 30px; font-size: 0.7rem; font-weight: 700; z-index: 999999; display: none; box-shadow: 0 0 15px rgba(212,175,55,0.3); }
 
         /* মেইন কন্টেইনার */
         .main-wrapper { 
@@ -128,9 +124,7 @@
         .hero-title { 
             font-size: 1.4rem; 
             font-weight: 900; 
-            background: var(--gold-gradient); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
+            color: #ffffff; /* আপনার চাহিদা অনুযায়ী সাদা রঙ */
             text-transform: uppercase; 
             margin-bottom: 12px; 
             letter-spacing: 1.2px; 
@@ -150,14 +144,14 @@
             margin-top: 18px;
         }
         .badge-tag {
-            background: var(--gold-gradient);
-            color: #000;
-            font-size: 0.65rem;
-            font-weight: 900;
+            background: transparent;
+            border: 1px solid var(--gold-solid);
+            color: var(--gold-solid); /* সলিড সোনালী রঙ */
+            font-size: 0.68rem;
+            font-weight: 700;
             padding: 6px 14px;
             border-radius: 20px;
             text-transform: uppercase;
-            box-shadow: 0 0 12px rgba(212,175,55,0.4);
         }
 
         /* পিন্টারেস্ট মেসনারি গ্রিড */
@@ -267,7 +261,7 @@
 
     <div class="custom-toast" id="customToast">Action completed successfully!</div>
 
-    <!-- হেডার: লোগো বর্ডারমুক্ত এবং স্পষ্ট -->
+    <!-- হেডার: লোগো ও ব্র্যান্ড নাম এক লাইনে -->
     <header class="app-header">
         <a href="https://rorraxy.com" class="brand-container">
             <img src="https://lh3.googleusercontent.com/d/1PD_g_agcbmm7bbJTHoOWss8YtQ17LNsb=s400" alt="Logo" class="logo">
@@ -279,10 +273,9 @@
         
         <!-- হিরো কার্ড -->
         <div class="luxury-card">
-            <div style="font-size: 2rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px;"><i class="fa-solid fa-cube"></i></div>
             <h1 class="hero-title">Global All-in-One Ecosystem</h1>
             <p class="hero-sub">
-                Less is More. Manage everything seamlessly—from customer accounts, smart inventory, and multi-channel synchronization to comprehensive VAT and financial calculations—all within one unified, lightning-fast platform built with zero plugins and absolute security.
+                Less is More. Manage everything seamlessly—from high-performance website & mobile apps development, smart inventory, and multi-channel synchronization to comprehensive VAT and financial calculations—all within one unified platform built with zero plugins and absolute security.
             </p>
             <div class="ecosystem-badges">
                 <span class="badge-tag">No Plugins</span>
@@ -332,7 +325,7 @@
 
                 <div class="form-group">
                     <label>Project Requirements & Details *</label>
-                    <textarea id="userComments" rows="3" placeholder="Describe your project, multimedia needs, or API requirements..." required></textarea>
+                    <textarea id="userComments" rows="3" placeholder="Describe your web/app project, multimedia needs, or API requirements..." required></textarea>
                 </div>
 
                 <button type="submit" class="btn-gold-glow" style="margin-top:10px;">Submit</button>
@@ -433,11 +426,11 @@
             { name: "Zimbabwe", flag: "🇿🇼", code: "+263" }
         ];
 
-        // প্রফেশনাল সার্ভিস ডেটাসেট
+        // প্রফেশনাল সার্ভিস ডেটাসেট (ওয়েবসাইট ও অ্যাপস ডেভেলপমেন্ট সহ)
         const enterpriseData = [
-            { icon: "fa-calculator", title: "Smart VAT & Accounts", desc: "Complete financial tracking, customer relationship management, and automated VAT calculations in one unified ecosystem.", renderType: "type1" },
-            { icon: "fa-cubes", title: "No Plugins & No Third-Party", desc: "A clean, native architecture completely free from heavy third-party plugins or external software dependencies.", renderType: "type2" },
-            { icon: "fa-bolt", title: "Supersonic Performance", desc: "Lightning-fast web and application solutions optimized for maximum speed, responsiveness, and global reliability.", renderType: "type3" },
+            { icon: "fa-mobile-screen-button", title: "Web & Mobile Apps Development", desc: "Building high-performance, custom websites and native mobile applications engineered for global scalability and speed.", renderType: "type1" },
+            { icon: "fa-calculator", title: "Smart VAT & Accounts", desc: "Complete financial tracking, customer relationship management, and automated VAT calculations in one unified ecosystem.", renderType: "type2" },
+            { icon: "fa-cubes", title: "No Plugins & No Third-Party", desc: "A clean, native architecture completely free from heavy third-party plugins or external software dependencies.", renderType: "type3" },
             { icon: "fa-network-wired", title: "Custom API & Sub-Domains", desc: "Seamless API creation, integration, and high-performance routing management designed to handle 200+ sub-domains effortlessly.", renderType: "type4" },
             { icon: "fa-photo-film", title: "Image & Video Editing", desc: "High-end multimedia production, commercial video editing, and professional image retouching to elevate your digital branding.", renderType: "type5" },
             { icon: "fa-ruler-combined", title: "Size & Dimension Calculators", desc: "Custom business size calculators and smart data processing tools engineered for precise e-commerce sizing and scaling.", renderType: "type6" },
