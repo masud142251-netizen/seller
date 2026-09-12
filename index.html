@@ -49,7 +49,7 @@
             background-color: var(--bg-black); 
             color: var(--text-white); 
             font-family: var(--font-body); 
-            padding-top: 55px; /* ওপরে জায়গা একদম কমিয়ে দেওয়া হয়েছে */
+            padding-top: 55px; 
             padding-bottom: 60px; 
             overflow-x: hidden; 
             -webkit-font-smoothing: antialiased; 
@@ -57,7 +57,7 @@
 
         h1, h2, h3, h4, .brand-title-main { font-family: var(--font-luxury); }
 
-        /* হেডার: লোগো ও ব্র্যান্ড নাম এক লাইনে এবং একদম কর্নারে কমপ্যাক্টভাবে সাজানো */
+        /* হেডার: লোগো ও ব্র্যান্ড নাম এক লাইনে এবং কমপ্যাক্ট */
         header.app-header {
             display: flex; 
             justify-content: flex-start; 
@@ -116,7 +116,7 @@
         .luxury-card { 
             background: var(--surface-bg); 
             border-radius: 18px; 
-            padding: 26px 20px; 
+            padding: 28px 20px; 
             text-align: center; 
             box-shadow: 0 12px 40px rgba(0,0,0,0.9); 
             border: 1px solid rgba(212,175,55,0.25); 
@@ -124,7 +124,7 @@
         .hero-title { 
             font-size: 1.35rem; 
             font-weight: 900; 
-            background: var(--gold-gradient); /* গোল্ডেন গ্রেডিয়েন্ট কালার */
+            background: var(--gold-gradient); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
             text-transform: uppercase; 
@@ -139,7 +139,7 @@
             margin: 0 auto; 
         }
         
-        /* ৪টি লাক্সারি অ্যানিমেটেড ব্যাজ/বাটন */
+        /* ৪টি প্রিমিয়াম সোনালী বাটন ও অ্যানিমেশন */
         .ecosystem-badges {
             display: flex;
             flex-wrap: wrap;
@@ -148,28 +148,29 @@
             margin-top: 20px;
         }
         .badge-tag {
-            background: rgba(15, 15, 15, 0.9);
+            background: rgba(12, 12, 12, 0.95);
             border: 1.5px solid var(--gold-solid);
-            color: var(--gold-solid);
-            font-size: 0.7rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 0.72rem;
             font-weight: 800;
-            padding: 8px 16px;
+            padding: 8px 18px;
             border-radius: 25px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 0 10px rgba(212,175,55,0.2);
-            animation: luxuryPulseGlow 2s infinite ease-in-out;
+            box-shadow: 0 0 12px rgba(212,175,55,0.25);
+            animation: cleanPulse 2.5s infinite ease-in-out;
             transition: 0.3s;
+            display: inline-block;
         }
         .badge-tag:hover {
-            transform: scale(1.08);
+            transform: scale(1.06);
             box-shadow: 0 0 20px rgba(212,175,55,0.6);
-            background: var(--gold-gradient);
-            color: #000;
         }
-        @keyframes luxuryPulseGlow {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 8px rgba(212,175,55,0.25); }
-            50% { transform: scale(1.04); box-shadow: 0 0 18px rgba(212,175,55,0.6); }
+        @keyframes cleanPulse {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.03); opacity: 1; }
         }
 
         /* পিন্টারেস্ট মেসনারি গ্রিড */
@@ -289,17 +290,17 @@
 
     <div class="main-wrapper">
         
-        <!-- হিরো কার্ড -->
+        <!-- হিরো কার্ড: জাঁকজমকপূর্ণ উপস্থাপনা -->
         <div class="luxury-card">
             <h1 class="hero-title">Global All-in-One Ecosystem</h1>
             <p class="hero-sub">
-                Less is More. Manage everything seamlessly—from high-performance web, desktop & mobile apps development, smart inventory, and multi-channel synchronization to comprehensive VAT and financial calculations—all within one unified platform built with zero plugins and absolute security.
+                Deliver supreme performance with <strong>Supersonic Speed</strong>, custom <strong>Web, Desktop & Mobile Apps Development</strong>, and <strong>No Third-Party Plugins</strong> (except secure payment gateways). Fully native architecture designed to scale your enterprise.
             </p>
             <div class="ecosystem-badges">
-                <span class="badge-tag">No Plugins</span>
-                <span class="badge-tag">100% Secure</span>
+                <span class="badge-tag">No Plugins & Third-Party</span>
+                <span class="badge-tag">Payment Gateway API Only</span>
                 <span class="badge-tag">Supersonic Speed</span>
-                <span class="badge-tag">Smart VAT Calculator</span>
+                <span class="badge-tag">Apps Development</span>
             </div>
         </div>
 
@@ -343,7 +344,7 @@
 
                 <div class="form-group">
                     <label>Project Requirements & Details *</label>
-                    <textarea id="userComments" rows="3" placeholder="Describe your web, desktop/mobile app project, multimedia needs, or API requirements..." required></textarea>
+                    <textarea id="userComments" rows="3" placeholder="Describe your web, desktop/mobile app project, payment gateway integration, or API requirements..." required></textarea>
                 </div>
 
                 <button type="submit" class="btn-gold-glow" style="margin-top:10px;">Submit</button>
@@ -444,12 +445,12 @@
             { name: "Zimbabwe", flag: "🇿🇼", code: "+263" }
         ];
 
-        // প্রফেশনাল সার্ভিস ডেটাসেট
+        // প্রফেশনাল সার্ভিস ডেটাসেট (পেমেন্ট গেটওয়ে ও নো প্লাগইন ফোকাসড)
         const enterpriseData = [
             { icon: "fa-desktop", title: "Web, Desktop & Mobile Apps", desc: "Building high-performance custom websites, desktop software, and native mobile applications engineered for global scalability.", renderType: "type1" },
-            { icon: "fa-calculator", title: "Smart VAT & Accounts", desc: "Complete financial tracking, customer relationship management, and automated VAT calculations in one unified ecosystem.", renderType: "type2" },
+            { icon: "fa-bolt", title: "Supersonic Performance", desc: "Lightning-fast execution speeds, optimized routing, and instantaneous response times across all digital platforms.", renderType: "type2" },
             { icon: "fa-cubes", title: "No Plugins & No Third-Party", desc: "A clean, native architecture completely free from heavy third-party plugins or external software dependencies.", renderType: "type3" },
-            { icon: "fa-network-wired", title: "Custom API & Sub-Domains", desc: "Seamless API creation, integration, and high-performance routing management designed to handle 200+ sub-domains effortlessly.", renderType: "type4" },
+            { icon: "fa-credit-card", title: "Secure Payment Gateway API", desc: "Seamless integration with authorized global payment gateways (Stripe, SSLCommerz, etc.) as the only allowed third-party service.", renderType: "type4" },
             { icon: "fa-photo-film", title: "Image & Video Editing", desc: "High-end multimedia production, commercial video editing, and professional image retouching to elevate your digital branding.", renderType: "type5" },
             { icon: "fa-ruler-combined", title: "Size & Dimension Calculators", desc: "Custom business size calculators and smart data processing tools engineered for precise e-commerce sizing and scaling.", renderType: "type6" },
             { icon: "fa-shield-halved", title: "100% Secure Architecture", desc: "Military-grade encryption and advanced firewall protection ensuring absolute data safety and secure global transactions.", renderType: "type7" },
