@@ -35,7 +35,7 @@
             --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
             --gold-solid: #d4af37;
             --text-white: #ffffff;
-            --text-gray: #b8b8b8;
+            --text-gray: #cfcfcf;
             --font-luxury: 'Cinzel', serif;
             --font-body: 'Poppins', sans-serif;
         }
@@ -50,14 +50,14 @@
             color: var(--text-white); 
             font-family: var(--font-body); 
             padding-top: 115px; 
-            padding-bottom: 50px; 
+            padding-bottom: 60px; 
             overflow-x: hidden; 
             -webkit-font-smoothing: antialiased; 
         }
 
         h1, h2, h3, h4, .brand-title-main { font-family: var(--font-luxury); }
 
-        /* হেডার: লোগো ও ব্র্যান্ড নাম একদম সেন্টারে এবং স্পষ্ট */
+        /* হেডার: লোগো ও ব্র্যান্ড নাম একদম সেন্টারে ও স্পষ্ট */
         header.app-header {
             display: flex; 
             flex-direction: column;
@@ -102,152 +102,163 @@
             white-space: nowrap; 
         }
 
-        .custom-toast { position: fixed; top: 125px; left: 50%; transform: translateX(-50%); background: rgba(16, 16, 16, 0.98); border: 1.5px solid var(--gold-solid); color: var(--gold-solid); padding: 6px 14px; border-radius: 30px; font-size: 0.65rem; font-weight: 700; z-index: 999999; display: none; box-shadow: 0 0 15px rgba(212,175,55,0.3); }
+        .custom-toast { position: fixed; top: 125px; left: 50%; transform: translateX(-50%); background: rgba(16, 16, 16, 0.98); border: 1.5px solid var(--gold-solid); color: var(--gold-solid); padding: 8px 16px; border-radius: 30px; font-size: 0.7rem; font-weight: 700; z-index: 999999; display: none; box-shadow: 0 0 15px rgba(212,175,55,0.3); }
 
         /* মেইন কন্টেইনার */
         .main-wrapper { 
             width: 100%; 
             max-width: 1250px; 
             margin: 0 auto; 
-            padding: 12px; 
+            padding: 16px; 
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
         }
 
-        /* হিরো কার্ড (Less is More ফিলোসফি) */
+        /* হিরো কার্ড (Less is More Ecosystem Overview) */
         .luxury-card { 
             background: var(--surface-bg); 
-            border-radius: 16px; 
-            padding: 26px 20px; 
+            border-radius: 18px; 
+            padding: 30px 22px; 
             text-align: center; 
-            box-shadow: 0 10px 35px rgba(0,0,0,0.9); 
-            border: 1.5px solid rgba(212,175,55,0.35); 
+            box-shadow: 0 12px 40px rgba(0,0,0,0.9); 
+            border: 1px solid rgba(212,175,55,0.25); 
         }
         .hero-title { 
-            font-size: 1.25rem; 
+            font-size: 1.4rem; 
             font-weight: 900; 
             background: var(--gold-gradient); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
             text-transform: uppercase; 
-            margin-bottom: 8px; 
+            margin-bottom: 12px; 
             letter-spacing: 1.2px; 
         }
         .hero-sub { 
-            font-size: 0.74rem; 
+            font-size: 0.82rem; 
             color: var(--text-gray); 
-            line-height: 1.7; 
-            max-width: 800px; 
+            line-height: 1.8; 
+            max-width: 900px; 
             margin: 0 auto; 
         }
         .ecosystem-badges {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 8px;
-            margin-top: 14px;
+            gap: 10px;
+            margin-top: 16px;
         }
         .badge-tag {
             background: rgba(212,175,55,0.08);
             border: 1px solid rgba(212,175,55,0.3);
             color: var(--gold-solid);
-            font-size: 0.6rem;
+            font-size: 0.65rem;
             font-weight: 700;
-            padding: 4px 10px;
+            padding: 6px 12px;
             border-radius: 20px;
             text-transform: uppercase;
         }
 
-        /* পিন্টারেস্ট মেসনারি গ্রিড */
-        .pinterest-masonry { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: stretch; }
-        @media(max-width: 900px) { .pinterest-masonry { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
-        @media(max-width: 500px) { .pinterest-masonry { grid-template-columns: 1fr; gap: 10px; } }
+        /* পিন্টারেস্ট মেসনারি গ্রিড (পরিষ্কার ও বড় সাইজের কার্ড) */
+        .pinterest-masonry { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
+        @media(max-width: 900px) { .pinterest-masonry { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+        @media(max-width: 500px) { .pinterest-masonry { grid-template-columns: 1fr; gap: 12px; } }
 
-        .feature-card { background: var(--surface-bg); border-radius: 12px; padding: 16px; text-align: left; transition: 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.85); display: flex; flex-direction: column; justify-content: space-between; min-height: 225px; border: 1px solid rgba(212,175,55,0.2); }
-        .feature-card:hover { transform: translateY(-3px); border-color: rgba(212,175,55,0.5); box-shadow: 0 6px 25px rgba(212,175,55,0.2); }
+        .feature-card { 
+            background: var(--surface-bg); 
+            border-radius: 14px; 
+            padding: 20px; 
+            text-align: left; 
+            transition: 0.3s; 
+            box-shadow: 0 6px 25px rgba(0,0,0,0.85); 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            min-height: 250px; 
+            border: 1px solid rgba(212,175,55,0.15); 
+        }
+        .feature-card:hover { transform: translateY(-4px); border-color: rgba(212,175,55,0.4); box-shadow: 0 8px 30px rgba(212,175,55,0.15); }
         
-        .feature-icon { font-size: 1.4rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px; }
-        .feature-title { font-size: 0.76rem; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: var(--font-luxury); margin-bottom: 4px; }
-        .feature-desc { font-size: 0.63rem; color: var(--text-gray); line-height: 1.5; margin-bottom: 10px; }
+        .feature-icon { font-size: 1.6rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+        .feature-title { font-size: 0.88rem; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: var(--font-luxury); margin-bottom: 6px; }
+        .feature-desc { font-size: 0.7rem; color: var(--text-gray); line-height: 1.6; margin-bottom: 12px; }
 
-        .graph-box { height: 50px; width: 100%; display: flex; align-items: center; justify-content: center; margin-top: auto; padding-top: 6px; border-top: 1px solid rgba(212,175,55,0.2); overflow: hidden; }
+        .graph-box { height: 55px; width: 100%; display: flex; align-items: center; justify-content: center; margin-top: auto; padding-top: 8px; border-top: 1px solid rgba(212,175,55,0.15); overflow: hidden; }
 
-        /* গ্রাফ বা অ্যানিমেশন এলিমেন্টস */
-        .graph-type-1 { width: 34px; height: 34px; border: 2px dashed var(--gold-solid); border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: spin1 4s infinite linear; }
-        .graph-type-1-inner { width: 12px; height: 12px; background: var(--gold-gradient); border-radius: 50%; box-shadow: 0 0 8px var(--gold-solid); }
+        /* গ্রাফ ও অ্যানিমেশন এলিমেন্টস */
+        .graph-type-1 { width: 36px; height: 36px; border: 2px dashed var(--gold-solid); border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: spin1 4s infinite linear; }
+        .graph-type-1-inner { width: 14px; height: 14px; background: var(--gold-gradient); border-radius: 50%; box-shadow: 0 0 10px var(--gold-solid); }
         @keyframes spin1 { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
         .graph-type-2 { width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: space-between; gap: 2px; padding: 0 2px; }
         .ecom-thick-bar { width: 4px; background: var(--gold-gradient); border-radius: 2px 2px 0 0; animation: ecomAnim 1.4s infinite alternate ease-in-out; }
-        @keyframes ecomAnim { 0% { height: 6px; opacity: 0.4; } 100% { height: 42px; opacity: 1; } }
+        @keyframes ecomAnim { 0% { height: 6px; opacity: 0.4; } 100% { height: 45px; opacity: 1; } }
 
         .graph-type-3 { display: flex; align-items: center; justify-content: center; width: 100%; }
-        .badge-3 { background: var(--gold-gradient); color: #000; font-size: 0.58rem; font-weight: 900; padding: 5px 12px; border-radius: 20px; animation: pulseZoom 1.2s infinite alternate ease-in-out; box-shadow: 0 0 15px rgba(212,175,55,0.7); text-transform: uppercase; }
+        .badge-3 { background: var(--gold-gradient); color: #000; font-size: 0.62rem; font-weight: 900; padding: 6px 14px; border-radius: 20px; animation: pulseZoom 1.2s infinite alternate ease-in-out; box-shadow: 0 0 15px rgba(212,175,55,0.7); text-transform: uppercase; }
         @keyframes pulseZoom { 0% { transform: scale(0.92); box-shadow: 0 0 8px rgba(212,175,55,0.4); } 100% { transform: scale(1.08); box-shadow: 0 0 20px rgba(212,175,55,0.9); } }
 
         .graph-type-4 { display: flex; gap: 8px; align-items: center; justify-content: center; width: 100%; }
-        .node-4 { width: 7px; height: 7px; background: var(--gold-solid); border-radius: 50%; box-shadow: 0 0 8px var(--gold-solid); animation: anim4node 1s infinite alternate; }
+        .node-4 { width: 8px; height: 8px; background: var(--gold-solid); border-radius: 50%; box-shadow: 0 0 8px var(--gold-solid); animation: anim4node 1s infinite alternate; }
         @keyframes anim4node { 0% { opacity: 0.3; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1.2); } }
         .line-4 { height: 2px; flex: 1; background: var(--gold-gradient); position: relative; overflow: hidden; border-radius: 2px; }
-        .ball-4 { width: 4px; height: 4px; background: #fff; border-radius: 50%; position: absolute; top: -1px; animation: anim4ball 1.5s infinite linear; box-shadow: 0 0 6px #fff; }
+        .ball-4 { width: 5px; height: 5px; background: #fff; border-radius: 50%; position: absolute; top: -1.5px; animation: anim4ball 1.5s infinite linear; box-shadow: 0 0 6px #fff; }
         @keyframes anim4ball { 0% { left: 0; } 100% { left: 100%; } }
 
         .graph-type-5 { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; width: 100%; }
-        .track-5 { width: 75%O; height: 3px; background: #111; position: relative; overflow: hidden; border-radius: 2px; border: 1px solid rgba(212,175,55,0.3); width: 80%; }
-        .fill-5 { width: 20px; height: 100%; background: var(--gold-gradient); position: absolute; animation: anim5 1.2s infinite linear; }
-        @keyframes anim5 { 0% { left: -25px; } 100% { left: 100%; } }
+        .track-5 { width: 80%; height: 3px; background: #111; position: relative; overflow: hidden; border-radius: 2px; border: 1px solid rgba(212,175,55,0.3); }
+        .fill-5 { width: 25px; height: 100%; background: var(--gold-gradient); position: absolute; animation: anim5 1.2s infinite linear; }
+        @keyframes anim5 { 0% { left: -30px; } 100% { left: 100%; } }
 
         .graph-type-6 { display: flex; flex-direction: column; justify-content: center; gap: 3px; width: 100%; }
-        .track-6 { width: 100%; height: 4px; background: #111; border-radius: 3px; overflow: hidden; border: 1px solid var(--gold-solid); }
+        .track-6 { width: 100%; height: 5px; background: #111; border-radius: 3px; overflow: hidden; border: 1px solid var(--gold-solid); }
         .fill-6 { height: 100%; width: 100%; background: var(--gold-gradient); animation: anim6 2s infinite; }
         @keyframes anim6 { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 
         .graph-type-7 { display: flex; align-items: flex-end; justify-content: center; gap: 2px; width: 100%; height: 100%; }
         .eq-7 { width: 3px; background: var(--gold-gradient); border-radius: 2px; animation: anim7 0.5s infinite alternate ease-in-out; }
-        @keyframes anim7 { from { height: 6px; } to { height: 38px; } }
+        @keyframes anim7 { from { height: 6px; } to { height: 42px; } }
 
         .graph-type-8 { width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: space-around; gap: 2px; padding: 0 2px; }
         .aff-thick-bar { width: 4px; background: var(--gold-gradient); border-radius: 2px 2px 0 0; animation: affAnim 1.2s infinite alternate ease-in-out; }
-        @keyframes affAnim { 0% { height: 38px; opacity: 1; } 100% { height: 6px; opacity: 0.3; } }
+        @keyframes affAnim { 0% { height: 42px; opacity: 1; } 100% { height: 8px; opacity: 0.3; } }
 
-        .graph-type-9 { position: relative; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; margin: 0 auto; }
-        .core-9 { width: 8px; height: 8px; background: var(--gold-solid); border-radius: 50%; box-shadow: 0 0 10px var(--gold-solid); }
+        .graph-type-9 { position: relative; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; margin: 0 auto; }
+        .core-9 { width: 9px; height: 9px; background: var(--gold-solid); border-radius: 50%; box-shadow: 0 0 10px var(--gold-solid); }
         .ring-9 { position: absolute; width: 100%; height: 100%; border: 1.5px solid var(--gold-solid); border-radius: 50%; animation: anim9 1.5s infinite ease-out; }
         @keyframes anim9 { 0% { transform: scale(0.3); opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
 
         /* একদম নিচের ফর্ম সেকশন ডিজাইন */
         .bottom-form-container {
             background: var(--surface-bg);
-            border: 2px solid;
-            border-image: var(--gold-gradient) 1;
-            border-radius: 16px;
-            padding: 24px 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.95);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 18px;
+            padding: 30px 24px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.95);
             margin-top: 10px;
         }
         .form-title {
             font-family: var(--font-luxury);
-            font-size: 1.15rem;
+            font-size: 1.3rem;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-align: center;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
             text-transform: uppercase;
             font-weight: 900;
         }
-        .form-group { margin-bottom: 12px; text-align: left; }
-        .form-group label { display: block; font-size: 0.65rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; font-weight: 800; }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; background: #000; border: 1.5px solid rgba(212,175,55,0.4); padding: 10px 12px; color: #fff; border-radius: 8px; font-size: 0.75rem; outline: none; transition: 0.3s; }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold-solid); box-shadow: 0 0 12px rgba(212,175,55,0.4); }
-        .phone-row { display: flex; gap: 8px; }
-        .phone-row select { width: 130px; flex-shrink: 0; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; font-size: 0.7rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; font-weight: 800; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; background: #000; border: 1.5px solid rgba(212,175,55,0.35); padding: 12px 14px; color: #fff; border-radius: 10px; font-size: 0.82rem; outline: none; transition: 0.3s; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold-solid); box-shadow: 0 0 12px rgba(212,175,55,0.3); }
+        .phone-row { display: flex; gap: 10px; }
+        .phone-row select { width: 140px; flex-shrink: 0; }
         
-        .google-verify-btn { width: 100%; background: #ffffff; color: #000; border: none; padding: 10px; border-radius: 8px; font-weight: 700; font-size: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; margin-bottom: 12px; transition: 0.3s; }
-        .google-verify-btn:hover { background: #f1f1f1; box-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .google-verify-btn { width: 100%; background: #ffffff; color: #000; border: none; padding: 12px; border-radius: 10px; font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; margin-bottom: 14px; transition: 0.3s; }
+        .google-verify-btn:hover { background: #f1f1f1; box-shadow: 0 0 12px rgba(255,255,255,0.5); }
         
-        .btn-gold-glow { background: var(--gold-gradient); border: none; padding: 11px 24px; border-radius: 25px; color: #000; font-weight: 900; font-size: 0.72rem; cursor: pointer; text-transform: uppercase; font-family: var(--font-luxury); transition: 0.3s; box-shadow: 0 0 15px rgba(212,175,55,0.35); text-decoration: none; display: inline-block; width: 100%; text-align: center; }
+        .btn-gold-glow { background: var(--gold-gradient); border: none; padding: 12px 24px; border-radius: 30px; color: #000; font-weight: 900; font-size: 0.78rem; cursor: pointer; text-transform: uppercase; font-family: var(--font-luxury); transition: 0.3s; box-shadow: 0 0 18px rgba(212,175,55,0.35); text-decoration: none; display: inline-block; width: 100%; text-align: center; }
         .btn-gold-glow:hover { transform: scale(1.02); box-shadow: 0 0 25px rgba(212,175,55,0.6); }
     </style>
 </head>
@@ -255,7 +266,7 @@
 
     <div class="custom-toast" id="customToast">Action completed successfully!</div>
 
-    <!-- হেডার: লোগো ও ব্র্যান্ড নাম একদম মাঝখানে এবং স্পষ্ট -->
+    <!-- হেডার: লোগো ও ব্র্যান্ড নাম একদম সেন্টারে এবং স্পষ্ট -->
     <header class="app-header">
         <a href="https://rorraxy.com" class="brand-container">
             <img src="https://lh3.googleusercontent.com/d/1PD_g_agcbmm7bbJTHoOWss8YtQ17LNsb=s400" alt="Logo" class="logo">
@@ -265,12 +276,12 @@
 
     <div class="main-wrapper">
         
-        <!-- হিরো কার্ড (Less is More Ecosystem Overview) -->
+        <!-- হিরো কার্ড (Global All-in-One Ecosystem Overview) -->
         <div class="luxury-card">
-            <div style="font-size: 1.8rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px;"><i class="fa-solid fa-cube"></i></div>
+            <div style="font-size: 2rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px;"><i class="fa-solid fa-cube"></i></div>
             <h1 class="hero-title">Global All-in-One Ecosystem</h1>
             <p class="hero-sub">
-                Less is More. Manage everything from customer accounts and inventory to complete financial and VAT calculations under one unified powerhouse. Powered by supersonic speed, custom APIs, and a zero-plugin architecture.
+                Less is More. Manage everything seamlessly—from customer accounts, smart inventory, and multi-channel synchronization to comprehensive VAT and financial calculations—all within one unified, lightning-fast platform built with zero plugins and absolute security.
             </p>
             <div class="ecosystem-badges">
                 <span class="badge-tag"><i class="fa-solid fa-ban"></i> No Plugins</span>
@@ -280,17 +291,17 @@
             </div>
         </div>
 
-        <!-- পিন্টারেস্ট মেসনারি গ্রিড (৯টি মূল সার্ভিস ও ফিচার) -->
+        <!-- পিন্টারেস্ট মেসনারি গ্রিড (৯টি বিস্তারিত সার্ভিস ও ফিচার) -->
         <div class="pinterest-masonry" id="dynamic-services-grid"></div>
 
-        <!-- ফর্মটি একদম নিচে সেট করা হলো -->
+        <!-- ফর্মটি একদম নিচে সেট করা হলো (সাবমিট বাটন সহ) -->
         <div class="bottom-form-container">
             <h3 class="form-title">Request Professional Service</h3>
             
             <button class="google-verify-btn" onclick="verifyWithGoogle()">
                 <i class="fa-brands fa-google" style="color:#ea4335;"></i> Verify & Autofill with Google
             </button>
-            <div style="text-align:center; font-size:0.6rem; color:#888; margin-bottom:12px;">OR FILL MANUALLY BELOW</div>
+            <div style="text-align:center; font-size:0.65rem; color:#888; margin-bottom:14px;">OR FILL MANUALLY BELOW</div>
 
             <form id="dynamicForm" onsubmit="handleFormSubmit(event)">
                 <div class="form-group">
@@ -323,7 +334,7 @@
                     <textarea id="userComments" rows="3" placeholder="Describe your project, multimedia needs, or API requirements..." required></textarea>
                 </div>
 
-                <button type="submit" class="btn-gold-glow" style="margin-top:10px;">Submit Application</button>
+                <button type="submit" class="btn-gold-glow" style="margin-top:10px;">Submit</button>
             </form>
         </div>
 
@@ -421,17 +432,17 @@
             { name: "Zimbabwe", flag: "🇿🇼", code: "+263" }
         ];
 
-        // প্রফেশনাল সার্ভিস ডেটাসেট (আপনার নির্দেশ অনুযায়ী সাজানো)
+        // প্রফেশনাল সার্ভিস ডেটাসেট (সম্পূর্ণ তথ্য সহ)
         const enterpriseData = [
-            { icon: "fa-calculator", title: "Smart VAT & Accounts", desc: "Complete financial tracking, customer management, and automated VAT calculations in one ecosystem.", renderType: "type1" },
-            { icon: "fa-cubes", title: "No Plugins & No Third-Party", desc: "A clean, native architecture free from heavy third-party plugins or external dependencies.", renderType: "type2" },
-            { icon: "fa-bolt", title: "Supersonic Performance", desc: "Lightning-fast web and app solutions optimized for maximum speed and global reliability.", renderType: "type3" },
-            { icon: "fa-network-wired", title: "Custom API & Sub-Domains", desc: "Seamless API creation, integration, and high-performance management for 200+ sub-domains.", renderType: "type4" },
-            { icon: "fa-photo-film", title: "Image & Video Editing", desc: "High-end multimedia production, commercial video editing, and professional image retouching.", renderType: "type5" },
-            { icon: "fa-ruler-combined", title: "Size & Dimension Calculators", desc: "Custom business size calculators and smart data processing tools for precise e-commerce scaling.", renderType: "type6" },
-            { icon: "fa-shield-halved", title: "100% Secure Architecture", desc: "Military-grade encryption and advanced firewall protection ensuring absolute data safety.", renderType: "type7" },
-            { icon: "fa-chart-line", title: "Global Affiliate & Scale", desc: "Robust portals with real-time tracking, multi-channel sync, and automated commission payouts.", renderType: "type8" },
-            { icon: "fa-chess-queen", title: "Enterprise Growth Advisory", desc: "Tailored strategic blueprints for international business expansion and technological leadership.", renderType: "type9" }
+            { icon: "fa-calculator", title: "Smart VAT & Accounts", desc: "Complete financial tracking, customer relationship management, and automated VAT calculations in one unified ecosystem.", renderType: "type1" },
+            { icon: "fa-cubes", title: "No Plugins & No Third-Party", desc: "A clean, native architecture completely free from heavy third-party plugins or external software dependencies.", renderType: "type2" },
+            { icon: "fa-bolt", title: "Supersonic Performance", desc: "Lightning-fast web and application solutions optimized for maximum speed, responsiveness, and global reliability.", renderType: "type3" },
+            { icon: "fa-network-wired", title: "Custom API & Sub-Domains", desc: "Seamless API creation, integration, and high-performance routing management designed to handle 200+ sub-domains effortlessly.", renderType: "type4" },
+            { icon: "fa-photo-film", title: "Image & Video Editing", desc: "High-end multimedia production, commercial video editing, and professional image retouching to elevate your digital branding.", renderType: "type5" },
+            { icon: "fa-ruler-combined", title: "Size & Dimension Calculators", desc: "Custom business size calculators and smart data processing tools engineered for precise e-commerce sizing and scaling.", renderType: "type6" },
+            { icon: "fa-shield-halved", title: "100% Secure Architecture", desc: "Military-grade encryption and advanced firewall protection ensuring absolute data safety and secure global transactions.", renderType: "type7" },
+            { icon: "fa-chart-line", title: "Global Affiliate & Scale", desc: "Robust portals featuring real-time tracking, multi-channel synchronization, and automated commission payout structures.", renderType: "type8" },
+            { icon: "fa-chess-queen", title: "Enterprise Growth Advisory", desc: "Tailored strategic blueprints and digital consulting for international business expansion and technological market leadership.", renderType: "type9" }
         ];
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -499,7 +510,7 @@
             if(!t) return;
             t.innerText = msg;
             t.style.display = 'block';
-            setTimeout(() => { t.style.display = 'none'; }, 2000);
+            setTimeout(() => { t.style.display = 'none'; }, 2500);
         }
 
         function verifyWithGoogle() {
@@ -526,7 +537,7 @@
 
             try {
                 await db.collection("enterprise_submissions").add(formData);
-                showToast("Application submitted successfully to Firebase!");
+                showToast("Request submitted successfully to Firebase!");
                 document.getElementById('dynamicForm').reset();
             } catch (error) {
                 showToast("Submission failed. Check Firebase settings.");
