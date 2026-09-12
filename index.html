@@ -52,7 +52,7 @@
             background-color: var(--bg-black); 
             color: var(--text-white); 
             font-family: var(--font-body); 
-            padding-top: 55px; 
+            padding-top: 110px; /* হেডার বড় করার কারণে প্যাডিং বাড়ানো হয়েছে */
             padding-bottom: 40px; 
             overflow-x: hidden; 
             -webkit-font-smoothing: antialiased; 
@@ -60,18 +60,53 @@
 
         h1, h2, h3, h4, .brand-title-main { font-family: var(--font-luxury); }
 
-        /* লোগো একদম স্পষ্ট এবং স্থির (কোনো অ্যানিমেশন বা ইফেক্ট নেই) */
+        /* লোগো ও ব্র্যান্ড নেম একদম মাঝখানে এবং বড় সাইজের */
         header.app-header {
-            display: flex; justify-content: space-between; align-items: center; padding: 8px 14px;
-            background: rgba(10, 10, 10, 0.98); position: fixed; top: 0; left: 0; z-index: 1000;
-            backdrop-filter: blur(12px); width: 100%; border-bottom: 1px solid rgba(212,175,55,0.25);
+            display: flex; 
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            padding: 15px 14px;
+            background: rgba(10, 10, 10, 0.98); 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            z-index: 1000;
+            backdrop-filter: blur(12px); 
+            width: 100%; 
+            border-bottom: 1px solid rgba(212,175,55,0.25);
+            gap: 8px;
         }
-        .brand-container { display: flex; align-items: center; gap: 8px; text-decoration: none; }
-        .logo { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; background: transparent; border: none; }
+        .brand-container { 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            gap: 8px; 
+            text-decoration: none; 
+            text-align: center;
+        }
+        .logo { 
+            width: 55px; 
+            height: 55px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            background: transparent; 
+            border: 1.5px solid var(--gold-solid);
+            box-shadow: 0 0 15px rgba(212,175,55,0.3);
+        }
         
-        .brand-title-main { font-size: 0.85rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 1.5px; white-space: nowrap; }
+        .brand-title-main { 
+            font-size: 1.1rem; 
+            font-weight: 900; 
+            background: var(--gold-gradient); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            white-space: nowrap; 
+        }
 
-        .custom-toast { position: fixed; top: 65px; left: 50%; transform: translateX(-50%); background: rgba(16, 16, 16, 0.98); border: 1.5px solid var(--gold-solid); color: var(--gold-solid); padding: 6px 14px; border-radius: 30px; font-size: 0.65rem; font-weight: 700; z-index: 999999; display: none; box-shadow: 0 0 15px rgba(212,175,55,0.3); }
+        .custom-toast { position: fixed; top: 125px; left: 50%; transform: translateX(-50%); background: rgba(16, 16, 16, 0.98); border: 1.5px solid var(--gold-solid); color: var(--gold-solid); padding: 6px 14px; border-radius: 30px; font-size: 0.65rem; font-weight: 700; z-index: 999999; display: none; box-shadow: 0 0 15px rgba(212,175,55,0.3); }
 
         /* মেইন কন্টেইনার */
         .main-wrapper { 
@@ -184,7 +219,7 @@
 
     <div class="custom-toast" id="customToast">Action completed successfully!</div>
 
-    <!-- হেডার (লোগো স্পষ্ট ও কোনো অ্যানিমেশন ছাড়া) -->
+    <!-- হেডার (লোগো ও নাম মাঝখানে এবং বড় সাইজের) -->
     <header class="app-header">
         <a href="https://rorraxy.com" class="brand-container">
             <img src="https://lh3.googleusercontent.com/d/1PD_g_agcbmm7bbJTHoOWss8YtQ17LNsb=s400" alt="Logo" class="logo">
@@ -199,7 +234,7 @@
             <div style="font-size: 1.8rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px;"><i class="fa-solid fa-briefcase"></i></div>
             <h1 class="hero-title">Business Solutions</h1>
             <p class="hero-sub">
-                Empowering global brands with custom web & mobile architecture, high-scale e-commerce growth, cinematic 3D branding, and proprietary AI systems.
+                Empowering global brands with custom web & mobile architecture, high-scale e-commerce growth, cinematic 3D branding, and robust enterprise systems.
             </p>
         </div>
 
@@ -346,7 +381,7 @@
             { icon: "fa-laptop-code", title: "Web & App Development", desc: "We craft high-end, luxury websites optimized for lightning-fast speeds and global performance.", renderType: "type1" },
             { icon: "fa-warehouse", title: "E-Commerce Growth", desc: "Seamlessly connect global suppliers and corporate buyers with smart inventory systems.", renderType: "type2" },
             { icon: "fa-vault", title: "Secure Transactions", desc: "We integrate secure online payment gateways ensuring safe financial management worldwide.", renderType: "type3" },
-            { icon: "fa-robot", title: "Smart AI Automation", desc: "Solve complex business workflows using advanced AI and automated data processing.", renderType: "type4" },
+            { icon: "fa-network-wired", title: "Enterprise Systems", desc: "Build robust corporate infrastructure with high-performance data processing and scalable architecture.", renderType: "type4" },
             { icon: "fa-store", title: "Multi-Channel Sync", desc: "Unify your digital sales channels into one powerhouse with centralized catalog management.", renderType: "type5" },
             { icon: "fa-shield-halved", title: "Enterprise Security", desc: "Absolute protection with military-grade encryption and advanced firewall security.", renderType: "type6" },
             { icon: "fa-clapperboard", title: "Video & 3D Branding", desc: "Elevate your digital brand with high-end commercial video and premium 3D rendering.", renderType: "type7" },
