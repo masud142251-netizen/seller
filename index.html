@@ -112,7 +112,7 @@
             gap: 18px;
         }
 
-        /* হিরো কার্ড (রিপিটেশন মুক্ত ও পরিচ্ছন্ন) */
+        /* হিরো কার্ড */
         .luxury-card { 
             background: var(--surface-bg); 
             border-radius: 18px; 
@@ -139,7 +139,7 @@
             margin: 0 auto; 
         }
         
-        /* বর্ডার ছাড়া প্রিমিয়াম সোনালী ব্যাজসমূহ (রিপিটেশন ছাড়াই সুন্দরভাবে সাজানো) */
+        /* প্রিমিয়াম সোনালী ব্যাজসমূহ (এখানে সার্ভিস ফোকাসড ট্যাগগুলো রাখা হয়েছে) */
         .ecosystem-badges {
             display: flex;
             flex-wrap: wrap;
@@ -290,7 +290,7 @@
 
     <div class="main-wrapper">
         
-        <!-- হিরো কার্ড: রিপিটেশন মুক্ত ও পরিচ্ছন্ন উপস্থাপনা -->
+        <!-- হিরো কার্ড: মূল সার্ভিস ফোকাসড ব্যাজসহ -->
         <div class="luxury-card">
             <h1 class="hero-title">Global All-in-One Ecosystem</h1>
             <p class="hero-sub">
@@ -298,13 +298,13 @@
             </p>
             <div class="ecosystem-badges">
                 <span class="badge-tag">No Plugins & Third-Party</span>
-                <span class="badge-tag">Payment Gateway API Only</span>
+                <span class="badge-tag">Custom APIs & Routing</span>
                 <span class="badge-tag">Supersonic Speed</span>
                 <span class="badge-tag">Apps Development</span>
             </div>
         </div>
 
-        <!-- পিন্টারেস্ট মেসনারি গ্রিড -->
+        <!-- পিন্টারেস্ট মেসনারি গ্রিড (সকল সার্ভিস কার্ড ও গ্রাফ অ্যানিমেশন সহ সম্পূর্ণ ডেটাসেট) -->
         <div class="pinterest-masonry" id="dynamic-services-grid"></div>
 
         <!-- ফর্ম সেকশন -->
@@ -445,12 +445,12 @@
             { name: "Zimbabwe", flag: "🇿🇼", code: "+263" }
         ];
 
-        // প্রফেশনাল সার্ভিস ডেটাসেট
+        // প্রফেশনাল সার্ভিস ডেটাসেট (এখানে পেমেন্ট গেটওয়ে বাদ দিয়ে আপনার নিজস্ব মূল সার্ভিসগুলো রাখা হয়েছে)
         const enterpriseData = [
             { icon: "fa-desktop", title: "Web, Desktop & Mobile Apps", desc: "Building high-performance custom websites, desktop software, and native mobile applications engineered for global scalability.", renderType: "type1" },
             { icon: "fa-bolt", title: "Supersonic Performance", desc: "Lightning-fast execution speeds, optimized routing, and instantaneous response times across all digital platforms.", renderType: "type2" },
             { icon: "fa-cubes", title: "No Plugins & No Third-Party", desc: "A clean, native architecture completely free from heavy third-party plugins or external software dependencies.", renderType: "type3" },
-            { icon: "fa-credit-card", title: "Secure Payment Gateway API", desc: "Seamless integration with authorized global payment gateways as the only allowed third-party service.", renderType: "type4" },
+            { icon: "fa-network-wired", title: "Custom API & Sub-Domains", desc: "Seamless API creation, integration, and high-performance routing management designed to handle 200+ sub-domains effortlessly.", renderType: "type4" },
             { icon: "fa-photo-film", title: "Image & Video Editing", desc: "High-end multimedia production, commercial video editing, and professional image retouching to elevate your digital branding.", renderType: "type5" },
             { icon: "fa-ruler-combined", title: "Size & Dimension Calculators", desc: "Custom business size calculators and smart data processing tools engineered for precise e-commerce sizing and scaling.", renderType: "type6" },
             { icon: "fa-shield-halved", title: "100% Secure Architecture", desc: "Military-grade encryption and advanced firewall protection ensuring absolute data safety and secure global transactions.", renderType: "type7" },
