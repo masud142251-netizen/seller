@@ -49,7 +49,7 @@
             background-color: var(--bg-black); 
             color: var(--text-white); 
             font-family: var(--font-body); 
-            padding-top: 75px; 
+            padding-top: 65px; /* ওপরে অপ্রয়োজনীয় গ্যাপ কমানো হয়েছে */
             padding-bottom: 60px; 
             overflow-x: hidden; 
             -webkit-font-smoothing: antialiased; 
@@ -57,12 +57,12 @@
 
         h1, h2, h3, h4, .brand-title-main { font-family: var(--font-luxury); }
 
-        /* হেডার: লোগো ও ব্র্যান্ড নাম এক লাইনে (Inline) */
+        /* হেডার: লোগো ও ব্র্যান্ড নাম এক লাইনে এবং কমপ্যাক্ট */
         header.app-header {
             display: flex; 
             justify-content: flex-start; 
             align-items: center; 
-            padding: 10px 16px;
+            padding: 8px 16px;
             background: rgba(10, 10, 10, 0.98); 
             position: fixed; 
             top: 0; 
@@ -79,8 +79,8 @@
             text-decoration: none; 
         }
         .logo { 
-            width: 42px; 
-            height: 42px; 
+            width: 38px; 
+            height: 38px; 
             border-radius: 50%; 
             object-fit: contain; 
             background: transparent; 
@@ -89,7 +89,7 @@
             filter: drop-shadow(0 0 2px rgba(212,175,55,0.2));
         }
         .brand-title-main { 
-            font-size: 1.1rem; 
+            font-size: 1rem; 
             font-weight: 900; 
             background: var(--gold-gradient); 
             -webkit-background-clip: text; 
@@ -99,7 +99,7 @@
             white-space: nowrap; 
         }
 
-        .custom-toast { position: fixed; top: 85px; left: 50%; transform: translateX(-50%); background: rgba(16, 16, 16, 0.98); border: 1.5px solid var(--gold-solid); color: var(--gold-solid); padding: 8px 16px; border-radius: 30px; font-size: 0.7rem; font-weight: 700; z-index: 999999; display: none; box-shadow: 0 0 15px rgba(212,175,55,0.3); }
+        .custom-toast { position: fixed; top: 75px; left: 50%; transform: translateX(-50%); background: rgba(16, 16, 16, 0.98); border: 1.5px solid var(--gold-solid); color: var(--gold-solid); padding: 8px 16px; border-radius: 30px; font-size: 0.7rem; font-weight: 700; z-index: 999999; display: none; box-shadow: 0 0 15px rgba(212,175,55,0.3); }
 
         /* মেইন কন্টেইনার */
         .main-wrapper { 
@@ -124,7 +124,7 @@
         .hero-title { 
             font-size: 1.4rem; 
             font-weight: 900; 
-            color: #ffffff; /* আপনার চাহিদা অনুযায়ী সাদা রঙ */
+            color: #ffffff; 
             text-transform: uppercase; 
             margin-bottom: 12px; 
             letter-spacing: 1.2px; 
@@ -146,7 +146,7 @@
         .badge-tag {
             background: transparent;
             border: 1px solid var(--gold-solid);
-            color: var(--gold-solid); /* সলিড সোনালী রঙ */
+            color: var(--gold-solid);
             font-size: 0.68rem;
             font-weight: 700;
             padding: 6px 14px;
@@ -275,7 +275,7 @@
         <div class="luxury-card">
             <h1 class="hero-title">Global All-in-One Ecosystem</h1>
             <p class="hero-sub">
-                Less is More. Manage everything seamlessly—from high-performance website & mobile apps development, smart inventory, and multi-channel synchronization to comprehensive VAT and financial calculations—all within one unified platform built with zero plugins and absolute security.
+                Less is More. Manage everything seamlessly—from high-performance web, desktop & mobile apps development, smart inventory, and multi-channel synchronization to comprehensive VAT and financial calculations—all within one unified platform built with zero plugins and absolute security.
             </p>
             <div class="ecosystem-badges">
                 <span class="badge-tag">No Plugins</span>
@@ -295,7 +295,7 @@
             <button class="google-verify-btn" onclick="verifyWithGoogle()">
                 <i class="fa-brands fa-google" style="color:#ea4335;"></i> Verify & Autofill with Google
             </button>
-            <div style="text-align:center; font-size:0.65rem; color:#888; margin-bottom:14px;">OR FILL MANUALLY BELOW</div>
+            <div style="text-align:center; font-size:0.65rem; color:#888; margin-bottom:14px;">OR MANUALLY BELOW</div>
 
             <form id="dynamicForm" onsubmit="handleFormSubmit(event)">
                 <div class="form-group">
@@ -309,7 +309,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>WhatsApp Number (195+ Countries) *</label>
+                    <label>WhatsApp Number *</label>
                     <div class="phone-row">
                         <select id="userDialCode">
                             <!-- ১৯৫+ দেশের কোড ডাইনামিক্যালি লোড হবে -->
@@ -325,7 +325,7 @@
 
                 <div class="form-group">
                     <label>Project Requirements & Details *</label>
-                    <textarea id="userComments" rows="3" placeholder="Describe your web/app project, multimedia needs, or API requirements..." required></textarea>
+                    <textarea id="userComments" rows="3" placeholder="Describe your web, desktop/mobile app project, multimedia needs, or API requirements..." required></textarea>
                 </div>
 
                 <button type="submit" class="btn-gold-glow" style="margin-top:10px;">Submit</button>
@@ -426,9 +426,9 @@
             { name: "Zimbabwe", flag: "🇿🇼", code: "+263" }
         ];
 
-        // প্রফেশনাল সার্ভিস ডেটাসেট (ওয়েবসাইট ও অ্যাপস ডেভেলপমেন্ট সহ)
+        // প্রফেশনাল সার্ভিস ডেটাসেট
         const enterpriseData = [
-            { icon: "fa-mobile-screen-button", title: "Web & Mobile Apps Development", desc: "Building high-performance, custom websites and native mobile applications engineered for global scalability and speed.", renderType: "type1" },
+            { icon: "fa-desktop", title: "Web, Desktop & Mobile Apps", desc: "Building high-performance custom websites, desktop software, and native mobile applications engineered for global scalability.", renderType: "type1" },
             { icon: "fa-calculator", title: "Smart VAT & Accounts", desc: "Complete financial tracking, customer relationship management, and automated VAT calculations in one unified ecosystem.", renderType: "type2" },
             { icon: "fa-cubes", title: "No Plugins & No Third-Party", desc: "A clean, native architecture completely free from heavy third-party plugins or external software dependencies.", renderType: "type3" },
             { icon: "fa-network-wired", title: "Custom API & Sub-Domains", desc: "Seamless API creation, integration, and high-performance routing management designed to handle 200+ sub-domains effortlessly.", renderType: "type4" },
