@@ -53,50 +53,47 @@
             color: var(--text-white); 
             font-family: var(--font-body); 
             padding-top: 55px; 
-            padding-bottom: 100px; 
+            padding-bottom: 40px; 
             overflow-x: hidden; 
             -webkit-font-smoothing: antialiased; 
         }
 
         h1, h2, h3, h4, .brand-title-main { font-family: var(--font-luxury); }
 
-        /* প্রিমিয়াম হেডার ও লোগো জুম অ্যানিমেশন */
+        /* লোগো একদম স্পষ্ট এবং স্থির (কোনো অ্যানিমেশন বা ইফেক্ট নেই) */
         header.app-header {
             display: flex; justify-content: space-between; align-items: center; padding: 8px 14px;
             background: rgba(10, 10, 10, 0.98); position: fixed; top: 0; left: 0; z-index: 1000;
             backdrop-filter: blur(12px); width: 100%; border-bottom: 1px solid rgba(212,175,55,0.25);
         }
         .brand-container { display: flex; align-items: center; gap: 8px; text-decoration: none; }
-        .logo { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; background: transparent; border: none; animation: logoZoomPulse 2.5s infinite ease-in-out; }
-        @keyframes logoZoomPulse {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(212,175,55,0.3)); }
-            50% { transform: scale(1.12); filter: drop-shadow(0 0 12px rgba(212,175,55,0.8)); }
-        }
+        .logo { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; background: transparent; border: none; }
         
         .brand-title-main { font-size: 0.85rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 1.5px; white-space: nowrap; }
 
         .custom-toast { position: fixed; top: 65px; left: 50%; transform: translateX(-50%); background: rgba(16, 16, 16, 0.98); border: 1.5px solid var(--gold-solid); color: var(--gold-solid); padding: 6px 14px; border-radius: 30px; font-size: 0.65rem; font-weight: 700; z-index: 999999; display: none; box-shadow: 0 0 15px rgba(212,175,55,0.3); }
 
-        /* মেইন কন্টেইনার ও ট্যাব ভিউ */
+        /* মেইন কন্টেইনার */
         .main-wrapper { 
             width: 100%; 
             max-width: 1250px; 
             margin: 0 auto; 
             padding: 12px; 
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
         }
-        .tab-content { display: none; opacity: 0; transition: opacity 0.25s ease-in-out; }
-        .tab-content.active { display: flex; flex-direction: column; gap: 14px; opacity: 1; }
 
         /* হিরো কার্ড */
-        .luxury-card { background: var(--surface-bg); border-radius: 14px; padding: 22px 18px; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.9); margin-bottom: 5px; border: 1.5px solid rgba(212,175,55,0.3); }
+        .luxury-card { background: var(--surface-bg); border-radius: 14px; padding: 22px 18px; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.9); border: 1.5px solid rgba(212,175,55,0.3); }
         .hero-title { font-size: 1.15rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 1px; }
-        .hero-sub { font-size: 0.72rem; color: var(--text-gray); line-height: 1.6; max-width: 750px; margin: 0 auto 14px auto; }
+        .hero-sub { font-size: 0.72rem; color: var(--text-gray); line-height: 1.6; max-width: 750px; margin: 0 auto; }
 
         .btn-gold-glow { background: var(--gold-gradient); border: none; padding: 10px 24px; border-radius: 25px; color: #000; font-weight: 900; font-size: 0.7rem; cursor: pointer; text-transform: uppercase; font-family: var(--font-luxury); transition: 0.3s; box-shadow: 0 0 15px rgba(212,175,55,0.35); text-decoration: none; display: inline-block; }
         .btn-gold-glow:hover { transform: scale(1.04); box-shadow: 0 0 25px rgba(212,175,55,0.6); }
 
         /* পিন্টারেস্ট মেসনারি গ্রিড */
-        .pinterest-masonry { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: stretch; padding-bottom: 30px; }
+        .pinterest-masonry { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: stretch; }
         @media(max-width: 900px) { .pinterest-masonry { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
         @media(max-width: 500px) { .pinterest-masonry { grid-template-columns: 1fr; gap: 10px; } }
 
@@ -151,52 +148,27 @@
         .ring-9 { position: absolute; width: 100%; height: 100%; border: 1.5px solid var(--gold-solid); border-radius: 50%; animation: anim9 1.5s infinite ease-out; }
         @keyframes anim9 { 0% { transform: scale(0.3); opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
 
-        .static-center-box { 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            padding: 15px 0 30px 0; 
-            width: 100%; 
+        /* একদম নিচের ফর্ম সেকশন ডিজাইন */
+        .bottom-form-container {
+            background: var(--surface-bg);
+            border: 2px solid;
+            border-image: var(--gold-gradient) 1;
+            border-radius: 16px;
+            padding: 24px 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.95);
+            margin-top: 10px;
         }
-        .center-card-box { 
-            width: 100%; 
-            max-width: 750px; 
-            background: var(--surface-bg); 
-            border-radius: 16px; 
-            padding: 28px 20px; 
-            text-align: center; 
-            box-shadow: 0 10px 40px rgba(0,0,0,0.95); 
-            border: 1.5px solid rgba(212,175,55,0.3); 
+        .form-title {
+            font-family: var(--font-luxury);
+            font-size: 1.1rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: 900;
         }
-
-        .bottom-nav-bar { 
-            position: fixed !important; 
-            bottom: 0 !important; 
-            left: 0 !important; 
-            width: 100% !important; 
-            background: rgba(5, 5, 5, 0.99) !important; 
-            border-top: 1px solid rgba(212,175,55,0.4) !important; 
-            display: flex !important; 
-            justify-content: center !important; 
-            align-items: center !important; 
-            gap: 18px !important; 
-            padding: 10px 12px !important; 
-            z-index: 2147483647 !important; 
-            backdrop-filter: blur(16px) !important; 
-            box-shadow: 0 -10px 30px rgba(0,0,0,0.99) !important; 
-        }
-        .nav-item { display: flex; flex-direction: column; align-items: center; gap: 1px; background: transparent; border: none; cursor: pointer; color: #fff; font-size: 0.52rem; font-weight: 700; text-transform: uppercase; font-family: var(--font-luxury); transition: 0.3s; padding: 6px 16px; border-radius: 8px; text-decoration: none; letter-spacing: 0.5px; opacity: 0.75; }
-        .nav-item i { font-size: 0.98rem; transition: 0.3s; }
-        .nav-item.active, .nav-item:hover { opacity: 1; color: var(--gold-solid); }
-        .nav-item.active i, .nav-item:hover i { transform: translateY(-2px); text-shadow: 0 0 8px var(--gold-solid); }
-        .nav-item.active { background: var(--gold-gradient); color: #000 !important; opacity: 1; box-shadow: 0 0 12px rgba(212,175,55,0.5); }
-        .nav-item.active i { color: #000 !important; text-shadow: none; }
-
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 9999999; display: none; align-items: center; justify-content: center; padding: 15px; }
-        .modal-box { background: #0d0d0d; border: 2px solid; border-image: var(--gold-gradient) 1; border-radius: 20px; width: 100%; max-width: 520px; padding: 25px; box-shadow: 0 0 40px rgba(212,175,55,0.35); max-height: 90vh; overflow-y: auto; position: relative; }
-        
-        .modal-title { font-family: var(--font-luxury); font-size: 1.1rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; margin-bottom: 15px; text-transform: uppercase; font-weight: 900; }
-        
         .form-group { margin-bottom: 12px; text-align: left; }
         .form-group label { display: block; font-size: 0.65rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; font-weight: 800; }
         .form-group input, .form-group select, .form-group textarea { width: 100%; background: #000; border: 1.5px solid rgba(212,175,55,0.4); padding: 10px 12px; color: #fff; border-radius: 8px; font-size: 0.75rem; outline: none; transition: 0.3s; }
@@ -206,16 +178,13 @@
         
         .google-verify-btn { width: 100%; background: #ffffff; color: #000; border: none; padding: 10px; border-radius: 8px; font-weight: 700; font-size: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; margin-bottom: 12px; transition: 0.3s; }
         .google-verify-btn:hover { background: #f1f1f1; box-shadow: 0 0 10px rgba(255,255,255,0.5); }
-
-        .modal-back-btn { width: 100%; background: transparent; border: 1.5px solid rgba(212,175,55,0.5); color: var(--gold-solid); padding: 8px; border-radius: 8px; font-weight: 700; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; margin-top: 8px; text-transform: uppercase; transition: 0.3s; font-family: var(--font-luxury); }
-        .modal-back-btn:hover { background: rgba(212,175,55,0.1); border-color: var(--gold-solid); }
     </style>
 </head>
 <body>
 
     <div class="custom-toast" id="customToast">Action completed successfully!</div>
 
-    <!-- হেডার -->
+    <!-- হেডার (লোগো স্পষ্ট ও কোনো অ্যানিমেশন ছাড়া) -->
     <header class="app-header">
         <a href="https://rorraxy.com" class="brand-container">
             <img src="https://lh3.googleusercontent.com/d/1PD_g_agcbmm7bbJTHoOWss8YtQ17LNsb=s400" alt="Logo" class="logo">
@@ -225,61 +194,21 @@
 
     <div class="main-wrapper">
         
-        <!-- ট্যাব ১: BUSINESS SOLUTIONS -->
-        <div class="tab-content active" id="tabSolutions">
-            <div class="luxury-card">
-                <div style="font-size: 1.8rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px;"><i class="fa-solid fa-briefcase"></i></div>
-                <h1 class="hero-title">Business Solutions</h1>
-                <p class="hero-sub">
-                    Empowering global brands with custom web & mobile architecture, high-scale e-commerce growth, cinematic 3D branding, and proprietary AI systems.
-                </p>
-                <button class="btn-gold-glow" onclick="openModal('service')">Request Service</button>
-            </div>
-
-            <!-- পিন্টারেস্ট মেসনারি গ্রিড -->
-            <div class="pinterest-masonry" id="dynamic-services-grid"></div>
+        <!-- হিরো কার্ড -->
+        <div class="luxury-card">
+            <div style="font-size: 1.8rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px;"><i class="fa-solid fa-briefcase"></i></div>
+            <h1 class="hero-title">Business Solutions</h1>
+            <p class="hero-sub">
+                Empowering global brands with custom web & mobile architecture, high-scale e-commerce growth, cinematic 3D branding, and proprietary AI systems.
+            </p>
         </div>
 
-        <!-- ট্যাব ২: ACADEMY -->
-        <div class="tab-content" id="tabAcademy">
-            <div class="static-center-box">
-                <div class="center-card-box">
-                    <div style="font-size: 2.2rem; color: var(--gold-solid); margin-bottom: 6px;"><i class="fa-solid fa-graduation-cap"></i></div>
-                    <h2 class="hero-title" style="white-space: normal;">Skill & Earning Academy</h2>
-                    <p class="hero-sub">
-                        Master high-income digital skills through our exclusive incubator program. Designed for ambitious individuals seeking practical training and active earning pathways.
-                    </p>
-                    <div style="background: rgba(212,175,55,0.05); padding: 14px; border-radius: 10px; margin-bottom: 16px; text-align: left; font-size: 0.68rem; color: var(--gold-solid); line-height: 1.6; width: 100%;">
-                        <i class="fa-solid fa-circle-check"></i> <strong>Program & Payment Guidelines:</strong> Application registration fee is 1,000 BDT. Send money to our bKash personal number and submit your TrxID below to complete your enrollment.
-                    </div>
-                    <button class="btn-gold-glow" onclick="openModal('academy')">Join Academy</button>
-                </div>
-            </div>
-        </div>
+        <!-- পিন্টারেস্ট মেসনারি গ্রিড -->
+        <div class="pinterest-masonry" id="dynamic-services-grid"></div>
 
-        <!-- ট্যাব ৩: TEAM -->
-        <div class="tab-content" id="tabTeam">
-            <div class="static-center-box">
-                <div class="center-card-box">
-                    <div style="font-size: 2.2rem; color: var(--gold-solid); margin-bottom: 6px;"><i class="fa-solid fa-users-gear"></i></div>
-                    <h2 class="hero-title" style="white-space: normal;">Global Team</h2>
-                    <p class="hero-sub">
-                        Our elite network of remote developers, designers, and marketers. We operate as a synchronized global force to execute high-impact tech solutions rapidly.
-                    </p>
-                    <div style="background: rgba(212,175,55,0.05); padding: 14px; border-radius: 10px; margin-bottom: 16px; text-align: left; font-size: 0.68rem; color: var(--gold-solid); line-height: 1.6; width: 100%;">
-                        <i class="fa-solid fa-star"></i> <strong>Network Guidelines:</strong> We welcome passionate professionals in software architecture, digital marketing, and creative design. Submit your professional expertise and portfolio links to join our elite operational force.
-                    </div>
-                    <button class="btn-gold-glow" onclick="openModal('team')">Apply For Network</button>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- লাক্সারি পপ-আপ ফর্ম মোডাল -->
-    <div class="modal-overlay" id="luxuryModal">
-        <div class="modal-box">
-            <h3 class="modal-title" id="modalTitleHeading">Application Form</h3>
+        <!-- ফর্মটি একদম নিচে সেট করা হলো -->
+        <div class="bottom-form-container">
+            <h3 class="form-title">Request Digital Service</h3>
             
             <button class="google-verify-btn" onclick="verifyWithGoogle()">
                 <i class="fa-brands fa-google" style="color:#ea4335;"></i> Verify & Autofill with Google
@@ -287,8 +216,6 @@
             <div style="text-align:center; font-size:0.6rem; color:#888; margin-bottom:12px;">OR FILL MANUALLY BELOW</div>
 
             <form id="dynamicForm" onsubmit="handleFormSubmit(event)">
-                <input type="hidden" id="formType" value="service">
-                
                 <div class="form-group">
                     <label>Full Name *</label>
                     <input type="text" id="userName" placeholder="Enter your full name" required>
@@ -313,43 +240,16 @@
                     <input type="text" id="userAddress" placeholder="House/Street, City, State, Country" required>
                 </div>
 
-                <div class="form-group" id="bkashPaymentGroup" style="display:none;">
-                    <label><i class="fa-solid fa-wallet"></i> bKash Transaction ID (TrxID) *</label>
-                    <input type="text" id="userTrxID" placeholder="e.g. 9G87H6F5D4">
-                    <div style="font-size: 0.58rem; color: var(--text-gray); margin-top: 4px;">
-                        Send 1,000 BDT to bKash Personal: <strong style="color: var(--gold-solid); letter-spacing: 0.5px;">01767319670</strong>
-                    </div>
-                </div>
-
                 <div class="form-group">
-                    <label id="dynamicCommentLabel">Project Requirements & Details *</label>
+                    <label>Project Requirements & Details *</label>
                     <textarea id="userComments" rows="3" placeholder="Write your details here..." required></textarea>
                 </div>
 
                 <button type="submit" class="btn-gold-glow" style="width:100%; margin-top:10px;">Submit Application</button>
-                
-                <button type="button" class="modal-back-btn" onclick="closeModal()">
-                    <i class="fa-solid fa-arrow-left"></i> Back / Close
-                </button>
             </form>
         </div>
-    </div>
 
-    <!-- সর্বদাই দৃশ্যমান ও ফিক্সড বটম মেনুবার -->
-    <nav class="bottom-nav-bar">
-        <button class="nav-item active" onclick="switchTab('solutions', this)">
-            <i class="fa-solid fa-briefcase"></i>
-            <span>Solutions</span>
-        </button>
-        <button class="nav-item" onclick="switchTab('academy', this)">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <span>Academy</span>
-        </button>
-        <button class="nav-item" onclick="switchTab('team', this)">
-            <i class="fa-solid fa-users-gear"></i>
-            <span>Team</span>
-        </button>
-    </nav>
+    </div>
 
     <script>
         const countriesList = [
@@ -468,7 +368,7 @@
 
             const gridContainer = document.getElementById('dynamic-services-grid');
             if(gridContainer) {
-                enterpriseData.forEach((item, idx) => {
+                enterpriseData.forEach((item) => {
                     const card = document.createElement('div');
                     card.className = 'feature-card';
 
@@ -522,56 +422,20 @@
             setTimeout(() => { t.style.display = 'none'; }, 2000);
         }
 
-        function openModal(type) {
-            document.getElementById('formType').value = type;
-            const titleHeading = document.getElementById('modalTitleHeading');
-            const commentLabel = document.getElementById('dynamicCommentLabel');
-            const bkashGroup = document.getElementById('bkashPaymentGroup');
-            const trxInput = document.getElementById('userTrxID');
-
-            if(type === 'service') {
-                titleHeading.innerText = "Request Digital Service";
-                commentLabel.innerText = "Project Requirements & Details *";
-                bkashGroup.style.display = "none";
-                trxInput.removeAttribute('required');
-            } else if(type === 'academy') {
-                titleHeading.innerText = "Join Academy Application";
-                commentLabel.innerText = "Learning Goal & Experience Level *";
-                bkashGroup.style.display = "block";
-                trxInput.setAttribute('required', 'true');
-            } else if(type === 'team') {
-                titleHeading.innerText = "Apply For Global Team";
-                commentLabel.innerText = "Professional Expertise & Portfolio Link *";
-                bkashGroup.style.display = "none";
-                trxInput.removeAttribute('required');
-            }
-
-            document.getElementById('luxuryModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('luxuryModal').style.display = 'none';
-        }
-
         function verifyWithGoogle() {
             document.getElementById('userName').value = "Masudar Rahman";
             document.getElementById('userEmail').value = "masudar.enterprise@gmail.com";
             document.getElementById('userDialCode').value = "+880";
             document.getElementById('userWhatsApp').value = "1767319670";
             document.getElementById('userAddress').value = "Dhaka, Bangladesh";
-            const currentType = document.getElementById('formType').value;
-            if(currentType === 'academy') {
-                document.getElementById('userTrxID').value = "BKASH1000DEMO";
-            }
             showToast("Google Account Verified Successfully!");
         }
 
         async function handleFormSubmit(e) {
             e.preventDefault();
-            const formType = document.getElementById('formType').value;
             
             const formData = {
-                category: formType,
+                category: "service",
                 name: document.getElementById('userName').value.trim(),
                 email: document.getElementById('userEmail').value.trim(),
                 phone: document.getElementById('userDialCode').value + " " + document.getElementById('userWhatsApp').value,
@@ -580,26 +444,13 @@
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             };
 
-            if(formType === 'academy') {
-                formData.bkashTrxID = document.getElementById('userTrxID').value.trim();
-            }
-
             try {
                 await db.collection("enterprise_submissions").add(formData);
                 showToast("Application submitted successfully to Firebase!");
-                closeModal();
                 document.getElementById('dynamicForm').reset();
             } catch (error) {
                 showToast("Submission failed. Check Firebase settings.");
             }
-        }
-
-        function switchTab(tabName, btnElement) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.getElementById('tab' + tabName.charAt(0).toUpperCase() + tabName.slice(1)).classList.add('active');
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            if(btnElement) btnElement.classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'instant' });
         }
     </script>
 </body>
