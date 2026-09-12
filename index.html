@@ -57,7 +57,7 @@
 
         h1, h2, h3, h4, .brand-title-main { font-family: var(--font-luxury); }
 
-        /* হেডার: লোগো ও ব্র্যান্ড নাম একদম সেন্টারে ও স্পষ্ট */
+        /* হেডার: লোগো একদম পরিষ্কার (কোনো বর্ডার বা শ্যাডো ইফেক্ট নেই) */
         header.app-header {
             display: flex; 
             flex-direction: column;
@@ -83,13 +83,14 @@
             text-align: center;
         }
         .logo { 
-            width: 52px; 
-            height: 52px; 
+            width: 55px; 
+            height: 55px; 
             border-radius: 50%; 
-            object-fit: cover; 
+            object-fit: contain; 
             background: transparent; 
-            border: 1.5px solid var(--gold-solid);
-            box-shadow: 0 0 15px rgba(212,175,55,0.3);
+            border: none;
+            box-shadow: none;
+            filter: drop-shadow(0 0 2px rgba(212,175,55,0.2));
         }
         .brand-title-main { 
             font-size: 1.15rem; 
@@ -115,7 +116,7 @@
             gap: 20px;
         }
 
-        /* হিরো কার্ড (Less is More Ecosystem Overview) */
+        /* হিরো কার্ড */
         .luxury-card { 
             background: var(--surface-bg); 
             border-radius: 18px; 
@@ -146,20 +147,20 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 10px;
-            margin-top: 16px;
+            margin-top: 18px;
         }
         .badge-tag {
-            background: rgba(212,175,55,0.08);
-            border: 1px solid rgba(212,175,55,0.3);
-            color: var(--gold-solid);
+            background: var(--gold-gradient);
+            color: #000;
             font-size: 0.65rem;
-            font-weight: 700;
-            padding: 6px 12px;
+            font-weight: 900;
+            padding: 6px 14px;
             border-radius: 20px;
             text-transform: uppercase;
+            box-shadow: 0 0 12px rgba(212,175,55,0.4);
         }
 
-        /* পিন্টারেস্ট মেসনারি গ্রিড (পরিষ্কার ও বড় সাইজের কার্ড) */
+        /* পিন্টারেস্ট মেসনারি গ্রিড */
         .pinterest-masonry { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
         @media(max-width: 900px) { .pinterest-masonry { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
         @media(max-width: 500px) { .pinterest-masonry { grid-template-columns: 1fr; gap: 12px; } }
@@ -228,7 +229,7 @@
         .ring-9 { position: absolute; width: 100%; height: 100%; border: 1.5px solid var(--gold-solid); border-radius: 50%; animation: anim9 1.5s infinite ease-out; }
         @keyframes anim9 { 0% { transform: scale(0.3); opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
 
-        /* একদম নিচের ফর্ম সেকশন ডিজাইন */
+        /* ফর্ম সেকশন ডিজাইন */
         .bottom-form-container {
             background: var(--surface-bg);
             border: 1px solid rgba(212,175,55,0.3);
@@ -266,7 +267,7 @@
 
     <div class="custom-toast" id="customToast">Action completed successfully!</div>
 
-    <!-- হেডার: লোগো ও ব্র্যান্ড নাম একদম সেন্টারে এবং স্পষ্ট -->
+    <!-- হেডার: লোগো বর্ডারমুক্ত এবং স্পষ্ট -->
     <header class="app-header">
         <a href="https://rorraxy.com" class="brand-container">
             <img src="https://lh3.googleusercontent.com/d/1PD_g_agcbmm7bbJTHoOWss8YtQ17LNsb=s400" alt="Logo" class="logo">
@@ -276,7 +277,7 @@
 
     <div class="main-wrapper">
         
-        <!-- হিরো কার্ড (Global All-in-One Ecosystem Overview) -->
+        <!-- হিরো কার্ড -->
         <div class="luxury-card">
             <div style="font-size: 2rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px;"><i class="fa-solid fa-cube"></i></div>
             <h1 class="hero-title">Global All-in-One Ecosystem</h1>
@@ -284,17 +285,17 @@
                 Less is More. Manage everything seamlessly—from customer accounts, smart inventory, and multi-channel synchronization to comprehensive VAT and financial calculations—all within one unified, lightning-fast platform built with zero plugins and absolute security.
             </p>
             <div class="ecosystem-badges">
-                <span class="badge-tag"><i class="fa-solid fa-ban"></i> No Plugins</span>
-                <span class="badge-tag"><i class="fa-solid fa-shield-halved"></i> 100% Secure</span>
-                <span class="badge-tag"><i class="fa-solid fa-bolt"></i> Supersonic Speed</span>
-                <span class="badge-tag"><i class="fa-solid fa-calculator"></i> Smart VAT & Accounts</span>
+                <span class="badge-tag">No Plugins</span>
+                <span class="badge-tag">100% Secure</span>
+                <span class="badge-tag">Supersonic Speed</span>
+                <span class="badge-tag">Smart VAT Calculator</span>
             </div>
         </div>
 
-        <!-- পিন্টারেস্ট মেসনারি গ্রিড (৯টি বিস্তারিত সার্ভিস ও ফিচার) -->
+        <!-- পিন্টারেস্ট মেসনারি গ্রিড -->
         <div class="pinterest-masonry" id="dynamic-services-grid"></div>
 
-        <!-- ফর্মটি একদম নিচে সেট করা হলো (সাবমিট বাটন সহ) -->
+        <!-- ফর্ম সেকশন -->
         <div class="bottom-form-container">
             <h3 class="form-title">Request Professional Service</h3>
             
@@ -432,7 +433,7 @@
             { name: "Zimbabwe", flag: "🇿🇼", code: "+263" }
         ];
 
-        // প্রফেশনাল সার্ভিস ডেটাসেট (সম্পূর্ণ তথ্য সহ)
+        // প্রফেশনাল সার্ভিস ডেটাসেট
         const enterpriseData = [
             { icon: "fa-calculator", title: "Smart VAT & Accounts", desc: "Complete financial tracking, customer relationship management, and automated VAT calculations in one unified ecosystem.", renderType: "type1" },
             { icon: "fa-cubes", title: "No Plugins & No Third-Party", desc: "A clean, native architecture completely free from heavy third-party plugins or external software dependencies.", renderType: "type2" },
