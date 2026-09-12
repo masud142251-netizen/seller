@@ -3,180 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rorraxy - Global Multi-Role Ecosystem</title>
+    <title>Luxury Affiliate Ecosystem</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        payoneerDark: '#0b0f19',
-                        payoneerCard: '#131c2e',
-                        payoneerAccent: '#3b82f6',
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Google Fonts: Inter & Outfit for Luxury Feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .brand-font { font-family: 'Outfit', sans-serif; }
+    </style>
 </head>
-<body class="bg-payoneerDark text-slate-100 font-sans antialiased min-h-screen flex flex-col pb-16">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-4">
 
-    <!-- Top Header (Google Authorized Verification Badge) -->
-    <header class="w-full border-b border-slate-800 bg-payoneerDark/90 backdrop-blur-md px-6 py-4 flex justify-between items-center sticky top-0 z-40">
-        <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-cyan-500 p-[2px]">
-                <div class="w-full h-full bg-slate-950 rounded-full flex items-center justify-center font-bold text-xs text-white">R</div>
-            </div>
-            <div>
-                <span class="text-sm font-bold tracking-wider text-white block leading-none">RORRAXY ECOSYSTEM</span>
-                <span class="text-[10px] text-emerald-400 font-medium">🛡️ Google Authorized Verified</span>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <span class="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/30 px-3 py-1 rounded-full font-semibold">Secure SSL</span>
-        </div>
-    </header>
-
-    <!-- Main Homepage Dashboard Area (Payoneer Style Funds & Overview) -->
-    <main class="flex-1 max-w-4xl w-full mx-auto p-6 space-y-6">
+    <!-- Luxury Affiliate Registration & Dashboard Container -->
+    <div class="w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden p-8 relative">
         
-        <!-- Total Funds Card -->
-        <div class="bg-payoneerCard border border-slate-800 rounded-3xl p-6 shadow-2xl space-y-4">
-            <div class="flex justify-between items-center">
-                <span class="text-xs text-slate-400 uppercase tracking-widest font-semibold">Platform Total Balance</span>
-                <span class="text-xs bg-amber-500/10 text-amber-400 border border-amber-500/30 px-2.5 py-1 rounded-full">Role Policy Enforced</span>
-            </div>
-            <div class="text-3xl md:text-4xl font-black text-white tracking-tight">৳ 0.00 BDT</div>
+        <!-- Decorative Glow Effect -->
+        <div class="absolute -top-24 -right-24 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- [Popup Header] -->
+        <div class="text-center mb-8">
+            <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">Exclusive Partner Program</span>
+            <h2 class="text-3xl font-bold tracking-tight mt-3 text-white">Welcome to Our Affiliate Ecosystem</h2>
+            <p class="text-slate-400 text-sm mt-1">Join our elite network and earn rewarding commissions with transparency.</p>
         </div>
 
-        <!-- Role Notice Box -->
-        <div class="bg-blue-600/10 border border-blue-500/30 rounded-2xl p-4 text-xs text-slate-300 leading-relaxed">
-            <strong class="text-blue-400 block mb-1">Role Security Rule:</strong> Every user is automatically a Customer. However, an account can either operate as an <strong>Affiliate Marketer (10%)</strong> OR a <strong>B2B Seller (80% Payout / 20% Platform Cut)</strong>, but not both simultaneously to avoid tracking conflicts.
-        </div>
-
-        <!-- Quick Access Management List -->
-        <div class="bg-payoneerCard border border-slate-800 rounded-3xl p-4 shadow-xl divide-y divide-slate-800/60">
-            <div onclick="openPopup('accountPortal')" class="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-800/30 rounded-2xl transition-all">
-                <span class="text-sm font-medium text-slate-200">Customer Account & 195+ Country Address</span>
-                <span class="text-slate-500">➔</span>
-            </div>
-            <div onclick="openPopup('affiliatePortal')" class="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-800/30 rounded-2xl transition-all">
-                <span class="text-sm font-medium text-slate-200">Affiliate Portal (One-Link & Graphs)</span>
-                <span class="text-amber-400 text-xs font-semibold">10% Comm.</span>
-            </div>
-            <div onclick="openPopup('sellerPortal')" class="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-800/30 rounded-2xl transition-all">
-                <span class="text-sm font-medium text-slate-200">B2B / Seller Portal (b2b.rorraxy.com)</span>
-                <span class="text-emerald-400 text-xs font-semibold">20% Platform Cut</span>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- Bottom Fixed Menu Bar (Customer, Affiliate, Seller) -->
-    <nav class="w-full border-t border-slate-800 bg-payoneerCard px-6 py-3 flex justify-around items-center fixed bottom-0 z-40 text-xs shadow-2xl">
-        <button onclick="openPopup('accountPortal')" class="flex flex-col items-center text-blue-400 font-semibold hover:scale-105 transition-transform">
-            <span class="text-lg">👤</span> Account
-        </button>
-        <button onclick="openPopup('affiliatePortal')" class="flex flex-col items-center text-amber-400 font-semibold hover:scale-105 transition-transform">
-            <span class="text-lg">📈</span> Affiliate
-        </button>
-        <button onclick="openPopup('sellerPortal')" class="flex flex-col items-center text-emerald-400 font-semibold hover:scale-105 transition-transform">
-            <span class="text-lg">🏬</span> Seller / B2B
-        </button>
-    </nav>
-
-    <!-- ==================== UNIVERSAL POP-UP MODALS ==================== -->
-    <div id="modalOverlay" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4 transition-all">
-        
-        <!-- 1. Customer Account Modal -->
-        <div id="accountPortal" class="popup-content bg-payoneerCard border border-slate-800 w-full max-w-md rounded-3xl p-6 hidden shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closePopup()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">✕</button>
-            <h2 class="text-lg font-bold text-blue-400 mb-2">Customer Account</h2>
-            <p class="text-xs text-slate-400 mb-4">Universal account status with 195+ country code phone verification.</p>
-            <div class="space-y-3 text-xs">
-                <div>
-                    <label class="text-slate-400 uppercase">Mobile Number (195+ Countries)</label>
-                    <div class="flex gap-2 mt-1">
-                        <select class="bg-slate-900 border border-slate-800 rounded-xl px-2 py-2 text-amber-400 font-medium">
-                            <option value="+880" selected>BD (+880)</option>
-                            <option value="+1">US (+1)</option>
-                            <option value="+44">UK (+44)</option>
-                            <option value="+91">IN (+91)</option>
-                        </select>
-                        <input type="tel" value="1700000000" class="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white">
-                    </div>
-                </div>
-                <button class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 rounded-xl transition-all shadow-lg">Save Account Info</button>
-            </div>
-        </div>
-
-        <!-- 2. Affiliate Portal Modal (Role Locked) -->
-        <div id="affiliatePortal" class="popup-content bg-payoneerCard border border-slate-800 w-full max-w-md rounded-3xl p-6 hidden shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closePopup()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">✕</button>
-            <h2 class="text-lg font-bold text-amber-400 mb-2">Affiliate Portal (10% Commission)</h2>
-            <p class="text-xs text-slate-400 mb-4">Note: If you activate Affiliate, you cannot register as a Seller.</p>
-            <div class="space-y-3 text-xs">
-                <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 space-y-2">
-                    <p class="text-amber-400 font-semibold">Google Authorized Secure Withdraw Setup</p>
-                    <button class="w-full bg-slate-800 hover:bg-slate-700 text-white py-2 rounded-lg font-medium border border-slate-700">Connect Google Authorization</button>
-                </div>
-                <div>
-                    <label class="text-slate-400 uppercase">Your One-Link</label>
-                    <input type="text" value="https://rorraxy.com/ref/RX-99420" readonly class="w-full mt-1 bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-slate-400 font-mono">
-                </div>
-            </div>
-        </div>
-
-        <!-- 3. B2B / Seller Portal Modal (b2b.rorraxy.com & Google Auth Withdraw) -->
-        <div id="sellerPortal" class="popup-content bg-payoneerCard border border-slate-800 w-full max-w-md rounded-3xl p-6 hidden shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closePopup()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">✕</button>
-            <div class="flex justify-between items-center mb-2">
-                <h2 class="text-lg font-bold text-emerald-400">B2B / Seller Panel</h2>
-                <span class="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded font-mono">b2b.rorraxy.com</span>
-            </div>
-            <p class="text-xs text-slate-400 mb-4">Note: Active Sellers cannot join Affiliate. 20% platform cut applies.</p>
+        <!-- [Step 1: Terms & Conditions] -->
+        <div class="mb-6 space-y-4 bg-slate-950/50 p-5 rounded-xl border border-slate-800/80">
+            <h3 class="text-sm font-semibold text-slate-300 uppercase tracking-wider">Step 1: Terms & Conditions</h3>
+            <p class="text-xs text-slate-400">Please review and agree to the following terms to proceed:</p>
             
-            <div class="space-y-3 text-xs">
+            <div class="space-y-3 pt-2">
+                <label class="flex items-start gap-3 cursor-pointer group">
+                    <input type="checkbox" class="term-checkbox mt-1 w-4 h-4 rounded border-slate-700 bg-slate-900 text-amber-500 focus:ring-amber-500/20">
+                    <span class="text-sm text-slate-300 group-hover:text-white transition">I will promote products ethically using only my official "One-Link" without spamming or misleading users.</span>
+                </label>
+                <label class="flex items-start gap-3 cursor-pointer group">
+                    <input type="checkbox" class="term-checkbox mt-1 w-4 h-4 rounded border-slate-700 bg-slate-900 text-amber-500 focus:ring-amber-500/20">
+                    <span class="text-sm text-slate-300 group-hover:text-white transition">My 10% commission will be confirmed and added to my balance only after successful product delivery.</span>
+                </label>
+                <label class="flex items-start gap-3 cursor-pointer group">
+                    <input type="checkbox" class="term-checkbox mt-1 w-4 h-4 rounded border-slate-700 bg-slate-900 text-amber-500 focus:ring-amber-500/20">
+                    <span class="text-sm text-slate-300 group-hover:text-white transition">Violation of platform rules or fraudulent activities may result in immediate account termination.</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- [Step 2: Basic Information] -->
+        <div class="mb-6 space-y-4 bg-slate-950/50 p-5 rounded-xl border border-slate-800/80">
+            <h3 class="text-sm font-semibold text-slate-300 uppercase tracking-wider">Step 2: Basic Information</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <label class="text-slate-400 uppercase">Select Business Model</label>
-                    <select class="w-full mt-1 bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white">
-                        <option>Retail (B2C)</option>
-                        <option>Wholesale (B2B)</option>
-                        <option selected>Both (Retail & Wholesale)</option>
+                    <label class="block text-xs font-medium text-slate-400 mb-1">Full Name</label>
+                    <input type="text" placeholder="Enter your full name" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500 transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-1">Gmail Address</label>
+                    <input type="email" placeholder="Enter your email" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500 transition">
+                </div>
+            </div>
+        </div>
+
+        <!-- [Step 3: Payment Setup] -->
+        <div class="mb-8 space-y-4 bg-slate-950/50 p-5 rounded-xl border border-slate-800/80">
+            <h3 class="text-sm font-semibold text-slate-300 uppercase tracking-wider">Step 3: Payment Setup</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-1">Payment Method</label>
+                    <select id="paymentMethod" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500 transition">
+                        <option value="bkash">bKash (Mobile Wallet)</option>
+                        <option value="nagad">Nagad (Mobile Wallet)</option>
+                        <option value="payoneer">Payoneer (Global / Email)</option>
                     </select>
                 </div>
-                <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 space-y-2">
-                    <p class="text-emerald-400 font-semibold">Google Authorized Secure Withdraw & Payout</p>
-                    <button class="w-full bg-emerald-600 hover:bg-emerald-500 text-white py-2 rounded-lg font-semibold shadow-md">Connect Google Auth for Withdraw</button>
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-1" id="accountLabel">Account Number / Details</label>
+                    <input type="text" id="accountInput" placeholder="Enter bKash/Nagad number or Payoneer Email" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500 transition">
                 </div>
             </div>
+        </div>
+
+        <!-- Action Button -->
+        <button id="submitBtn" disabled class="w-full py-3.5 rounded-xl font-medium text-sm transition tracking-wide bg-slate-800 text-slate-500 cursor-not-allowed shadow-lg">
+            Complete Registration
+        </button>
+
+        <!-- Dashboard Section Preview Hint (Optional Reference for Pop-ups) -->
+        <div class="mt-8 pt-6 border-t border-slate-800/60 text-center">
+            <p class="text-xs text-slate-500">Includes secure pop-up menus for <span class="text-slate-400">Profile, One-Link, Live Status Graphs, Payment Config, & Instant Withdrawals</span>.</p>
         </div>
 
     </div>
 
-    <!-- Script Controller -->
+    <!-- Script to handle checkbox validation & dynamic Payoneer label -->
     <script>
-        const modalOverlay = document.getElementById('modalOverlay');
-        
-        function openPopup(portalId) {
-            document.querySelectorAll('.popup-content').forEach(el => el.classList.add('hidden'));
-            document.getElementById(portalId).classList.remove('hidden');
-            modalOverlay.classList.remove('hidden');
-            modalOverlay.classList.add('flex');
+        const checkboxes = document.querySelectorAll('.term-checkbox');
+        const submitBtn = document.getElementById('submitBtn');
+        const paymentMethod = document.getElementById('paymentMethod');
+        const accountLabel = document.getElementById('accountLabel');
+        const accountInput = document.getElementById('accountInput');
+
+        // Checkbox validation logic
+        function updateButtonState() {
+            const allChecked = Array.from(checkboxes).every(chk => chk.checked);
+            if (allChecked) {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('bg-slate-800', 'text-slate-500', 'cursor-not-allowed');
+                submitBtn.classList.add('bg-gradient-to-r', 'from-amber-500', 'to-amber-600', 'text-slate-950', 'font-semibold', 'hover:opacity-95', 'cursor-pointer');
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.classList.add('bg-slate-800', 'text-slate-500', 'cursor-not-allowed');
+                submitBtn.classList.remove('bg-gradient-to-r', 'from-amber-500', 'to-amber-600', 'text-slate-950', 'font-semibold', 'hover:opacity-95', 'cursor-pointer');
+            }
         }
 
-        function closePopup() {
-            modalOverlay.classList.remove('flex');
-            modalOverlay.classList.add('hidden');
-        }
+        checkboxes.forEach(chk => chk.addEventListener('change', updateButtonState));
 
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                closePopup();
+        // Dynamic label change for Payoneer vs bKash/Nagad
+        paymentMethod.addEventListener('change', function() {
+            if (this.value === 'payoneer') {
+                accountLabel.innerText = "Payoneer Email Address";
+                accountInput.placeholder = "Enter your Payoneer account email";
+            } else {
+                accountLabel.innerText = "Account Number (Mobile Wallet)";
+                accountInput.placeholder = "Enter 11-digit mobile number";
             }
         });
     </script>
-
 </body>
 </html>
