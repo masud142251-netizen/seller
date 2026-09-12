@@ -139,7 +139,7 @@
             margin: 0 auto; 
         }
         
-        /* ৪টি প্রিমিয়াম সোনালী বাটন ও অ্যানিমেশন */
+        /* বর্ডার ছাড়া প্রিমিয়াম সোনালী ব্যাজসমূহ */
         .ecosystem-badges {
             display: flex;
             flex-wrap: wrap;
@@ -148,8 +148,8 @@
             margin-top: 20px;
         }
         .badge-tag {
-            background: rgba(12, 12, 12, 0.95);
-            border: 1.5px solid var(--gold-solid);
+            background: rgba(20, 20, 20, 0.8);
+            border: none; /* বর্ডার সম্পূর্ণ তুলে দেওয়া হয়েছে */
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -159,14 +159,14 @@
             border-radius: 25px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 0 12px rgba(212,175,55,0.25);
+            box-shadow: 0 0 12px rgba(212,175,55,0.2);
             animation: cleanPulse 2.5s infinite ease-in-out;
             transition: 0.3s;
             display: inline-block;
         }
         .badge-tag:hover {
             transform: scale(1.06);
-            box-shadow: 0 0 20px rgba(212,175,55,0.6);
+            box-shadow: 0 0 20px rgba(212,175,55,0.5);
         }
         @keyframes cleanPulse {
             0%, 100% { transform: scale(1); opacity: 0.9; }
@@ -253,7 +253,7 @@
         }
         .form-title {
             font-family: var(--font-luxury);
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -280,7 +280,7 @@
 
     <div class="custom-toast" id="customToast">Action completed successfully!</div>
 
-    <!-- হেডার: লোগো ও ব্র্যান্ড নাম একদম ওপরের কর্নারে এক লাইনে -->
+    <!-- হেডার: লোগো ও ব্র্যান্ড নাম এক লাইনে এবং কমপ্যাক্ট -->
     <header class="app-header">
         <a href="https://rorraxy.com" class="brand-container">
             <img src="https://lh3.googleusercontent.com/d/1PD_g_agcbmm7bbJTHoOWss8YtQ17LNsb=s400" alt="Logo" class="logo">
@@ -290,11 +290,11 @@
 
     <div class="main-wrapper">
         
-        <!-- হিরো কার্ড: জাঁকজমকপূর্ণ উপস্থাপনা -->
+        <!-- হিরো কার্ড -->
         <div class="luxury-card">
             <h1 class="hero-title">Global All-in-One Ecosystem</h1>
             <p class="hero-sub">
-                Deliver supreme performance with <strong>Supersonic Speed</strong>, custom <strong>Web, Desktop & Mobile Apps Development</strong>, and <strong>No Third-Party Plugins</strong> (except secure payment gateways). Fully native architecture designed to scale your enterprise.
+                Deliver supreme performance with <strong>Supersonic Speed</strong>, custom <strong>Web, Desktop & Mobile Apps Development</strong>, and <strong>No Third-Party Plugins</strong> (except secure payment gateway APIs). Fully native architecture designed to scale your enterprise.
             </p>
             <div class="ecosystem-badges">
                 <span class="badge-tag">No Plugins & Third-Party</span>
@@ -307,9 +307,9 @@
         <!-- পিন্টারেস্ট মেসনারি গ্রিড -->
         <div class="pinterest-masonry" id="dynamic-services-grid"></div>
 
-        <!-- ফর্ম সেকশন -->
+        <!-- ফর্ম সেকশন: ছোট ও আকর্ষণীয় টাইটেল এবং সম্পূর্ণ ব্ল্যাঙ্ক টেক্সট এরিয়া -->
         <div class="bottom-form-container">
-            <h3 class="form-title">Request Professional Service</h3>
+            <h3 class="form-title">Service Request</h3>
             
             <button class="google-verify-btn" onclick="verifyWithGoogle()">
                 <i class="fa-brands fa-google" style="color:#ea4335;"></i> Verify & Autofill with Google
@@ -344,7 +344,8 @@
 
                 <div class="form-group">
                     <label>Project Requirements & Details *</label>
-                    <textarea id="userComments" rows="3" placeholder="Describe your web, desktop/mobile app project, payment gateway integration, or API requirements..." required></textarea>
+                    <!-- placeholder সম্পূর্ণ ফাঁকা রাখা হয়েছে যাতে কোনো লেখা আগে থেকে না থাকে -->
+                    <textarea id="userComments" rows="3" placeholder="" required></textarea>
                 </div>
 
                 <button type="submit" class="btn-gold-glow" style="margin-top:10px;">Submit</button>
@@ -445,12 +446,12 @@
             { name: "Zimbabwe", flag: "🇿🇼", code: "+263" }
         ];
 
-        // প্রফেশনাল সার্ভিস ডেটাসেট (পেমেন্ট গেটওয়ে ও নো প্লাগইন ফোকাসড)
+        // প্রফেশনাল সার্ভিস ডেটাসেট
         const enterpriseData = [
             { icon: "fa-desktop", title: "Web, Desktop & Mobile Apps", desc: "Building high-performance custom websites, desktop software, and native mobile applications engineered for global scalability.", renderType: "type1" },
             { icon: "fa-bolt", title: "Supersonic Performance", desc: "Lightning-fast execution speeds, optimized routing, and instantaneous response times across all digital platforms.", renderType: "type2" },
             { icon: "fa-cubes", title: "No Plugins & No Third-Party", desc: "A clean, native architecture completely free from heavy third-party plugins or external software dependencies.", renderType: "type3" },
-            { icon: "fa-credit-card", title: "Secure Payment Gateway API", desc: "Seamless integration with authorized global payment gateways (Stripe, SSLCommerz, etc.) as the only allowed third-party service.", renderType: "type4" },
+            { icon: "fa-credit-card", title: "Secure Payment Gateway API", desc: "Seamless integration with authorized global payment gateways as the only allowed third-party service.", renderType: "type4" },
             { icon: "fa-photo-film", title: "Image & Video Editing", desc: "High-end multimedia production, commercial video editing, and professional image retouching to elevate your digital branding.", renderType: "type5" },
             { icon: "fa-ruler-combined", title: "Size & Dimension Calculators", desc: "Custom business size calculators and smart data processing tools engineered for precise e-commerce sizing and scaling.", renderType: "type6" },
             { icon: "fa-shield-halved", title: "100% Secure Architecture", desc: "Military-grade encryption and advanced firewall protection ensuring absolute data safety and secure global transactions.", renderType: "type7" },
