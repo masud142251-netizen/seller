@@ -76,7 +76,7 @@
         .form-group label { display: block; font-size: 0.65rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px; font-weight: 800; }
         .form-group input, .form-group select, .form-group textarea { width: 100%; background: #000; border: 1.5px solid rgba(212,175,55,0.3); padding: 10px 12px; color: #fff; border-radius: 8px; font-size: 0.82rem; outline: none; }
         .phone-row { display: flex; gap: 8px; }
-        .phone-row select { width: 125px; flex-shrink: 0; background: #000; color: #fff; border: 1.5px solid rgba(212,175,55,0.3); border-radius: 8px; font-size: 0.75rem; }
+        .phone-row select { width: 140px; flex-shrink: 0; background: #000; color: #fff; border: 1.5px solid rgba(212,175,55,0.3); border-radius: 8px; font-size: 0.75rem; }
 
         .btn-gold-glow { background: var(--gold-gradient); border: none; padding: 12px; border-radius: 25px; color: #000; font-weight: 900; font-size: 0.78rem; cursor: pointer; text-transform: uppercase; font-family: var(--font-luxury); width: 100%; text-align: center; margin-top: 10px; }
         .btn-secondary-glow { background: transparent; border: 1.5px solid rgba(212,175,55,0.5); color: #fcf6ba; padding: 10px; border-radius: 25px; font-weight: 800; font-size: 0.75rem; cursor: pointer; text-transform: uppercase; font-family: var(--font-luxury); width: 100%; text-align: center; margin-top: 6px; }
@@ -191,8 +191,8 @@
         .product-edit-card { background: #000; border: 1.5px solid rgba(212,175,55,0.25); padding: 12px; border-radius: 10px; margin-bottom: 10px; }
 
         /* ক্যাটাগরি ও সেল টাইপ কার্ড স্টাইল */
-        .category-container-box { max-height: 240px; overflow-y: auto; padding: 4px; margin-bottom: 10px; border: 1.5px solid rgba(212,175,55,0.3); border-radius: 10px; background: #050505; }
-        .main-category-section { margin-bottom: 12px; }
+        .category-container-box { max-height: 260px; overflow-y: auto; padding: 6px; margin-bottom: 10px; border: 1.5px solid rgba(212,175,55,0.3); border-radius: 10px; background: #050505; }
+        .main-category-section { margin-bottom: 14px; }
         .main-category-header { font-size: 0.72rem; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin-bottom: 6px; font-family: var(--font-luxury); letter-spacing: 0.5px; }
         
         .sub-category-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
@@ -200,10 +200,10 @@
 
         .sub-cat-card {
             background: #121215; border: 1.5px solid rgba(255,255,255,0.08); border-radius: 8px;
-            padding: 9px 8px; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.25s;
+            padding: 10px 8px; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.25s; user-select: none;
         }
         .sub-cat-card:hover { border-color: var(--gold-solid); background: rgba(212,175,55,0.1); }
-        .sub-cat-card.selected { border-color: var(--gold-solid) !important; background: rgba(212,175,55,0.25) !important; box-shadow: 0 0 12px rgba(212,175,55,0.5); }
+        .sub-cat-card.selected { border-color: var(--gold-solid) !important; background: rgba(212,175,55,0.3) !important; box-shadow: 0 0 14px rgba(212,175,55,0.6); }
         .sub-cat-card i { font-size: 0.95rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; flex-shrink: 0; pointer-events: none; }
         .sub-cat-name { font-size: 0.58rem; font-weight: 700; color: #fff; text-transform: uppercase; pointer-events: none; }
 
@@ -334,9 +334,41 @@
 
     <script>
         const countriesList = [
-            { name: "Bangladesh", flag: "🇧🇩", code: "+880" }, { name: "India", flag: "🇮🇳", code: "+91" },
-            { name: "United States", flag: "🇺🇸", code: "+1" }, { name: "United Kingdom", flag: "🇬🇧", code: "+44" },
-            { name: "United Arab Emirates", flag: "🇦🇪", code: "+971" }
+            { name: "Afghanistan", flag: "🇦🇫", code: "+93" }, { name: "Albania", flag: "🇦🇱", code: "+355" },
+            { name: "Algeria", flag: "🇩🇿", code: "+213" }, { name: "Andorra", flag: "🇦🇩", code: "+376" },
+            { name: "Angola", flag: "🇦🇴", code: "+244" }, { name: "Argentina", flag: "🇦🇷", code: "+54" },
+            { name: "Armenia", flag: "🇦🇲", code: "+374" }, { name: "Australia", flag: "🇦🇺", code: "+61" },
+            { name: "Austria", flag: "🇦🇹", code: "+43" }, { name: "Azerbaijan", flag: "🇦🇿", code: "+994" },
+            { name: "Bahrain", flag: "🇧🇭", code: "+973" }, { name: "Bangladesh", flag: "🇧🇩", code: "+880" },
+            { name: "Belarus", flag: "🇧🇾", code: "+375" }, { name: "Belgium", flag: "🇧🇪", code: "+32" },
+            { name: "Brazil", flag: "🇧🇷", code: "+55" }, { name: "Canada", flag: "🇨🇦", code: "+1" },
+            { name: "China", flag: "🇨🇳", code: "+86" }, { name: "Denmark", flag: "🇩🇰", code: "+45" },
+            { name: "Egypt", flag: "🇪🇬", code: "+20" }, { name: "France", flag: "🇫🇷", code: "+33" },
+            { name: "Germany", flag: "🇩🇪", code: "+49" }, { name: "Hong Kong", flag: "🇭🇰", code: "+852" },
+            { name: "India", flag: "🇮🇳", code: "+91" }, { name: "Indonesia", flag: "🇮🇩", code: "+62" },
+            { name: "Iran", flag: "🇮🇷", code: "+98" }, { name: "Iraq", flag: "🇮🇶", code: "+964" },
+            { name: "Ireland", flag: "🇮🇪", code: "+353" }, { name: "Italy", flag: "🇮🇹", code: "+39" },
+            { name: "Japan", flag: "🇯🇵", code: "+81" }, { name: "Jordan", flag: "🇯🇴", code: "+962" },
+            { name: "Kazakhstan", flag: "🇰🇿", code: "+7" }, { name: "Kenya", flag: "🇰🇪", code: "+254" },
+            { name: "Kuwait", flag: "🇰🇼", code: "+965" }, { name: "Malaysia", flag: "🇲🇾", code: "+60" },
+            { name: "Maldives", flag: "🇲🇻", code: "+960" }, { name: "Mexico", flag: "🇲🇽", code: "+52" },
+            { name: "Morocco", flag: "🇲🇦", code: "+212" }, { name: "Myanmar", flag: "🇲🇲", code: "+95" },
+            { name: "Nepal", flag: "🇳🇵", code: "+977" }, { name: "Netherlands", flag: "🇳🇱", code: "+31" },
+            { name: "New Zealand", flag: "🇳🇿", code: "+64" }, { name: "Nigeria", flag: "🇳🇬", code: "+234" },
+            { name: "Norway", flag: "🇳🇴", code: "+47" }, { name: "Oman", flag: "🇴🇲", code: "+968" },
+            { name: "Pakistan", flag: "🇵🇰", code: "+92" }, { name: "Palestine", flag: "🇵🇸", code: "+970" },
+            { name: "Philippines", flag: "🇵🇭", code: "+63" }, { name: "Poland", flag: "🇵🇱", code: "+48" },
+            { name: "Portugal", flag: "🇵🇹", code: "+351" }, { name: "Qatar", flag: "🇶🇦", code: "+974" },
+            { name: "Romania", flag: "🇷🇴", code: "+40" }, { name: "Russia", flag: "🇷🇺", code: "+7" },
+            { name: "Saudi Arabia", flag: "🇸🇦", code: "+966" }, { name: "Singapore", flag: "🇸🇬", code: "+65" },
+            { name: "South Africa", flag: "🇿🇦", code: "+27" }, { name: "South Korea", flag: "🇰🇷", code: "+82" },
+            { name: "Spain", flag: "🇪🇸", code: "+34" }, { name: "Sri Lanka", flag: "🇱🇰", code: "+94" },
+            { name: "Sweden", flag: "🇸🇪", code: "+46" }, { name: "Switzerland", flag: "🇨🇭", code: "+41" },
+            { name: "Syria", flag: "🇸🇾", code: "+963" }, { name: "Taiwan", flag: "🇹🇼", code: "+886" },
+            { name: "Thailand", flag: "🇹🇭", code: "+66" }, { name: "Turkey", flag: "🇹🇷", code: "+90" },
+            { name: "Ukraine", flag: "🇺🇦", code: "+380" }, { name: "United Arab Emirates", flag: "🇦🇪", code: "+971" },
+            { name: "United Kingdom", flag: "🇬🇧", code: "+44" }, { name: "United States", flag: "🇺🇸", code: "+1" },
+            { name: "Vietnam", flag: "🇻🇳", code: "+84" }, { name: "Yemen", flag: "🇾🇪", code: "+967" }
         ];
 
         let sellerProducts = [];
