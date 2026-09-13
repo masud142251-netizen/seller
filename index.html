@@ -190,8 +190,8 @@
         .notif-title { font-weight: 700; color: #fcf6ba; }
         .product-edit-card { background: #000; border: 1.5px solid rgba(212,175,55,0.25); padding: 12px; border-radius: 10px; margin-bottom: 10px; }
 
-        /* হোম পেজের অরিজিনাল ৭টি প্রধান ক্যাটাগরি ও সমস্ত সাব-ক্যাটাগরি কার্ড সিস্টেম */
-        .category-container-box { max-height: 320px; overflow-y: auto; padding: 4px; margin-bottom: 10px; border: 1.5px solid rgba(212,175,55,0.3); border-radius: 10px; background: #050505; }
+        /* ক্যাটাগরি কার্ড স্টাইল */
+        .category-container-box { max-height: 280px; overflow-y: auto; padding: 4px; margin-bottom: 10px; border: 1.5px solid rgba(212,175,55,0.3); border-radius: 10px; background: #050505; }
         .main-category-section { margin-bottom: 14px; }
         .main-category-header { font-size: 0.75rem; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin-bottom: 8px; font-family: var(--font-luxury); letter-spacing: 0.5px; }
         
@@ -199,16 +199,18 @@
         @media(min-width: 450px) { .sub-category-grid { grid-template-columns: repeat(3, 1fr); } }
 
         .sub-cat-card {
-            background: #121215; border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;
+            background: #121215; border: 1.5px solid rgba(255,255,255,0.08); border-radius: 8px;
             padding: 10px 8px; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.25s;
         }
         .sub-cat-card:hover { border-color: var(--gold-solid); background: rgba(212,175,55,0.1); }
-        .sub-cat-card.selected { border-color: var(--gold-solid) !important; background: rgba(212,175,55,0.2) !important; box-shadow: 0 0 10px rgba(212,175,55,0.4); }
+        .sub-cat-card.selected { border-color: var(--gold-solid) !important; background: rgba(212,175,55,0.25) !important; box-shadow: 0 0 12px rgba(212,175,55,0.5); }
         .sub-cat-card i { font-size: 1rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; flex-shrink: 0; }
         .sub-cat-name { font-size: 0.6rem; font-weight: 700; color: #fff; text-transform: uppercase; }
 
         .step-content { display: none; }
         .step-content.active { display: block; }
+        .char-counter { font-size: 0.55rem; color: var(--text-gray); text-align: right; margin-top: 2px; }
+        .wholesale-row { display: flex; gap: 6px; margin-bottom: 8px; align-items: center; }
     </style>
 </head>
 <body>
@@ -234,33 +236,17 @@
                 <button class="modal-close-btn" onclick="closeModal('infoModal')"><i class="fa-solid fa-xmark"></i></button>
                 <h3 class="modal-title">Seller & Store Information</h3>
                 <form id="sellerForm" onsubmit="submitSellerInfo(event)">
-                    <div class="form-group">
-                        <label>Store Name *</label>
-                        <input type="text" id="regStoreName" placeholder="Enter store name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Owner Full Name *</label>
-                        <input type="text" id="regName" placeholder="Enter full name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Gmail *</label>
-                        <input type="email" id="regEmail" placeholder="seller@gmail.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label>WhatsApp Number *</label>
+                    <div class="form-group"><label>Store Name *</label><input type="text" id="regStoreName" placeholder="Enter store name" required></div>
+                    <div class="form-group"><label>Owner Full Name *</label><input type="text" id="regName" placeholder="Enter full name" required></div>
+                    <div class="form-group"><label>Gmail *</label><input type="email" id="regEmail" placeholder="seller@gmail.com" required></div>
+                    <div class="form-group"><label>WhatsApp Number *</label>
                         <div class="phone-row">
                             <select id="regDialCode"></select>
                             <input type="tel" id="regWhatsApp" placeholder="17XXXXXXXX" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>Store Business Address *</label>
-                        <input type="text" id="regAddress" placeholder="Warehouse, City, Country" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Trade License / Business Certificate ID</label>
-                        <input type="text" id="regCertId" placeholder="Enter certificate or license number (Optional)">
-                    </div>
+                    <div class="form-group"><label>Store Business Address *</label><input type="text" id="regAddress" placeholder="Warehouse, City, Country" required></div>
+                    <div class="form-group"><label>Trade License ID</label><input type="text" id="regCertId" placeholder="Optional"></div>
                     <button type="submit" class="btn-gold-glow">Confirm & Enter Dashboard</button>
                 </form>
             </div>
@@ -268,10 +254,8 @@
 
         <!-- ৩. সেলার ড্যাশবোর্ড সেকশন -->
         <div class="dashboard-wrapper" id="dashboardSection">
-            
             <div class="dash-card">
                 
-                <!-- হেডার -->
                 <div class="home-top-section">
                     <div class="home-left-info">
                         <img src="https://lh3.googleusercontent.com/d/1qyOXxZ8s2cJMEo66NDE4BdoxiC4hy_sG" alt="Logo" class="home-logo">
@@ -286,10 +270,7 @@
                             <i class="fa-solid fa-bell"></i>
                             <span class="notif-badge">1</span>
                         </button>
-
-                        <button class="menu-toggle-btn" onclick="toggleMenu(event)">
-                            <i class="fa-solid fa-bars"></i>
-                        </button>
+                        <button class="menu-toggle-btn" onclick="toggleMenu(event)"><i class="fa-solid fa-bars"></i></button>
 
                         <div class="dropdown-menu" id="dropdownMenu">
                             <div class="menu-item" onclick="openPopupModal('tabInfoPopup')"><i class="fa-solid fa-circle-info"></i> Information & Store</div>
@@ -301,50 +282,25 @@
                     </div>
                 </div>
 
-                <!-- স্ট্যাটস বক্স -->
                 <div class="stats-grid-3">
-                    <div class="stat-card" onclick="openPopupModal('tabWithdrawPopup')">
-                        <div class="stat-lbl">Total Income</div>
-                        <div class="stat-val" id="totalIncomeVal">$0.00</div>
-                    </div>
-                    <div class="stat-card" onclick="openPopupModal('tabWithdrawPopup')">
-                        <div class="stat-lbl">Total Payout</div>
-                        <div class="stat-val" id="totalPayoutVal">$0.00</div>
-                    </div>
-                    <div class="stat-card" onclick="openPopupModal('tabProductListPopup')">
-                        <div class="stat-lbl">Products (Max 50)</div>
-                        <div class="stat-val" id="totalProdCount">0/50</div>
-                    </div>
+                    <div class="stat-card" onclick="openPopupModal('tabWithdrawPopup')"><div class="stat-lbl">Total Income</div><div class="stat-val" id="totalIncomeVal">$0.00</div></div>
+                    <div class="stat-card" onclick="openPopupModal('tabWithdrawPopup')"><div class="stat-lbl">Total Payout</div><div class="stat-val" id="totalPayoutVal">$0.00</div></div>
+                    <div class="stat-card" onclick="openPopupModal('tabProductListPopup')"><div class="stat-lbl">Products (Max 50)</div><div class="stat-val" id="totalProdCount">0/50</div></div>
                 </div>
 
-                <!-- নোটিশ ব্যানার -->
                 <div class="seller-update-notice">
                     <i class="fa-solid fa-bullhorn" style="color: #fcf6ba; font-size: 0.9rem;"></i>
                     <span>Upload fresh trending items & keep stock updated. Max 50 products allowed.</span>
                 </div>
 
-                <!-- ৩টি মেইন বাটন -->
                 <div class="seller-action-grid">
-                    <div class="seller-main-btn" onclick="openPopupModal('tabNewProductPopup')">
-                        <i class="fa-solid fa-circle-plus"></i>
-                        <span>New Upload</span>
-                    </div>
-                    <div class="seller-main-btn" onclick="openPopupModal('tabProductListPopup')">
-                        <i class="fa-solid fa-boxes-stacked"></i>
-                        <span>Product List</span>
-                    </div>
-                    <div class="seller-main-btn" onclick="openPopupModal('tabShipmentPopup')">
-                        <i class="fa-solid fa-truck-fast"></i>
-                        <span>Shipment</span>
-                    </div>
+                    <div class="seller-main-btn" onclick="openPopupModal('tabNewProductPopup')"><i class="fa-solid fa-circle-plus"></i><span>New Upload</span></div>
+                    <div class="seller-main-btn" onclick="openPopupModal('tabProductListPopup')"><i class="fa-solid fa-boxes-stacked"></i><span>Product List</span></div>
+                    <div class="seller-main-btn" onclick="openPopupModal('tabShipmentPopup')"><i class="fa-solid fa-truck-fast"></i><span>Shipment</span></div>
                 </div>
 
-                <!-- সেলার টু কাস্টমার চ্যাট -->
                 <div class="chat-box">
-                    <div class="chat-header">
-                        <span><i class="fa-solid fa-comments"></i> Seller to Customer Chat</span>
-                        <span style="font-size: 0.55rem; color: #2ecc71;"><i class="fa-solid fa-circle" style="font-size: 5px;"></i> Active Customer</span>
-                    </div>
+                    <div class="chat-header"><span><i class="fa-solid fa-comments"></i> Seller to Customer Chat</span><span style="font-size: 0.55rem; color: #2ecc71;"><i class="fa-solid fa-circle" style="font-size: 5px;"></i> Active</span></div>
                     <div class="chat-messages-area" id="chatMessagesArea">
                         <div class="chat-msg customer">Hello! I have a question about my product order delivery timeline.</div>
                     </div>
@@ -354,17 +310,11 @@
                     </div>
                 </div>
 
-                <!-- সাপোর্ট এবং পেআউট বাটন -->
                 <div class="action-row">
-                    <button class="support-btn" onclick="openFirebaseChat()">
-                        <i class="fa-solid fa-headset" style="font-size: 0.8rem;"></i> Support
-                    </button>
-                    <button class="withdraw-quick-btn" onclick="checkWithdrawSteps()">
-                        <i class="fa-solid fa-money-bill-transfer" style="font-size: 0.8rem;"></i> Payout
-                    </button>
+                    <button class="support-btn" onclick="openFirebaseChat()"><i class="fa-solid fa-headset" style="font-size: 0.8rem;"></i> Support</button>
+                    <button class="withdraw-quick-btn" onclick="checkWithdrawSteps()"><i class="fa-solid fa-money-bill-transfer" style="font-size: 0.8rem;"></i> Payout</button>
                 </div>
             </div>
-
         </div>
 
     </div>
@@ -376,18 +326,13 @@
 
     <script>
         const countriesList = [
-            { name: "Afghanistan", flag: "🇦🇫", code: "+93" }, { name: "Bangladesh", flag: "🇧🇩", code: "+880" },
-            { name: "India", flag: "🇮🇳", code: "+91" }, { name: "United States", flag: "🇺🇸", code: "+1" },
-            { name: "United Kingdom", flag: "🇬🇧", code: "+44" }, { name: "United Arab Emirates", flag: "🇦🇪", code: "+971" },
-            { name: "Pakistan", flag: "🇵🇰", code: "+92" }, { name: "Saudi Arabia", flag: "🇸🇦", code: "+966" }
+            { name: "Bangladesh", flag: "🇧🇩", code: "+880" }, { name: "India", flag: "🇮🇳", code: "+91" },
+            { name: "United States", flag: "🇺🇸", code: "+1" }, { name: "United Kingdom", flag: "🇬🇧", code: "+44" },
+            { name: "United Arab Emirates", flag: "🇦🇪", code: "+971" }
         ];
 
         let sellerProducts = [];
-        let sellerOrders = [
-            { orderId: "ORD-501", customer: "John Doe", product: "Luxury Gamar Wood Table", status: "Pending Shipment (3 Days Left)" }
-        ];
-
-        let uploadStep = 1;
+        let sellerOrders = [{ orderId: "ORD-501", customer: "John Doe", product: "Luxury Gamar Wood Table", status: "Pending Shipment" }];
         let selectedCategoryPath = "";
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -395,8 +340,7 @@
             if(dialCodeSelect) {
                 countriesList.forEach(c => {
                     let opt = document.createElement('option');
-                    opt.value = c.code;
-                    opt.innerText = `${c.flag} ${c.code}`;
+                    opt.value = c.code; opt.innerText = `${c.flag} ${c.code}`;
                     dialCodeSelect.appendChild(opt);
                 });
                 dialCodeSelect.value = "+880";
@@ -407,8 +351,7 @@
         function showToast(msg) {
             let t = document.getElementById('customToast');
             if(!t) return;
-            t.innerText = msg;
-            t.style.display = 'block';
+            t.innerText = msg; t.style.display = 'block';
             setTimeout(() => { t.style.display = 'none'; }, 2000);
         }
 
@@ -485,17 +428,16 @@
                     <button class="btn-gold-glow" onclick="saveStoreInfoChanges()">Update Information</button>`;
             } 
             else if(tabType === 'tabNewProductPopup') {
-                uploadStep = 1;
                 selectedCategoryPath = "";
                 htmlContent += `
-                    <h3 class="modal-title">New Product Upload (Step <span id="stepIndicator">1</span>/2)</h3>
+                    <h3 class="modal-title">New Product Upload (Multi-Step)</h3>
                     
-                    <!-- Step 1: হোম পেজের হুবহু ৭টি ক্যাটাগরি ও সাব-ক্যাটাগরি কার্ড সিস্টেম -->
+                    <!-- Step 1: Category & Initial Stock -->
                     <div class="step-content active" id="uploadStep1">
-                        <label style="font-size:0.65rem; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-transform:uppercase; font-weight:800; margin-bottom:6px; display:block;">Select Category from Menu First</label>
+                        <label style="font-size:0.65rem; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-transform:uppercase; font-weight:800; margin-bottom:6px; display:block;">1. Select Category</label>
                         
                         <div class="category-container-box">
-                            <!-- 1. Women's Fashion (10 items) -->
+                            <!-- 1. Women's Fashion -->
                             <div class="main-category-section">
                                 <div class="main-category-header">1. Women's Fashion</div>
                                 <div class="sub-category-grid">
@@ -512,7 +454,7 @@
                                 </div>
                             </div>
 
-                            <!-- 2. Boys' Fashion (5 items) -->
+                            <!-- 2. Boys' Fashion -->
                             <div class="main-category-section">
                                 <div class="main-category-header">2. Boys' Fashion</div>
                                 <div class="sub-category-grid">
@@ -524,7 +466,7 @@
                                 </div>
                             </div>
 
-                            <!-- 3. Matching Sets (10 items) -->
+                            <!-- 3. Matching Sets -->
                             <div class="main-category-section">
                                 <div class="main-category-header">3. Matching Sets</div>
                                 <div class="sub-category-grid">
@@ -541,7 +483,7 @@
                                 </div>
                             </div>
 
-                            <!-- 4. Luxury Gifts (5 items) -->
+                            <!-- 4. Luxury Gifts -->
                             <div class="main-category-section">
                                 <div class="main-category-header">4. Luxury Gifts</div>
                                 <div class="sub-category-grid">
@@ -553,7 +495,7 @@
                                 </div>
                             </div>
 
-                            <!-- 5. Girls' Fashion (10 items) -->
+                            <!-- 5. Girls' Fashion -->
                             <div class="main-category-section">
                                 <div class="main-category-header">5. Girls' Fashion</div>
                                 <div class="sub-category-grid">
@@ -570,7 +512,7 @@
                                 </div>
                             </div>
 
-                            <!-- 6. Men's Fashion (5 items) -->
+                            <!-- 6. Men's Fashion -->
                             <div class="main-category-section">
                                 <div class="main-category-header">6. Men's Fashion</div>
                                 <div class="sub-category-grid">
@@ -582,7 +524,7 @@
                                 </div>
                             </div>
 
-                            <!-- 7. Mother & Baby (5 items) -->
+                            <!-- 7. Mother & Baby -->
                             <div class="main-category-section">
                                 <div class="main-category-header">7. Mother & Baby</div>
                                 <div class="sub-category-grid">
@@ -595,20 +537,73 @@
                             </div>
                         </div>
 
-                        <button class="btn-gold-glow" onclick="nextUploadStep(2)">Next Step (Product Info)</button>
+                        <div class="form-group" style="margin-top:10px;"><label>Initial Stock Quantity *</label><input type="number" id="initStock" placeholder="e.g. 100"></div>
+                        <button class="btn-gold-glow" onclick="goToStep(2)">Next: Title & Pricing</button>
                     </div>
 
-                    <!-- Step 2: Title, Description, Price, Stock & Image -->
+                    <!-- Step 2: Title (Max 25 chars) & Retail Price -->
                     <div class="step-content" id="uploadStep2">
-                        <div class="form-group"><label>Selected Category</label><input type="text" id="selectedCatDisplay" readonly style="color:var(--gold-solid); font-weight:700;"></div>
-                        <div class="form-group"><label>Product Title *</label><input type="text" id="newProdTitle" placeholder="Enter trending title" required></div>
-                        <div class="form-group"><label>Description *</label><textarea id="newProdDesc" rows="2" placeholder="Enter product specifications..."></textarea></div>
-                        <div class="form-group"><label>Price ($ USD) *</label><input type="number" id="newProdPrice" placeholder="0.00" step="0.01"></div>
-                        <div class="form-group"><label>Stock Quantity *</label><input type="number" id="newProdStock" placeholder="Enter stock count"></div>
-                        <div class="form-group"><label>Image URL *</label><input type="url" id="newProdImg" placeholder="https://..."></div>
+                        <div class="form-group">
+                            <label>Product Title (Max 25 Chars) *</label>
+                            <input type="text" id="prodTitle" maxlength="25" placeholder="Enter title..." oninput="updateCharCount(this)">
+                            <div class="char-counter"><span id="charCount">0</span>/25 chars</div>
+                        </div>
+                        <div class="form-group"><label>Retail / Sample Price ($ USD) *</label><input type="number" id="retailPrice" placeholder="0.00" step="0.01"></div>
+                        
+                        <button class="btn-gold-glow" onclick="goToStep(3)">Next: Description & Packaging</button>
+                        <button class="btn-secondary-glow" onclick="goToStep(1)">Back</button>
+                    </div>
+
+                    <!-- Step 3: Description & Packaging Specification -->
+                    <div class="step-content" id="uploadStep3">
+                        <div class="form-group">
+                            <label>Description Features *</label>
+                            <textarea id="prodDesc" rows="2" placeholder="Write product details..."></textarea>
+                        </div>
+                        <div style="display:flex; gap:6px;">
+                            <div class="form-group" style="flex:1;"><label>Weight (Kg) *</label><input type="number" id="pkgWeight" placeholder="0.5" step="0.1"></div>
+                            <div class="form-group" style="flex:1;"><label>Size (cm) *</label><input type="text" id="pkgSize" placeholder="10x5"></div>
+                            <div class="form-group" style="flex:1;"><label>Height (cm) *</label><input type="number" id="pkgHeight" placeholder="5"></div>
+                        </div>
+                        
+                        <button class="btn-gold-glow" onclick="goToStep(4)">Next: Wholesale Pricing</button>
+                        <button class="btn-secondary-glow" onclick="goToStep(2)">Back</button>
+                    </div>
+
+                    <!-- Step 4: Wholesale Pricing (Dual Tiers with '+' button) -->
+                    <div class="step-content" id="uploadStep4">
+                        <label style="font-size:0.65rem; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-transform:uppercase; font-weight:800; margin-bottom:6px; display:block;">Wholesale Tier Pricing</label>
+                        
+                        <div id="wholesaleContainer">
+                            <div class="wholesale-row">
+                                <input type="number" placeholder="Min Qty" class="ws-qty" style="flex:1;">
+                                <input type="number" placeholder="Wholesale Price ($)" class="ws-price" style="flex:1;" step="0.01">
+                            </div>
+                            <div class="wholesale-row">
+                                <input type="number" placeholder="Min Qty" class="ws-qty" style="flex:1;">
+                                <input type="number" placeholder="Wholesale Price ($)" class="ws-price" style="flex:1;" step="0.01">
+                            </div>
+                        </div>
+                        <button class="btn-secondary-glow" onclick="addWholesaleTier()" style="margin-bottom:10px;"><i class="fa-solid fa-plus"></i> Add Tier (+)</button>
+
+                        <button class="btn-gold-glow" onclick="goToStep(5)">Next: Media & Video</button>
+                        <button class="btn-secondary-glow" onclick="goToStep(3)">Back</button>
+                    </div>
+
+                    <!-- Step 5: Photo Upload (Optimized) & YouTube Short URL -->
+                    <div class="step-content" id="uploadStep5">
+                        <div class="form-group">
+                            <label>Product Image Upload (Auto-Optimized) *</label>
+                            <input type="file" id="prodImageFile" accept="image/*" onchange="handleImageOptimization(event)" style="padding: 6px;">
+                            <div id="imgStatus" style="font-size: 0.6rem; color: #2ecc71; margin-top:2px;"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>YouTube / Short Video URL</label>
+                            <input type="url" id="prodVideoUrl" placeholder="https://youtube.com/shorts/...">
+                        </div>
                         
                         <button class="btn-gold-glow" onclick="submitFinalProduct()">Publish Product</button>
-                        <button class="btn-secondary-glow" onclick="nextUploadStep(1)">Back to Categories</button>
+                        <button class="btn-secondary-glow" onclick="goToStep(4)">Back</button>
                     </div>`;
             }
             else if(tabType === 'tabProductListPopup') {
@@ -702,31 +697,63 @@
             document.querySelectorAll('.sub-cat-card').forEach(b => b.classList.remove('selected'));
             el.classList.add('selected');
             selectedCategoryPath = path;
-            showToast("Category Selected: " + path);
+            showToast("Category: " + path);
         }
 
-        function nextUploadStep(stepNum) {
+        function goToStep(stepNum) {
             if(stepNum === 2 && !selectedCategoryPath) {
-                showToast("Please select a category card first!");
+                showToast("Please select a category first!");
                 return;
             }
-            uploadStep = stepNum;
-            document.getElementById('stepIndicator').innerText = stepNum;
             document.querySelectorAll('.step-content').forEach(s => s.classList.remove('active'));
-            document.getElementById(`uploadStep${stepNum}`).classList.add('active');
-            if(stepNum === 2) {
-                document.getElementById('selectedCatDisplay').value = selectedCategoryPath;
+            let target = document.getElementById(`uploadStep${stepNum}`);
+            if(target) target.classList.add('active');
+        }
+
+        function updateCharCount(el) {
+            let len = el.value.length;
+            document.getElementById('charCount').innerText = len;
+        }
+
+        function addWholesaleTier() {
+            let container = document.getElementById('wholesaleContainer');
+            let row = document.createElement('div');
+            row.className = 'wholesale-row';
+            row.innerHTML = `<input type="number" placeholder="Min Qty" class="ws-qty" style="flex:1;"><input type="number" placeholder="Wholesale Price ($)" class="ws-price" style="flex:1;" step="0.01">`;
+            container.appendChild(row);
+        }
+
+        let optimizedImageData = "";
+        function handleImageOptimization(event) {
+            const file = event.target.files[0];
+            if(!file) return;
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.src = e.target.result;
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    let width = img.width;
+                    let height = img.height;
+                    const maxDim = 800;
+                    if(width > height && width > maxDim) { height *= maxDim / width; width = maxDim; }
+                    else if(height > maxDim) { width *= maxDim / height; height = maxDim; }
+                    canvas.width = width; canvas.height = height;
+                    ctx.drawImage(img, 0, 0, width, height);
+                    optimizedImageData = canvas.toDataURL('image/jpeg', 0.7);
+                    document.getElementById('imgStatus').innerText = "Image optimized successfully!";
+                }
             }
+            reader.readAsDataURL(file);
         }
 
         function submitFinalProduct() {
-            const title = document.getElementById('newProdTitle').value.trim();
-            const desc = document.getElementById('newProdDesc').value.trim();
-            const price = parseFloat(document.getElementById('newProdPrice').value);
-            const stock = parseInt(document.getElementById('newProdStock').value);
-            const img = document.getElementById('newProdImg').value.trim();
+            const title = document.getElementById('prodTitle').value.trim();
+            const price = parseFloat(document.getElementById('retailPrice').value);
+            const stock = parseInt(document.getElementById('initStock').value);
 
-            if(!title || isNaN(price) || isNaN(stock) || !img) {
+            if(!title || isNaN(price) || isNaN(stock)) {
                 showToast("Please fill all required fields correctly!");
                 return;
             }
@@ -735,7 +762,7 @@
                 return;
             }
 
-            sellerProducts.push({ id: Date.now(), title, category: selectedCategoryPath, price, stock, desc, img });
+            sellerProducts.push({ id: Date.now(), title, category: selectedCategoryPath, price, stock, img: optimizedImageData });
             updateProductCount();
             showToast("Product published successfully!");
             closeModal('popupModalOverlay');
