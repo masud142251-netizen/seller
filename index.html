@@ -190,22 +190,30 @@
         .notif-title { font-weight: 700; color: #fcf6ba; }
         .product-edit-card { background: #000; border: 1.5px solid rgba(212,175,55,0.25); padding: 12px; border-radius: 10px; margin-bottom: 10px; }
 
-        /* ক্যাটাগরি কার্ড স্টাইল */
-        .category-container-box { max-height: 280px; overflow-y: auto; padding: 4px; margin-bottom: 10px; border: 1.5px solid rgba(212,175,55,0.3); border-radius: 10px; background: #050505; }
-        .main-category-section { margin-bottom: 14px; }
-        .main-category-header { font-size: 0.75rem; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin-bottom: 8px; font-family: var(--font-luxury); letter-spacing: 0.5px; }
+        /* ক্যাটাগরি ও সেল টাইপ কার্ড স্টাইল */
+        .category-container-box { max-height: 240px; overflow-y: auto; padding: 4px; margin-bottom: 10px; border: 1.5px solid rgba(212,175,55,0.3); border-radius: 10px; background: #050505; }
+        .main-category-section { margin-bottom: 12px; }
+        .main-category-header { font-size: 0.72rem; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin-bottom: 6px; font-family: var(--font-luxury); letter-spacing: 0.5px; }
         
         .sub-category-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
         @media(min-width: 450px) { .sub-category-grid { grid-template-columns: repeat(3, 1fr); } }
 
         .sub-cat-card {
             background: #121215; border: 1.5px solid rgba(255,255,255,0.08); border-radius: 8px;
-            padding: 10px 8px; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.25s;
+            padding: 9px 8px; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.25s;
         }
         .sub-cat-card:hover { border-color: var(--gold-solid); background: rgba(212,175,55,0.1); }
         .sub-cat-card.selected { border-color: var(--gold-solid) !important; background: rgba(212,175,55,0.25) !important; box-shadow: 0 0 12px rgba(212,175,55,0.5); }
-        .sub-cat-card i { font-size: 1rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; flex-shrink: 0; }
-        .sub-cat-name { font-size: 0.6rem; font-weight: 700; color: #fff; text-transform: uppercase; }
+        .sub-cat-card i { font-size: 0.95rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; flex-shrink: 0; }
+        .sub-cat-name { font-size: 0.58rem; font-weight: 700; color: #fff; text-transform: uppercase; }
+
+        .sell-type-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+        .sell-type-card {
+            background: #101012; border: 1.5px solid rgba(212,175,55,0.3); border-radius: 8px;
+            padding: 10px 6px; text-align: center; cursor: pointer; font-size: 0.7rem; font-weight: 800;
+            background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; transition: 0.3s;
+        }
+        .sell-type-card.selected { background: var(--gold-gradient); color: #000; -webkit-text-fill-color: #000; border-color: #fff; box-shadow: 0 0 10px rgba(212,175,55,0.4); }
 
         .step-content { display: none; }
         .step-content.active { display: block; }
@@ -334,6 +342,7 @@
         let sellerProducts = [];
         let sellerOrders = [{ orderId: "ORD-501", customer: "John Doe", product: "Luxury Gamar Wood Table", status: "Pending Shipment" }];
         let selectedCategoryPath = "";
+        let selectedSellType = "retail"; // Default Retail
 
         window.addEventListener('DOMContentLoaded', () => {
             const dialCodeSelect = document.getElementById('regDialCode');
@@ -429,12 +438,20 @@
             } 
             else if(tabType === 'tabNewProductPopup') {
                 selectedCategoryPath = "";
+                selectedSellType = "retail";
                 htmlContent += `
                     <h3 class="modal-title">New Product Upload (Multi-Step)</h3>
                     
-                    <!-- Step 1: Category & Initial Stock -->
+                    <!-- Step 1: Category, Sell Type & Initial Stock -->
                     <div class="step-content active" id="uploadStep1">
-                        <label style="font-size:0.65rem; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-transform:uppercase; font-weight:800; margin-bottom:6px; display:block;">1. Select Category</label>
+                        <label style="font-size:0.65rem; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-transform:uppercase; font-weight:800; margin-bottom:6px; display:block;">1. Select Listing Type</label>
+                        <div class="sell-type-grid">
+                            <div class="sell-type-card selected" id="typeRetail" onclick="selectSellType('retail')">Retail</div>
+                            <div class="sell-type-card" id="typeWholesale" onclick="selectSellType('wholesale')">Wholesale</div>
+                            <div class="sell-type-card" id="typeBoth" onclick="selectSellType('both')">Both</div>
+                        </div>
+
+                        <label style="font-size:0.65rem; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-transform:uppercase; font-weight:800; margin-bottom:6px; display:block;">2. Select Category</label>
                         
                         <div class="category-container-box">
                             <!-- 1. Women's Fashion -->
@@ -541,14 +558,14 @@
                         <button class="btn-gold-glow" onclick="goToStep(2)">Next: Title & Pricing</button>
                     </div>
 
-                    <!-- Step 2: Title (Max 25 chars) & Retail Price -->
+                    <!-- Step 2: Title (Max 25 chars) & Retail Price (Conditional) -->
                     <div class="step-content" id="uploadStep2">
                         <div class="form-group">
                             <label>Product Title (Max 25 Chars) *</label>
                             <input type="text" id="prodTitle" maxlength="25" placeholder="Enter title..." oninput="updateCharCount(this)">
                             <div class="char-counter"><span id="charCount">0</span>/25 chars</div>
                         </div>
-                        <div class="form-group"><label>Retail / Sample Price ($ USD) *</label><input type="number" id="retailPrice" placeholder="0.00" step="0.01"></div>
+                        <div class="form-group" id="retailPriceGroup"><label>Retail / Sample Price ($ USD) *</label><input type="number" id="retailPrice" placeholder="0.00" step="0.01"></div>
                         
                         <button class="btn-gold-glow" onclick="goToStep(3)">Next: Description & Packaging</button>
                         <button class="btn-secondary-glow" onclick="goToStep(1)">Back</button>
@@ -566,13 +583,13 @@
                             <div class="form-group" style="flex:1;"><label>Height (cm) *</label><input type="number" id="pkgHeight" placeholder="5"></div>
                         </div>
                         
-                        <button class="btn-gold-glow" onclick="goToStep(4)">Next: Wholesale Pricing</button>
+                        <button class="btn-gold-glow" onclick="handleStep3Next()">Next</button>
                         <button class="btn-secondary-glow" onclick="goToStep(2)">Back</button>
                     </div>
 
-                    <!-- Step 4: Wholesale Pricing (Dual Tiers with '+' button) -->
+                    <!-- Step 4: Wholesale Pricing (Optional / Conditional) -->
                     <div class="step-content" id="uploadStep4">
-                        <label style="font-size:0.65rem; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-transform:uppercase; font-weight:800; margin-bottom:6px; display:block;">Wholesale Tier Pricing</label>
+                        <label style="font-size:0.65rem; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-transform:uppercase; font-weight:800; margin-bottom:6px; display:block;">Wholesale Tier Pricing (Optional)</label>
                         
                         <div id="wholesaleContainer">
                             <div class="wholesale-row">
@@ -603,7 +620,7 @@
                         </div>
                         
                         <button class="btn-gold-glow" onclick="submitFinalProduct()">Publish Product</button>
-                        <button class="btn-secondary-glow" onclick="goToStep(4)">Back</button>
+                        <button class="btn-secondary-glow" onclick="handleBackFromStep5()">Back</button>
                     </div>`;
             }
             else if(tabType === 'tabProductListPopup') {
@@ -693,6 +710,12 @@
             closeModal('popupModalOverlay');
         }
 
+        function selectSellType(type) {
+            selectedSellType = type;
+            document.querySelectorAll('.sell-type-card').forEach(c => c.classList.remove('selected'));
+            document.getElementById('type' + type.charAt(0).toUpperCase() + type.slice(1)).classList.add('selected');
+        }
+
         function selectHomeCat(path, el) {
             document.querySelectorAll('.sub-cat-card').forEach(b => b.classList.remove('selected'));
             el.classList.add('selected');
@@ -705,9 +728,35 @@
                 showToast("Please select a category first!");
                 return;
             }
+            if(stepNum === 2) {
+                // Retail বা Both হলে রিটেইল প্রাইস দেখাবে, শুধু Wholesale হলে দেখাবে না
+                let rGroup = document.getElementById('retailPriceGroup');
+                if(selectedSellType === 'wholesale') {
+                    rGroup.style.display = 'none';
+                } else {
+                    rGroup.style.display = 'block';
+                }
+            }
             document.querySelectorAll('.step-content').forEach(s => s.classList.remove('active'));
             let target = document.getElementById(`uploadStep${stepNum}`);
             if(target) target.classList.add('active');
+        }
+
+        function handleStep3Next() {
+            // যদি শুধু Wholesale হয়, তবে Step 4 (Wholesale) এ যাবে, নতুবা সরাসরি Step 5 (Media) এ যাবে (যদি Retail হয়) অথবা Both হলে Step 4 এ যাবে।
+            if(selectedSellType === 'retail') {
+                goToStep(5);
+            } else {
+                goToStep(4);
+            }
+        }
+
+        function handleBackFromStep5() {
+            if(selectedSellType === 'retail') {
+                goToStep(3);
+            } else {
+                goToStep(4);
+            }
         }
 
         function updateCharCount(el) {
@@ -750,10 +799,14 @@
 
         function submitFinalProduct() {
             const title = document.getElementById('prodTitle').value.trim();
-            const price = parseFloat(document.getElementById('retailPrice').value);
             const stock = parseInt(document.getElementById('initStock').value);
+            let price = 0;
+            if(selectedSellType !== 'wholesale') {
+                price = parseFloat(document.getElementById('retailPrice').value);
+                if(isNaN(price)) { showToast("Please enter retail price!"); return; }
+            }
 
-            if(!title || isNaN(price) || isNaN(stock)) {
+            if(!title || isNaN(stock)) {
                 showToast("Please fill all required fields correctly!");
                 return;
             }
@@ -762,7 +815,7 @@
                 return;
             }
 
-            sellerProducts.push({ id: Date.now(), title, category: selectedCategoryPath, price, stock, img: optimizedImageData });
+            sellerProducts.push({ id: Date.now(), title, category: selectedCategoryPath, sellType: selectedSellType, price, stock, img: optimizedImageData });
             updateProductCount();
             showToast("Product published successfully!");
             closeModal('popupModalOverlay');
