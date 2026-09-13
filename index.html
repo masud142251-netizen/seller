@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RORRAXY | Ultimate Seller Center</title>
+    <title>RORRAXY | Ultimate Seller Center & Ecosystem</title>
     
     <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1qyOXxZ8s2cJMEo66NDE4BdoxiC4hy_sG">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -24,106 +24,65 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; word-break: normal; overflow-wrap: break-word; }
         
         html, body { 
-            width: 100%; 
-            min-height: 100vh; 
-            background-color: var(--bg-black); 
-            color: var(--text-white); 
-            font-family: var(--font-body); 
-            overflow-x: hidden; 
+            width: 100%; min-height: 100vh; background-color: var(--bg-black); 
+            color: var(--text-white); font-family: var(--font-body); overflow-x: hidden; 
             -webkit-font-smoothing: antialiased; 
         }
 
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 12px;
-        }
+        body { display: flex; justify-content: center; align-items: center; padding: 12px; }
 
         h1, h2, h3, h4 { font-family: var(--font-luxury); }
 
-        .custom-toast { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); background: rgba(12, 12, 12, 0.98); border: 1.5px solid; border-image: var(--gold-gradient) 1; color: #fcf6ba; padding: 8px 16px; border-radius: 30px; font-size: 0.75rem; font-weight: 700; z-index: 999999; display: none; box-shadow: 0 0 20px rgba(212,175,55,0.3); font-family: var(--font-body); white-space: nowrap; }
+        .custom-toast { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); background: rgba(12, 12, 12, 0.98); border: 1.5px solid; border-image: var(--gold-gradient) 1; color: #fcf6ba; padding: 8px 16px; border-radius: 30px; font-size: 0.75rem; font-weight: 700; z-index: 999999; display: none; box-shadow: 0 0 20px rgba(212,175,55,0.3); white-space: nowrap; }
 
-        .page-container {
-            width: 100%;
-            max-width: 600px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+        .page-container { width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
-        /* ল্যান্ডিং কার্ড */
         .auth-card {
-            background: var(--surface-bg);
-            border-radius: 18px;
-            padding: 30px 18px;
-            text-align: center;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.95);
-            border: 1.5px solid rgba(212,175,55,0.25);
-            width: 100%;
+            background: var(--surface-bg); border-radius: 18px; padding: 30px 18px; text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.95); border: 1.5px solid rgba(212,175,55,0.25); width: 100%;
         }
 
         .logo-large { width: 65px; height: 65px; object-fit: contain; margin-bottom: 6px; }
-
         .brand-title-large {
-            font-size: 1.5rem; font-weight: 900;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;
+            font-size: 1.5rem; font-weight: 900; background: var(--gold-gradient);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;
         }
-
-        .welcome-subtitle {
-            font-size: 0.9rem; font-weight: 600; color: #ffffff;
-            letter-spacing: 1px; margin-bottom: 20px;
-            font-family: var(--font-luxury); text-transform: uppercase;
-        }
+        .welcome-subtitle { font-size: 0.9rem; font-weight: 600; color: #ffffff; letter-spacing: 1px; margin-bottom: 20px; font-family: var(--font-luxury); text-transform: uppercase; }
 
         .google-verify-btn {
             width: 100%; background: #ffffff; color: #000; border: none; padding: 13px;
-            border-radius: 30px; font-weight: 700; font-size: 0.85rem;
-            display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: 0.3s;
+            border-radius: 30px; font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: 0.3s;
         }
         .google-verify-btn:hover { background: #eaeaea; }
 
-        /* পপআপ মডাল ওভারলে */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
-            display: none; justify-content: center; align-items: center; z-index: 2000; padding: 15px;
+            background: rgba(0,0,0,0.88); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 12px;
         }
         .modal-card {
-            background: var(--surface-bg); border: 1.5px solid rgba(212,175,55,0.35);
-            border-radius: 18px; padding: 24px 18px; width: 100%; max-width: 550px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.9); text-align: left; max-height: 88vh; overflow-y: auto; position: relative;
+            background: var(--surface-bg); border: 1.5px solid rgba(212,175,55,0.35); border-radius: 18px;
+            padding: 22px 16px; width: 100%; max-width: 550px; box-shadow: 0 15px 40px rgba(0,0,0,0.9); text-align: left; max-height: 90vh; overflow-y: auto; position: relative;
         }
         .modal-close-btn {
             position: absolute; top: 14px; right: 14px; background: none; border: none;
-            background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            font-size: 1.2rem; cursor: pointer;
+            background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.2rem; cursor: pointer;
         }
         .modal-title {
-            font-family: var(--font-luxury); font-size: 1.1rem;
-            background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-transform: uppercase; font-weight: 900; margin-bottom: 15px; text-align: center;
+            font-family: var(--font-luxury); font-size: 1.1rem; background: var(--gold-gradient);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; font-weight: 900; margin-bottom: 15px; text-align: center;
         }
+
         .form-group { margin-bottom: 12px; }
         .form-group label { display: block; font-size: 0.65rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px; font-weight: 800; }
         .form-group input, .form-group select, .form-group textarea { width: 100%; background: #000; border: 1.5px solid rgba(212,175,55,0.3); padding: 10px 12px; color: #fff; border-radius: 8px; font-size: 0.82rem; outline: none; }
         .phone-row { display: flex; gap: 8px; }
-        .phone-row select { width: 115px; flex-shrink: 0; background: #000; color: #fff; border: 1.5px solid rgba(212,175,55,0.3); border-radius: 8px; font-size: 0.75rem; }
+        .phone-row select { width: 125px; flex-shrink: 0; background: #000; color: #fff; border: 1.5px solid rgba(212,175,55,0.3); border-radius: 8px; font-size: 0.75rem; }
 
         .btn-gold-glow { background: var(--gold-gradient); border: none; padding: 12px; border-radius: 25px; color: #000; font-weight: 900; font-size: 0.78rem; cursor: pointer; text-transform: uppercase; font-family: var(--font-luxury); width: 100%; text-align: center; margin-top: 10px; }
-        .btn-secondary-glow { background: transparent; border: 1.5px solid rgba(212,175,55,0.5); color: #fcf6ba; padding: 12px; border-radius: 25px; font-weight: 800; font-size: 0.78rem; cursor: pointer; text-transform: uppercase; font-family: var(--font-luxury); width: 100%; text-align: center; margin-top: 6px; }
+        .btn-secondary-glow { background: transparent; border: 1.5px solid rgba(212,175,55,0.5); color: #fcf6ba; padding: 10px; border-radius: 25px; font-weight: 800; font-size: 0.75rem; cursor: pointer; text-transform: uppercase; font-family: var(--font-luxury); width: 100%; text-align: center; margin-top: 6px; }
 
-        /* ড্যাশবোর্ড লেআউট */
-        .dashboard-wrapper {
-            display: none; width: 100%; max-width: 600px; flex-direction: column; gap: 12px;
-        }
-        .dash-card {
-            background: var(--surface-bg); border-radius: 18px; padding: 18px 14px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.9); border: 1.5px solid rgba(212,175,55,0.2); width: 100%; display: block;
-        }
+        .dashboard-wrapper { display: none; width: 100%; max-width: 600px; flex-direction: column; gap: 12px; }
+        .dash-card { background: var(--surface-bg); border-radius: 18px; padding: 18px 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.9); border: 1.5px solid rgba(212,175,55,0.2); width: 100%; }
 
         .home-top-section { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; position: relative; }
         .home-left-info { display: flex; flex-direction: column; align-items: flex-start; max-width: 78%; }
@@ -145,10 +104,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.95); display: none; flex-direction: column; z-index: 1100; overflow: hidden;
         }
         .dropdown-menu.show { display: flex; }
-        .menu-item {
-            padding: 10px 14px; font-size: 0.75rem; color: var(--text-white); text-decoration: none;
-            display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(212,175,55,0.08); cursor: pointer; white-space: nowrap;
-        }
+        .menu-item { padding: 10px 14px; font-size: 0.75rem; color: var(--text-white); text-decoration: none; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(212,175,55,0.08); cursor: pointer; white-space: nowrap; }
         .menu-item:hover { background: rgba(212,175,55,0.1); color: #fcf6ba; }
         .menu-item i { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; width: 16px; text-align: center; }
 
@@ -211,8 +167,6 @@
         .info-val { font-size: 0.78rem; color: #fff; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
 
         .qr-box { text-align: center; padding: 12px; background: #040404; border-radius: 10px; border: 1.5px solid rgba(212,175,55,0.25); margin-top: 8px; }
-        .qr-image { width: 140px; height: 140px; background: #fff; padding: 5px; border-radius: 6px; margin: 0 auto 8px auto; object-fit: contain; }
-
         .verified-success-box {
             display: none; flex-direction: column; align-items: center; justify-content: center;
             padding: 20px; background: rgba(46, 204, 113, 0.08); border: 2px solid #2ecc71; border-radius: 12px; text-align: center;
@@ -234,19 +188,23 @@
 
         .notif-item { background: #040404; border: 1.5px solid rgba(212,175,55,0.2); padding: 10px 12px; border-radius: 10px; margin-bottom: 8px; font-size: 0.75rem; display: flex; flex-direction: column; gap: 3px; }
         .notif-title { font-weight: 700; color: #fcf6ba; }
-        .notif-time { font-size: 0.6rem; color: var(--text-gray); }
-
         .product-edit-card { background: #000; border: 1.5px solid rgba(212,175,55,0.25); padding: 12px; border-radius: 10px; margin-bottom: 10px; }
 
-        /* হোম পেজের হুবহু ক্যাটাগরি কার্ড স্টাইল (সেলার আপলোডের জন্য) */
-        .category-select-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; max-height: 240px; overflow-y: auto; margin-bottom: 10px; padding: 4px; }
-        .cat-item-card {
-            background: #131315; border-radius: 8px; border: 1.5px solid rgba(255,255,255,0.06);
-            padding: 10px; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.3s;
+        /* হোম পেজের হুবহু ৭টি প্রধান ক্যাটাগরি মেনু ও সাব-ক্যাটাগরি কার্ড সিস্টেম */
+        .category-container-box { max-height: 320px; overflow-y: auto; padding: 4px; margin-bottom: 10px; border: 1px solid rgba(212,175,55,0.2); border-radius: 10px; background: #050505; }
+        .main-category-section { margin-bottom: 14px; }
+        .main-category-header { font-size: 0.75rem; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin-bottom: 8px; font-family: var(--font-luxury); letter-spacing: 0.5px; }
+        
+        .sub-category-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+        @media(min-width: 450px) { .sub-category-grid { grid-template-columns: repeat(3, 1fr); } }
+
+        .sub-cat-card {
+            background: #121215; border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;
+            padding: 9px 8px; display: flex; align-items: center; gap: 7px; cursor: pointer; transition: 0.25s;
         }
-        .cat-item-card:hover, .cat-item-card.selected { border-color: var(--gold-solid); background: rgba(212,175,55,0.08); }
-        .cat-item-card i { font-size: 1.1rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .cat-item-name { font-size: 0.65rem; font-weight: 700; color: #fff; text-transform: uppercase; }
+        .sub-cat-card:hover, .sub-cat-card.selected { border-color: var(--gold-solid); background: rgba(212,175,55,0.1); }
+        .sub-cat-card i { font-size: 1rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; flex-shrink: 0; }
+        .sub-cat-name { font-size: 0.6rem; font-weight: 700; color: #fff; text-transform: uppercase; }
 
         .step-content { display: none; }
         .step-content.active { display: block; }
@@ -269,7 +227,7 @@
             </button>
         </div>
 
-        <!-- ২. সেলার ইনফরমেশন পপআপ -->
+        <!-- ২. সেলার ইনফরমেশন পপআপ (ফুল ডায়াল কোড লিস্ট সহ) -->
         <div class="modal-overlay" id="infoModal">
             <div class="modal-card">
                 <button class="modal-close-btn" onclick="closeModal('infoModal')"><i class="fa-solid fa-xmark"></i></button>
@@ -290,7 +248,9 @@
                     <div class="form-group">
                         <label>WhatsApp Number *</label>
                         <div class="phone-row">
-                            <select id="regDialCode"><option value="+880">🇧🇩 +880</option></select>
+                            <select id="regDialCode">
+                                <!-- ডায়াল কোড ডায়নামিকালি যুক্ত হবে -->
+                            </select>
                             <input type="tel" id="regWhatsApp" placeholder="17XXXXXXXX" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
                         </div>
                     </div>
@@ -418,6 +378,13 @@
     </div>
 
     <script>
+        const countriesList = [
+            { name: "Afghanistan", flag: "🇦🇫", code: "+93" }, { name: "Bangladesh", flag: "🇧🇩", code: "+880" },
+            { name: "India", flag: "🇮🇳", code: "+91" }, { name: "United States", flag: "🇺🇸", code: "+1" },
+            { name: "United Kingdom", flag: "🇬🇧", code: "+44" }, { name: "United Arab Emirates", flag: "🇦🇪", code: "+971" },
+            { name: "Pakistan", flag: "🇵🇰", code: "+92" }, { name: "Saudi Arabia", flag: "🇸🇦", code: "+966" }
+        ];
+
         let sellerProducts = [];
         let sellerOrders = [
             { orderId: "ORD-501", customer: "John Doe", product: "Luxury Gamar Wood Table", status: "Pending Shipment (3 Days Left)" }
@@ -425,6 +392,20 @@
 
         let uploadStep = 1;
         let selectedCategoryPath = "";
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const dialCodeSelect = document.getElementById('regDialCode');
+            if(dialCodeSelect) {
+                countriesList.forEach(c => {
+                    let opt = document.createElement('option');
+                    opt.value = c.code;
+                    opt.innerText = `${c.flag} ${c.code}`;
+                    dialCodeSelect.appendChild(opt);
+                });
+                dialCodeSelect.value = "+880";
+            }
+            updateProductCount();
+        });
 
         function showToast(msg) {
             let t = document.getElementById('customToast');
@@ -442,7 +423,7 @@
             const storeName = document.getElementById('regStoreName').value.trim();
             const name = document.getElementById('regName').value.trim();
             const email = document.getElementById('regEmail').value.trim();
-            const phone = "+880 " + document.getElementById('regWhatsApp').value.trim();
+            const phone = document.getElementById('regDialCode').value + " " + document.getElementById('regWhatsApp').value.trim();
             const address = document.getElementById('regAddress').value.trim();
             const certId = document.getElementById('regCertId').value.trim() || "N/A";
 
@@ -499,12 +480,12 @@
                 let savedAddress = localStorage.getItem('rorraxy_seller_address') || 'Address';
                 let savedCert = localStorage.getItem('rorraxy_seller_cert') || 'N/A';
                 htmlContent += `
-                    <h3 class="modal-title">Store Information</h3>
+                    <h3 class="modal-title">Store Information & Edit</h3>
                     <div class="form-group"><label>Store Name</label><input type="text" id="editStoreName" value="${savedStore}"></div>
                     <div class="form-group"><label>Owner Name</label><input type="text" id="editOwnerName" value="${savedName}"></div>
                     <div class="form-group"><label>Business Address</label><input type="text" id="editStoreAddress" value="${savedAddress}"></div>
-                    <div class="form-group"><label>Certificate</label><input type="text" id="editStoreCert" value="${savedCert}"></div>
-                    <button class="btn-gold-glow" onclick="saveStoreInfoChanges()">Update Info</button>`;
+                    <div class="form-group"><label>Certificate / License</label><input type="text" id="editStoreCert" value="${savedCert}"></div>
+                    <button class="btn-gold-glow" onclick="saveStoreInfoChanges()">Update Information</button>`;
             } 
             else if(tabType === 'tabNewProductPopup') {
                 uploadStep = 1;
@@ -512,26 +493,94 @@
                 htmlContent += `
                     <h3 class="modal-title">New Product Upload (Step <span id="stepIndicator">1</span>/3)</h3>
                     
-                    <!-- Step 1: হোম পেজের হুবহু ক্যাটাগরি মেনু সিস্টেম -->
+                    <!-- Step 1: হোম পেজের হুবহু ৭টি ক্যাটাগরি ও সাব-ক্যাটাগরি কার্ড সিস্টেম -->
                     <div class="step-content active" id="uploadStep1">
-                        <label style="font-size:0.65rem; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-transform:uppercase; font-weight:800; margin-bottom:6px; display:block;">Select Category from Home Menu</label>
-                        <div class="category-select-grid">
-                            <div class="cat-item-card" onclick="selectCatCard('Women\'s Fashion > Clothing', this)"><i class="fa-solid fa-shirt"></i><span class="cat-item-name">Women Clothing</span></div>
-                            <div class="cat-item-card" onclick="selectCatCard('Women\'s Fashion > Handbags', this)"><i class="fa-solid fa-bag-shopping"></i><span class="cat-item-name">Handbags</span></div>
-                            <div class="cat-item-card" onclick="selectCatCard('Boys\' Fashion > Clothing', this)"><i class="fa-solid fa-child"></i><span class="cat-item-name">Boys Clothing</span></div>
-                            <div class="cat-item-card" onclick="selectCatCard('Matching Sets > Couple Sets', this)"><i class="fa-solid fa-user-group"></i><span class="cat-item-name">Couple Sets</span></div>
-                            <div class="cat-item-card" onclick="selectCatCard('Luxury Gifts > Corporate Gifts', this)"><i class="fa-solid fa-briefcase"></i><span class="cat-item-name">Corporate Gifts</span></div>
-                            <div class="cat-item-card" onclick="selectCatCard('Girls\' Fashion > Party Dresses', this)"><i class="fa-solid fa-chess-queen"></i><span class="cat-item-name">Party Dresses</span></div>
-                            <div class="cat-item-card" onclick="selectCatCard('Men\'s Fashion > Clothing', this)"><i class="fa-solid fa-user-tie"></i><span class="cat-item-name">Men Clothing</span></div>
-                            <div class="cat-item-card" onclick="selectCatCard('Mother & Baby > Baby Care', this)"><i class="fa-solid fa-bottle-droplet"></i><span class="cat-item-name">Baby Care</span></div>
+                        <label style="font-size:0.65rem; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-transform:uppercase; font-weight:800; margin-bottom:6px; display:block;">Select Category from Ecosystem Menu</label>
+                        
+                        <div class="category-container-box">
+                            <!-- 1. Women's Fashion -->
+                            <div class="main-category-section">
+                                <div class="main-category-header">1. Women's Fashion</div>
+                                <div class="sub-category-grid">
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Women\'s Fashion > Clothing', this)"><i class="fa-solid fa-shirt"></i><span class="sub-cat-name">Clothing</span></div>
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Women\'s Fashion > Handbags', this)"><i class="fa-solid fa-bag-shopping"></i><span class="sub-cat-name">Handbags</span></div>
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Women\'s Fashion > Shoes', this)"><i class="fa-solid fa-shoe-prints"></i><span class="sub-cat-name">Shoes</span></div>
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Women\'s Fashion > Jewelry', this)"><i class="fa-solid fa-gem"></i><span class="sub-cat-name">Jewelry</span></div>
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Women\'s Fashion > Watches', this)"><i class="fa-solid fa-clock"></i><span class="sub-cat-name">Watches</span></div>
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Women\'s Fashion > Beauty', this)"><i class="fa-solid fa-spray-can-sparkles"></i><span class="sub-cat-name">Beauty</span></div>
+                                </div>
+                            </div>
+
+                            <!-- 2. Boys' Fashion -->
+                            <div class="main-category-section">
+                                <div class="main-category-header">2. Boys' Fashion</div>
+                                <div class="sub-category-grid">
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Boys\' Fashion > Clothing', this)"><i class="fa-solid fa-child"></i><span class="sub-cat-name">Clothing</span></div>
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Boys\' Fashion > Shoes', this)"><i class="fa-solid fa-socks"></i><span class="sub-cat-name">Shoes</span></div>
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Boys\' Fashion > Watches', this)"><i class="fa-solid fa-stopwatch"></i><span class="sub-cat-name">Watches</span></div>
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Boys\' Fashion > Accessories', this)"><i class="fa-solid fa-hat-cowboy"></i><span class="sub-cat-name">Accessories</span></div>
+                                </div>
+                            </div>
+
+                            <!-- 3. Matching Sets -->
+                            <div class="main-category-section">
+                                <div class="main-category-header">3. Matching Sets</div>
+                                <div class="sub-category-grid">
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Matching Sets > Couple Sets', this)"><i class="fa-solid fa-user-group"></i><span class="sub-cat-name">Couple Sets</span></div>
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Matching Sets > Family Sets', this)"><i class="fa-solid fa-house"></i><span class="sub-cat-name">Family Sets</span></div>
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Matching Sets > Mom & Me', this)"><i class="fa-solid fa-venus"></i><span class="sub-cat-name">Mom & Me</span></div>
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Matching Sets > Value Bundles', this)"><i class="fa-solid fa-box-open"></i><span class="sub-cat-name">Value Bundles</span></div>
+                                </div>
+                            </div>
+
+                            <!-- 4. Luxury Gifts -->
+                            <div class="main-category-section">
+                                <div class="main-category-header">4. Luxury Gifts</div>
+                                <div class="sub-category-grid">
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Luxury Gifts > Corporate Gifts', this)"><i class="fa-solid fa-briefcase"></i><span class="sub-cat-name">Corporate Gifts</span></div>
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Luxury Gifts > Wood Resin', this)"><i class="fa-solid fa-tree"></i><span class="sub-cat-name">Wood Resin</span></div>
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Luxury Gifts > Gift Hampers', this)"><i class="fa-solid fa-gift"></i><span class="sub-cat-name">Gift Hampers</span></div>
+                                </div>
+                            </div>
+
+                            <!-- 5. Girls' Fashion -->
+                            <div class="main-category-section">
+                                <div class="main-category-header">5. Girls' Fashion</div>
+                                <div class="sub-category-grid">
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Girls\' Fashion > Clothing', this)"><i class="fa-solid fa-child-dress"></i><span class="sub-cat-name">Clothing</span></div>
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Girls\' Fashion > Party Dresses', this)"><i class="fa-solid fa-chess-queen"></i><span class="sub-cat-name">Party Dresses</span></div>
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Girls\' Fashion > Jewelry', this)"><i class="fa-solid fa-ring"></i><span class="sub-cat-name">Jewelry</span></div>
+                                </div>
+                            </div>
+
+                            <!-- 6. Men's Fashion -->
+                            <div class="main-category-section">
+                                <div class="main-category-header">6. Men's Fashion</div>
+                                <div class="sub-category-grid">
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Men\'s Fashion > Clothing', this)"><i class="fa-solid fa-user-tie"></i><span class="sub-cat-name">Clothing</span></div>
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Men\'s Fashion > Shoes', this)"><i class="fa-solid fa-shoe-prints"></i><span class="sub-cat-name">Shoes</span></div>
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Men\'s Fashion > Grooming', this)"><i class="fa-solid fa-scissors"></i><span class="sub-cat-name">Grooming</span></div>
+                                </div>
+                            </div>
+
+                            <!-- 7. Mother & Baby -->
+                            <div class="main-category-section">
+                                <div class="main-category-header">7. Mother & Baby</div>
+                                <div class="sub-category-grid">
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Mother & Baby > Baby Clothing', this)"><i class="fa-solid fa-baby"></i><span class="sub-cat-name">Clothing</span></div>
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Mother & Baby > Maternity', this)"><i class="fa-solid fa-person-breastfeeding"></i><span class="sub-cat-name">Maternity</span></div>
+                                    <div class="sub-cat-card" onclick="selectHomeCat('Mother & Baby > Baby Care', this)"><i class="fa-solid fa-bottle-droplet"></i><span class="sub-cat-name">Baby Care</span></div>
+                                </div>
+                            </div>
                         </div>
+
                         <button class="btn-gold-glow" onclick="nextUploadStep(2)">Next Step</button>
                     </div>
 
                     <!-- Step 2: Title & Description -->
                     <div class="step-content" id="uploadStep2">
                         <div class="form-group"><label>Product Title *</label><input type="text" id="newProdTitle" placeholder="Enter trending title"></div>
-                        <div class="form-group"><label>Description *</label><textarea id="newProdDesc" rows="3" placeholder="Enter specifications..."></textarea></div>
+                        <div class="form-group"><label>Description *</label><textarea id="newProdDesc" rows="3" placeholder="Enter product specifications..."></textarea></div>
                         <button class="btn-gold-glow" onclick="nextUploadStep(3)">Next Step</button>
                         <button class="btn-secondary-glow" onclick="nextUploadStep(1)">Back</button>
                     </div>
@@ -550,7 +599,12 @@
                 if(sellerProducts.length === 0) htmlContent += `<p style="text-align:center; color:var(--text-gray); font-size:0.75rem;">No products uploaded yet.</p>`;
                 else {
                     sellerProducts.forEach((p, idx) => {
-                        htmlContent += `<div class="product-edit-card"><div class="form-group"><label>Title</label><input type="text" id="editTitle_${idx}" value="${p.title}"></div><button class="btn-gold-glow" style="padding:6px; font-size:0.65rem;" onclick="saveProductEdit(${idx})">Save</button></div>`;
+                        htmlContent += `
+                            <div class="product-edit-card">
+                                <div class="form-group"><label>Title</label><input type="text" id="editTitle_${idx}" value="${p.title}"></div>
+                                <div class="form-group"><label>Price ($)</label><input type="number" id="editPrice_${idx}" value="${p.price}" step="0.01"></div>
+                                <button class="btn-gold-glow" style="padding:6px; font-size:0.65rem;" onclick="saveProductEdit(${idx})">Save Changes</button>
+                            </div>`;
                     });
                 }
                 htmlContent += `</div>`;
@@ -558,40 +612,84 @@
             else if(tabType === 'tabShipmentPopup') {
                 htmlContent += `<h3 class="modal-title">Shipment Management</h3><div style="display:flex; flex-direction:column; gap:10px;">`;
                 sellerOrders.forEach((ord, idx) => {
-                    htmlContent += `<div style="background:#000; border:1.5px solid rgba(212,175,55,0.3); padding:12px; border-radius:10px;"><h4 style="font-size:0.75rem; color:#fcf6ba;">${ord.orderId} (${ord.product})</h4><div class="form-group" style="margin-top:6px;"><label>Courier</label><select id="courierSelect_${idx}"><option value="DHL">DHL Express</option><option value="Steadfast">Steadfast</option></select></div><div class="form-group"><label>Tracking ID</label><input type="text" id="trackingInput_${idx}" placeholder="Tracking link"></div><button class="btn-gold-glow" style="padding:8px; font-size:0.7rem;" onclick="submitShipment(${idx})">Send Tracking</button></div>`;
+                    htmlContent += `
+                        <div style="background:#000; border:1.5px solid rgba(212,175,55,0.3); padding:12px; border-radius:10px;">
+                            <h4 style="font-size:0.75rem; color:#fcf6ba;">${ord.orderId} (${ord.product})</h4>
+                            <div class="form-group" style="margin-top:6px;"><label>Courier</label><select id="courierSelect_${idx}"><option value="DHL">DHL Express</option><option value="Steadfast">Steadfast</option></select></div>
+                            <div class="form-group"><label>Tracking ID / URL</label><input type="text" id="trackingInput_${idx}" placeholder="Tracking link"></div>
+                            <button class="btn-gold-glow" style="padding:8px; font-size:0.7rem;" onclick="submitShipment(${idx})">Send Tracking</button>
+                        </div>`;
                 });
                 htmlContent += `</div>`;
             }
             else if(tabType === 'tabVerificationPopup') {
                 const isVerified = localStorage.getItem('rorraxy_seller_verified') === 'true';
-                htmlContent += `<h3 class="modal-title">Security</h3><div class="qr-box" style="display:${isVerified?'none':'block'};"><input type="text" id="authCodeInput" placeholder="Enter 6-digit code" maxlength="6"><button class="btn-gold-glow" onclick="verifyAuthCode()">Verify</button></div><div class="verified-success-box" style="display:${isVerified?'flex':'none'};"><i class="fa-solid fa-circle-check" style="color:#2ecc71;"></i><h3 style="color:#2ecc71;">Verified</h3></div>`;
+                htmlContent += `
+                    <h3 class="modal-title">Google Authenticator Security</h3>
+                    <div class="qr-box" style="display:${isVerified?'none':'block'};">
+                        <div style="font-size: 0.7rem; color: #fff; margin-bottom: 8px;">Secret Key: <span style="color:var(--gold-solid); font-weight:700;">JBSWY3DPEHPK3PXP</span></div>
+                        <div class="form-group"><label>Enter 6-Digit Code</label><input type="text" id="authCodeInput" placeholder="123456" maxlength="6" oninput="this.value = this.value.replace(/[^0-9]/g, '')"></div>
+                        <button class="btn-gold-glow" onclick="verifyAuthCode()">Verify Code</button>
+                    </div>
+                    <div class="verified-success-box" style="display:${isVerified?'flex':'none'};">
+                        <i class="fa-solid fa-circle-check" style="color:#2ecc71;"></i>
+                        <h3 style="color:#2ecc71;">Verified Secure</h3>
+                    </div>`;
             }
             else if(tabType === 'tabPaymentPopup') {
-                htmlContent += `<h3 class="modal-title">Payout Setup</h3><div class="payment-options-grid"><div class="pay-option" id="optBkash" onclick="selectPayment('bkash')">Bikash</div><div class="pay-option" id="optNagad" onclick="selectPayment('nagad')">Nagad</div><div class="pay-option" id="optPayoneer" onclick="selectPayment('payoneer')">Payoneer</div></div><div class="form-group" id="paymentInputGroup" style="display:none;"><label id="paymentInputLabel">Detail</label><input type="text" id="payAccountDetail"></div><button class="btn-gold-glow" onclick="savePaymentSystem()">Save</button>`;
+                htmlContent += `
+                    <h3 class="modal-title">Payout Method Setup</h3>
+                    <div class="payment-options-grid">
+                        <div class="pay-option" id="optBkash" onclick="selectPayment('bkash')">Bikash</div>
+                        <div class="pay-option" id="optNagad" onclick="selectPayment('nagad')">Nagad</div>
+                        <div class="pay-option" id="optPayoneer" onclick="selectPayment('payoneer')">Payoneer</div>
+                    </div>
+                    <div class="form-group" id="paymentInputGroup" style="display:none;"><label id="paymentInputLabel">Account Detail</label><input type="text" id="payAccountDetail"></div>
+                    <button class="btn-gold-glow" onclick="savePaymentSystem()">Save Payout Method</button>`;
             }
             else if(tabType === 'tabWithdrawPopup') {
-                htmlContent += `<h3 class="modal-title">Withdraw</h3><div class="info-display-box"><div class="info-content-wrap"><div class="info-lbl">Balance</div><div class="info-val">$0.00</div></div></div><div class="form-group"><label>Amount</label><input type="number" id="withdrawAmount"></div><button class="btn-gold-glow" onclick="requestWithdrawal()">Request</button>`;
+                htmlContent += `
+                    <h3 class="modal-title">Withdraw Payout</h3>
+                    <div class="info-display-box"><div class="info-content-wrap"><div class="info-lbl">Available Balance</div><div class="info-val">$0.00</div></div></div>
+                    <div class="form-group"><label>Amount ($ USD)</label><input type="number" id="withdrawAmount" placeholder="0.00"></div>
+                    <button class="btn-gold-glow" onclick="requestWithdrawal()">Submit Payout Request</button>`;
             }
             else if(tabType === 'tabNotificationPopup') {
-                htmlContent += `<h3 class="modal-title">Notifications</h3><div class="notif-item"><div class="notif-title">New Order</div><div style="font-size:0.7rem;">Order #ORD-501 received.</div></div>`;
+                htmlContent += `<h3 class="modal-title">Notifications</h3><div class="notif-item"><div class="notif-title">New Order Received</div><div style="font-size:0.7rem;">Order #ORD-501 has been placed.</div></div>`;
             }
             else if(tabType === 'tabPolicyPopup') {
-                htmlContent += `<h3 class="modal-title">Policy</h3><div class="policy-content">1. 100% Brand New Products.<br>2. Max 50 items limit.<br>3. Mandatory returns.</div>`;
+                htmlContent += `<h3 class="modal-title">Seller Policy</h3><div class="policy-content">1. 100% Brand New Products.<br>2. Max 50 items limit.<br>3. Mandatory returns.</div>`;
             }
 
             contentBox.innerHTML = htmlContent;
             overlay.style.display = 'flex';
         }
 
-        function selectCatCard(path, el) {
-            document.querySelectorAll('.cat-item-card').forEach(c => c.classList.remove('selected'));
+        function saveStoreInfoChanges() {
+            let store = document.getElementById('editStoreName').value.trim();
+            let owner = document.getElementById('editOwnerName').value.trim();
+            let addr = document.getElementById('editStoreAddress').value.trim();
+            let cert = document.getElementById('editStoreCert').value.trim();
+
+            document.getElementById('homeDispName').innerText = store;
+            localStorage.setItem('rorraxy_store_name', store);
+            localStorage.setItem('rorraxy_seller_name', owner);
+            localStorage.setItem('rorraxy_seller_address', addr);
+            localStorage.setItem('rorraxy_seller_cert', cert);
+
+            showToast("Store information updated successfully!");
+            closeModal('popupModalOverlay');
+        }
+
+        function selectHomeCat(path, el) {
+            document.querySelectorAll('.sub-cat-card').forEach(b => b.classList.remove('selected'));
             el.classList.add('selected');
             selectedCategoryPath = path;
         }
 
         function nextUploadStep(stepNum) {
             if(stepNum === 2 && !selectedCategoryPath) {
-                showToast("Please select a category first!");
+                showToast("Please select a category card first!");
                 return;
             }
             uploadStep = stepNum;
@@ -607,8 +705,8 @@
             const stock = parseInt(document.getElementById('newProdStock').value);
             const img = document.getElementById('newProdImg').value.trim();
 
-            if(!title || !price || !stock || !img) {
-                showToast("Please fill all required fields!");
+            if(!title || isNaN(price) || isNaN(stock) || !img) {
+                showToast("Please fill all required fields correctly!");
                 return;
             }
             if(sellerProducts.length >= 50) {
@@ -619,6 +717,23 @@
             sellerProducts.push({ id: Date.now(), title, category: selectedCategoryPath, price, stock, desc, img });
             updateProductCount();
             showToast("Product published successfully!");
+            closeModal('popupModalOverlay');
+        }
+
+        function saveProductEdit(idx) {
+            let t = document.getElementById(`editTitle_${idx}`).value.trim();
+            let p = parseFloat(document.getElementById(`editPrice_${idx}`).value);
+            sellerProducts[idx].title = t;
+            sellerProducts[idx].price = p;
+            showToast("Product updated!");
+        }
+
+        function submitShipment(idx) {
+            let courier = document.getElementById(`courierSelect_${idx}`).value;
+            let tracking = document.getElementById(`trackingInput_${idx}`).value.trim();
+            if(!tracking) { showToast("Enter tracking link!"); return; }
+            sellerOrders[idx].status = `Shipped via ${courier} (${tracking})`;
+            showToast("Tracking sent to customer!");
             closeModal('popupModalOverlay');
         }
 
@@ -636,16 +751,17 @@
             document.querySelectorAll('.pay-option').forEach(e => e.classList.remove('selected'));
             document.getElementById('opt' + gw.charAt(0).toUpperCase() + gw.slice(1)).classList.add('selected');
             document.getElementById('paymentInputGroup').style.display = 'block';
+            document.getElementById('paymentInputLabel').innerText = gw === 'payoneer' ? 'Payoneer Email' : 'Mobile Number';
         }
 
         function savePaymentSystem() {
             localStorage.setItem('rorraxy_seller_payment_done', 'true');
-            showToast("Payout saved!");
+            showToast("Payout method saved!");
             closeModal('popupModalOverlay');
         }
 
         function requestWithdrawal() {
-            showToast("Request submitted!");
+            showToast("Payout request submitted!");
             closeModal('popupModalOverlay');
         }
 
@@ -663,6 +779,7 @@
         }
 
         function handleChatKeyPress(e) { if(e.key === 'Enter') sendChatMessage(); }
+        function openFirebaseChat() { showToast("Connecting to Customer Support..."); }
 
         window.addEventListener('click', (e) => {
             const menu = document.getElementById('dropdownMenu');
