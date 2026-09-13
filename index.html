@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RORRAXY | Seller Center</title>
+    <title>RORRAXY | Ultimate Seller Center</title>
     
     <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1PD_g_agcbmm7bbJTHoOWss8YtQ17LNsb=s400">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -334,7 +334,7 @@
         .menu-item i { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; width: 16px; text-align: center; }
         .menu-item:hover { background: rgba(212,175,55,0.1); color: #fcf6ba; }
 
-        /* স্ট্যাটস বক্স (সব জিরো ব্যালেন্স) */
+        /* স্ট্যাটস বক্স (শূন্য ব্যালেন্স) */
         .stats-grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -354,7 +354,7 @@
         .stat-lbl { font-size: 0.52rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; font-weight: 800; margin-bottom: 3px; font-family: var(--font-body); white-space: nowrap; }
         .stat-val { font-size: 1rem; font-weight: 900; color: #fff; font-family: var(--font-luxury); white-space: nowrap; }
 
-        /* আকর্ষণীয় ও প্রিমিয়াম নোটিশ ব্যানার */
+        /* প্রিমিয়াম নোটিশ ব্যানার */
         .seller-update-notice {
             background: linear-gradient(135deg, rgba(191,149,63,0.12), rgba(10,10,10,0.9));
             border: 1px solid rgba(212, 175, 55, 0.35);
@@ -754,7 +754,7 @@
                     </div>
                 </div>
 
-                <!-- স্ট্যাটস বক্স (টোটাল ইনকাম, পেআউট এবং প্রোডাক্ট কাউন্ট জিরো) -->
+                <!-- স্ট্যাটস বক্স (টোটাল ইনকাম, পেআউট এবং প্রোডাক্ট কাউন্ট শূন্য থেকে শুরু) -->
                 <div class="stats-grid-3">
                     <div class="stat-card" onclick="openPopupModal('tabWithdrawPopup')">
                         <div class="stat-lbl">Total Income</div>
@@ -920,11 +920,8 @@
             { name: "Zimbabwe", flag: "🇿🇼", code: "+263" }
         ];
 
-        // স্যাম্পল প্রোডাক্ট লিস্ট (এডিট করার জন্য)
-        let sellerProducts = [
-            { id: 1, title: "Luxury Gamar Wood Table", category: "Furniture", price: 120.00, stock: 15, desc: "Premium quality solid Gamar wood table." },
-            { id: 2, title: "Baby Organic Cotton Set", category: "Baby Products", price: 35.00, stock: 30, desc: "100% organic cotton baby clothing set." }
-        ];
+        // সেলারের প্রোডাক্ট লিস্ট (প্রাথমিকভাবে শূন্য বা খালি রাখা হয়েছে যাতে জিরো থেকে শুরু হয়)
+        let sellerProducts = [];
 
         // সেলারের অর্ডার ও শিপমেন্ট লিস্ট
         let sellerOrders = [
@@ -1042,44 +1039,27 @@
                 let savedName = localStorage.getItem('rorraxy_seller_name') || 'Store Owner';
                 let savedAddress = localStorage.getItem('rorraxy_seller_address') || 'Not Provided';
                 let savedCert = localStorage.getItem('rorraxy_seller_cert') || 'N/A';
+                let savedPhone = localStorage.getItem('rorraxy_seller_phone') || '+880 17XXXXXXXX';
 
                 htmlContent += `
                     <h3 class="modal-title">Store & Certificate Information</h3>
-                    <div class="info-display-box">
-                        <div class="info-content-wrap">
-                            <div class="info-lbl">Store Name</div>
-                            <div class="info-val">${savedStore}</div>
-                        </div>
-                        <i class="fa-solid fa-store" style="background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i>
+                    <div class="form-group" style="margin-bottom:10px;">
+                        <label>Store Name</label>
+                        <input type="text" id="editStoreName" value="${savedStore}">
                     </div>
-                    <div class="info-display-box">
-                        <div class="info-content-wrap">
-                            <div class="info-lbl">Owner Name</div>
-                            <div class="info-val">${savedName}</div>
-                        </div>
-                        <i class="fa-solid fa-user" style="background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i>
+                    <div class="form-group" style="margin-bottom:10px;">
+                        <label>Owner Name</label>
+                        <input type="text" id="editOwnerName" value="${savedName}">
                     </div>
-                    <div class="info-display-box">
-                        <div class="info-content-wrap">
-                            <div class="info-lbl">Gmail Account</div>
-                            <div class="info-val">${localStorage.getItem('rorraxy_seller_email') || 'seller@gmail.com'}</div>
-                        </div>
-                        <i class="fa-solid fa-envelope" style="background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i>
+                    <div class="form-group" style="margin-bottom:10px;">
+                        <label>Business Address</label>
+                        <input type="text" id="editStoreAddress" value="${savedAddress}">
                     </div>
-                    <div class="info-display-box">
-                        <div class="info-content-wrap">
-                            <div class="info-lbl">Business Address</div>
-                            <div class="info-val">${savedAddress}</div>
-                        </div>
-                        <i class="fa-solid fa-location-dot" style="background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i>
+                    <div class="form-group" style="margin-bottom:10px;">
+                        <label>Trade License / Certificate</label>
+                        <input type="text" id="editStoreCert" value="${savedCert}">
                     </div>
-                    <div class="info-display-box">
-                        <div class="info-content-wrap">
-                            <div class="info-lbl">Trade License / Certificate</div>
-                            <div class="info-val">${savedCert}</div>
-                        </div>
-                        <i class="fa-solid fa-certificate" style="background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i>
-                    </div>`;
+                    <button class="btn-gold-glow" onclick="saveStoreInfoChanges()">Update Information</button>`;
             } 
             else if(tabType === 'tabNewProductPopup') {
                 htmlContent += `
@@ -1090,12 +1070,13 @@
                             <input type="text" id="newProdTitle" placeholder="Enter trending product title" required>
                         </div>
                         <div class="form-group">
-                            <label>Category *</label>
+                            <label>Category (Home Categories) *</label>
                             <select id="newProdCategory" required>
                                 <option value="Furniture">Furniture (Gamar Wood, etc.)</option>
                                 <option value="Baby Products">Baby Products & Clothing</option>
                                 <option value="Electronics">Electronics & Gadgets</option>
                                 <option value="Fashion">Fashion & Apparel</option>
+                                <option value="Agriculture">Rooftop Agriculture & Plants</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -1116,11 +1097,11 @@
             else if(tabType === 'tabProductListPopup') {
                 htmlContent += `
                     <h3 class="modal-title">Product List & Management (${sellerProducts.length}/50)</h3>
-                    <p style="font-size: 0.7rem; color: var(--text-gray); text-align: center; margin-bottom: 12px;">Edit title, price, stock or delete items below.</p>
+                    <p style="font-size: 0.7rem; color: var(--text-gray); text-align: center; margin-bottom: 12px;">Edit title, category, price, stock or delete items below.</p>
                     <div style="max-height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;">`;
                 
                 if(sellerProducts.length === 0) {
-                    htmlContent += `<p style="text-align:center; color:var(--text-gray); font-size:0.75rem;">No products uploaded yet.</p>`;
+                    htmlContent += `<p style="text-align:center; color:var(--text-gray); font-size:0.75rem; padding: 20px;">No products uploaded yet. Start uploading trending items!</p>`;
                 } else {
                     sellerProducts.forEach((p, idx) => {
                         htmlContent += `
@@ -1128,6 +1109,10 @@
                                 <div class="form-group" style="margin-bottom:6px;">
                                     <label>Title</label>
                                     <input type="text" id="editTitle_${idx}" value="${p.title}">
+                                </div>
+                                <div class="form-group" style="margin-bottom:6px;">
+                                    <label>Category</label>
+                                    <input type="text" id="editCategory_${idx}" value="${p.category}">
                                 </div>
                                 <div style="display:flex; gap:8px; margin-bottom:6px;">
                                     <div class="form-group" style="flex:1; margin-bottom:0;">
@@ -1252,7 +1237,7 @@
                     <h3 class="modal-title">Seller Policy & Guidelines</h3>
                     <div class="policy-content">
                         <strong>1. 100% Brand New Products:</strong> All products uploaded by sellers must be 100% brand new, authentic, and precisely as described.<br><br>
-                        <strong>2. Trending Products Requirement:</strong> Sellers must upload high-demand, trending products from our store categories and keep inventory updated within the 50-product limit.<br><br>
+                        <strong>2. Trending Products Requirement:</strong> Sellers must upload high-demand, trending products matching our store categories and keep inventory updated within the 50-product limit.<br><br>
                         <strong>3. Mandatory Return Acceptance:</strong> If a customer initiates a valid return request, the seller must accept and process the return smoothly.<br><br>
                         <strong>4. High-Quality Packaging:</strong> Premium and robust packaging standards must be maintained to prevent any transit damage.<br><br>
                         <strong>5. Zero Tolerance for Harassment:</strong> Sellers must never mistreat or harass customers. Violation will result in immediate permanent account termination.
@@ -1261,6 +1246,27 @@
 
             contentBox.innerHTML = htmlContent;
             overlay.style.display = 'flex';
+        }
+
+        function saveStoreInfoChanges() {
+            let store = document.getElementById('editStoreName').value.trim();
+            let owner = document.getElementById('editOwnerName').value.trim();
+            let addr = document.getElementById('editStoreAddress').value.trim();
+            let cert = document.getElementById('editStoreCert').value.trim();
+
+            if(!store || !owner || !addr) {
+                showToast("Please fill in required store details!");
+                return;
+            }
+
+            document.getElementById('homeDispName').innerText = store;
+            localStorage.setItem('rorraxy_store_name', store);
+            localStorage.setItem('rorraxy_seller_name', owner);
+            localStorage.setItem('rorraxy_seller_address', addr);
+            localStorage.setItem('rorraxy_seller_cert', cert);
+
+            showToast("Store information updated successfully!");
+            closeModal('popupModalOverlay');
         }
 
         function verifyAuthCode() {
@@ -1343,14 +1349,16 @@
 
         function saveProductEdit(idx) {
             let newTitle = document.getElementById(`editTitle_${idx}`).value.trim();
+            let newCat = document.getElementById(`editCategory_${idx}`).value.trim();
             let newPrice = parseFloat(document.getElementById(`editPrice_${idx}`).value);
             let newStock = parseInt(document.getElementById(`editStock_${idx}`).value);
 
-            if(!newTitle || isNaN(newPrice) || isNaN(newStock)) {
+            if(!newTitle || !newCat || isNaN(newPrice) || isNaN(newStock)) {
                 showToast("Please provide valid edit details!");
                 return;
             }
             sellerProducts[idx].title = newTitle;
+            sellerProducts[idx].category = newCat;
             sellerProducts[idx].price = newPrice;
             sellerProducts[idx].stock = newStock;
             showToast("Product updated successfully!");
