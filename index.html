@@ -204,8 +204,8 @@
         }
         .sub-cat-card:hover { border-color: var(--gold-solid); background: rgba(212,175,55,0.1); }
         .sub-cat-card.selected { border-color: var(--gold-solid) !important; background: rgba(212,175,55,0.25) !important; box-shadow: 0 0 12px rgba(212,175,55,0.5); }
-        .sub-cat-card i { font-size: 0.95rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; flex-shrink: 0; }
-        .sub-cat-name { font-size: 0.58rem; font-weight: 700; color: #fff; text-transform: uppercase; }
+        .sub-cat-card i { font-size: 0.95rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; flex-shrink: 0; pointer-events: none; }
+        .sub-cat-name { font-size: 0.58rem; font-weight: 700; color: #fff; text-transform: uppercase; pointer-events: none; }
 
         .sell-type-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
         .sell-type-card {
@@ -462,16 +462,16 @@
                             <div class="main-category-section">
                                 <div class="main-category-header">1. Women's Fashion</div>
                                 <div class="sub-category-grid">
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Women\'s Fashion > Clothing', this)"><i class="fa-solid fa-shirt"></i><span class="sub-cat-name">Clothing</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Women\'s Fashion > Handbags', this)"><i class="fa-solid fa-bag-shopping"></i><span class="sub-cat-name">Handbags</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Women\'s Fashion > Shoes', this)"><i class="fa-solid fa-shoe-prints"></i><span class="sub-cat-name">Shoes</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Women\'s Fashion > Jewelry', this)"><i class="fa-solid fa-gem"></i><span class="sub-cat-name">Jewelry</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Women\'s Fashion > Watches', this)"><i class="fa-solid fa-clock"></i><span class="sub-cat-name">Watches</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Women\'s Fashion > Lingerie', this)"><i class="fa-solid fa-heart"></i><span class="sub-cat-name">Lingerie</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Women\'s Fashion > Beauty', this)"><i class="fa-solid fa-spray-can-sparkles"></i><span class="sub-cat-name">Beauty</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Women\'s Fashion > Activewear', this)"><i class="fa-solid fa-person-running"></i><span class="sub-cat-name">Activewear</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Women\'s Fashion > Traditional', this)"><i class="fa-solid fa-vest"></i><span class="sub-cat-name">Traditional</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Women\'s Fashion > Accessories', this)"><i class="fa-solid fa-glasses"></i><span class="sub-cat-name">Accessories</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Women\'s Fashion > Clothing')"><i class="fa-solid fa-shirt"></i><span class="sub-cat-name">Clothing</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Women\'s Fashion > Handbags')"><i class="fa-solid fa-bag-shopping"></i><span class="sub-cat-name">Handbags</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Women\'s Fashion > Shoes')"><i class="fa-solid fa-shoe-prints"></i><span class="sub-cat-name">Shoes</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Women\'s Fashion > Jewelry')"><i class="fa-solid fa-gem"></i><span class="sub-cat-name">Jewelry</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Women\'s Fashion > Watches')"><i class="fa-solid fa-clock"></i><span class="sub-cat-name">Watches</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Women\'s Fashion > Lingerie')"><i class="fa-solid fa-heart"></i><span class="sub-cat-name">Lingerie</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Women\'s Fashion > Beauty')"><i class="fa-solid fa-spray-can-sparkles"></i><span class="sub-cat-name">Beauty</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Women\'s Fashion > Activewear')"><i class="fa-solid fa-person-running"></i><span class="sub-cat-name">Activewear</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Women\'s Fashion > Traditional')"><i class="fa-solid fa-vest"></i><span class="sub-cat-name">Traditional</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Women\'s Fashion > Accessories')"><i class="fa-solid fa-glasses"></i><span class="sub-cat-name">Accessories</span></div>
                                 </div>
                             </div>
 
@@ -479,11 +479,11 @@
                             <div class="main-category-section">
                                 <div class="main-category-header">2. Boys' Fashion</div>
                                 <div class="sub-category-grid">
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Boys\' Fashion > Clothing', this)"><i class="fa-solid fa-child"></i><span class="sub-cat-name">Clothing</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Boys\' Fashion > Shoes', this)"><i class="fa-solid fa-socks"></i><span class="sub-cat-name">Shoes</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Boys\' Fashion > Watches', this)"><i class="fa-solid fa-stopwatch"></i><span class="sub-cat-name">Watches</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Boys\' Fashion > Bags', this)"><i class="fa-solid fa-suitcase"></i><span class="sub-cat-name">Bags</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Boys\' Fashion > Accessories', this)"><i class="fa-solid fa-hat-cowboy"></i><span class="sub-cat-name">Accessories</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Boys\' Fashion > Clothing')"><i class="fa-solid fa-child"></i><span class="sub-cat-name">Clothing</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Boys\' Fashion > Shoes')"><i class="fa-solid fa-socks"></i><span class="sub-cat-name">Shoes</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Boys\' Fashion > Watches')"><i class="fa-solid fa-stopwatch"></i><span class="sub-cat-name">Watches</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Boys\' Fashion > Bags')"><i class="fa-solid fa-suitcase"></i><span class="sub-cat-name">Bags</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Boys\' Fashion > Accessories')"><i class="fa-solid fa-hat-cowboy"></i><span class="sub-cat-name">Accessories</span></div>
                                 </div>
                             </div>
 
@@ -491,16 +491,16 @@
                             <div class="main-category-section">
                                 <div class="main-category-header">3. Matching Sets</div>
                                 <div class="sub-category-grid">
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Matching Sets > Couple Sets', this)"><i class="fa-solid fa-user-group"></i><span class="sub-cat-name">Couple Sets</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Matching Sets > Family Sets', this)"><i class="fa-solid fa-house"></i><span class="sub-cat-name">Family Sets</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Matching Sets > Mom & Me', this)"><i class="fa-solid fa-venus"></i><span class="sub-cat-name">Mom & Me</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Matching Sets > Dad & Me', this)"><i class="fa-solid fa-mars"></i><span class="sub-cat-name">Dad & Me</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Matching Sets > Sibling Sets', this)"><i class="fa-solid fa-children"></i><span class="sub-cat-name">Sibling Sets</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Matching Sets > Team Sets', this)"><i class="fa-solid fa-people-group"></i><span class="sub-cat-name">Team Sets</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Matching Sets > BFF Sets', this)"><i class="fa-solid fa-hands-holding-child"></i><span class="sub-cat-name">BFF Sets</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Matching Sets > Pet & Owner', this)"><i class="fa-solid fa-paw"></i><span class="sub-cat-name">Pet & Owner</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Matching Sets > Holiday Sets', this)"><i class="fa-solid fa-gifts"></i><span class="sub-cat-name">Holiday Sets</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Matching Sets > Value Bundles', this)"><i class="fa-solid fa-box-open"></i><span class="sub-cat-name">Value Bundles</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Matching Sets > Couple Sets')"><i class="fa-solid fa-user-group"></i><span class="sub-cat-name">Couple Sets</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Matching Sets > Family Sets')"><i class="fa-solid fa-house"></i><span class="sub-cat-name">Family Sets</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Matching Sets > Mom & Me')"><i class="fa-solid fa-venus"></i><span class="sub-cat-name">Mom & Me</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Matching Sets > Dad & Me')"><i class="fa-solid fa-mars"></i><span class="sub-cat-name">Dad & Me</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Matching Sets > Sibling Sets')"><i class="fa-solid fa-children"></i><span class="sub-cat-name">Sibling Sets</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Matching Sets > Team Sets')"><i class="fa-solid fa-people-group"></i><span class="sub-cat-name">Team Sets</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Matching Sets > BFF Sets')"><i class="fa-solid fa-hands-holding-child"></i><span class="sub-cat-name">BFF Sets</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Matching Sets > Pet & Owner')"><i class="fa-solid fa-paw"></i><span class="sub-cat-name">Pet & Owner</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Matching Sets > Holiday Sets')"><i class="fa-solid fa-gifts"></i><span class="sub-cat-name">Holiday Sets</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Matching Sets > Value Bundles')"><i class="fa-solid fa-box-open"></i><span class="sub-cat-name">Value Bundles</span></div>
                                 </div>
                             </div>
 
@@ -508,11 +508,11 @@
                             <div class="main-category-section">
                                 <div class="main-category-header">4. Luxury Gifts</div>
                                 <div class="sub-category-grid">
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Luxury Gifts > Corporate Gifts', this)"><i class="fa-solid fa-briefcase"></i><span class="sub-cat-name">Corporate Gifts</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Luxury Gifts > Luxury Items', this)"><i class="fa-solid fa-gift"></i><span class="sub-cat-name">Luxury Items</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Luxury Gifts > Handicrafts', this)"><i class="fa-solid fa-palette"></i><span class="sub-cat-name">Handicrafts</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Luxury Gifts > Wood Resin', this)"><i class="fa-solid fa-tree"></i><span class="sub-cat-name">Wood Resin</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Luxury Gifts > Gift Hampers', this)"><i class="fa-solid fa-basket-shopping"></i><span class="sub-cat-name">Gift Hampers</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Luxury Gifts > Corporate Gifts')"><i class="fa-solid fa-briefcase"></i><span class="sub-cat-name">Corporate Gifts</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Luxury Gifts > Luxury Items')"><i class="fa-solid fa-gift"></i><span class="sub-cat-name">Luxury Items</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Luxury Gifts > Handicrafts')"><i class="fa-solid fa-palette"></i><span class="sub-cat-name">Handicrafts</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Luxury Gifts > Wood Resin')"><i class="fa-solid fa-tree"></i><span class="sub-cat-name">Wood Resin</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Luxury Gifts > Gift Hampers')"><i class="fa-solid fa-basket-shopping"></i><span class="sub-cat-name">Gift Hampers</span></div>
                                 </div>
                             </div>
 
@@ -520,16 +520,16 @@
                             <div class="main-category-section">
                                 <div class="main-category-header">5. Girls' Fashion</div>
                                 <div class="sub-category-grid">
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Girls\' Fashion > Clothing', this)"><i class="fa-solid fa-child-dress"></i><span class="sub-cat-name">Clothing</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Girls\' Fashion > Shoes', this)"><i class="fa-solid fa-shoe-prints"></i><span class="sub-cat-name">Shoes</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Girls\' Fashion > Bags', this)"><i class="fa-solid fa-shopping-basket"></i><span class="sub-cat-name">Bags</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Girls\' Fashion > Jewelry', this)"><i class="fa-solid fa-ring"></i><span class="sub-cat-name">Jewelry</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Girls\' Fashion > Watches', this)"><i class="fa-solid fa-clock"></i><span class="sub-cat-name">Watches</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Girls\' Fashion > Hair Acc.', this)"><i class="fa-solid fa-wand-magic-sparkles"></i><span class="sub-cat-name">Hair Acc.</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Girls\' Fashion > Activewear', this)"><i class="fa-solid fa-person-running"></i><span class="sub-cat-name">Activewear</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Girls\' Fashion > Sleepwear', this)"><i class="fa-solid fa-bed"></i><span class="sub-cat-name">Sleepwear</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Girls\' Fashion > Party Dresses', this)"><i class="fa-solid fa-chess-queen"></i><span class="sub-cat-name">Party Dresses</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Girls\' Fashion > Accessories', this)"><i class="fa-solid fa-glasses"></i><span class="sub-cat-name">Accessories</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Girls\' Fashion > Clothing')"><i class="fa-solid fa-child-dress"></i><span class="sub-cat-name">Clothing</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Girls\' Fashion > Shoes')"><i class="fa-solid fa-shoe-prints"></i><span class="sub-cat-name">Shoes</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Girls\' Fashion > Bags')"><i class="fa-solid fa-shopping-basket"></i><span class="sub-cat-name">Bags</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Girls\' Fashion > Jewelry')"><i class="fa-solid fa-ring"></i><span class="sub-cat-name">Jewelry</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Girls\' Fashion > Watches')"><i class="fa-solid fa-clock"></i><span class="sub-cat-name">Watches</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Girls\' Fashion > Hair Acc.')"><i class="fa-solid fa-wand-magic-sparkles"></i><span class="sub-cat-name">Hair Acc.</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Girls\' Fashion > Activewear')"><i class="fa-solid fa-person-running"></i><span class="sub-cat-name">Activewear</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Girls\' Fashion > Sleepwear')"><i class="fa-solid fa-bed"></i><span class="sub-cat-name">Sleepwear</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Girls\' Fashion > Party Dresses')"><i class="fa-solid fa-chess-queen"></i><span class="sub-cat-name">Party Dresses</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Girls\' Fashion > Accessories')"><i class="fa-solid fa-glasses"></i><span class="sub-cat-name">Accessories</span></div>
                                 </div>
                             </div>
 
@@ -537,11 +537,11 @@
                             <div class="main-category-section">
                                 <div class="main-category-header">6. Men's Fashion</div>
                                 <div class="sub-category-grid">
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Men\'s Fashion > Clothing', this)"><i class="fa-solid fa-user-tie"></i><span class="sub-cat-name">Clothing</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Men\'s Fashion > Shoes', this)"><i class="fa-solid fa-shoe-prints"></i><span class="sub-cat-name">Shoes</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Men\'s Fashion > Watches', this)"><i class="fa-solid fa-clock"></i><span class="sub-cat-name">Watches</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Men\'s Fashion > Grooming', this)"><i class="fa-solid fa-scissors"></i><span class="sub-cat-name">Grooming</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Men\'s Fashion > Accessories', this)"><i class="fa-solid fa-briefcase"></i><span class="sub-cat-name">Accessories</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Men\'s Fashion > Clothing')"><i class="fa-solid fa-user-tie"></i><span class="sub-cat-name">Clothing</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Men\'s Fashion > Shoes')"><i class="fa-solid fa-shoe-prints"></i><span class="sub-cat-name">Shoes</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Men\'s Fashion > Watches')"><i class="fa-solid fa-clock"></i><span class="sub-cat-name">Watches</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Men\'s Fashion > Grooming')"><i class="fa-solid fa-scissors"></i><span class="sub-cat-name">Grooming</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Men\'s Fashion > Accessories')"><i class="fa-solid fa-briefcase"></i><span class="sub-cat-name">Accessories</span></div>
                                 </div>
                             </div>
 
@@ -549,11 +549,11 @@
                             <div class="main-category-section">
                                 <div class="main-category-header">7. Mother & Baby</div>
                                 <div class="sub-category-grid">
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Mother & Baby > Clothing', this)"><i class="fa-solid fa-baby"></i><span class="sub-cat-name">Clothing</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Mother & Baby > Maternity', this)"><i class="fa-solid fa-person-pregnant"></i><span class="sub-cat-name">Maternity</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Mother & Baby > Baby Care', this)"><i class="fa-solid fa-bottle-droplet"></i><span class="sub-cat-name">Baby Care</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Mother & Baby > Nursery Gear', this)"><i class="fa-solid fa-baby-carriage"></i><span class="sub-cat-name">Nursery Gear</span></div>
-                                    <div class="sub-cat-card" onclick="selectHomeCat('Mother & Baby > Accessories', this)"><i class="fa-solid fa-puzzle-piece"></i><span class="sub-cat-name">Accessories</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Mother & Baby > Clothing')"><i class="fa-solid fa-baby"></i><span class="sub-cat-name">Clothing</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Mother & Baby > Maternity')"><i class="fa-solid fa-person-pregnant"></i><span class="sub-cat-name">Maternity</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Mother & Baby > Baby Care')"><i class="fa-solid fa-bottle-droplet"></i><span class="sub-cat-name">Baby Care</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Mother & Baby > Nursery Gear')"><i class="fa-solid fa-baby-carriage"></i><span class="sub-cat-name">Nursery Gear</span></div>
+                                    <div class="sub-cat-card" onclick="selectCatCard(this, 'Mother & Baby > Accessories')"><i class="fa-solid fa-puzzle-piece"></i><span class="sub-cat-name">Accessories</span></div>
                                 </div>
                             </div>
                         </div>
@@ -591,7 +591,7 @@
                         <button class="btn-secondary-glow" onclick="goToStep(2)">Back</button>
                     </div>
 
-                    <!-- Step 4: Wholesale Pricing (Strictly 2 Tiers, no '+' add button) -->
+                    <!-- Step 4: Wholesale Pricing (Strictly 2 Tiers) -->
                     <div class="step-content" id="uploadStep4">
                         <label style="font-size:0.65rem; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-transform:uppercase; font-weight:800; margin-bottom:6px; display:block;">Wholesale Tier Pricing (Optional)</label>
                         
@@ -610,7 +610,7 @@
                         <button class="btn-secondary-glow" onclick="goToStep(3)">Back</button>
                     </div>
 
-                    <!-- Step 5: Photo Upload (Optimized) & YouTube Short URL -->
+                    <!-- Step 5: Photo Upload & YouTube URL -->
                     <div class="step-content" id="uploadStep5">
                         <div class="form-group">
                             <label>Product Image Upload (Auto-Optimized) *</label>
@@ -724,7 +724,7 @@
             document.getElementById('type' + type.charAt(0).toUpperCase() + type.slice(1)).classList.add('selected');
         }
 
-        function selectHomeCat(path, el) {
+        function selectCatCard(el, path) {
             document.querySelectorAll('.sub-cat-card').forEach(b => b.classList.remove('selected'));
             el.classList.add('selected');
             selectedCategoryPath = path;
