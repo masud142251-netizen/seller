@@ -173,7 +173,7 @@
         }
         .verified-success-box i { font-size: 2.6rem; color: #2ecc71; margin-bottom: 8px; }
 
-        .payment-options-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+        .payment-options-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px; }
         .pay-option {
             background: #040404; border: 1.5px solid rgba(212,175,55,0.3); padding: 10px 6px; border-radius: 8px;
             text-align: center; cursor: pointer; font-size: 0.72rem; font-weight: 700; background: var(--gold-gradient);
@@ -254,7 +254,7 @@
                         </div>
                     </div>
                     <div class="form-group"><label>Store Business Address *</label><input type="text" id="regAddress" placeholder="Warehouse, City, Country" required></div>
-                    <div class="form-group"><label>Trade License ID</label><input type="text" id="regCertId" placeholder="Optional"></div>
+                    <div class="form-group"><label>Trade License / Business Certificate ID</label><input type="text" id="regCertId" placeholder="Certificate or license number"></div>
                     <button type="submit" class="btn-gold-glow">Confirm & Enter Dashboard</button>
                 </form>
             </div>
@@ -425,22 +425,26 @@
 
             if(tabType === 'tabInfoPopup') {
                 let savedStore = localStorage.getItem('rorraxy_store_name') || 'Store Name';
-                let savedName = localStorage.getItem('rorraxy_seller_name') || 'Owner';
-                let savedAddress = localStorage.getItem('rorraxy_seller_address') || 'Address';
+                let savedName = localStorage.getItem('rorraxy_seller_name') || 'Owner Name';
+                let savedEmail = localStorage.getItem('rorraxy_seller_email') || 'seller@gmail.com';
+                let savedPhone = localStorage.getItem('rorraxy_seller_phone') || '+880 17XXXXXXXX';
+                let savedAddress = localStorage.getItem('rorraxy_seller_address') || 'Business Address';
                 let savedCert = localStorage.getItem('rorraxy_seller_cert') || 'N/A';
                 htmlContent += `
                     <h3 class="modal-title">Store Information & Edit</h3>
                     <div class="form-group"><label>Store Name</label><input type="text" id="editStoreName" value="${savedStore}"></div>
                     <div class="form-group"><label>Owner Name</label><input type="text" id="editOwnerName" value="${savedName}"></div>
+                    <div class="form-group"><label>Gmail</label><input type="email" id="editEmail" value="${savedEmail}" readonly style="color:var(--text-gray);"></div>
+                    <div class="form-group"><label>WhatsApp Number</label><input type="text" id="editPhone" value="${savedPhone}"></div>
                     <div class="form-group"><label>Business Address</label><input type="text" id="editStoreAddress" value="${savedAddress}"></div>
-                    <div class="form-group"><label>Certificate / License</label><input type="text" id="editStoreCert" value="${savedCert}"></div>
+                    <div class="form-group"><label>Certificate / License ID</label><input type="text" id="editStoreCert" value="${savedCert}"></div>
                     <button class="btn-gold-glow" onclick="saveStoreInfoChanges()">Update Information</button>`;
             } 
             else if(tabType === 'tabNewProductPopup') {
                 selectedCategoryPath = "";
                 selectedSellType = "retail";
                 htmlContent += `
-                    <h3 class="modal-title">New Product Upload (Multi-Step)</h3>
+                    <h3 class="modal-title">New Product Upload</h3>
                     
                     <!-- Step 1: Category, Sell Type & Initial Stock -->
                     <div class="step-content active" id="uploadStep1">
@@ -555,10 +559,10 @@
                         </div>
 
                         <div class="form-group" style="margin-top:10px;"><label>Initial Stock Quantity *</label><input type="number" id="initStock" placeholder="e.g. 100"></div>
-                        <button class="btn-gold-glow" onclick="goToStep(2)">Next: Title & Pricing</button>
+                        <button class="btn-gold-glow" onclick="goToStep(2)">Next</button>
                     </div>
 
-                    <!-- Step 2: Title (Max 25 chars) & Retail Price (Conditional) -->
+                    <!-- Step 2: Title (Max 25 chars) & Retail Price -->
                     <div class="step-content" id="uploadStep2">
                         <div class="form-group">
                             <label>Product Title (Max 25 Chars) *</label>
@@ -567,7 +571,7 @@
                         </div>
                         <div class="form-group" id="retailPriceGroup"><label>Retail / Sample Price ($ USD) *</label><input type="number" id="retailPrice" placeholder="0.00" step="0.01"></div>
                         
-                        <button class="btn-gold-glow" onclick="goToStep(3)">Next: Description & Packaging</button>
+                        <button class="btn-gold-glow" onclick="goToStep(3)">Next</button>
                         <button class="btn-secondary-glow" onclick="goToStep(1)">Back</button>
                     </div>
 
@@ -587,23 +591,22 @@
                         <button class="btn-secondary-glow" onclick="goToStep(2)">Back</button>
                     </div>
 
-                    <!-- Step 4: Wholesale Pricing (Optional / Conditional) -->
+                    <!-- Step 4: Wholesale Pricing (Strictly 2 Tiers, no '+' add button) -->
                     <div class="step-content" id="uploadStep4">
                         <label style="font-size:0.65rem; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-transform:uppercase; font-weight:800; margin-bottom:6px; display:block;">Wholesale Tier Pricing (Optional)</label>
                         
                         <div id="wholesaleContainer">
                             <div class="wholesale-row">
-                                <input type="number" placeholder="Min Qty" class="ws-qty" style="flex:1;">
-                                <input type="number" placeholder="Wholesale Price ($)" class="ws-price" style="flex:1;" step="0.01">
+                                <input type="number" placeholder="Min Qty" id="wsQty1" style="flex:1;">
+                                <input type="number" placeholder="Wholesale Price ($)" id="wsPrice1" style="flex:1;" step="0.01">
                             </div>
                             <div class="wholesale-row">
-                                <input type="number" placeholder="Min Qty" class="ws-qty" style="flex:1;">
-                                <input type="number" placeholder="Wholesale Price ($)" class="ws-price" style="flex:1;" step="0.01">
+                                <input type="number" placeholder="Min Qty" id="wsQty2" style="flex:1;">
+                                <input type="number" placeholder="Wholesale Price ($)" id="wsPrice2" style="flex:1;" step="0.01">
                             </div>
                         </div>
-                        <button class="btn-secondary-glow" onclick="addWholesaleTier()" style="margin-bottom:10px;"><i class="fa-solid fa-plus"></i> Add Tier (+)</button>
 
-                        <button class="btn-gold-glow" onclick="goToStep(5)">Next: Media & Video</button>
+                        <button class="btn-gold-glow" onclick="goToStep(5)">Next</button>
                         <button class="btn-secondary-glow" onclick="goToStep(3)">Back</button>
                     </div>
 
@@ -656,6 +659,10 @@
                 htmlContent += `
                     <h3 class="modal-title">Google Authenticator Security</h3>
                     <div class="qr-box" style="display:${isVerified?'none':'block'};">
+                        <div style="font-size:0.7rem; color:#fcf6ba; margin-bottom:6px; font-weight:700;">Scan QR Code via Google Authenticator</div>
+                        <div style="background:#fff; padding:10px; display:inline-block; border-radius:8px; margin-bottom:8px;">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=otpauth://totp/RORRAXY:Seller?secret=JBSWY3DPEHPK3PXP" alt="QR Code" style="width:110px; height:110px; display:block;">
+                        </div>
                         <div style="font-size: 0.7rem; color: #fff; margin-bottom: 8px;">Secret Key: <span style="color:var(--gold-solid); font-weight:700;">JBSWY3DPEHPK3PXP</span></div>
                         <div class="form-group"><label>Enter 6-Digit Code</label><input type="text" id="authCodeInput" placeholder="123456" maxlength="6" oninput="this.value = this.value.replace(/[^0-9]/g, '')"></div>
                         <button class="btn-gold-glow" onclick="verifyAuthCode()">Verify Code</button>
@@ -670,7 +677,6 @@
                     <h3 class="modal-title">Payout Method Setup</h3>
                     <div class="payment-options-grid">
                         <div class="pay-option" id="optBkash" onclick="selectPayment('bkash')">Bikash</div>
-                        <div class="pay-option" id="optNagad" onclick="selectPayment('nagad')">Nagad</div>
                         <div class="pay-option" id="optPayoneer" onclick="selectPayment('payoneer')">Payoneer</div>
                     </div>
                     <div class="form-group" id="paymentInputGroup" style="display:none;"><label id="paymentInputLabel">Account Detail</label><input type="text" id="payAccountDetail"></div>
@@ -697,12 +703,14 @@
         function saveStoreInfoChanges() {
             let store = document.getElementById('editStoreName').value.trim();
             let owner = document.getElementById('editOwnerName').value.trim();
+            let phone = document.getElementById('editPhone').value.trim();
             let addr = document.getElementById('editStoreAddress').value.trim();
             let cert = document.getElementById('editStoreCert').value.trim();
 
             document.getElementById('homeDispName').innerText = store;
             localStorage.setItem('rorraxy_store_name', store);
             localStorage.setItem('rorraxy_seller_name', owner);
+            localStorage.setItem('rorraxy_seller_phone', phone);
             localStorage.setItem('rorraxy_seller_address', addr);
             localStorage.setItem('rorraxy_seller_cert', cert);
 
@@ -729,7 +737,6 @@
                 return;
             }
             if(stepNum === 2) {
-                // Retail বা Both হলে রিটেইল প্রাইস দেখাবে, শুধু Wholesale হলে দেখাবে না
                 let rGroup = document.getElementById('retailPriceGroup');
                 if(selectedSellType === 'wholesale') {
                     rGroup.style.display = 'none';
@@ -743,7 +750,6 @@
         }
 
         function handleStep3Next() {
-            // যদি শুধু Wholesale হয়, তবে Step 4 (Wholesale) এ যাবে, নতুবা সরাসরি Step 5 (Media) এ যাবে (যদি Retail হয়) অথবা Both হলে Step 4 এ যাবে।
             if(selectedSellType === 'retail') {
                 goToStep(5);
             } else {
@@ -762,14 +768,6 @@
         function updateCharCount(el) {
             let len = el.value.length;
             document.getElementById('charCount').innerText = len;
-        }
-
-        function addWholesaleTier() {
-            let container = document.getElementById('wholesaleContainer');
-            let row = document.createElement('div');
-            row.className = 'wholesale-row';
-            row.innerHTML = `<input type="number" placeholder="Min Qty" class="ws-qty" style="flex:1;"><input type="number" placeholder="Wholesale Price ($)" class="ws-price" style="flex:1;" step="0.01">`;
-            container.appendChild(row);
         }
 
         let optimizedImageData = "";
