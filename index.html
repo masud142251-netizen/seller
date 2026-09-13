@@ -1,282 +1,674 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RORRAXY - SELLER CENTER & CATEGORY ECOSYSTEM</title>
+    <title>RORRAXY | Ultimate Seller Center</title>
     
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1qyOXxZ8s2cJMEo66NDE4BdoxiC4hy_sG">
-    <!-- Google Font: Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --bg-retail: #000000;
-            --card-retail: #111111;
-            --header-retail: rgba(12, 12, 12, 0.95);
-            --footer-retail: rgba(12, 12, 12, 0.95);
+            --bg-black: #020202;
+            --surface-bg: #080808;
             --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
             --gold-solid: #d4af37;
-            --pink-discount: #ff2a85;
-            --text-white: #ffffff;
-            --text-gray: #b0b0b0;
-            --font-main: 'Poppins', sans-serif;
+            --text-white: #f3f3f3;
+            --text-gray: #a5a5a5;
+            --font-luxury: 'Cinzel', serif;
+            --font-body: 'Poppins', sans-serif;
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; word-break: normal; overflow-wrap: break-word; }
+        
         html, body { 
-            width: 100%; max-width: 100%; overflow-x: hidden; 
-            background: var(--bg-retail) !important; 
-            color: var(--text-white); font-family: var(--font-main); 
+            width: 100%; 
             min-height: 100vh; 
-        }
-        body { padding-top: 85px; padding-bottom: 90px; display: flex; flex-direction: column; align-items: center; }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-        /* হেডার লেআউট */
-        header.app-header {
-            display: flex; flex-direction: column; padding: 6px 10px; align-items: center;
-            background: var(--header-retail); position: fixed; top: 0; left: 0; z-index: 1000;
-            backdrop-filter: blur(15px); width: 100%; border-bottom: 1px solid rgba(212,175,55,0.15);
-            gap: 5px;
+            background-color: var(--bg-black); 
+            color: var(--text-white); 
+            font-family: var(--font-body); 
+            overflow-x: hidden; 
+            -webkit-font-smoothing: antialiased; 
         }
 
-        .header-top-bar { display: flex; justify-content: center; align-items: center; width: 100%; max-width: 600px; padding: 2px 4px; }
-        .header-center-group { display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; }
-        .brand-logo-img { width: 24px; height: 24px; object-fit: contain; background: transparent; }
-        .brand-title-main { font-size: 0.85rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 1px; }
-
-        .header-bottom-row { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 600px; gap: 6px; }
-        .portal-btn {
-            font-size: 0.52rem; font-weight: 700; background: #161616; border: 1px solid rgba(212,175,55,0.3);
-            color: var(--text-white); padding: 7px 8px; border-radius: 5px; text-transform: uppercase; cursor: pointer;
-            transition: 0.3s; white-space: nowrap; text-align: center; flex: 1; text-decoration: none;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .portal-btn:hover { border-color: var(--gold-solid); background: var(--gold-gradient); color: #000; font-weight: 800; }
-
-        /* মেইন কন্টেইনার / সেলার প্যানেল */
-        .seller-dashboard-card {
-            background: #111; border: 1.5px solid rgba(212,175,55,0.3);
-            border-radius: 14px; width: 92%; max-width: 550px; padding: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.9); margin-top: 15px;
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12px;
         }
 
-        .section-title {
-            font-size: 0.95rem; font-weight: 900; background: var(--gold-gradient);
+        h1, h2, h3, h4 { font-family: var(--font-luxury); }
+
+        .custom-toast { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); background: rgba(12, 12, 12, 0.98); border: 1.5px solid; border-image: var(--gold-gradient) 1; color: #fcf6ba; padding: 8px 16px; border-radius: 30px; font-size: 0.75rem; font-weight: 700; z-index: 999999; display: none; box-shadow: 0 0 20px rgba(212,175,55,0.3); font-family: var(--font-body); white-space: nowrap; }
+
+        .page-container {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ল্যান্ডিং কার্ড */
+        .auth-card {
+            background: var(--surface-bg);
+            border-radius: 18px;
+            padding: 30px 18px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.95);
+            border: 1.5px solid rgba(212,175,55,0.25);
+            width: 100%;
+        }
+
+        .logo-large { width: 65px; height: 65px; object-fit: contain; margin-bottom: 6px; }
+
+        .brand-title-large {
+            font-size: 1.5rem; font-weight: 900;
+            background: var(--gold-gradient);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-transform: uppercase; margin-bottom: 15px; text-align: center;
+            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;
         }
 
+        .welcome-subtitle {
+            font-size: 0.9rem; font-weight: 600; color: #ffffff;
+            letter-spacing: 1px; margin-bottom: 20px;
+            font-family: var(--font-luxury); text-transform: uppercase;
+        }
+
+        .google-verify-btn {
+            width: 100%; background: #ffffff; color: #000; border: none; padding: 13px;
+            border-radius: 30px; font-weight: 700; font-size: 0.85rem;
+            display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: 0.3s;
+        }
+        .google-verify-btn:hover { background: #eaeaea; }
+
+        /* পপআপ মডাল ওভারলে */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
+            display: none; justify-content: center; align-items: center; z-index: 2000; padding: 15px;
+        }
+        .modal-card {
+            background: var(--surface-bg); border: 1.5px solid rgba(212,175,55,0.35);
+            border-radius: 18px; padding: 24px 18px; width: 100%; max-width: 550px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.9); text-align: left; max-height: 88vh; overflow-y: auto; position: relative;
+        }
+        .modal-close-btn {
+            position: absolute; top: 14px; right: 14px; background: none; border: none;
+            background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-size: 1.2rem; cursor: pointer;
+        }
+        .modal-title {
+            font-family: var(--font-luxury); font-size: 1.1rem;
+            background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-transform: uppercase; font-weight: 900; margin-bottom: 15px; text-align: center;
+        }
         .form-group { margin-bottom: 12px; }
         .form-group label { display: block; font-size: 0.65rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px; font-weight: 800; }
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%; background: #000; border: 1.5px solid rgba(212,175,55,0.3);
-            padding: 10px 12px; color: #fff; border-radius: 8px; font-size: 0.82rem; outline: none;
+        .form-group input, .form-group select, .form-group textarea { width: 100%; background: #000; border: 1.5px solid rgba(212,175,55,0.3); padding: 10px 12px; color: #fff; border-radius: 8px; font-size: 0.82rem; outline: none; }
+        .phone-row { display: flex; gap: 8px; }
+        .phone-row select { width: 115px; flex-shrink: 0; background: #000; color: #fff; border: 1.5px solid rgba(212,175,55,0.3); border-radius: 8px; font-size: 0.75rem; }
+
+        .btn-gold-glow { background: var(--gold-gradient); border: none; padding: 12px; border-radius: 25px; color: #000; font-weight: 900; font-size: 0.78rem; cursor: pointer; text-transform: uppercase; font-family: var(--font-luxury); width: 100%; text-align: center; margin-top: 10px; }
+        .btn-secondary-glow { background: transparent; border: 1.5px solid rgba(212,175,55,0.5); color: #fcf6ba; padding: 12px; border-radius: 25px; font-weight: 800; font-size: 0.78rem; cursor: pointer; text-transform: uppercase; font-family: var(--font-luxury); width: 100%; text-align: center; margin-top: 6px; }
+
+        /* ড্যাশবোর্ড লেআউট */
+        .dashboard-wrapper {
+            display: none; width: 100%; max-width: 600px; flex-direction: column; gap: 12px;
+        }
+        .dash-card {
+            background: var(--surface-bg); border-radius: 18px; padding: 18px 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.9); border: 1.5px solid rgba(212,175,55,0.2); width: 100%; display: block;
         }
 
-        .btn-gold-glow {
-            background: var(--gold-gradient); border: none; padding: 12px; border-radius: 25px;
-            color: #000; font-weight: 900; font-size: 0.78rem; cursor: pointer; text-transform: uppercase;
-            width: 100%; text-align: center; margin-top: 10px; box-shadow: 0 4px 15px rgba(212,175,55,0.3);
-        }
+        .home-top-section { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; position: relative; }
+        .home-left-info { display: flex; flex-direction: column; align-items: flex-start; max-width: 78%; }
+        .home-logo { width: 50px; height: 50px; object-fit: contain; margin-bottom: 4px; }
+        .home-brand-name { font-size: 0.82rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 1px; font-family: var(--font-luxury); }
+        .home-username { font-size: 0.95rem; font-weight: 700; color: var(--text-white); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+        .home-affiliate-id { font-size: 0.68rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+        .home-commission-sub { font-size: 0.58rem; color: var(--text-gray); font-weight: 500; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
 
-        /* ক্যাটাগরি ফুলস্ক্রিন ওভারলে */
-        .category-fullscreen-view {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-retail); z-index: 4000; overflow-y: auto; padding: 20px 12px 90px 12px;
-        }
-        .golden-close-btn {
-            background: #141414; border: 1px solid rgba(212,175,55,0.4); width: 38px; height: 38px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.8);
-            position: fixed; top: 15px; right: 15px; z-index: 99999;
-        }
-        .golden-close-btn i { font-size: 1.1rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .menu-container { position: relative; margin-top: 2px; display: flex; gap: 8px; align-items: center; }
+        .notification-bell-btn { background: none; border: none; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; position: relative; }
+        .notif-badge { position: absolute; top: 5px; right: 4px; background: #e74c3c; color: #fff; font-size: 0.45rem; width: 13px; height: 13px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 700; }
 
-        .category-section { padding: 14px 8px; }
-        .category-header-row { display: flex; justify-content: flex-start; align-items: center; margin-bottom: 12px; padding: 0 4px; }
-        .category-title { font-size: 0.9rem; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 1px; }
+        .menu-toggle-btn { background: none; border: none; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.3rem; }
         
-        .app-store-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; }
-        @media (min-width: 576px) { .app-store-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (min-width: 768px) { .app-store-grid { grid-template-columns: repeat(5, 1fr); gap: 12px; } }
-
-        .app-card { background: #131315; border-radius: 10px; border: 1px solid rgba(255,255,255,0.04); padding: 14px 10px; display: flex; align-items: center; text-align: left; cursor: pointer; transition: all 0.3s; gap: 12px; min-height: 70px; }
-        .app-card:hover { transform: translateY(-2px); background: #1a1a1e; border-color: rgba(212, 175, 55, 0.3); }
-        .app-card-icon i { font-size: 1.3rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .app-card-name { font-size: 0.7rem; font-weight: 600; color: var(--text-white); text-transform: uppercase; }
-
-        /* ফিক্সড বটম ন্যাভবার */
-        nav.bottom-nav {
-            position: fixed; bottom: 0; left: 0; width: 100%; background: var(--footer-retail);
-            display: flex; justify-content: space-around; align-items: center; padding: 8px 4px;
-            z-index: 5000; border-top: 1px solid rgba(212,175,55,0.15); backdrop-filter: blur(15px);
+        .dropdown-menu {
+            position: absolute; top: 38px; right: 0; background: var(--surface-bg);
+            border: 1.5px solid rgba(212,175,55,0.35); border-radius: 12px; width: 185px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.95); display: none; flex-direction: column; z-index: 1100; overflow: hidden;
         }
-        .nav-item {
-            display: flex; flex-direction: column; align-items: center; text-decoration: none;
-            color: var(--text-gray); font-size: 0.6rem; font-weight: 700; cursor: pointer; text-align: center; gap: 3px; flex: 1; transition: 0.3s;
+        .dropdown-menu.show { display: flex; }
+        .menu-item {
+            padding: 10px 14px; font-size: 0.75rem; color: var(--text-white); text-decoration: none;
+            display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(212,175,55,0.08); cursor: pointer; white-space: nowrap;
         }
-        .nav-item i { font-size: 1.15rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .nav-item:hover { color: var(--gold-solid); transform: translateY(-2px); }
-        .nav-item span { text-transform: uppercase; letter-spacing: 0.4px; }
+        .menu-item:hover { background: rgba(212,175,55,0.1); color: #fcf6ba; }
+        .menu-item i { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; width: 16px; text-align: center; }
+
+        .stats-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
+        .stat-card { background: #040404; border: 1.5px solid rgba(212,175,55,0.25); padding: 10px 6px; border-radius: 10px; text-align: center; cursor: pointer; transition: 0.3s; }
+        .stat-card:hover { border-color: #fcf6ba; background: rgba(212,175,55,0.03); }
+        .stat-lbl { font-size: 0.52rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; font-weight: 800; margin-bottom: 3px; white-space: nowrap; }
+        .stat-val { font-size: 1rem; font-weight: 900; color: #fff; font-family: var(--font-luxury); white-space: nowrap; }
+
+        .seller-update-notice {
+            background: linear-gradient(135deg, rgba(191,149,63,0.12), rgba(10,10,10,0.9));
+            border: 1px solid rgba(212, 175, 55, 0.35); padding: 10px 14px; border-radius: 10px;
+            font-size: 0.7rem; color: #fcf6ba; text-align: center; margin-bottom: 12px; font-weight: 500;
+            display: flex; align-items: center; gap: 8px; justify-content: center;
+        }
+
+        .seller-action-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+        .seller-main-btn {
+            background: #040404; border: 1.5px solid rgba(212,175,55,0.3); border-radius: 10px;
+            padding: 10px 4px; text-align: center; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: 0.3s;
+        }
+        .seller-main-btn:hover { background: rgba(212,175,55,0.06); border-color: #fcf6ba; }
+        .seller-main-btn i { font-size: 1rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .seller-main-btn span { font-size: 0.62rem; font-weight: 700; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; }
+
+        .chat-box {
+            background: #040404; border: 1.5px solid rgba(212,175,55,0.25); border-radius: 12px;
+            margin-bottom: 12px; display: flex; flex-direction: column; height: 180px; overflow: hidden;
+        }
+        .chat-header {
+            padding: 8px 12px; background: rgba(212,175,55,0.08); border-bottom: 1px solid rgba(212,175,55,0.2);
+            font-size: 0.68rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center;
+        }
+        .chat-messages-area { flex: 1; padding: 10px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; font-size: 0.72rem; }
+        .chat-msg { max-width: 80%; padding: 6px 10px; border-radius: 8px; line-height: 1.4; }
+        .chat-msg.customer { background: rgba(255,255,255,0.06); color: #fff; align-self: flex-start; border-left: 2px solid #bf953f; }
+        .chat-msg.seller { background: rgba(191, 149, 63, 0.15); color: #fcf6ba; align-self: flex-end; border-right: 2px solid #bf953f; }
+        .chat-input-row { display: flex; border-top: 1px solid rgba(212,175,55,0.2); background: #000; }
+        .chat-input { flex: 1; background: transparent; border: none; padding: 10px; color: #fff; font-size: 0.75rem; outline: none; }
+        .chat-send-btn { background: var(--gold-gradient); border: none; color: #000; padding: 0 14px; font-weight: 800; cursor: pointer; font-size: 0.75rem; }
+
+        .action-row { display: flex; gap: 8px; }
+        .support-btn {
+            background: transparent; border: 1.5px solid rgba(255,255,255,0.25); color: #ffffff; flex: 1; padding: 10px;
+            font-weight: 700; font-size: 0.72rem; cursor: pointer; text-transform: uppercase; font-family: var(--font-luxury);
+            display: flex; align-items: center; justify-content: center; gap: 5px; border-radius: 10px; text-decoration: none; white-space: nowrap;
+        }
+        .withdraw-quick-btn {
+            background: var(--gold-gradient); border: none; color: #000; flex: 1; padding: 10px;
+            font-weight: 800; font-size: 0.72rem; cursor: pointer; text-transform: uppercase; font-family: var(--font-luxury);
+            display: flex; align-items: center; justify-content: center; gap: 5px; border-radius: 10px; white-space: nowrap;
+        }
+
+        .info-display-box {
+            background: #040404; border: 1.5px solid rgba(212,175,55,0.25); padding: 12px 14px;
+            border-radius: 10px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+        }
+        .info-content-wrap { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+        .info-lbl { font-size: 0.6rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; font-weight: 800; margin-bottom: 2px; white-space: nowrap; }
+        .info-val { font-size: 0.78rem; color: #fff; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
+
+        .qr-box { text-align: center; padding: 12px; background: #040404; border-radius: 10px; border: 1.5px solid rgba(212,175,55,0.25); margin-top: 8px; }
+        .qr-image { width: 140px; height: 140px; background: #fff; padding: 5px; border-radius: 6px; margin: 0 auto 8px auto; object-fit: contain; }
+
+        .verified-success-box {
+            display: none; flex-direction: column; align-items: center; justify-content: center;
+            padding: 20px; background: rgba(46, 204, 113, 0.08); border: 2px solid #2ecc71; border-radius: 12px; text-align: center;
+        }
+        .verified-success-box i { font-size: 2.6rem; color: #2ecc71; margin-bottom: 8px; }
+
+        .payment-options-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+        .pay-option {
+            background: #040404; border: 1.5px solid rgba(212,175,55,0.3); padding: 10px 6px; border-radius: 8px;
+            text-align: center; cursor: pointer; font-size: 0.72rem; font-weight: 700; background: var(--gold-gradient);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; white-space: nowrap;
+        }
+        .pay-option.selected { background: var(--gold-gradient); color: #000; -webkit-text-fill-color: #000; border-color: #fff; }
+
+        .policy-content {
+            font-size: 0.75rem; color: var(--text-gray); line-height: 1.7; background: #040404;
+            padding: 14px; border-radius: 10px; border: 1.5px solid rgba(212,175,55,0.25); max-height: 62vh; overflow-y: auto;
+        }
+
+        .notif-item { background: #040404; border: 1.5px solid rgba(212,175,55,0.2); padding: 10px 12px; border-radius: 10px; margin-bottom: 8px; font-size: 0.75rem; display: flex; flex-direction: column; gap: 3px; }
+        .notif-title { font-weight: 700; color: #fcf6ba; }
+        .notif-time { font-size: 0.6rem; color: var(--text-gray); }
+
+        .product-edit-card { background: #000; border: 1.5px solid rgba(212,175,55,0.25); padding: 12px; border-radius: 10px; margin-bottom: 10px; }
+
+        /* হোম পেজের হুবহু ক্যাটাগরি কার্ড স্টাইল (সেলার আপলোডের জন্য) */
+        .category-select-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; max-height: 240px; overflow-y: auto; margin-bottom: 10px; padding: 4px; }
+        .cat-item-card {
+            background: #131315; border-radius: 8px; border: 1.5px solid rgba(255,255,255,0.06);
+            padding: 10px; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.3s;
+        }
+        .cat-item-card:hover, .cat-item-card.selected { border-color: var(--gold-solid); background: rgba(212,175,55,0.08); }
+        .cat-item-card i { font-size: 1.1rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .cat-item-name { font-size: 0.65rem; font-weight: 700; color: #fff; text-transform: uppercase; }
+
+        .step-content { display: none; }
+        .step-content.active { display: block; }
     </style>
 </head>
 <body>
 
-    <!-- হেডার -->
-    <header class="app-header">
-        <div class="header-top-bar">
-            <div class="header-center-group" onclick="location.href='https://rorraxy.com'">
-                <img src="https://lh3.googleusercontent.com/d/1qyOXxZ8s2cJMEo66NDE4BdoxiC4hy_sG" alt="Logo" class="brand-logo-img">
-                <span class="brand-title-main">RORRAXY SELLER CENTER</span>
+    <div class="custom-toast" id="customToast">Action completed successfully!</div>
+
+    <div class="page-container">
+        
+        <!-- ১. সেলার ল্যান্ডিং কার্ড -->
+        <div class="auth-card" id="authSection">
+            <img src="https://lh3.googleusercontent.com/d/1qyOXxZ8s2cJMEo66NDE4BdoxiC4hy_sG" alt="Logo" class="logo-large">
+            <h1 class="brand-title-large">RORRAXY</h1>
+            <p class="welcome-subtitle">Become a Seller</p>
+
+            <button class="google-verify-btn" onclick="openInfoModal()">
+                <i class="fa-brands fa-google" style="color:#ea4335;"></i> Continue & Verify with Google
+            </button>
+        </div>
+
+        <!-- ২. সেলার ইনফরমেশন পপআপ -->
+        <div class="modal-overlay" id="infoModal">
+            <div class="modal-card">
+                <button class="modal-close-btn" onclick="closeModal('infoModal')"><i class="fa-solid fa-xmark"></i></button>
+                <h3 class="modal-title">Seller & Store Information</h3>
+                <form id="sellerForm" onsubmit="submitSellerInfo(event)">
+                    <div class="form-group">
+                        <label>Store Name *</label>
+                        <input type="text" id="regStoreName" placeholder="Enter store name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Owner Full Name *</label>
+                        <input type="text" id="regName" placeholder="Enter full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Gmail *</label>
+                        <input type="email" id="regEmail" placeholder="seller@gmail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>WhatsApp Number *</label>
+                        <div class="phone-row">
+                            <select id="regDialCode"><option value="+880">🇧🇩 +880</option></select>
+                            <input type="tel" id="regWhatsApp" placeholder="17XXXXXXXX" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Store Business Address *</label>
+                        <input type="text" id="regAddress" placeholder="Warehouse, City, Country" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Trade License / Business Certificate ID</label>
+                        <input type="text" id="regCertId" placeholder="Enter certificate or license number (Optional)">
+                    </div>
+                    <button type="submit" class="btn-gold-glow">Confirm & Enter Dashboard</button>
+                </form>
             </div>
         </div>
-        <div class="header-bottom-row">
-            <button class="portal-btn" onclick="openCategoryView()">Browse Home Categories</button>
-            <button class="portal-btn" onclick="alert('Connected to Main Ecosystem!')">Sync Status: Active</button>
+
+        <!-- ৩. সেলার ড্যাশবোর্ড সেকশন -->
+        <div class="dashboard-wrapper" id="dashboardSection">
+            
+            <div class="dash-card">
+                
+                <!-- হেডার -->
+                <div class="home-top-section">
+                    <div class="home-left-info">
+                        <img src="https://lh3.googleusercontent.com/d/1qyOXxZ8s2cJMEo66NDE4BdoxiC4hy_sG" alt="Logo" class="home-logo">
+                        <div class="home-brand-name">RORRAXY SELLER</div>
+                        <div class="home-username" id="homeDispName">Store Name</div>
+                        <div class="home-affiliate-id" id="homeAffId">SELLER ID: seller01</div>
+                        <div class="home-commission-sub" id="homeEmailDisp">seller@gmail.com</div>
+                    </div>
+
+                    <div class="menu-container">
+                        <button class="notification-bell-btn" onclick="openPopupModal('tabNotificationPopup')">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="notif-badge">1</span>
+                        </button>
+
+                        <button class="menu-toggle-btn" onclick="toggleMenu(event)">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            <div class="menu-item" onclick="openPopupModal('tabInfoPopup')"><i class="fa-solid fa-circle-info"></i> Information & Store</div>
+                            <div class="menu-item" onclick="openPopupModal('tabVerificationPopup')"><i class="fa-solid fa-shield-halved"></i> Verification</div>
+                            <div class="menu-item" onclick="openPopupModal('tabPaymentPopup')"><i class="fa-solid fa-wallet"></i> Payout Setup</div>
+                            <div class="menu-item" onclick="openPopupModal('tabWithdrawPopup')"><i class="fa-solid fa-money-bill-transfer"></i> Withdraw Payout</div>
+                            <div class="menu-item" onclick="openPopupModal('tabPolicyPopup')"><i class="fa-solid fa-file-contract"></i> Seller Policy</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- স্ট্যাটস বক্স -->
+                <div class="stats-grid-3">
+                    <div class="stat-card" onclick="openPopupModal('tabWithdrawPopup')">
+                        <div class="stat-lbl">Total Income</div>
+                        <div class="stat-val" id="totalIncomeVal">$0.00</div>
+                    </div>
+                    <div class="stat-card" onclick="openPopupModal('tabWithdrawPopup')">
+                        <div class="stat-lbl">Total Payout</div>
+                        <div class="stat-val" id="totalPayoutVal">$0.00</div>
+                    </div>
+                    <div class="stat-card" onclick="openPopupModal('tabProductListPopup')">
+                        <div class="stat-lbl">Products (Max 50)</div>
+                        <div class="stat-val" id="totalProdCount">0/50</div>
+                    </div>
+                </div>
+
+                <!-- নোটিশ ব্যানার -->
+                <div class="seller-update-notice">
+                    <i class="fa-solid fa-bullhorn" style="color: #fcf6ba; font-size: 0.9rem;"></i>
+                    <span>Upload fresh trending items & keep stock updated. Max 50 products allowed.</span>
+                </div>
+
+                <!-- ৩টি মেইন বাটন -->
+                <div class="seller-action-grid">
+                    <div class="seller-main-btn" onclick="openPopupModal('tabNewProductPopup')">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        <span>New Upload</span>
+                    </div>
+                    <div class="seller-main-btn" onclick="openPopupModal('tabProductListPopup')">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                        <span>Product List</span>
+                    </div>
+                    <div class="seller-main-btn" onclick="openPopupModal('tabShipmentPopup')">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <span>Shipment</span>
+                    </div>
+                </div>
+
+                <!-- সেলার টু কাস্টমার চ্যাট -->
+                <div class="chat-box">
+                    <div class="chat-header">
+                        <span><i class="fa-solid fa-comments"></i> Seller to Customer Chat</span>
+                        <span style="font-size: 0.55rem; color: #2ecc71;"><i class="fa-solid fa-circle" style="font-size: 5px;"></i> Active Customer</span>
+                    </div>
+                    <div class="chat-messages-area" id="chatMessagesArea">
+                        <div class="chat-msg customer">Hello! I have a question about my product order delivery timeline.</div>
+                    </div>
+                    <div class="chat-input-row">
+                        <input type="text" id="chatInputText" class="chat-input" placeholder="Reply to customer..." onkeypress="handleChatKeyPress(event)">
+                        <button class="chat-send-btn" onclick="sendChatMessage()">Send</button>
+                    </div>
+                </div>
+
+                <!-- সাপোর্ট এবং পেআউট বাটন -->
+                <div class="action-row">
+                    <button class="support-btn" onclick="openFirebaseChat()">
+                        <i class="fa-solid fa-headset" style="font-size: 0.8rem;"></i> Support
+                    </button>
+                    <button class="withdraw-quick-btn" onclick="checkWithdrawSteps()">
+                        <i class="fa-solid fa-money-bill-transfer" style="font-size: 0.8rem;"></i> Payout
+                    </button>
+                </div>
+            </div>
+
         </div>
-    </header>
 
-    <!-- সেলার প্রোডাক্ট আপলোড ফর্ম (যেখানে হোম পেজের ক্যাটাগরিগুলো ডাইনামিকলি কানেক্টেড) -->
-    <div class="seller-dashboard-card">
-        <h3 class="section-title">Upload New Product (Synced)</h3>
-        <form onsubmit="handleProductUpload(event)">
-            <div class="form-group">
-                <label>Product Title *</label>
-                <input type="text" id="prodTitle" placeholder="Enter product name..." required>
-            </div>
-
-            <!-- হোম পেজের ক্যাটাগরি কাঠামোর সাথে সংযুক্ত ড্রপডাউন -->
-            <div class="form-group">
-                <label>Select Main Category & Subcategory *</label>
-                <select id="prodCategorySelect" required>
-                    <optgroup label="1. Women's Fashion">
-                        <option value="Women's Fashion > Clothing">Clothing</option>
-                        <option value="Women's Fashion > Handbags">Handbags</option>
-                        <option value="Women's Fashion > Shoes">Shoes</option>
-                        <option value="Women's Fashion > Jewelry">Jewelry</option>
-                        <option value="Women's Fashion > Watches">Watches</option>
-                        <option value="Women's Fashion > Beauty">Beauty</option>
-                    </optgroup>
-                    <optgroup label="2. Boys' Fashion">
-                        <option value="Boys' Fashion > Clothing">Clothing</option>
-                        <option value="Boys' Fashion > Shoes">Shoes</option>
-                        <option value="Boys' Fashion > Watches">Watches</option>
-                        <option value="Boys' Fashion > Accessories">Accessories</option>
-                    </optgroup>
-                    <optgroup label="3. Matching Sets">
-                        <option value="Matching Sets > Couple Sets">Couple Sets</option>
-                        <option value="Matching Sets > Family Sets">Family Sets</option>
-                        <option value="Matching Sets > Mom & Me">Mom & Me</option>
-                        <option value="Matching Sets > Value Bundles">Value Bundles</option>
-                    </optgroup>
-                    <optgroup label="4. Luxury Gifts">
-                        <option value="Luxury Gifts > Corporate Gifts">Corporate Gifts</option>
-                        <option value="Luxury Gifts > Luxury Items">Luxury Items</option>
-                        <option value="Luxury Gifts > Wood Resin">Wood Resin</option>
-                    </optgroup>
-                    <optgroup label="5. Girls' Fashion">
-                        <option value="Girls' Fashion > Clothing">Clothing</option>
-                        <option value="Girls' Fashion > Party Dresses">Party Dresses</option>
-                        <option value="Girls' Fashion > Jewelry">Jewelry</option>
-                    </optgroup>
-                    <optgroup label="6. Men's Fashion">
-                        <option value="Men's Fashion > Clothing">Clothing</option>
-                        <option value="Men's Fashion > Shoes">Shoes</option>
-                        <option value="Men's Fashion > Grooming">Grooming</option>
-                    </optgroup>
-                    <optgroup label="7. Mother & Baby">
-                        <option value="Mother & Baby > Baby Clothing">Baby Clothing</option>
-                        <option value="Mother & Baby > Maternity">Maternity</option>
-                        <option value="Mother & Baby > Baby Care">Baby Care</option>
-                    </optgroup>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Price ($ USD) *</label>
-                <input type="number" id="prodPrice" placeholder="0.00" step="0.01" required>
-            </div>
-
-            <div class="form-group">
-                <label>Product Image URL *</label>
-                <input type="url" id="prodImg" placeholder="https://..." required>
-            </div>
-
-            <button type="submit" class="btn-gold-glow">Publish Product to Ecosystem</button>
-        </form>
     </div>
 
-    <!-- ক্যাটাগরি ওভারলে (হোম পেজের হুবহু মেনুবার স্ট্রাকচার) -->
-    <div id="categoryView" class="category-fullscreen-view">
-        <div class="golden-close-btn" onclick="toggleCategoryView()"><i class="fa-solid fa-xmark"></i></div>
-        <div style="margin-bottom: 25px; text-align: center;">
-            <span style="font-size:1.1rem; font-weight:900; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-transform:uppercase; letter-spacing: 1px;">Home Categories Structure</span>
-        </div>
-
-        <div id="dynamicCategoryContent">
-            <section class="category-section">
-                <div class="category-header-row"><h2 class="category-title">1. Women's Fashion</h2></div>
-                <div class="app-store-grid">
-                    <div class="app-card" onclick="selectCategoryFromModal('Women\'s Fashion > Clothing')"><div class="app-card-icon"><i class="fa-solid fa-shirt"></i></div><span class="app-card-name">Clothing</span></div>
-                    <div class="app-card" onclick="selectCategoryFromModal('Women\'s Fashion > Handbags')"><div class="app-card-icon"><i class="fa-solid fa-bag-shopping"></i></div><span class="app-card-name">Handbags</span></div>
-                    <div class="app-card" onclick="selectCategoryFromModal('Women\'s Fashion > Shoes')"><div class="app-card-icon"><i class="fa-solid fa-shoe-prints"></i></div><span class="app-card-name">Shoes</span></div>
-                    <div class="app-card" onclick="selectCategoryFromModal('Women\'s Fashion > Jewelry')"><div class="app-card-icon"><i class="fa-solid fa-gem"></i></div><span class="app-card-name">Jewelry</span></div>
-                    <div class="app-card" onclick="selectCategoryFromModal('Women\'s Fashion > Watches')"><div class="app-card-icon"><i class="fa-solid fa-clock"></i></div><span class="app-card-name">Watches</span></div>
-                </div>
-            </section>
-
-            <section class="category-section">
-                <div class="category-header-row"><h2 class="category-title">2. Boys' Fashion</h2></div>
-                <div class="app-store-grid">
-                    <div class="app-card" onclick="selectCategoryFromModal('Boys\' Fashion > Clothing')"><div class="app-card-icon"><i class="fa-solid fa-child"></i></div><span class="app-card-name">Clothing</span></div>
-                    <div class="app-card" onclick="selectCategoryFromModal('Boys\' Fashion > Shoes')"><div class="app-card-icon"><i class="fa-solid fa-socks"></i></div><span class="app-card-name">Shoes</span></div>
-                    <div class="app-card" onclick="selectCategoryFromModal('Boys\' Fashion > Accessories')"><div class="app-card-icon"><i class="fa-solid fa-hat-cowboy"></i></div><span class="app-card-name">Accessories</span></div>
-                </div>
-            </section>
+    <!-- পপআপ মডাল ওভারলে -->
+    <div class="modal-overlay" id="popupModalOverlay">
+        <div class="modal-card" id="popupModalContent">
+            <!-- ডাইনামিক কনটেন্ট -->
         </div>
     </div>
-
-    <!-- ফিক্সড বটম ন্যাভবার -->
-    <nav class="bottom-nav">
-        <div class="nav-item" onclick="openCategoryView()">
-            <i class="fa-solid fa-border-all"></i>
-            <span>Categories</span>
-        </div>
-        <div class="nav-item" onclick="alert('Seller Dashboard Active')">
-            <i class="fa-solid fa-chart-line"></i>
-            <span>Dashboard</span>
-        </div>
-    </nav>
 
     <script>
-        function openCategoryView() {
-            document.getElementById('categoryView').style.display = 'block';
+        let sellerProducts = [];
+        let sellerOrders = [
+            { orderId: "ORD-501", customer: "John Doe", product: "Luxury Gamar Wood Table", status: "Pending Shipment (3 Days Left)" }
+        ];
+
+        let uploadStep = 1;
+        let selectedCategoryPath = "";
+
+        function showToast(msg) {
+            let t = document.getElementById('customToast');
+            if(!t) return;
+            t.innerText = msg;
+            t.style.display = 'block';
+            setTimeout(() => { t.style.display = 'none'; }, 2000);
         }
-        function toggleCategoryView() {
-            const view = document.getElementById('categoryView');
-            view.style.display = view.style.display === 'block' ? 'none' : 'block';
-        }
-        function selectCategoryFromModal(categoryPath) {
-            const selectBox = document.getElementById('prodCategorySelect');
-            for(let i = 0; i < selectBox.options.length; i++) {
-                if(selectBox.options[i].value === categoryPath) {
-                    selectBox.selectedIndex = i;
-                    break;
-                }
-            }
-            toggleCategoryView();
-            alert(`Selected Category: ${categoryPath}`);
-        }
-        function handleProductUpload(e) {
+
+        function openInfoModal() { document.getElementById('infoModal').style.display = 'flex'; }
+        function closeModal(modalId) { document.getElementById(modalId).style.display = 'none'; }
+
+        function submitSellerInfo(e) {
             e.preventDefault();
-            const title = document.getElementById('prodTitle').value;
-            const category = document.getElementById('prodCategorySelect').value;
-            alert(`Product "${title}" successfully published under [${category}] and synced with Home page ecosystem!`);
-            e.target.reset();
+            const storeName = document.getElementById('regStoreName').value.trim();
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const phone = "+880 " + document.getElementById('regWhatsApp').value.trim();
+            const address = document.getElementById('regAddress').value.trim();
+            const certId = document.getElementById('regCertId').value.trim() || "N/A";
+
+            let gmailUsername = email.includes('@') ? email.split('@')[0] : email;
+            document.getElementById('homeDispName').innerText = storeName;
+            document.getElementById('homeAffId').innerText = 'SELLER ID: ' + gmailUsername;
+            document.getElementById('homeEmailDisp').innerText = email;
+
+            localStorage.setItem('rorraxy_store_name', storeName);
+            localStorage.setItem('rorraxy_seller_name', name);
+            localStorage.setItem('rorraxy_seller_email', email);
+            localStorage.setItem('rorraxy_seller_phone', phone);
+            localStorage.setItem('rorraxy_seller_address', address);
+            localStorage.setItem('rorraxy_seller_cert', certId);
+            localStorage.setItem('rorraxy_seller_info_done', 'true');
+
+            document.getElementById('infoModal').style.display = 'none';
+            document.getElementById('authSection').style.display = 'none';
+            document.getElementById('dashboardSection').style.display = 'flex';
+            showToast("Store profile configured successfully!");
         }
+
+        function toggleMenu(e) {
+            e.stopPropagation();
+            document.getElementById('dropdownMenu').classList.toggle('show');
+        }
+
+        function checkWithdrawSteps() {
+            const hasInfo = localStorage.getItem('rorraxy_seller_info_done') === 'true';
+            const hasVerified = localStorage.getItem('rorraxy_seller_verified') === 'true';
+            const hasPayment = localStorage.getItem('rorraxy_seller_payment_done') === 'true';
+
+            if(!hasInfo) { showToast("Complete store info first!"); openPopupModal('tabInfoPopup'); return; }
+            if(!hasVerified) { showToast("Complete Google Authenticator verification!"); openPopupModal('tabVerificationPopup'); return; }
+            if(!hasPayment) { showToast("Setup payout method first!"); openPopupModal('tabPaymentPopup'); return; }
+            openPopupModal('tabWithdrawPopup');
+        }
+
+        function updateProductCount() {
+            let countEl = document.getElementById('totalProdCount');
+            if(countEl) countEl.innerText = `${sellerProducts.length}/50`;
+        }
+
+        function openPopupModal(tabType) {
+            document.getElementById('dropdownMenu').classList.remove('show');
+            const overlay = document.getElementById('popupModalOverlay');
+            const contentBox = document.getElementById('popupModalContent');
+            
+            let htmlContent = `<button class="modal-close-btn" onclick="closeModal('popupModalOverlay')"><i class="fa-solid fa-xmark"></i></button>`;
+
+            if(tabType === 'tabInfoPopup') {
+                let savedStore = localStorage.getItem('rorraxy_store_name') || 'Store Name';
+                let savedName = localStorage.getItem('rorraxy_seller_name') || 'Owner';
+                let savedAddress = localStorage.getItem('rorraxy_seller_address') || 'Address';
+                let savedCert = localStorage.getItem('rorraxy_seller_cert') || 'N/A';
+                htmlContent += `
+                    <h3 class="modal-title">Store Information</h3>
+                    <div class="form-group"><label>Store Name</label><input type="text" id="editStoreName" value="${savedStore}"></div>
+                    <div class="form-group"><label>Owner Name</label><input type="text" id="editOwnerName" value="${savedName}"></div>
+                    <div class="form-group"><label>Business Address</label><input type="text" id="editStoreAddress" value="${savedAddress}"></div>
+                    <div class="form-group"><label>Certificate</label><input type="text" id="editStoreCert" value="${savedCert}"></div>
+                    <button class="btn-gold-glow" onclick="saveStoreInfoChanges()">Update Info</button>`;
+            } 
+            else if(tabType === 'tabNewProductPopup') {
+                uploadStep = 1;
+                selectedCategoryPath = "";
+                htmlContent += `
+                    <h3 class="modal-title">New Product Upload (Step <span id="stepIndicator">1</span>/3)</h3>
+                    
+                    <!-- Step 1: হোম পেজের হুবহু ক্যাটাগরি মেনু সিস্টেম -->
+                    <div class="step-content active" id="uploadStep1">
+                        <label style="font-size:0.65rem; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-transform:uppercase; font-weight:800; margin-bottom:6px; display:block;">Select Category from Home Menu</label>
+                        <div class="category-select-grid">
+                            <div class="cat-item-card" onclick="selectCatCard('Women\'s Fashion > Clothing', this)"><i class="fa-solid fa-shirt"></i><span class="cat-item-name">Women Clothing</span></div>
+                            <div class="cat-item-card" onclick="selectCatCard('Women\'s Fashion > Handbags', this)"><i class="fa-solid fa-bag-shopping"></i><span class="cat-item-name">Handbags</span></div>
+                            <div class="cat-item-card" onclick="selectCatCard('Boys\' Fashion > Clothing', this)"><i class="fa-solid fa-child"></i><span class="cat-item-name">Boys Clothing</span></div>
+                            <div class="cat-item-card" onclick="selectCatCard('Matching Sets > Couple Sets', this)"><i class="fa-solid fa-user-group"></i><span class="cat-item-name">Couple Sets</span></div>
+                            <div class="cat-item-card" onclick="selectCatCard('Luxury Gifts > Corporate Gifts', this)"><i class="fa-solid fa-briefcase"></i><span class="cat-item-name">Corporate Gifts</span></div>
+                            <div class="cat-item-card" onclick="selectCatCard('Girls\' Fashion > Party Dresses', this)"><i class="fa-solid fa-chess-queen"></i><span class="cat-item-name">Party Dresses</span></div>
+                            <div class="cat-item-card" onclick="selectCatCard('Men\'s Fashion > Clothing', this)"><i class="fa-solid fa-user-tie"></i><span class="cat-item-name">Men Clothing</span></div>
+                            <div class="cat-item-card" onclick="selectCatCard('Mother & Baby > Baby Care', this)"><i class="fa-solid fa-bottle-droplet"></i><span class="cat-item-name">Baby Care</span></div>
+                        </div>
+                        <button class="btn-gold-glow" onclick="nextUploadStep(2)">Next Step</button>
+                    </div>
+
+                    <!-- Step 2: Title & Description -->
+                    <div class="step-content" id="uploadStep2">
+                        <div class="form-group"><label>Product Title *</label><input type="text" id="newProdTitle" placeholder="Enter trending title"></div>
+                        <div class="form-group"><label>Description *</label><textarea id="newProdDesc" rows="3" placeholder="Enter specifications..."></textarea></div>
+                        <button class="btn-gold-glow" onclick="nextUploadStep(3)">Next Step</button>
+                        <button class="btn-secondary-glow" onclick="nextUploadStep(1)">Back</button>
+                    </div>
+
+                    <!-- Step 3: Price, Stock & Image -->
+                    <div class="step-content" id="uploadStep3">
+                        <div class="form-group"><label>Price ($ USD) *</label><input type="number" id="newProdPrice" placeholder="0.00" step="0.01"></div>
+                        <div class="form-group"><label>Stock Quantity *</label><input type="number" id="newProdStock" placeholder="Enter stock"></div>
+                        <div class="form-group"><label>Image URL *</label><input type="url" id="newProdImg" placeholder="https://..."></div>
+                        <button class="btn-gold-glow" onclick="submitFinalProduct()">Publish Product</button>
+                        <button class="btn-secondary-glow" onclick="nextUploadStep(2)">Back</button>
+                    </div>`;
+            }
+            else if(tabType === 'tabProductListPopup') {
+                htmlContent += `<h3 class="modal-title">Product List (${sellerProducts.length}/50)</h3><div style="max-height:280px; overflow-y:auto;">`;
+                if(sellerProducts.length === 0) htmlContent += `<p style="text-align:center; color:var(--text-gray); font-size:0.75rem;">No products uploaded yet.</p>`;
+                else {
+                    sellerProducts.forEach((p, idx) => {
+                        htmlContent += `<div class="product-edit-card"><div class="form-group"><label>Title</label><input type="text" id="editTitle_${idx}" value="${p.title}"></div><button class="btn-gold-glow" style="padding:6px; font-size:0.65rem;" onclick="saveProductEdit(${idx})">Save</button></div>`;
+                    });
+                }
+                htmlContent += `</div>`;
+            }
+            else if(tabType === 'tabShipmentPopup') {
+                htmlContent += `<h3 class="modal-title">Shipment Management</h3><div style="display:flex; flex-direction:column; gap:10px;">`;
+                sellerOrders.forEach((ord, idx) => {
+                    htmlContent += `<div style="background:#000; border:1.5px solid rgba(212,175,55,0.3); padding:12px; border-radius:10px;"><h4 style="font-size:0.75rem; color:#fcf6ba;">${ord.orderId} (${ord.product})</h4><div class="form-group" style="margin-top:6px;"><label>Courier</label><select id="courierSelect_${idx}"><option value="DHL">DHL Express</option><option value="Steadfast">Steadfast</option></select></div><div class="form-group"><label>Tracking ID</label><input type="text" id="trackingInput_${idx}" placeholder="Tracking link"></div><button class="btn-gold-glow" style="padding:8px; font-size:0.7rem;" onclick="submitShipment(${idx})">Send Tracking</button></div>`;
+                });
+                htmlContent += `</div>`;
+            }
+            else if(tabType === 'tabVerificationPopup') {
+                const isVerified = localStorage.getItem('rorraxy_seller_verified') === 'true';
+                htmlContent += `<h3 class="modal-title">Security</h3><div class="qr-box" style="display:${isVerified?'none':'block'};"><input type="text" id="authCodeInput" placeholder="Enter 6-digit code" maxlength="6"><button class="btn-gold-glow" onclick="verifyAuthCode()">Verify</button></div><div class="verified-success-box" style="display:${isVerified?'flex':'none'};"><i class="fa-solid fa-circle-check" style="color:#2ecc71;"></i><h3 style="color:#2ecc71;">Verified</h3></div>`;
+            }
+            else if(tabType === 'tabPaymentPopup') {
+                htmlContent += `<h3 class="modal-title">Payout Setup</h3><div class="payment-options-grid"><div class="pay-option" id="optBkash" onclick="selectPayment('bkash')">Bikash</div><div class="pay-option" id="optNagad" onclick="selectPayment('nagad')">Nagad</div><div class="pay-option" id="optPayoneer" onclick="selectPayment('payoneer')">Payoneer</div></div><div class="form-group" id="paymentInputGroup" style="display:none;"><label id="paymentInputLabel">Detail</label><input type="text" id="payAccountDetail"></div><button class="btn-gold-glow" onclick="savePaymentSystem()">Save</button>`;
+            }
+            else if(tabType === 'tabWithdrawPopup') {
+                htmlContent += `<h3 class="modal-title">Withdraw</h3><div class="info-display-box"><div class="info-content-wrap"><div class="info-lbl">Balance</div><div class="info-val">$0.00</div></div></div><div class="form-group"><label>Amount</label><input type="number" id="withdrawAmount"></div><button class="btn-gold-glow" onclick="requestWithdrawal()">Request</button>`;
+            }
+            else if(tabType === 'tabNotificationPopup') {
+                htmlContent += `<h3 class="modal-title">Notifications</h3><div class="notif-item"><div class="notif-title">New Order</div><div style="font-size:0.7rem;">Order #ORD-501 received.</div></div>`;
+            }
+            else if(tabType === 'tabPolicyPopup') {
+                htmlContent += `<h3 class="modal-title">Policy</h3><div class="policy-content">1. 100% Brand New Products.<br>2. Max 50 items limit.<br>3. Mandatory returns.</div>`;
+            }
+
+            contentBox.innerHTML = htmlContent;
+            overlay.style.display = 'flex';
+        }
+
+        function selectCatCard(path, el) {
+            document.querySelectorAll('.cat-item-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            selectedCategoryPath = path;
+        }
+
+        function nextUploadStep(stepNum) {
+            if(stepNum === 2 && !selectedCategoryPath) {
+                showToast("Please select a category first!");
+                return;
+            }
+            uploadStep = stepNum;
+            document.getElementById('stepIndicator').innerText = stepNum;
+            document.querySelectorAll('.step-content').forEach(s => s.classList.remove('active'));
+            document.getElementById(`uploadStep${stepNum}`).classList.add('active');
+        }
+
+        function submitFinalProduct() {
+            const title = document.getElementById('newProdTitle').value.trim();
+            const desc = document.getElementById('newProdDesc').value.trim();
+            const price = parseFloat(document.getElementById('newProdPrice').value);
+            const stock = parseInt(document.getElementById('newProdStock').value);
+            const img = document.getElementById('newProdImg').value.trim();
+
+            if(!title || !price || !stock || !img) {
+                showToast("Please fill all required fields!");
+                return;
+            }
+            if(sellerProducts.length >= 50) {
+                showToast("Max 50 products limit reached!");
+                return;
+            }
+
+            sellerProducts.push({ id: Date.now(), title, category: selectedCategoryPath, price, stock, desc, img });
+            updateProductCount();
+            showToast("Product published successfully!");
+            closeModal('popupModalOverlay');
+        }
+
+        function verifyAuthCode() {
+            let c = document.getElementById('authCodeInput').value.trim();
+            if(c.length !== 6) { showToast("Enter valid 6-digit code"); return; }
+            localStorage.setItem('rorraxy_seller_verified', 'true');
+            showToast("Verified Successfully!");
+            closeModal('popupModalOverlay');
+        }
+
+        let selectedGateway = "";
+        function selectPayment(gw) {
+            selectedGateway = gw;
+            document.querySelectorAll('.pay-option').forEach(e => e.classList.remove('selected'));
+            document.getElementById('opt' + gw.charAt(0).toUpperCase() + gw.slice(1)).classList.add('selected');
+            document.getElementById('paymentInputGroup').style.display = 'block';
+        }
+
+        function savePaymentSystem() {
+            localStorage.setItem('rorraxy_seller_payment_done', 'true');
+            showToast("Payout saved!");
+            closeModal('popupModalOverlay');
+        }
+
+        function requestWithdrawal() {
+            showToast("Request submitted!");
+            closeModal('popupModalOverlay');
+        }
+
+        function sendChatMessage() {
+            let input = document.getElementById('chatInputText');
+            let txt = input.value.trim();
+            if(!txt) return;
+            let area = document.getElementById('chatMessagesArea');
+            let msg = document.createElement('div');
+            msg.className = 'chat-msg seller';
+            msg.innerText = txt;
+            area.appendChild(msg);
+            input.value = "";
+            area.scrollTop = area.scrollHeight;
+        }
+
+        function handleChatKeyPress(e) { if(e.key === 'Enter') sendChatMessage(); }
+
+        window.addEventListener('click', (e) => {
+            const menu = document.getElementById('dropdownMenu');
+            if(menu && menu.classList.contains('show') && !e.target.closest('.menu-container')) menu.classList.remove('show');
+            if(e.target === document.getElementById('popupModalOverlay')) document.getElementById('popupModalOverlay').style.display = 'none';
+        });
     </script>
 </body>
 </html>
