@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RORRAXY | Seller Dashboard</title>
+    <title>RORRAXY | Seller Center</title>
     
     <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1PD_g_agcbmm7bbJTHoOWss8YtQ17LNsb=s400">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
     <style>
         :root {
             --bg-black: #020202;
-            --surface-bg: #070707;
+            --surface-bg: #080808;
             --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
             --text-white: #f3f3f3;
             --text-gray: #a5a5a5;
@@ -52,7 +52,7 @@
             justify-content: center;
         }
 
-        /* ১. সেলার ল্যান্ডিং / ভেরিফিকেশন কার্ড */
+        /* ল্যান্ডিং / গুগল ভেরিফিকেশন কার্ড */
         .auth-card {
             background: var(--surface-bg);
             border-radius: 18px;
@@ -334,7 +334,7 @@
         .menu-item i { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; width: 16px; text-align: center; }
         .menu-item:hover { background: rgba(212,175,55,0.1); color: #fcf6ba; }
 
-        /* সেলার স্ট্যাটস গ্রিড: Total Income, Total Payout, Total Products (Max 50) */
+        /* স্ট্যাটস বক্স (সব জিরো ব্যালেন্স) */
         .stats-grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -354,18 +354,23 @@
         .stat-lbl { font-size: 0.52rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; font-weight: 800; margin-bottom: 3px; font-family: var(--font-body); white-space: nowrap; }
         .stat-val { font-size: 1rem; font-weight: 900; color: #fff; font-family: var(--font-luxury); white-space: nowrap; }
 
-        /* আপডেট এবং নতুন প্রোডাক্ট আপলোড নোটিশ ব্যানার */
+        /* আকর্ষণীয় ও প্রিমিয়াম নোটিশ ব্যানার */
         .seller-update-notice {
-            background: rgba(191, 149, 63, 0.08);
-            border: 1px dashed rgba(212, 175, 55, 0.4);
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 0.68rem;
+            background: linear-gradient(135deg, rgba(191,149,63,0.12), rgba(10,10,10,0.9));
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 0.7rem;
             color: #fcf6ba;
             text-align: center;
             margin-bottom: 12px;
             font-family: var(--font-body);
             font-weight: 500;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
         }
 
         /* ৩টি মেইন বাটন: New Product Upload, Product List, Shipment Management */
@@ -392,7 +397,7 @@
         .seller-main-btn i { font-size: 1rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .seller-main-btn span { font-size: 0.62rem; font-weight: 700; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; font-family: var(--font-body); }
 
-        /* সেলার লাইভ চ্যাটবোর্ড সেকশন */
+        /* সেলার টু কাস্টমার লাইভ চ্যাটবোর্ড সেকশন */
         .chat-box {
             background: #040404;
             border: 1.5px solid rgba(212,175,55,0.25);
@@ -434,7 +439,7 @@
             border-radius: 8px;
             line-height: 1.4;
         }
-        .chat-msg.support {
+        .chat-msg.customer {
             background: rgba(255,255,255,0.06);
             color: #fff;
             align-self: flex-start;
@@ -471,7 +476,7 @@
             font-size: 0.75rem;
         }
 
-        /* সাপোর্ট এবং উইথড্র/পেআউট বাটন */
+        /* সাপোর্ট এবং পেআউট বাটন */
         .action-row {
             display: flex;
             gap: 8px;
@@ -632,15 +637,12 @@
         .notif-title { font-weight: 700; color: #fcf6ba; }
         .notif-time { font-size: 0.6rem; color: var(--text-gray); }
 
-        .product-list-item {
+        .product-edit-card {
             background: #000;
             border: 1.5px solid rgba(212,175,55,0.25);
-            padding: 10px 12px;
+            padding: 12px;
             border-radius: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -650,7 +652,7 @@
 
     <div class="page-container">
         
-        <!-- ১. সেলার ল্যান্ডিং / ভেরিফিকেশন কার্ড -->
+        <!-- ১. সেলার ল্যান্ডিং কার্ড -->
         <div class="auth-card" id="authSection">
             <img src="https://lh3.googleusercontent.com/d/1PD_g_agcbmm7bbJTHoOWss8YtQ17LNsb=s400" alt="Logo" class="logo-large">
             <h1 class="brand-title-large">RORRAXY</h1>
@@ -661,15 +663,20 @@
             </button>
         </div>
 
-        <!-- ২. সেলার ইনফরমেশন ফর্ম পপআপ -->
+        <!-- ২. সেলার ইনফরমেশন ফর্ম পপআপ (স্টোর ও সার্টিফিকেট তথ্য সহ) -->
         <div class="modal-overlay" id="infoModal">
             <div class="modal-card">
                 <button class="modal-close-btn" onclick="closeModal('infoModal')"><i class="fa-solid fa-xmark"></i></button>
-                <h3 class="modal-title">Seller Information</h3>
+                <h3 class="modal-title">Seller & Store Information</h3>
                 <form id="sellerForm" onsubmit="submitSellerInfo(event)">
                     <div class="form-group">
-                        <label>Store / Full Name *</label>
-                        <input type="text" id="regName" placeholder="Enter store or full name" required>
+                        <label>Store Name *</label>
+                        <input type="text" id="regStoreName" placeholder="Enter store name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Owner Full Name *</label>
+                        <input type="text" id="regName" placeholder="Enter full name" required>
                     </div>
 
                     <div class="form-group">
@@ -681,18 +688,23 @@
                         <label>WhatsApp Number *</label>
                         <div class="phone-row">
                             <select id="regDialCode">
-                                <!-- ডাইনামিক কোড -->
+                                <!-- ডায়নামিক কোড -->
                             </select>
                             <input type="tel" id="regWhatsApp" placeholder="17XXXXXXXX" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Business Address *</label>
-                        <input type="text" id="regAddress" placeholder="Warehouse/Office Location, City, Country" required>
+                        <label>Store Business Address *</label>
+                        <input type="text" id="regAddress" placeholder="Warehouse, City, Country" required>
                     </div>
 
-                    <button type="submit" class="btn-gold-glow">Confirm & Enter Seller Dashboard</button>
+                    <div class="form-group">
+                        <label>Trade License / Business Certificate ID</label>
+                        <input type="text" id="regCertId" placeholder="Enter certificate or license number (Optional)">
+                    </div>
+
+                    <button type="submit" class="btn-gold-glow">Confirm & Enter Dashboard</button>
                 </form>
             </div>
         </div>
@@ -715,7 +727,7 @@
                     <div class="menu-container">
                         <button class="notification-bell-btn" onclick="openPopupModal('tabNotificationPopup')">
                             <i class="fa-solid fa-bell"></i>
-                            <span class="notif-badge">3</span>
+                            <span class="notif-badge">1</span>
                         </button>
 
                         <button class="menu-toggle-btn" onclick="toggleMenu(event)">
@@ -724,7 +736,7 @@
 
                         <div class="dropdown-menu" id="dropdownMenu">
                             <div class="menu-item" onclick="openPopupModal('tabInfoPopup')">
-                                <i class="fa-solid fa-circle-info"></i> Information
+                                <i class="fa-solid fa-circle-info"></i> Information & Store
                             </div>
                             <div class="menu-item" onclick="openPopupModal('tabVerificationPopup')">
                                 <i class="fa-solid fa-shield-halved"></i> Verification
@@ -742,25 +754,26 @@
                     </div>
                 </div>
 
-                <!-- সেলার স্ট্যাটস বক্স: Total Income, Total Payout, Total Products (Max 50) -->
+                <!-- স্ট্যাটস বক্স (টোটাল ইনকাম, পেআউট এবং প্রোডাক্ট কাউন্ট জিরো) -->
                 <div class="stats-grid-3">
                     <div class="stat-card" onclick="openPopupModal('tabWithdrawPopup')">
                         <div class="stat-lbl">Total Income</div>
-                        <div class="stat-val" id="totalIncomeVal">$1,250.00</div>
+                        <div class="stat-val" id="totalIncomeVal">$0.00</div>
                     </div>
                     <div class="stat-card" onclick="openPopupModal('tabWithdrawPopup')">
                         <div class="stat-lbl">Total Payout</div>
-                        <div class="stat-val" id="totalPayoutVal">$850.00</div>
+                        <div class="stat-val" id="totalPayoutVal">$0.00</div>
                     </div>
                     <div class="stat-card" onclick="openPopupModal('tabProductListPopup')">
                         <div class="stat-lbl">Products (Max 50)</div>
-                        <div class="stat-val" id="totalProdCount">12/50</div>
+                        <div class="stat-val" id="totalProdCount">0/50</div>
                     </div>
                 </div>
 
-                <!-- নতুন প্রোডাক্ট আপলোড ও আপডেট নোটিশ ব্যানার -->
+                <!-- আকর্ষণীয় নোটিশ ব্যানার -->
                 <div class="seller-update-notice">
-                    <i class="fa-solid fa-triangle-exclamation" style="color: #fcf6ba;"></i> Note: Always upload fresh, trending new products & keep inventory updated. Max limit 50 items.
+                    <i class="fa-solid fa-bullhorn" style="color: #fcf6ba; font-size: 0.9rem;"></i>
+                    <span>Upload fresh trending items & keep stock updated. Max 50 products allowed.</span>
                 </div>
 
                 <!-- ৩টি মেইন বাটন: New Product Upload, Product List, Shipment Management -->
@@ -779,22 +792,22 @@
                     </div>
                 </div>
 
-                <!-- সেলার লাইভ চ্যাটবোর্ড সেকশন -->
+                <!-- সেলার টু কাস্টমার লাইভ চ্যাটবোর্ড সেকশন -->
                 <div class="chat-box">
                     <div class="chat-header">
-                        <span><i class="fa-solid fa-comments"></i> Admin Support Chat</span>
-                        <span style="font-size: 0.55rem; color: #2ecc71;"><i class="fa-solid fa-circle" style="font-size: 5px;"></i> Online Support</span>
+                        <span><i class="fa-solid fa-comments"></i> Seller to Customer Chat</span>
+                        <span style="font-size: 0.55rem; color: #2ecc71;"><i class="fa-solid fa-circle" style="font-size: 5px;"></i> Active Customer</span>
                     </div>
                     <div class="chat-messages-area" id="chatMessagesArea">
-                        <div class="chat-msg support">Welcome to Rorraxy Seller Center. Please follow high-quality packaging and policy guidelines. Let us know if you need assistance!</div>
+                        <div class="chat-msg customer">Hello! I have a question about my product order delivery timeline.</div>
                     </div>
                     <div class="chat-input-row">
-                        <input type="text" id="chatInputText" class="chat-input" placeholder="Type message to admin support..." onkeypress="handleChatKeyPress(event)">
+                        <input type="text" id="chatInputText" class="chat-input" placeholder="Reply to customer..." onkeypress="handleChatKeyPress(event)">
                         <button class="chat-send-btn" onclick="sendChatMessage()">Send</button>
                     </div>
                 </div>
 
-                <!-- সাপোর্ট এবং উইথড্র/পেআউট বাটন -->
+                <!-- সাপোর্ট এবং পেআউট বাটন -->
                 <div class="action-row">
                     <button class="support-btn" onclick="openFirebaseChat()">
                         <i class="fa-solid fa-headset" style="font-size: 0.8rem;"></i> Support
@@ -809,7 +822,7 @@
 
     </div>
 
-    <!-- মেনু ও অ্যাকশনগুলোর জন্য পপআপ মডাল ওভারলে -->
+    <!-- পপআপ মডাল ওভারলে -->
     <div class="modal-overlay" id="popupModalOverlay">
         <div class="modal-card" id="popupModalContent">
             <!-- ডাইনামিক কনটেন্ট এখানে লোড হবে -->
@@ -907,6 +920,17 @@
             { name: "Zimbabwe", flag: "🇿🇼", code: "+263" }
         ];
 
+        // স্যাম্পল প্রোডাক্ট লিস্ট (এডিট করার জন্য)
+        let sellerProducts = [
+            { id: 1, title: "Luxury Gamar Wood Table", category: "Furniture", price: 120.00, stock: 15, desc: "Premium quality solid Gamar wood table." },
+            { id: 2, title: "Baby Organic Cotton Set", category: "Baby Products", price: 35.00, stock: 30, desc: "100% organic cotton baby clothing set." }
+        ];
+
+        // সেলারের অর্ডার ও শিপমেন্ট লিস্ট
+        let sellerOrders = [
+            { orderId: "ORD-501", customer: "John Doe", product: "Luxury Gamar Wood Table", status: "Pending Shipment (3 Days Left)" }
+        ];
+
         window.addEventListener('DOMContentLoaded', () => {
             const dialCodeSelect = document.getElementById('regDialCode');
             if(dialCodeSelect) {
@@ -918,6 +942,7 @@
                 });
                 dialCodeSelect.value = "+880";
             }
+            updateProductCount();
         });
 
         function showToast(msg) {
@@ -938,30 +963,34 @@
 
         function submitSellerInfo(e) {
             e.preventDefault();
+            const storeName = document.getElementById('regStoreName').value.trim();
             const name = document.getElementById('regName').value.trim();
             const email = document.getElementById('regEmail').value.trim();
             const dialCode = document.getElementById('regDialCode').value;
             const phoneNum = document.getElementById('regWhatsApp').value.trim();
             const address = document.getElementById('regAddress').value.trim();
+            const certId = document.getElementById('regCertId').value.trim() || "N/A";
             const phone = dialCode + " " + phoneNum;
 
             let gmailUsername = email.includes('@') ? email.split('@')[0] : email;
             const sellerIdStr = 'SELLER ID: ' + gmailUsername;
 
-            document.getElementById('homeDispName').innerText = name;
+            document.getElementById('homeDispName').innerText = storeName;
             document.getElementById('homeAffId').innerText = sellerIdStr;
             document.getElementById('homeEmailDisp').innerText = email;
 
+            localStorage.setItem('rorraxy_store_name', storeName);
             localStorage.setItem('rorraxy_seller_name', name);
             localStorage.setItem('rorraxy_seller_email', email);
             localStorage.setItem('rorraxy_seller_phone', phone);
             localStorage.setItem('rorraxy_seller_address', address);
+            localStorage.setItem('rorraxy_seller_cert', certId);
             localStorage.setItem('rorraxy_seller_info_done', 'true');
 
             document.getElementById('infoModal').style.display = 'none';
             document.getElementById('authSection').style.display = 'none';
             document.getElementById('dashboardSection').style.display = 'flex';
-            showToast("Seller profile configured successfully!");
+            showToast("Store profile configured successfully!");
         }
 
         function toggleMenu(e) {
@@ -994,6 +1023,13 @@
             openPopupModal('tabWithdrawPopup');
         }
 
+        function updateProductCount() {
+            let countEl = document.getElementById('totalProdCount');
+            if(countEl) {
+                countEl.innerText = `${sellerProducts.length}/50`;
+            }
+        }
+
         function openPopupModal(tabType) {
             document.getElementById('dropdownMenu').classList.remove('show');
             const overlay = document.getElementById('popupModalOverlay');
@@ -1002,15 +1038,26 @@
             let htmlContent = `<button class="modal-close-btn" onclick="closeModal('popupModalOverlay')"><i class="fa-solid fa-xmark"></i></button>`;
 
             if(tabType === 'tabInfoPopup') {
+                let savedStore = localStorage.getItem('rorraxy_store_name') || document.getElementById('homeDispName').innerText;
+                let savedName = localStorage.getItem('rorraxy_seller_name') || 'Store Owner';
                 let savedAddress = localStorage.getItem('rorraxy_seller_address') || 'Not Provided';
+                let savedCert = localStorage.getItem('rorraxy_seller_cert') || 'N/A';
+
                 htmlContent += `
-                    <h3 class="modal-title">Seller Information</h3>
+                    <h3 class="modal-title">Store & Certificate Information</h3>
                     <div class="info-display-box">
                         <div class="info-content-wrap">
-                            <div class="info-lbl">Store / Name</div>
-                            <div class="info-val">${document.getElementById('homeDispName').innerText}</div>
+                            <div class="info-lbl">Store Name</div>
+                            <div class="info-val">${savedStore}</div>
                         </div>
                         <i class="fa-solid fa-store" style="background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i>
+                    </div>
+                    <div class="info-display-box">
+                        <div class="info-content-wrap">
+                            <div class="info-lbl">Owner Name</div>
+                            <div class="info-val">${savedName}</div>
+                        </div>
+                        <i class="fa-solid fa-user" style="background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i>
                     </div>
                     <div class="info-display-box">
                         <div class="info-content-wrap">
@@ -1021,17 +1068,17 @@
                     </div>
                     <div class="info-display-box">
                         <div class="info-content-wrap">
-                            <div class="info-lbl">WhatsApp Number</div>
-                            <div class="info-val">${localStorage.getItem('rorraxy_seller_phone') || '+880 17XXXXXXXX'}</div>
-                        </div>
-                        <i class="fa-brands fa-whatsapp" style="background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i>
-                    </div>
-                    <div class="info-display-box">
-                        <div class="info-content-wrap">
                             <div class="info-lbl">Business Address</div>
                             <div class="info-val">${savedAddress}</div>
                         </div>
                         <i class="fa-solid fa-location-dot" style="background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i>
+                    </div>
+                    <div class="info-display-box">
+                        <div class="info-content-wrap">
+                            <div class="info-lbl">Trade License / Certificate</div>
+                            <div class="info-val">${savedCert}</div>
+                        </div>
+                        <i class="fa-solid fa-certificate" style="background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i>
                     </div>`;
             } 
             else if(tabType === 'tabNewProductPopup') {
@@ -1040,60 +1087,98 @@
                     <form onsubmit="handleNewProductUpload(event)">
                         <div class="form-group">
                             <label>Product Title *</label>
-                            <input type="text" id="newProdName" placeholder="Enter trending product title" required>
+                            <input type="text" id="newProdTitle" placeholder="Enter trending product title" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Category *</label>
+                            <select id="newProdCategory" required>
+                                <option value="Furniture">Furniture (Gamar Wood, etc.)</option>
+                                <option value="Baby Products">Baby Products & Clothing</option>
+                                <option value="Electronics">Electronics & Gadgets</option>
+                                <option value="Fashion">Fashion & Apparel</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Price ($ USD) *</label>
                             <input type="number" id="newProdPrice" placeholder="0.00" step="0.01" required>
                         </div>
                         <div class="form-group">
-                            <label>Product Image URL *</label>
-                            <input type="url" id="newProdImg" placeholder="https://image-link.com/photo.jpg" required>
+                            <label>Stock Quantity *</label>
+                            <input type="number" id="newProdStock" placeholder="Enter stock amount" required>
                         </div>
                         <div class="form-group">
-                            <label>Description (Must be 100% New & Trending)</label>
-                            <textarea id="newProdDesc" rows="3" placeholder="Enter specifications..." required></textarea>
+                            <label>Description (Trending & 100% Brand New)</label>
+                            <textarea id="newProdDesc" rows="3" placeholder="Enter product specifications..." required></textarea>
                         </div>
                         <button type="submit" class="btn-gold-glow">Upload Product (Max 50)</button>
                     </form>`;
             }
             else if(tabType === 'tabProductListPopup') {
                 htmlContent += `
-                    <h3 class="modal-title">Your Product List (12/50)</h3>
-                    <p style="font-size: 0.7rem; color: var(--text-gray); text-align: center; margin-bottom: 10px;">Manage your uploaded trending items here.</p>
-                    <div style="max-height: 250px; overflow-y: auto;">
-                        <div class="product-list-item">
-                            <div>
-                                <h4 style="font-size:0.75rem; color:#fcf6ba;">Luxury Gamar Wood Table</h4>
-                                <p style="font-size:0.6rem; color:var(--text-gray);">Price: $120.00 | Status: Active</p>
+                    <h3 class="modal-title">Product List & Management (${sellerProducts.length}/50)</h3>
+                    <p style="font-size: 0.7rem; color: var(--text-gray); text-align: center; margin-bottom: 12px;">Edit title, price, stock or delete items below.</p>
+                    <div style="max-height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;">`;
+                
+                if(sellerProducts.length === 0) {
+                    htmlContent += `<p style="text-align:center; color:var(--text-gray); font-size:0.75rem;">No products uploaded yet.</p>`;
+                } else {
+                    sellerProducts.forEach((p, idx) => {
+                        htmlContent += `
+                            <div class="product-edit-card">
+                                <div class="form-group" style="margin-bottom:6px;">
+                                    <label>Title</label>
+                                    <input type="text" id="editTitle_${idx}" value="${p.title}">
+                                </div>
+                                <div style="display:flex; gap:8px; margin-bottom:6px;">
+                                    <div class="form-group" style="flex:1; margin-bottom:0;">
+                                        <label>Price ($)</label>
+                                        <input type="number" id="editPrice_${idx}" value="${p.price}" step="0.01">
+                                    </div>
+                                    <div class="form-group" style="flex:1; margin-bottom:0;">
+                                        <label>Stock</label>
+                                        <input type="number" id="editStock_${idx}" value="${p.stock}">
+                                    </div>
+                                </div>
+                                <div style="display:flex; gap:8px; margin-top:8px;">
+                                    <button class="btn-gold-glow" style="margin-top:0; padding:6px; font-size:0.65rem;" onclick="saveProductEdit(${idx})">Save Changes</button>
+                                    <button style="background:#e74c3c; color:#fff; border:none; border-radius:15px; padding:6px 12px; font-size:0.65rem; font-weight:700; cursor:pointer;" onclick="deleteProduct(${idx})"><i class="fa-solid fa-trash"></i></button>
+                                </div>
                             </div>
-                            <button style="background:none; border:none; color:#e74c3c; cursor:pointer;" onclick="showToast('Product removed')"><i class="fa-solid fa-trash"></i></button>
-                        </div>
-                        <div class="product-list-item">
-                            <div>
-                                <h4 style="font-size:0.75rem; color:#fcf6ba;">Baby Organic Cotton Set</h4>
-                                <p style="font-size:0.6rem; color:var(--text-gray);">Price: $35.00 | Status: Active</p>
-                            </div>
-                            <button style="background:none; border:none; color:#e74c3c; cursor:pointer;" onclick="showToast('Product removed')"><i class="fa-solid fa-trash"></i></button>
-                        </div>
-                    </div>`;
+                        `;
+                    });
+                }
+                htmlContent += `</div>`;
             }
             else if(tabType === 'tabShipmentPopup') {
                 htmlContent += `
                     <h3 class="modal-title">Shipment Management</h3>
-                    <p style="font-size: 0.72rem; color: var(--text-gray); text-align: center; margin-bottom: 12px;">Manage delivery tracking and courier links for orders.</p>
-                    <div class="tracking-list">
-                        <div class="tracking-item" style="background:#000; border:1.5px solid rgba(212,175,55,0.25); padding:10px; border-radius:8px; margin-bottom:8px;">
-                            <div class="tracking-info">
-                                <h4 style="font-size:0.75rem; color:#fcf6ba;">Order #ORD-501</h4>
-                                <p style="font-size:0.62rem; color:var(--text-gray);">Customer: John Doe</p>
+                    <p style="font-size: 0.72rem; color: var(--text-gray); text-align: center; margin-bottom: 12px;">Select courier and provide tracking info within 3 days.</p>
+                    <div class="tracking-list" style="display:flex; flex-direction:column; gap:10px;">`;
+                
+                sellerOrders.forEach((ord, idx) => {
+                    htmlContent += `
+                        <div style="background:#000; border:1.5px solid rgba(212,175,55,0.3); padding:12px; border-radius:10px;">
+                            <h4 style="font-size:0.75rem; color:#fcf6ba; margin-bottom:2px;">Order: ${ord.orderId} (${ord.product})</h4>
+                            <p style="font-size:0.65rem; color:var(--text-gray); margin-bottom:8px;">Customer: ${ord.customer} | Status: ${ord.status}</p>
+                            
+                            <div class="form-group" style="margin-bottom:6px;">
+                                <label>Select Courier Service</label>
+                                <select id="courierSelect_${idx}">
+                                    <option value="DHL Express">DHL Express Global</option>
+                                    <option value="FedEx International">FedEx International</option>
+                                    <option value="Steadfast Courier">Steadfast Courier</option>
+                                    <option value="Pathao Cargo">Pathao Cargo</option>
+                                </select>
                             </div>
-                            <div style="margin-top:5px;">
-                                <input type="text" placeholder="Paste Courier Tracking URL" style="width:100%; background:#040404; border:1px solid rgba(212,175,55,0.3); padding:6px; color:#fff; border-radius:6px; font-size:0.7rem; margin-bottom:5px;">
-                                <button class="btn-gold-glow" style="padding:6px; font-size:0.65rem; margin-top:0;" onclick="showToast('Tracking URL Saved!')">Save & Send URL</button>
+                            <div class="form-group" style="margin-bottom:8px;">
+                                <label>Tracking ID / Live URL</label>
+                                <input type="text" id="trackingInput_${idx}" placeholder="Paste tracking link or ID">
                             </div>
+                            <button class="btn-gold-glow" style="margin-top:0; padding:8px; font-size:0.7rem;" onclick="submitShipment(${idx})">Confirm & Send to Customer</button>
                         </div>
-                    </div>`;
+                    `;
+                });
+                htmlContent += `</div>`;
             }
             else if(tabType === 'tabVerificationPopup') {
                 const isVerified = localStorage.getItem('rorraxy_seller_verified') === 'true';
@@ -1143,7 +1228,7 @@
                     <div class="info-display-box">
                         <div class="info-content-wrap">
                             <div class="info-lbl">Available Balance</div>
-                            <div class="info-val">$400.00 USD</div>
+                            <div class="info-val">$0.00 USD</div>
                         </div>
                         <i class="fa-solid fa-wallet" style="background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i>
                     </div>
@@ -1158,24 +1243,19 @@
                     <h3 class="modal-title">Notifications</h3>
                     <div class="notif-item">
                         <div class="notif-title"><i class="fa-solid fa-box-open" style="color:#bf953f; margin-right:5px;"></i> New Order Received</div>
-                        <div style="font-size: 0.7rem; color: #fff;">Order #ORD-501 has been placed. Please prepare shipment.</div>
-                        <div class="notif-time">15 mins ago</div>
-                    </div>
-                    <div class="notif-item">
-                        <div class="notif-title"><i class="fa-solid fa-circle-check" style="color:#bf953f; margin-right:5px;"></i> Product Approved</div>
-                        <div style="font-size: 0.7rem; color: #fff;">Your recent product upload met all quality guidelines and is now live.</div>
-                        <div class="notif-time">2 hours ago</div>
+                        <div style="font-size: 0.7rem; color: #fff;">Order #ORD-501 has been placed. Please ship within 3 days.</div>
+                        <div class="notif-time">10 mins ago</div>
                     </div>`;
             }
             else if(tabType === 'tabPolicyPopup') {
                 htmlContent += `
                     <h3 class="modal-title">Seller Policy & Guidelines</h3>
                     <div class="policy-content">
-                        <strong>1. 100% Brand New Products:</strong> All products uploaded by sellers must be 100% brand new, authentic, and precisely as described in the listing.<br><br>
-                        <strong>2. Trending Products Requirement:</strong> Sellers are strictly instructed to upload only high-demand, trending products and keep their inventory constantly updated within the 50-product limit.<br><br>
-                        <strong>3. Mandatory Return Acceptance:</strong> If a customer initiates a valid return request due to defects or incorrect delivery, the seller must accept and process the return smoothly.<br><br>
-                        <strong>4. High-Quality Packaging:</strong> To prevent transit damage, premium and robust packaging standards must be maintained for every shipment.<br><br>
-                        <strong>5. Zero Tolerance for Harassment:</strong> Sellers must never mistreat, harass, or misbehave with customers under any circumstances. Violation will result in immediate account termination.
+                        <strong>1. 100% Brand New Products:</strong> All products uploaded by sellers must be 100% brand new, authentic, and precisely as described.<br><br>
+                        <strong>2. Trending Products Requirement:</strong> Sellers must upload high-demand, trending products from our store categories and keep inventory updated within the 50-product limit.<br><br>
+                        <strong>3. Mandatory Return Acceptance:</strong> If a customer initiates a valid return request, the seller must accept and process the return smoothly.<br><br>
+                        <strong>4. High-Quality Packaging:</strong> Premium and robust packaging standards must be maintained to prevent any transit damage.<br><br>
+                        <strong>5. Zero Tolerance for Harassment:</strong> Sellers must never mistreat or harass customers. Violation will result in immediate permanent account termination.
                     </div>`;
             }
 
@@ -1245,12 +1325,59 @@
 
         function handleNewProductUpload(e) {
             e.preventDefault();
-            showToast("Product uploaded successfully (Live in store)!");
+            if(sellerProducts.length >= 50) {
+                showToast("Maximum 50 products limit reached!");
+                return;
+            }
+            const title = document.getElementById('newProdTitle').value.trim();
+            const category = document.getElementById('newProdCategory').value;
+            const price = parseFloat(document.getElementById('newProdPrice').value);
+            const stock = parseInt(document.getElementById('newProdStock').value);
+            const desc = document.getElementById('newProdDesc').value.trim();
+
+            sellerProducts.push({ id: Date.now(), title, category, price, stock, desc });
+            updateProductCount();
+            showToast("Product uploaded successfully!");
+            closeModal('popupModalOverlay');
+        }
+
+        function saveProductEdit(idx) {
+            let newTitle = document.getElementById(`editTitle_${idx}`).value.trim();
+            let newPrice = parseFloat(document.getElementById(`editPrice_${idx}`).value);
+            let newStock = parseInt(document.getElementById(`editStock_${idx}`).value);
+
+            if(!newTitle || isNaN(newPrice) || isNaN(newStock)) {
+                showToast("Please provide valid edit details!");
+                return;
+            }
+            sellerProducts[idx].title = newTitle;
+            sellerProducts[idx].price = newPrice;
+            sellerProducts[idx].stock = newStock;
+            showToast("Product updated successfully!");
+        }
+
+        function deleteProduct(idx) {
+            sellerProducts.splice(idx, 1);
+            updateProductCount();
+            showToast("Product deleted successfully!");
+            openPopupModal('tabProductListPopup');
+        }
+
+        function submitShipment(idx) {
+            let courier = document.getElementById(`courierSelect_${idx}`).value;
+            let tracking = document.getElementById(`trackingInput_${idx}`).value.trim();
+
+            if(!tracking) {
+                showToast("Please enter tracking link or ID!");
+                return;
+            }
+            sellerOrders[idx].status = `Shipped via ${courier} (${tracking})`;
+            showToast("Shipment tracking sent to customer dashboard successfully!");
             closeModal('popupModalOverlay');
         }
 
         function openFirebaseChat() {
-            showToast("Connecting to Admin Support...");
+            showToast("Connecting to Customer Support...");
         }
 
         function sendChatMessage() {
@@ -1268,10 +1395,10 @@
             area.scrollTop = area.scrollHeight;
 
             setTimeout(() => {
-                let supportMsg = document.createElement('div');
-                supportMsg.className = 'chat-msg support';
-                supportMsg.innerText = "Thanks for contacting support. Our team will verify your message shortly.";
-                area.appendChild(supportMsg);
+                let custMsg = document.createElement('div');
+                custMsg.className = 'chat-msg customer';
+                custMsg.innerText = "Thanks for the update regarding my order!";
+                area.appendChild(custMsg);
                 area.scrollTop = area.scrollHeight;
             }, 1000);
         }
